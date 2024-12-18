@@ -1,13 +1,33 @@
-site_name: Documentação
+site_name: Wunjo - Documentação
+repo_url: https://github.com/FGA0138-MDS-Ajax/2024.2-Wunjo
 
 nav:
-  - Instruções mkdocs: "index.md"
+  - Página inicial: "index.md"
   - Documento de Visão: "documento-visao/documento-visao.md"
   - Documento de Requisitos: "documento-requisitos/documento-requisitos.md"
   - Documento de Arquitetura: "documento-arquitetura/documento-arquitetura.md"
   - Documento de Plano de Testes: "documento-plano-testes/documento-plano-testes.md"
   - Atas de Reunião:
-    - Ata 1: "atas-reuniao/ata-reuniao-1.md"
+      - 1 - Requisitos: "atas-reuniao/ata-reuniao-1.md"
+      - 2 - Formulário de player: "atas-reuniao/ata-reuniao-2.md"
+      - 3 - Validação de requisitos: "atas-reuniao/ata-reuniao-3.md"
+      - 4 - Análise de player e tema do PGG: "atas-reuniao/ata-reuniao-4.md"
+      - 5 - Planejamento do Front-End: "atas-reuniao/ata-reuniao-5.md"
+      - 6 - Validação de requisitos e análise do tema do PGG: "atas-reuniao/ata-reuniao-6.md"
+      - 7 - Documento de visão: "atas-reuniao/ata-reuniao-7.md"
+      - 8 - Relatório da análise de player: "atas-reuniao/ata-reuniao-8.md"
+      - 9 - Desenvolvimento do PGG: "atas-reuniao/ata-reuniao-9.md"
+      - 10 - Plano Geral de Gamificação: "atas-reuniao/ata-reuniao-10.md"
+      - 11 - Validação do Plano Geral de Gamificação: "atas-reuniao/ata-reuniao-11.md"
+      - 12 - Desenvolvimento do Protótipo pt. 1: "atas-reuniao/ata-reuniao-12.md"
+      - 13 - Amostra inicial do Protótipo: "atas-reuniao/ata-reuniao-13.md"
+      - 14 - Desenvolvimento do Protótipo pt. 2: "atas-reuniao/ata-reuniao-14.md"
+      - 15 - Elaboração da apresentação: "atas-reuniao/ata-reuniao-15.md"
+      - 16 - Sprint 1 Entidades: "atas-reuniao/ata-reuniao-16.md"
+      - 17 - Finalização do protótipo de login: "atas-reuniao/ata-reuniao-17.md"
+  - Documentos sobre gamificação:
+      - Relatório do formulário: "documentos-gamificacao/relatorio-formulario.md"
+      - Plano geral de gamificação: "documentos-gamificacao/pgg.md"
 
 theme:
   name: material

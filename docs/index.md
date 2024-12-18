@@ -1,17 +1,5 @@
-# Welcome to MkDocs
+# Wunjo - Tutoria Gamificada
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+## Sobre
 
-## Commands
-
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
-
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+O projeto Wunjo - Tutoria gamificada é um projeto para ajudar alunos da UnB com suas dúvidas em disciplinas durante a graduação.

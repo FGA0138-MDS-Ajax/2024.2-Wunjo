@@ -1,4 +1,4 @@
-# Ata de Reunião - 08/11/2024
+# Ata de Reunião - 14/11/2024
 
 Reunião realizada no Microsoft Teams
 
@@ -7,20 +7,21 @@ Reunião realizada no Microsoft Teams
 - David William
 - Gabriel Magioli
 - Giovana Fontes
+- Gustavo Ribeiro
+- João Victor
 - Letícia Lopes
-- Sophia Souza
 - Willian Wagner
 - Yan Aguiar
 
 ### Início e término
-A reunião foi iniciada às 19:00 e finalizada às 20:03.
+A reunião foi iniciada às 20:30 e finalizada às 22:40.
 
 ### Objetivo
-Entender a necessidade do cliente e fazer o levantamento inicial dos requisitos. 
+Reunião para validar requisitos com o cliente.
 
 ### Gravação da reunião
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/hHU8HHwdLXo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/py1mRCuuhYE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ### Histórico de versão
 

@@ -5,6 +5,8 @@
 |         **Gabriel Magioli**         |   **Criação do documento**   |  **0.1**   | **09/11/2024** |
 |          **David William**          |  **Revisão do documento**    |  **0.2**   | **10/11/2024** |
 | **David William e Gabriel Magioli** | **Atualização do Documento** |  **0.3**   | **15/11/2024** |
+| **Gabriel Magioli**                 | **Atualização do Documento** |  **0.4**   | **28/11/2024** |
+| **Gabriel Magioli**                 | **Atualização do Documento** |  **0.5**   | **09/12/2024** |
 
 ### **INTRODUÇÃO**
 
@@ -35,7 +37,7 @@ A plataforma solicitada pelo cliente consiste em uma aplicação voltada para a 
 | RQ16 | O sistema deverá ser gamificado, incentivando os usuários a compartilhar conhecimentos e dar feedbacks constantes.                                                                               |
 | RQ17 | A gamificação deverá possuir um ranking dos alunos.                                                                                                                                              |
 | RQ18 | O sistema deverá permitir que o usuário selecione se deseja ou não participar do ranqueamento.                                                                                                   |
-| RQ19 | O sistema deverá permitir que um tutor seja temporariamente privado de responder dúvidas caso suas respostas sejam frequentemente reportadas como incorretas ou tenha uma avaliação muito baixa. |
+| RQ19 | O sistema deverá permitir que um tutor seja temporariamente privado de responder dúvidas caso suas respostas sejam frequentemente reportadas como incorretas ou tenha uma avaliação muito baixa, por um período de 3 dias. |
 | RQ20 | O sistema deverá permitir o cadastro de usuário com nome, matrícula, e curso (voltado inicialmente para cursos da UnB/FCTE)                                                                      |
 | RQ21 | O sistema deverá aumentar o valor em pontos das dúvidas de acordo com o tempo sem resposta, tornando-as mais atrativas para tutores.                                                             |
 | RQ22 | O sistema deverá aumentar o valor em pontos das dúvidas conforme a dificuldade da pergunta.                                                                                                      |
@@ -49,6 +51,10 @@ A plataforma solicitada pelo cliente consiste em uma aplicação voltada para a 
 | RQ30 | O sistema deverá enviar notificações indicando dúvidas em aberto.                                                                                                                                |
 | RQ31 | O sistema deverá notificar um aluno quando um tutor enviar uma mensagem privada para ele tirando sua dúvida.                                                                                     |
 | RQ32 | O sistema deverá permitir a edição de perfil, incluindo informações como nome, matrícula, curso e status de participação no ranking.                                                             |
+| RQ33 | O sistema deverá exibir no ranking dos tutores cada tutor junto de suas médias e quantidade de atendimentos completos.                                                             |
+| RQ34 | O sistema deverá receber a matrícula do aluno e enviar para o email institucional uma validação de cadastro.                                                             |
+| RQ35 | A gamificação deverá possuir temporadas com duração de 6 meses onde os rankings serão reiniciados após esse tempo.                                                            |
+
 
 ## **Requisitos Não Funcionais**
 
@@ -62,3 +68,4 @@ Requisitos não funcionais descrevem características e qualidades do sistema ou
 | RQNF05 | O sistema deverá utilizar a matrícula dos alunos como nome de usuário.                                                 |
 | RQNF06 | O sistema deverá permitir que o usuário selecione uma foto de perfil caso queira utilizar.                             |
 | RQNF07 | O sistema deverá possuir uma rápida atualização das mensagens entre os tutores e alunos.                               |
+| RQNF08 | O sistema deverá ser feito para plataformas mobile.                                                                    |
