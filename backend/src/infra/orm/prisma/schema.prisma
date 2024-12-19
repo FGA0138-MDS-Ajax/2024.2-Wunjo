@@ -8,9 +8,83 @@ generator client {
   previewFeatures = ["prismaSchemaFolder"]
 }
 
-model TestEntity {
-  id   String @unique @default(uuid())
-  name String
 
-  @@map("test_entity")
+
+enum Course {
+  ENG
+  SOFTWARE
+  AEROESPACE
+  ENERGY
+  AUTOMOTIVE
+  ELETRONIC
 }
+model Season {
+  id String @id @default(uuid())
+  name String
+  period String
+}
+model Student {
+  id String @id @default(uuid())
+  registration String
+  course Course
+  name String
+  email String
+  avatar String
+  avatarUrl String
+  rankingParticipant boolean
+  seasons Season[]
+  password String
+  createdAt DateTime
+  updatedAt DateTime
+  questions Question[]
+  @@map('students')
+}
+
+
+
+enum QuestionStatus {
+  OPEN
+  IN_PROGRESS
+  FINISHED
+}
+enum QuestionUrgency {
+  LOW
+  MEDIUM
+  HIGH
+}
+enum QuestionDifficulty {
+  EASY
+  MEDIUM
+  HARD
+}
+model Tutor {
+  id  String @id @default(uuid())
+  avaliation  number
+  chatRoomId  String
+}
+model Question {
+  id String @id @default(uuid())
+  subjectId String
+  studentId String
+  @@map('questions')
+  tutorId String
+  title String
+  description String
+  points  number
+  status QuestionStatuses
+  difficulty QuestionDifficulties
+  urgency QuestionUrgencies
+  tutors Tutor[]
+}
+
+
+
+model Subject {
+  id String @id @default(uuid())
+  code String
+  name String
+  departmentCode  String
+}
+
+
+
