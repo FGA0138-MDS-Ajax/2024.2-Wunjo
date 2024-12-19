@@ -1,3 +1,5 @@
+import { Question } from "./Question";
+
 export const Course = {
   ENG: 'ENGENHARIAS',
   SOFTWARE: 'ENGENHARIA DE SOFTWARE',
@@ -27,4 +29,5 @@ export type Student = {
   password: string;
   createdAt: Date;
   updatedAt: Date;
+  questions: Array<Question>;
 };
