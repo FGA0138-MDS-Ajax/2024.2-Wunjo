@@ -11,7 +11,7 @@ export const QuestionUrgency = {
   MEDIUM: 'MEDIUM',
   HIGH: 'HIGH',
 };
-export type QuestionUrgencies = keyof typeof QuestionDifficulty;
+export type QuestionUrgencies = keyof typeof QuestionUrgency;
 
 export const QuestionDifficulty = {
   EASY: 'EASY',
