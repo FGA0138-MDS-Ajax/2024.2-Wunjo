@@ -1,14 +1,12 @@
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 generator client {
   provider = "prisma-client-js"
-  previewFeatures = ["prismaSchemaFolder"]
 }
-
-
 
 enum Course {
   ENG
@@ -18,73 +16,85 @@ enum Course {
   AUTOMOTIVE
   ELETRONIC
 }
+
 model Season {
-  id String @id @default(uuid())
-  name String
-  period String
+  id       String          @id @default(uuid())
+  name     String
+  period   String
+  students SeasonStudent[]
+
+  @@map("season")
 }
+
+model SeasonStudent {
+  id        String  @id @default(uuid())
+  seasonId  String
+  studentId String
+  points    Int
+  student   Student @relation(fields: [studentId], references: [id])
+  season    Season  @relation(fields: [seasonId], references: [id])
+
+  @@map("season_student")
+}
+
 model Student {
-  id String @id @default(uuid())
-  registration String
-  course Course
-  name String
-  email String
-  avatar String
-  avatarUrl String
-  rankingParticipant boolean
-  seasons Season[]
-  password String
-  createdAt DateTime
-  updatedAt DateTime
-  questions Question[]
-  @@map('students')
+  id                 String          @id @default(uuid())
+  registration       String          @unique
+  course             Course
+  name               String
+  email              String          @unique
+  avatar             String
+  avatarUrl          String
+  rankingParticipant Boolean
+  password           String
+  createdAt          DateTime
+  updatedAt          DateTime
+  seasons            SeasonStudent[]
+  questions          Question[]
+
+  @@map("students")
 }
-
-
 
 enum QuestionStatus {
   OPEN
   IN_PROGRESS
   FINISHED
 }
+
 enum QuestionUrgency {
   LOW
   MEDIUM
   HIGH
 }
+
 enum QuestionDifficulty {
   EASY
   MEDIUM
   HARD
 }
-model Tutor {
-  id  String @id @default(uuid())
-  avaliation  number
-  chatRoomId  String
-}
+
 model Question {
-  id String @id @default(uuid())
-  subjectId String
-  studentId String
-  @@map('questions')
-  tutorId String
-  title String
+  id          String             @id @default(uuid())
+  subjectId   String
+  studentId   String
+  tutorId     String
+  title       String
   description String
-  points  number
-  status QuestionStatuses
-  difficulty QuestionDifficulties
-  urgency QuestionUrgencies
-  tutors Tutor[]
+  points      Int
+  status      QuestionStatus
+  difficulty  QuestionDifficulty
+  urgency     QuestionUrgency
+  tutors      Json[]
+  student     Student            @relation(fields: [studentId], references: [id])
+
+  @@map("questions")
 }
-
-
 
 model Subject {
-  id String @id @default(uuid())
-  code String
-  name String
-  departmentCode  String
+  id             String @id @default(uuid())
+  code           String @unique
+  name           String
+  departmentCode String
+
+  @@map("subjects")
 }
-
-
-
