@@ -46,7 +46,7 @@ model Student {
   id                 String          @id @default(uuid())
   registration       String          @unique
   course             Course
-  status             Status
+  status             Status          @default(PENDING)
   name               String
   email              String          @unique
   avatar             String
