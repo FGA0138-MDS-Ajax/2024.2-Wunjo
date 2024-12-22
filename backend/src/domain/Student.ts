@@ -1,4 +1,4 @@
-import { Question } from "./Question";
+import type { Question } from './Question';
 
 export const Course = {
   ENG: 'ENGENHARIAS',
