@@ -16,9 +16,17 @@ export type Season = {
   period: string;
 };
 
+export const StudentRegistrationStatus = {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+};
+
+export type StudentRegistrationStatuses = keyof typeof StudentRegistrationStatus;
+
 export type Student = {
   id: string;
   registration: string;
+  status: StudentRegistrationStatuses;
   course: Courses;
   name: string;
   email: string;

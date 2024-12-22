@@ -17,6 +17,11 @@ enum Course {
   ELETRONIC
 }
 
+enum Status {
+  PENDING
+  APPROVED
+}
+
 model Season {
   id       String          @id @default(uuid())
   name     String
@@ -41,6 +46,7 @@ model Student {
   id                 String          @id @default(uuid())
   registration       String          @unique
   course             Course
+  status             Status
   name               String
   email              String          @unique
   avatar             String

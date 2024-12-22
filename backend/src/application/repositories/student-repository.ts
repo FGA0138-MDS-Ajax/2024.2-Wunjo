@@ -1,7 +1,7 @@
 import type { Student } from '@/domain';
 
 export namespace StudentRepository {
-  export const name = 'StudentRepository';
+  export const Name = 'StudentRepository';
 
   export namespace Create {
     export type Input = Student;
