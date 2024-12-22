@@ -15,7 +15,7 @@ export class PinoLogger implements Logger {
   constructor() {
     this.logger = pino({
       name: 'wunju-api',
-      transport: { target: 'pino-pretty' }
+      transport: { target: 'pino-pretty' },
     });
 
     this.loggersChildrens = this.createChildrens();

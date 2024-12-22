@@ -1,4 +1,4 @@
-import { Question } from "./Question";
+import { Question } from './Question';
 
 export const Course = {
   ENG: 'ENGENHARIAS',

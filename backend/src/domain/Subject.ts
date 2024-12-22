@@ -3,4 +3,4 @@ export type Subject = {
   code: string;
   name: string;
   departmentCode: string;
-}
+};
