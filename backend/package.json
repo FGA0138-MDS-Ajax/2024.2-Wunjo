@@ -27,7 +27,7 @@
     "helmet": "^8.0.0",
     "pino": "^9.5.0",
     "vitest": "^2.1.4",
-    "zod": "^3.23.8"
+    "zod": "^3.24.1"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^3.8.0",
