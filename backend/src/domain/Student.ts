@@ -1,12 +1,12 @@
-import { Question } from './Question';
+import type { Question } from './Question';
 
 export const Course = {
-  ENG: 'ENGENHARIAS',
-  SOFTWARE: 'ENGENHARIA DE SOFTWARE',
-  AEROSPACE: 'ENGENHARIA AEROESPACIAL',
-  ENERGY: 'ENGENHARIA DE ENERGIA',
-  AUTOMOTIVE: 'ENGENHARIA AUTOMOTIVA',
-  ELETRONIC: 'ENGENHARIA ELETRONICA',
+  ENG: 'ENG',
+  SOFTWARE: 'SOFTWARE',
+  AEROSPACE: 'AEROSPACE',
+  ENERGY: 'ENERGY',
+  AUTOMOTIVE: 'AUTOMOTIVE',
+  ELETRONIC: 'ELETRONIC',
 };
 export type Courses = keyof typeof Course;
 
@@ -16,9 +16,17 @@ export type Season = {
   period: string;
 };
 
+export const StudentRegistrationStatus = {
+  PENDING: 'PENDING',
+  APPROVED: 'APPROVED',
+};
+
+export type StudentRegistrationStatuses = keyof typeof StudentRegistrationStatus;
+
 export type Student = {
   id: string;
   registration: string;
+  status: StudentRegistrationStatuses;
   course: Courses;
   name: string;
   email: string;
