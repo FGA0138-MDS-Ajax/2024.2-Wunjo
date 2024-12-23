@@ -1,3 +1,4 @@
+import setupSwagger from '@/infra/docs/swagger';
 import cors from 'cors';
 import express from 'express';
 import helmet from 'helmet';
@@ -13,6 +14,9 @@ api.use(express.json());
 api.use(express.urlencoded({ extended: true }));
 
 api.use(route);
+
+setupSwagger(api);
+
 api.use(errorHandler);
 
 export { api };
