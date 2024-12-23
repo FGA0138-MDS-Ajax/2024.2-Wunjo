@@ -4,6 +4,7 @@ import { RegisterUsecase } from '@/application/usecases';
 import { Course } from '@/domain';
 import { z } from 'zod';
 
+
 export class RegisterUsecaseZodValidator implements Validator<RegisterUsecase.Input> {
   private readonly schema = z
     .object({
