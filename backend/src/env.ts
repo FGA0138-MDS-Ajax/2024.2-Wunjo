@@ -7,7 +7,10 @@ const envSchema = z.object({
   DATABASE_URL: z.string(),
   JWT_SECRET_KEY: z.string(),
   JWT_TOKEN_EXPIRATION: z.string(),
+<<<<<<< HEAD
   REDIS_URL: z.string(),
+=======
+>>>>>>> 8d643ff (fix(jwt-token): Fixed the implementation of token service)
 });
 
 const parsedEnv = envSchema.safeParse(process.env);
