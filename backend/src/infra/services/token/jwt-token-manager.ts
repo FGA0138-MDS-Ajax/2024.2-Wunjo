@@ -1,5 +1,6 @@
 import { CustomError } from '@/application/error';
-import { StudentTokenManager, StudentTokenManagerGenerateInput } from '@/application/services/token/token-manager-service';
+import { StudentTokenManager, StudentTokenManagerGenerateInput } from '@/application/services';
+
 import { env } from '@/env';
 import jwt from 'jsonwebtoken';
 
