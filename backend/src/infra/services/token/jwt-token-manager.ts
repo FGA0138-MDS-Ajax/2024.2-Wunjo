@@ -13,8 +13,7 @@ export class JWTStudentTokenManager implements StudentTokenManager {
         issuer: 'UnBordo',
       });
       return token;
-    // eslint-disable-next-line unused-imports/no-unused-vars
-    } catch (error) {
+    } catch {
       throw new CustomError('Error generating token', 'JWT token error', 401);
     }
   }
