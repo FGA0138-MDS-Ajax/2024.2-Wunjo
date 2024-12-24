@@ -12,6 +12,7 @@ export class JWTStudentTokenManager implements StudentTokenManager {
       const token: string = jwt.sign({ _id: studentId }, this.SECRET_KEY, {
         expiresIn: env.JWT_TOKEN_EXPIRATION,
         algorithm: 'HS256',
+        issuer: 'UnBordo',
       });
       return token;
     // eslint-disable-next-line unused-imports/no-unused-vars
