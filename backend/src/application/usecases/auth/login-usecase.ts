@@ -1,8 +1,7 @@
 import { StudentRepository } from '@/application/repositories/student-repository';
-import { Validator } from '@/application/services';
-import { StudentTokenManager } from '@/application/services/token/token-manager';
+import { StudentTokenManager, Validator } from '@/application/services';
 import { env } from '@/env';
-import { CryptographerService } from '@/infra/services/shared/criptography/cryptographer-implementation';
+import { BcryptPasswordHash } from '@/infra/services/password';
 
 export class LoginUsecase {
   public static Name = 'LoginUsecase' as const;
@@ -11,7 +10,7 @@ export class LoginUsecase {
     private readonly studentRepository: StudentRepository,
     private readonly studentTokenManager: StudentTokenManager,
     private readonly validator: Validator<LoginUsecase.Input>,
-    private readonly cryptographyService: CryptographerService,
+    private readonly cryptographyService: BcryptPasswordHash,
   ) {}
 
   async execute(_input: LoginUsecase.Input): Promise<LoginUsecase.Output> {
