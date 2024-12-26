@@ -1,5 +1,5 @@
 export namespace Logger {
-  export type ErrorCategory = 'API' | 'HTTP' | 'MSG';
+  export type ErrorCategory = 'API' | 'HTTP' | 'MSG' | 'BWE';
 }
 
 export interface Logger {

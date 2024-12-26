@@ -1,1 +1,3 @@
-export * from './pino';
+import logger from './pino';
+
+export default logger;

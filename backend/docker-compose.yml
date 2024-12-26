@@ -1,16 +1,18 @@
 
 services:
   postgres:
-    container_name: wunju.pg
+    container_name: wunjo.backend.pg
     image: postgres
     environment:
-      - POSTGRES_PASSWORD: postgres
-      - POSTGRES_USER: postgres
-      - POSTGRES_DB: wunju-db
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: wnjo-backend
+    volumes:
+      - wunjo-db:/var/lib/postgresql/data
     ports:
       - "5432:5432"
   server:
-    container_name: wunju.backend
+    container_name: wunjo.backend
     depends_on:
       - postgres
     build: .
@@ -19,3 +21,19 @@ services:
     volumes:
       - ".:/usr/app"
     command: npm run dev
+  redis:
+    container_name: wunjo.account.redis
+    image: redis:7.2.4
+    env_file:
+      - env/.env.local
+    command: redis-server --save 20 1 --loglevel warning --requirepass ${REDIS_PASSWORD}
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - cache:/data
+
+volumes:
+  wunjo-db:
+  cache:
+    driver: local
