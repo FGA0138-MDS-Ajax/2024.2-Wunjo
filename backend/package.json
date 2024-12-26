@@ -19,13 +19,18 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@faker-js/faker": "^9.3.0",
     "@prisma/client": "^6.1.0",
+    "bullmq": "^5.34.5",
     "cors": "^2.8.5",
     "dotenv-cli": "^7.4.2",
     "express": "^4.21.1",
     "express-async-errors": "^3.1.1",
     "helmet": "^8.0.0",
+    "ioredis": "^5.4.2",
     "pino": "^9.5.0",
+    "redis-memory-server": "^0.11.0",
+    "rsdi": "^3.0.3",
     "vitest": "^2.1.4",
     "zod": "^3.24.1"
   },

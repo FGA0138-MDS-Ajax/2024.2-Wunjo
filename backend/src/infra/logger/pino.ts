@@ -5,6 +5,7 @@ interface LoggerChildrens {
   API: IPinoLogger;
   MSG: IPinoLogger;
   HTTP: IPinoLogger;
+  BWE: IPinoLogger;
 }
 
 export class PinoLogger implements Logger {
@@ -38,6 +39,7 @@ export class PinoLogger implements Logger {
       API: this.logger.child({ category: 'API' }),
       MSG: this.logger.child({ category: 'MSG' }),
       HTTP: this.logger.child({ category: 'HTTP' }),
+      BWE: this.logger.child({ category: 'BWE' }),
     };
   }
 }

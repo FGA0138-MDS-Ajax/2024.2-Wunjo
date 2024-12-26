@@ -1,6 +1,7 @@
-import { EmailTypes } from '@/domain/Email';
+import { EmailTypes } from '@/domain';
 
 export namespace DispatchEmailService {
+  export const Name = 'DispatchEmailService' as const;
   export type Input = {
     data: {
       studentId: string;
