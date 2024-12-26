@@ -37,7 +37,6 @@ export async function server() {
   logger.info('Setting up server...');
 
   databaseProvider();
-  // await redisProvider();
   await bullMQProvider();
   apiProvider();
 
