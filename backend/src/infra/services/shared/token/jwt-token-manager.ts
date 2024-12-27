@@ -1,5 +1,9 @@
 import { CustomError } from '@/application/error';
 import { StudentTokenManager } from '@/application/services';
+<<<<<<< HEAD
+=======
+import { Student } from '@/domain';
+>>>>>>> df990ff (fix(jwt-test): Fixed the implementation of JWT service unit test)
 import jwt from 'jsonwebtoken';
 
 export class JWTStudentTokenManager implements StudentTokenManager {
