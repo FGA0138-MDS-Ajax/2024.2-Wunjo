@@ -1,7 +1,3 @@
 .env
 .env.local
-<<<<<<< HEAD
 .env.test
-=======
-.env.test
->>>>>>> 3e48dba (fix(jwt-test): Fixed the implementation of JWT service unit test)
