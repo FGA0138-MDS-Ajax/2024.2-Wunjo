@@ -14,8 +14,7 @@ describe('Test case jwt token manager service', () => {
 
   it('should generate a JWT token', async () => {
     const output = await studentTokenManager.generate(input);
-
-    expect(output).toBeInstanceOf(String);
+    expect(typeof output).toBe('string');
   });
 
   it('should generate a JWT token and verify it', async () => {
@@ -30,7 +29,12 @@ describe('Test case jwt token manager service', () => {
     const token: string = await studentTokenManager.generate(input);
 
     const output = await studentTokenManager.decrypt(token);
-
     expect(output).toBeInstanceOf(Object);
+    expect(output).toEqual({
+      student_id: input.studentId,
+      iat: expect.any(Number),
+      exp: expect.any(Number),
+      iss: 'UnBordo',
+    });
   });
 });
