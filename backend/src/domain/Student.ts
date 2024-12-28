@@ -10,10 +10,11 @@ export const Course = {
 };
 export type Courses = keyof typeof Course;
 
-export type Season = {
+export type StudentSeason = {
   id: string;
-  name: string;
-  period: string;
+  seasonId: string;
+  studentId: string;
+  points: number;
 };
 
 export const StudentRegistrationStatus = {
@@ -21,7 +22,8 @@ export const StudentRegistrationStatus = {
   APPROVED: 'APPROVED',
 };
 
-export type StudentRegistrationStatuses = keyof typeof StudentRegistrationStatus;
+export type StudentRegistrationStatuses =
+  keyof typeof StudentRegistrationStatus;
 
 export type Student = {
   id: string;
@@ -33,7 +35,7 @@ export type Student = {
   avatar: string;
   avatarUrl: string;
   rankingParticipant: boolean;
-  seasons: Array<Season>;
+  seasons: Array<StudentSeason>;
   password: string;
   createdAt: Date;
   updatedAt: Date;

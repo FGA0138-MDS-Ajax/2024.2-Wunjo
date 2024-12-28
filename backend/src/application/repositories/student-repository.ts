@@ -6,7 +6,7 @@ export namespace StudentRepository {
   export namespace Create {
     export type Input = Student;
 
-    export type Output = Student;
+    export type Output = Omit<Student, 'questions' | 'seasons'>;
   };
 
   export namespace Update {
