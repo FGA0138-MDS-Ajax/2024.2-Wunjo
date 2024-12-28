@@ -7,7 +7,7 @@ export const Course = {
   ENERGY: 'ENERGY',
   AUTOMOTIVE: 'AUTOMOTIVE',
   ELETRONIC: 'ELETRONIC',
-};
+} as const;
 export type Courses = keyof typeof Course;
 
 export type StudentSeason = {
@@ -20,7 +20,7 @@ export type StudentSeason = {
 export const StudentRegistrationStatus = {
   PENDING: 'PENDING',
   APPROVED: 'APPROVED',
-};
+} as const;
 
 export type StudentRegistrationStatuses =
   keyof typeof StudentRegistrationStatus;
