@@ -4,7 +4,7 @@ export namespace StudentRepository {
   export const Name = 'StudentRepository';
 
   export namespace Create {
-    export type Input = Student;
+    export type Input = Omit<Student, 'id'>;
 
     export type Output = Omit<Student, 'questions' | 'seasons'>;
   };
