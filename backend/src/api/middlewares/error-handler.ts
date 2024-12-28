@@ -1,3 +1,4 @@
+import { CustomError } from '@/application/error';
 import { NextFunction, Request, Response } from 'express';
 
 export function errorHandler(
@@ -8,6 +9,15 @@ export function errorHandler(
 ) {
   if (!error) {
     next();
+  }
+
+  if (error instanceof CustomError) {
+    res.status(error.status).send({
+      type: error.name,
+      message: error.message,
+      errors: error.fields,
+      stack: error.stack,
+    });
   }
 
   if (error instanceof Error) {

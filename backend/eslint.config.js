@@ -41,5 +41,13 @@ export default antfu({
     'ts/consistent-type-imports': 'off',
     'ts/consistent-type-definitions': 'off',
     'test/prefer-lowercase-title': 'off',
+    'unused-imports/no-unused-vars': [
+      'error',
+      {
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+        caughtErrorsIgnorePattern: '^_',
+      },
+    ],
   },
 });

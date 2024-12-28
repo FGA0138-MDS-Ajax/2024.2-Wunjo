@@ -1,16 +1,106 @@
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 generator client {
   provider = "prisma-client-js"
-  previewFeatures = ["prismaSchemaFolder"]
 }
 
-model TestEntity {
-  id   String @unique @default(uuid())
-  name String
+enum Course {
+  ENG
+  SOFTWARE
+  AEROESPACE
+  ENERGY
+  AUTOMOTIVE
+  ELETRONIC
+}
 
-  @@map("test_entity")
+enum Status {
+  PENDING
+  APPROVED
+}
+
+model Season {
+  id       String          @id @default(uuid())
+  name     String
+  period   String
+  students SeasonStudent[]
+
+  @@map("season")
+}
+
+model SeasonStudent {
+  id        String  @id @default(uuid())
+  seasonId  String
+  studentId String
+  points    Int
+  student   Student @relation(fields: [studentId], references: [id])
+  season    Season  @relation(fields: [seasonId], references: [id])
+
+  @@map("season_student")
+}
+
+model Student {
+  id                 String          @id @default(uuid())
+  registration       String          @unique
+  course             Course
+  status             Status          @default(PENDING)
+  name               String
+  email              String          @unique
+  avatar             String
+  avatarUrl          String
+  rankingParticipant Boolean
+  password           String
+  createdAt          DateTime
+  updatedAt          DateTime
+  seasons            SeasonStudent[]
+  questions          Question[]
+
+  @@map("students")
+}
+
+enum QuestionStatus {
+  OPEN
+  IN_PROGRESS
+  FINISHED
+}
+
+enum QuestionUrgency {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum QuestionDifficulty {
+  EASY
+  MEDIUM
+  HARD
+}
+
+model Question {
+  id          String             @id @default(uuid())
+  subjectId   String
+  studentId   String
+  tutorId     String
+  title       String
+  description String
+  points      Int
+  status      QuestionStatus
+  difficulty  QuestionDifficulty
+  urgency     QuestionUrgency
+  tutors      Json[]
+  student     Student            @relation(fields: [studentId], references: [id])
+
+  @@map("questions")
+}
+
+model Subject {
+  id             String @id @default(uuid())
+  code           String @unique
+  name           String
+  departmentCode String
+
+  @@map("subjects")
 }

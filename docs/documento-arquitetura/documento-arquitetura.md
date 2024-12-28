@@ -1,12 +1,291 @@
 UnBordo - A aventura do conhecimento 
-=============
 
+Documento de Arquitetura 
+
+Versão 0.1
 
 Histórico de Revisão 
-|Data |Versão  |Descrição  |Autor(es)|
-| :------------- | :----- | :--------------------------- | :---------------------------- |
-|18/12/2024      |0.1     |Primeira versão do documento  |David, Gabriel, João, Sophia e Willian|
-|                |        |                              |                               |
+
+|
+
+Data 
+
+ |
+
+Versão 
+
+ |
+
+Descrição 
+
+ |
+
+Autor(es)
+
+ |
+|
+
+18/12/2024
+
+ |
+
+0.1
+
+ |
+
+Primeira versão do documento
+
+ |
+
+David, Gabriel, João, Sophia e Willian
+
+ |
+|\
+ |\
+ |\
+ |\
+ |
+|\
+ |\
+ |\
+ |\
+ |
+
+Autores:
+
+|
+
+Matrícula 
+
+ |
+
+Nome 
+
+ |
+
+Papel 
+
+ |
+
+% de contribuição
+
+ |
+|
+
+231027032
+
+ |
+
+ARTHUR EVANGELISTA DE OLIVEIRA
+
+ |
+
+Seção 1
+
+ |
+
+10
+
+ |
+|
+
+232001649
+
+ |
+
+DAVID WILLIAM LEMOS FERREIRA
+
+ |
+
+Seção 1
+
+ |
+
+10
+
+ |
+|
+
+232013980
+
+ |
+
+GABRIEL ANDRADE MAGIOLI
+
+ |
+
+Seção 2
+
+ |
+
+10
+
+ |
+|
+
+231038644
+
+ |
+
+GIOVANA DE SOUZA 
+
+ |
+
+Seção 2
+
+ |
+
+10
+
+ |
+|
+
+222008691
+
+ |
+
+GUSTAVO RIBEIRO LINHARES
+
+ |
+
+Seção 2
+
+ |
+
+10
+
+ |
+|
+
+221022604
+
+ |
+
+JOÃO VICTOR DA SILVA BATISTA DE FARIAS
+
+ |
+
+Seção 2
+
+ |
+
+10
+
+ |
+|
+
+231035455
+
+ |
+
+LETICIA MARIA DE JESUS LOPES
+
+ |
+
+Seção 2
+
+ |
+
+10
+
+ |
+|
+
+231026886
+
+ |
+
+SOPHIA SOUZA DA SILVA
+
+ |
+
+Seção 2
+
+ |
+
+10
+
+ |
+|
+
+231011865
+
+ |
+
+WILLIAN WAGNER XAVIER RAMOS DA SILVA
+
+ |
+
+Seção 2
+
+ |
+
+10
+
+ |
+|
+
+231038303
+
+ |
+
+YAN MATHEUS SANTA BRIGIDA DE AGUIAR
+
+ |
+
+Seção 2
+
+ |
+
+10
+
+ |
+
+Sumário
+
+[1 Introdução  4](https://docs.google.com/document/d/1z670b0qTQRccohKwhYz566jfLP6Uh9FuQOo7i4fOMv4/edit?tab=t.0#heading=h.ixqdqymrp785)
+
+[1.1 Finalidade  4](https://docs.google.com/document/d/1z670b0qTQRccohKwhYz566jfLP6Uh9FuQOo7i4fOMv4/edit?tab=t.0#heading=h.z1ubvs7yn9vp)
+
+[1.2 Escopo  4](https://docs.google.com/document/d/1z670b0qTQRccohKwhYz566jfLP6Uh9FuQOo7i4fOMv4/edit?tab=t.0#heading=h.eyzoyxsdu9n2)
+
+[2 Representação Arquitetural  4](https://docs.google.com/document/d/1z670b0qTQRccohKwhYz566jfLP6Uh9FuQOo7i4fOMv4/edit?tab=t.0#heading=h.uitwu8t6tsc4)
+
+[2.1 Definições  4](https://docs.google.com/document/d/1z670b0qTQRccohKwhYz566jfLP6Uh9FuQOo7i4fOMv4/edit?tab=t.0#heading=h.ru3iw7ngj8kc)
+
+[2.2 Justifique sua escolha.  4](https://docs.google.com/document/d/1z670b0qTQRccohKwhYz566jfLP6Uh9FuQOo7i4fOMv4/edit?tab=t.0#heading=h.b759x1x1rafr)
+
+[2.3 Detalhamento  5](https://docs.google.com/document/d/1z670b0qTQRccohKwhYz566jfLP6Uh9FuQOo7i4fOMv4/edit?tab=t.0#heading=h.wnr878czgo4p)
+
+[2.4 Metas e restrições arquiteturais  5](https://docs.google.com/document/d/1z670b0qTQRccohKwhYz566jfLP6Uh9FuQOo7i4fOMv4/edit?tab=t.0#heading=h.7x0flyh0uxa4)
+
+[2.5 Visão de Casos de uso  6](https://docs.google.com/document/d/1z670b0qTQRccohKwhYz566jfLP6Uh9FuQOo7i4fOMv4/edit?tab=t.0#heading=h.akfouoyxavfs)
+
+[2.6 Visão lógica  8](https://docs.google.com/document/d/1z670b0qTQRccohKwhYz566jfLP6Uh9FuQOo7i4fOMv4/edit?tab=t.0#heading=h.6j561dljt6yo)
+
+[Cadastro  8](https://docs.google.com/document/d/1z670b0qTQRccohKwhYz566jfLP6Uh9FuQOo7i4fOMv4/edit?tab=t.0#heading=h.pzclw2uycuid)
+
+[Login  8](https://docs.google.com/document/d/1z670b0qTQRccohKwhYz566jfLP6Uh9FuQOo7i4fOMv4/edit?tab=t.0#heading=h.7yie7qwbting)
+
+[Fórum de Perguntas Públicas  9](https://docs.google.com/document/d/1z670b0qTQRccohKwhYz566jfLP6Uh9FuQOo7i4fOMv4/edit?tab=t.0#heading=h.zicpkus9ktf0)
+
+[Módulo de Chat 1:1  9](https://docs.google.com/document/d/1z670b0qTQRccohKwhYz566jfLP6Uh9FuQOo7i4fOMv4/edit?tab=t.0#heading=h.eqw6ydfkgoiu)
+
+[Razão Lógica:  9](https://docs.google.com/document/d/1z670b0qTQRccohKwhYz566jfLP6Uh9FuQOo7i4fOMv4/edit?tab=t.0#heading=h.k8flqts9hkru)
+
+[Comunicação:  9](https://docs.google.com/document/d/1z670b0qTQRccohKwhYz566jfLP6Uh9FuQOo7i4fOMv4/edit?tab=t.0#heading=h.j9cubyhjjjpa)
+
+[Proposta de Tecnologia:  9](https://docs.google.com/document/d/1z670b0qTQRccohKwhYz566jfLP6Uh9FuQOo7i4fOMv4/edit?tab=t.0#heading=h.i159eh97fqy3)
+
+[Dependências:  10](https://docs.google.com/document/d/1z670b0qTQRccohKwhYz566jfLP6Uh9FuQOo7i4fOMv4/edit?tab=t.0#heading=h.b2aq8ywrzop)
+
+[2.7 Visão de Implementação  11](https://docs.google.com/document/d/1z670b0qTQRccohKwhYz566jfLP6Uh9FuQOo7i4fOMv4/edit?tab=t.0#heading=h.sxpjnsosoqss)
+
+[2.8 Visão de Implantação  13](https://docs.google.com/document/d/1z670b0qTQRccohKwhYz566jfLP6Uh9FuQOo7i4fOMv4/edit?tab=t.0#heading=h.kcgmkki3llpu)
+
+[2.9 Restrições adicionais  14](https://docs.google.com/document/d/1z670b0qTQRccohKwhYz566jfLP6Uh9FuQOo7i4fOMv4/edit?tab=t.0#heading=h.8jd073wz7gaq)
+
+[3 Bibliografia  15](https://docs.google.com/document/d/1z670b0qTQRccohKwhYz566jfLP6Uh9FuQOo7i4fOMv4/edit?tab=t.0#heading=h.4sh8ooj22koa)
 
 1 Introdução 
 =============
@@ -43,10 +322,7 @@ No front-end, a escolha se deu para aproveitar o comportamento do React, utiliza
 2.3 Detalhamento 
 -----------------
 
-![](https://lh7-rt.googleusercontent.com/docsz/AD_4nXeQgbiKLeNMK1m7_8K5YYrFgG6rYtFUI7DiD0jh6NKHEdvQk3XGFx7acKwks-AoXkr9GtLqPAsH0dWQ3OmtBVO6zg-6Qr34TjfHWJNqFmEBfvAuVFLAIKBqu1WnU5kgsbjgUX8VkA?key=9XqIJ4VXtzas9zVDhJnweE11)
-
-Figura 1: Diagrama Hexagonal
-
+![](https://lh7-rt.googleusercontent.com/docsz/AD_4nXeQgbiKLeNMK1m7_8K5YYrFgG6rYtFUI7DiD0jh6NKHEdvQk3XGFx7acKwks-AoXkr9GtLqPAsH0dWQ3OmtBVO6zg-6Qr34TjfHWJNqFmEBfvAuVFLAIKBqu1WnU5kgsbjgUX8VkA?key=9XqIJ4VXtzas9zVDhJnweE11)Figura 1: Diagrama Hexagonal
 
 Elementos de modelo:
 
@@ -324,7 +600,6 @@ Figura 3: Fluxo de cadastro de dúvidas o fórum
    Fluxo de chat e resposta de dúvidas:
 
 ![](https://lh7-rt.googleusercontent.com/docsz/AD_4nXfJsXBRXtwemiLuv2N_n2_ML0RTQqoA6bwW7qA0M3UwwfqVai8jM-8QFCVb7aUeiENAs-VVrBkfjewnQocrTZeyDo4xADB_S3ixtRmTcVMIuc3E0j17Yf8Wujby3mw2nqMAFVUzzA?key=9XqIJ4VXtzas9zVDhJnweE11)
-
 
 Figura 4: Fluxo de chat e resposta de dúvidas
 
