@@ -49,5 +49,6 @@ export default antfu({
         caughtErrorsIgnorePattern: '^_',
       },
     ],
+    'style/arrow-parens': 'off',
   },
 });

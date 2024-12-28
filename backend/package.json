@@ -13,7 +13,8 @@
     "lint": "tsc --noEmit && eslint . --no-error-on-unmatched-pattern",
     "lint:fix": "npm run lint -- --fix",
     "prisma:local": "dotenv -e ./env/.env.local -- npx prisma",
-    "test": "vitest"
+    "prisma": "dotenv -e ./env/.env -- npx prisma",
+    "test": "dotenv -e ./env/.env.test -- vitest"
   },
   "keywords": [],
   "author": "",
