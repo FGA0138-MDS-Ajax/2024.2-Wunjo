@@ -13,5 +13,5 @@ export namespace DispatchEmailService {
 }
 
 export interface DispatchEmailService {
-  dispatch: (input: DispatchEmailService.Input) => DispatchEmailService.Output;
+  dispatch: (input: DispatchEmailService.Input) => Promise<DispatchEmailService.Output>;
 }
