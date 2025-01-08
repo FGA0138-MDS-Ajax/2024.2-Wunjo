@@ -13,7 +13,7 @@ export class LoginUsecase {
     private readonly validator: Validator<LoginUsecase.Input>,
   ) {}
 
-  async execute(_input: LoginUsecase.Input): Promise<> {
+  async execute(_input: LoginUsecase.Input): Promise<LoginUsecase.Output> {
     const validateInput = await this.validator.validate(_input);
     const studentExists = await this.studentRepository.findBy({ registration: validateInput.registration });
     if (!studentExists) {
