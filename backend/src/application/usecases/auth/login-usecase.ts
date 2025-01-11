@@ -1,5 +1,5 @@
 import { UnauthenticatedError } from '@/application/error';
-import { UserNotFoundError } from '@/application/error/user-not-found-error';
+import { NotFoundError } from '@/application/error/not-found-error';
 import { StudentRepository } from '@/application/repositories/student-repository';
 import { PasswordHash, StudentTokenManager, Validator } from '@/application/services';
 import { env } from '@/env';
@@ -18,7 +18,7 @@ export class LoginUsecase {
     const validateInput = await this.validator.validate(_input);
     const studentExists = await this.studentRepository.findBy({ registration: validateInput.registration });
     if (!studentExists) {
-      throw new UserNotFoundError();
+      throw new NotFoundError('User not found', 'STUDENT');
     }
     const authenticatedStudent = await this.cryptographyService.compare(_input.password, studentExists.password);
     if (!authenticatedStudent) {
