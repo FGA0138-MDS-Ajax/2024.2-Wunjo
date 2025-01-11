@@ -1,3 +1,5 @@
+import { UnauthenticatedError } from '@/application/error';
+import { UserNotFoundError } from '@/application/error/user-not-found-error';
 import { StudentRepository } from '@/application/repositories/student-repository';
 import { PasswordHash, StudentTokenManager, Validator } from '@/application/services';
 import { env } from '@/env';
@@ -16,11 +18,11 @@ export class LoginUsecase {
     const validateInput = await this.validator.validate(_input);
     const studentExists = await this.studentRepository.findBy({ registration: validateInput.registration });
     if (!studentExists) {
-      throw new Error('Estudante não encontrado!');
+      throw new UserNotFoundError();
     }
     const authenticatedStudent = await this.cryptographyService.compare(_input.password, studentExists.password);
     if (!authenticatedStudent) {
-      throw new Error('Senha incorreta!');
+      throw new UnauthenticatedError();
     }
     const token = await this.studentTokenManager.generate({ studentId: validateInput.registration });
     return { accessToken: token, expiresAt: env.JWT_TOKEN_EXPIRATION };
