@@ -1,40 +1,36 @@
 import { CustomError } from '@/application/error';
-import { StudentTokenManager } from '@/application/services';
-<<<<<<< HEAD
-=======
-import { Student } from '@/domain';
->>>>>>> df990ff (fix(jwt-test): Fixed the implementation of JWT service unit test)
+import { StudentTokenManager, StudentTokenManagerGenerateInput } from '@/application/services';
+import { env } from '@/env';
 import jwt from 'jsonwebtoken';
 
 export class JWTStudentTokenManager implements StudentTokenManager {
-  SECRET_KEY: string = 'unbordoJWTsecretkey*4#$@);.';
-
-  generate = async (data: object): Promise<string> => {
+  async generate(data: StudentTokenManagerGenerateInput): Promise<string> {
     try {
-      const studentId = data.id;// getting the student id and passing on the token
-      const token: string = jwt.sign({ _id: studentId }, this.SECRET_KEY, {
-        expiresIn: '7 days',
+      const studentId = data.studentId;
+      const token: string = jwt.sign({ student_id: studentId }, env.JWT_SECRET_KEY, {
+        expiresIn: env.JWT_TOKEN_EXPIRATION,
         algorithm: 'HS256',
+        issuer: 'UnBordo',
       });
       return token;
     // eslint-disable-next-line unused-imports/no-unused-vars
     } catch (error) {
-      throw new CustomError('Error generating token', 'JWT Error', 401);
+      throw new CustomError('Error generating token', 'JWT token error', 401);
     }
-  };
+  }
 
-  verify = async (token: string): Promise<boolean> => {
+  async verify(token: string): Promise<boolean> {
     if (!token) {
-      throw new CustomError('Invalid input token', 'JWT Error', 401);
+      throw new CustomError('Invalid input token', 'JWT token error', 401);
     }
-    const decoded = jwt.verify(token, this.SECRET_KEY);
+    const decoded = jwt.verify(token, env.JWT_SECRET_KEY);
     if (!decoded) {
       return false;
     }
     return true;
-  };
+  }
 
-  decrypt = async (token: string): Promise<object> => {
+  async decrypt(token: string): Promise<object> {
     return new Object(jwt.decode(token));
-  };
+  }
 }
