@@ -82,6 +82,7 @@ export default function ChatList() {
     </View>
   );
 
+  );
 }
 
 const styles = StyleSheet.create({
