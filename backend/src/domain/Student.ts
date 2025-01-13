@@ -1,5 +1,3 @@
-import { Question } from './Question';
-
 export const Course = {
   ENG: 'ENG',
   SOFTWARE: 'SOFTWARE',
@@ -35,9 +33,7 @@ export type Student = {
   avatar: string;
   avatarUrl: string;
   rankingParticipant: boolean;
-  seasons: Array<StudentSeason>;
   password: string;
   createdAt: Date;
   updatedAt: Date;
-  questions: Array<Question>;
 };

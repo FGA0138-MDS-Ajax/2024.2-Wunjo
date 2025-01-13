@@ -3,29 +3,43 @@ import {
   RegisterUsecase,
   SendEmailUsecase,
 } from '@/application/usecases';
-
-import { RegisterUsecaseZodValidator } from '@/infra/services/shared/zod';
-import { LoginUsecaseZodValidator } from '@/infra/services/shared/zod/auth/login-usecase-zod-validator';
-import { JWTStudentTokenManager } from '@/infra/services/token/jwt-token-manager';
+import {
+  LoginUsecaseZodValidator,
+  RegisterUsecaseZodValidator,
+} from '@/infra/services/shared/zod';
 import { InfraDI } from '../infra';
 
 export function configureApplicationUsecaseDI(container: InfraDI) {
   return container
-    .add(SendEmailUsecase.Name, () => new SendEmailUsecase())
-    .add(LoginUsecase.Name, ({ StudentRepository, PasswordHash }) => new LoginUsecase(
-      StudentRepository,
-      new JWTStudentTokenManager(),
-      new LoginUsecaseZodValidator(),
-      PasswordHash,
-    ))
+    .add(
+      SendEmailUsecase.Name,
+      ({ StudentRepository, ProviderEmailServiceFacade, EmailTemplateRepository }) =>
+        new SendEmailUsecase(StudentRepository, ProviderEmailServiceFacade, EmailTemplateRepository),
+    )
+    .add(
+      LoginUsecase.Name,
+      ({ StudentRepository, PasswordHash, StudentTokenManager }) =>
+        new LoginUsecase(
+          new LoginUsecaseZodValidator(),
+          StudentRepository,
+          PasswordHash,
+          StudentTokenManager,
+        ),
+    )
     .add(
       RegisterUsecase.Name,
-      ({ StudentRepository, PasswordHash, DispatchEmailService }) =>
+      ({
+        StudentRepository,
+        PasswordHash,
+        DispatchEmailService,
+        EmailRepository,
+      }) =>
         new RegisterUsecase(
           new RegisterUsecaseZodValidator(),
           StudentRepository,
           PasswordHash,
           DispatchEmailService,
+          EmailRepository,
         ),
     );
 }

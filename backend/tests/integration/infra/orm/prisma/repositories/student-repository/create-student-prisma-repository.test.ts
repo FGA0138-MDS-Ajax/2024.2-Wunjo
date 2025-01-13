@@ -57,7 +57,10 @@ describe('Create StudentPrismaRepository', () => {
       ...input,
       seasons: [
         {
-          ...seasonInput,
+          id: seasonInput.id,
+          points: seasonInput.points,
+          name: season.name,
+          period: season.period,
         },
       ],
     });
@@ -104,7 +107,9 @@ describe('Create StudentPrismaRepository', () => {
       repo.create(input),
     );
 
-    expect(error.message).toContain('Unique constraint failed on the fields: (`id`)');
+    expect(error.message).toContain(
+      'Unique constraint failed on the fields: (`id`)',
+    );
     expect(error).toMatchObject({
       code: 'P2002',
       name: 'PrismaClientKnownRequestError',

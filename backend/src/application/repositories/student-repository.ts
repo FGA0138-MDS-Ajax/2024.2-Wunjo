@@ -1,30 +1,40 @@
-import type { Student } from '@/domain';
+import type { Question, Student } from '@/domain';
+import { Season } from '@/domain/Season';
 
 export namespace StudentRepository {
   export const Name = 'StudentRepository';
 
   export namespace Create {
-    export type Input = Student;
+    export type Input = Student & Partial<{
+      questions: Question[];
+      seasons: Season[];
+    }>;
 
     export type Output = Omit<Student, 'questions' | 'seasons'>;
-  };
+  }
 
   export namespace Update {
     export type Input = Partial<Student>;
 
     export type Output = Student | null;
-  };
+  }
 
   export namespace FindBy {
-    export type Input = Partial<{
-      id: string;
-      registration: string;
-      email: string;
-    }>;
+    export type Input = {
+      where: Partial<{
+        id: string;
+        registration: string;
+        email: string;
+      }>;
+      relations?: Partial<{
+        questions: boolean;
+        seasons: boolean;
+      }>;
+    };
 
-    export type Output = Student;
-  };
-};
+    export type Output = Student | null;
+  }
+}
 
 export interface StudentRepository {
   create: (params: StudentRepository.Create.Input) => Promise<StudentRepository.Create.Output>;

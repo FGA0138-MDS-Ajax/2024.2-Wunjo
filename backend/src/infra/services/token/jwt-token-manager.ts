@@ -22,10 +22,12 @@ export class JWTStudentTokenManager implements StudentTokenManager {
     if (!token) {
       throw new CustomError('Invalid input token', 'JWT token error', 401);
     }
+
     const decoded = jwt.verify(token, env.JWT_SECRET_KEY);
     if (!decoded) {
       return false;
     }
+    
     return true;
   }
 

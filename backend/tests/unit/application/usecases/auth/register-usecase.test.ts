@@ -82,7 +82,9 @@ describe('RegisterUsecase', () => {
     expect(validate.calledOnceWithExactly(input)).toBeTruthy();
     expect(
       findRepo.calledOnceWithExactly({
-        registration: input.registration,
+        where: {
+          registration: input.registration,
+        },
       }),
     ).toBeTruthy();
     expect(hashPassword.calledOnceWithExactly(input.password)).toBeTruthy();
@@ -154,7 +156,9 @@ describe('RegisterUsecase', () => {
     expect(validate.calledOnceWithExactly(input)).toBeTruthy();
     expect(
       findRepo.calledOnceWithExactly({
-        registration: input.registration,
+        where: {
+          registration: input.registration,
+        },
       }),
     ).toBeTruthy();
     expect(hashPassword.notCalled).toBeTruthy();

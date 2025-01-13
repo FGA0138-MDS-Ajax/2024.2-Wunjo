@@ -6,6 +6,7 @@ export namespace DispatchEmailService {
     data: {
       studentId: string;
       type: EmailTypes;
+      data?: object;
     };
   };
 

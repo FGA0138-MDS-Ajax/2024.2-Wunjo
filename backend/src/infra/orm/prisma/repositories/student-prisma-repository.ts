@@ -22,7 +22,7 @@ export class StudentPrismaRepository implements StudentRepository {
         createdAt: new Date(),
         updatedAt: new Date(),
         questions: {
-          connectOrCreate: params.questions.map((question) => ({
+          connectOrCreate: params.questions?.map((question) => ({
             where: { id: question.id },
             create: {
               id: question.id,
@@ -45,12 +45,12 @@ export class StudentPrismaRepository implements StudentRepository {
           })),
         },
         seasons: {
-          connectOrCreate: params.seasons.map((season) => ({
+          connectOrCreate: params.seasons?.map((season) => ({
             where: { id: season.id },
             create: {
               id: season.id,
               points: season.points,
-              seasonId: season.seasonId,
+              seasonId: season.id,
             },
           })),
         },
@@ -68,8 +68,17 @@ export class StudentPrismaRepository implements StudentRepository {
   }
 
   async findBy(
-    _params: StudentRepository.FindBy.Input,
+    params: StudentRepository.FindBy.Input,
   ): Promise<StudentRepository.FindBy.Output> {
-    throw new Error('Method not implemented.');
+    const student = await this.prisma.student.findFirst({
+      where: {
+        ...params.where,
+      },
+      include: {
+        ...params.relations,
+      },
+    });
+
+    return student;
   }
 }

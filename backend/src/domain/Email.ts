@@ -4,3 +4,9 @@ export const EmailType = {
 } as const;
 
 export type EmailTypes = keyof typeof EmailType;
+
+export interface Email {
+  to: string;
+  type: EmailTypes;
+  data: string;
+}
