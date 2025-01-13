@@ -5,16 +5,22 @@ import { Text, View, StyleSheet, ScrollView } from "react-native";
 
 export default function Chat() {
   return (
-    <Layout>
+    //<Layout>
       <View style={styles.container}>
         <Text style={styles.title}>Conversas</Text>
         <ScrollView style={styles.scrollContainer}>
           <ChatBox />
           <ChatBox />
           <ChatBox />
+          <ChatBox />
+          <ChatBox />
+          <ChatBox />
+          <ChatBox />
+          <ChatBox />
+          <ChatBox />
         </ScrollView>
       </View>
-    </Layout>
+    //</Layout>
   );
 }
 
