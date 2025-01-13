@@ -12,12 +12,10 @@ export default function Chat() {
           <ChatBox />
           <ChatBox />
           <ChatBox />
-          <ChatBox />
         </ScrollView>
       </View>
     </Layout>
   );
-
 }
 
 const styles = StyleSheet.create({
