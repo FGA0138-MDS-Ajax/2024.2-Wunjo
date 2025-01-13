@@ -1,67 +1,89 @@
-import { View, Text, StyleSheet } from "react-native";
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, Image, TouchableOpacity, Modal, Button } from "react-native";
 
-export default function ChatBox() {
-    return (
-        <View style={styles.chatItems}>
-            <View style={styles.circle}></View>
-            <View style={{ flex: 1 }}>
-                <Text style={styles.name}>arthurtopzera</Text>
-                <Text style={styles.message}>Seguinte, voce faz aeweufbouwbc</Text>
-            </View>
-            <Text style={styles.options}>...</Text>
-        </View>
-    );
+interface ChatBoxProps {
+  username: string;
+  message: string;
+  userImage: string;
+  onPress: () => void; // Função para abrir o chat
 }
+
+export default function ChatBox({ username, message, userImage, onPress }: ChatBoxProps) {
+  const [modalVisible, setModalVisible] = useState(false);
+
+  return (
+    <TouchableOpacity onPress={onPress} style={styles.chatItems}>
+      <Image source={{ uri: userImage }} style={styles.circle} />
+      <View style={styles.textContainer}>
+        <Text style={styles.name}>{username}</Text>
+        <Text style={styles.message} numberOfLines={1}>{message}</Text>
+      </View>
+      <TouchableOpacity onPress={() => setModalVisible(true)}>
+        <Text style={styles.options}>...</Text>
+      </TouchableOpacity>
+
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => setModalVisible(false)}
+      >
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+            <Text>Opções</Text>
+            <Button title="Fechar" onPress={() => setModalVisible(false)} />
+          </View>
+        </View>
+      </Modal>
+    </TouchableOpacity>
+  );
+}
+
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        marginLeft: 20,
-        marginRight: 20,
-        marginTop: 30,
-    },
-    title: {
-        fontSize: 32,
-        fontFamily: "Itim_400Regular",
-        color: "#1E293B",
-    },
-    scrollContainer: {
-        marginTop: 20,
-        width: "100%",
-    },
-    chatItems: {
-        width: "100%",
-        height: 100,
-        flexDirection: "row",
-    },
-    circle: {
-        width: 66,
-        height: 66,
-        borderRadius: 33,
-        backgroundColor: "green",
-        marginLeft: 5,
-        marginTop: 5,
-    },
-    name: {
-        fontSize: 24,
-        fontFamily: "Itim_400Regular",
-        color: "#1a1a2d",
-        marginLeft: "10%",
-    },
-    message: {
-        fontSize: 16,
-        fontFamily: "Raleway_400Regular",
-        color: "#1a1a2d",
-        marginLeft: "10%",
-    },
-    options:
-    {
-        fontSize: 24,
-        fontFamily: "Itim_400Regular",
-        color: "#1a1a2d",
-        marginRight: "5%",
-    },
-    withBorder: {
-        borderBottomWidth: 1, // Linha entre mensagens
-        borderBottomColor: '#ddd', // Cor da linha
-    },
-}); 
+  chatItems: {
+    width: "100%",
+    height: 100,
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: 10,
+  },
+  circle: {
+    width: 66,
+    height: 66,
+    borderRadius: 33,
+    marginRight: 10,
+  },
+  textContainer: {
+    flex: 1,
+    justifyContent: "center",
+  },
+  name: {
+    fontSize: 24,
+    fontFamily: "Itim_400Regular",
+    color: "#1a1a2d",
+  },
+  message: {
+    fontSize: 16,
+    fontFamily: "Raleway_400Regular",
+    color: "#1a1a2d",
+  },
+  options: {
+    fontSize: 24,
+    fontFamily: "Itim_400Regular",
+    color: "#1a1a2d",
+    marginLeft: 10,
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: 'rgba(0,0,0,0.5)',
+  },
+  modalContent: {
+    width: 300,
+    padding: 20,
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+});
