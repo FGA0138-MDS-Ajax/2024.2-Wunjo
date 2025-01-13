@@ -55,12 +55,12 @@ const ItemSeparator = () => {
 
 export default function ChatList() {
   const handleChatPress = (username) => {
-    // logica para abrir o chat
+    // TODO: logica para abrir o chat
     console.log(`Abrir chat com ${username}`);
   };
 
   return (
-    //o layout n ta deixando scrollar
+    //o <layout> n ta deixando scrollar
     <View style={styles.container}>
       <Text style={styles.title}>Conversas</Text>
       <FlatList
