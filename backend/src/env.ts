@@ -7,15 +7,18 @@ const envSchema = z.object({
   DATABASE_URL: z.string(),
   JWT_SECRET_KEY: z.string(),
   JWT_TOKEN_EXPIRATION: z.string(),
+<<<<<<< HEAD
   REDIS_URL: z.string(),
+=======
+>>>>>>> 8d643ff (fix(jwt-token): Fixed the implementation of token service)
 });
 
 const parsedEnv = envSchema.safeParse(process.env);
 
 if (!parsedEnv.success) {
-  console.error('Invalid enviroment variables', parsedEnv.error.format());
+  console.error('Invalid environment variables', parsedEnv.error.format());
 
-  throw new Error('Invalid envirement variables');
+  throw new Error('Invalid environment variables');
 }
 
 export const env = parsedEnv.data;

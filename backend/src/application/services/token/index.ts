@@ -1,1 +1,1 @@
-export * from './token-manager';
+export * from './token-manager-service';
