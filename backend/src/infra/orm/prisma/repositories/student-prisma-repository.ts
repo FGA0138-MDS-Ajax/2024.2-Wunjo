@@ -69,6 +69,16 @@ export class StudentPrismaRepository implements StudentRepository {
   async findBy(
     _params: StudentRepository.FindBy.Input,
   ): Promise<StudentRepository.FindBy.Output> {
-    throw new Error('Method not implemented.');
+    const student = await this.prisma.student.findUniqueOrThrow({
+      where: {
+        id: _params.id,
+        registration: _params.registration,
+        email: _params.email
+      },
+
+    });
+
+    return student;
+
   }
 }
