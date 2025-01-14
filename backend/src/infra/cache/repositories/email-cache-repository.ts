@@ -1,5 +1,6 @@
 import { DbError } from '@/application/error';
 import { EmailRepository } from '@/application/repositories';
+import logger from '@/infra/logger';
 import { RedisCache } from '../redis';
 
 export class EmailCacheRepository implements EmailRepository {
@@ -13,6 +14,8 @@ export class EmailCacheRepository implements EmailRepository {
       params.email,
       60 * 60 * 24,
     );
+
+    logger.info(`Email cache created ${JSON.stringify(data, null, 2)}`);
 
     if (!data) {
       throw new DbError(`Error creating email cache ${JSON.stringify(params)}`);

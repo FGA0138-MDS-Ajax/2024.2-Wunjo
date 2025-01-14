@@ -61,10 +61,19 @@ export class StudentPrismaRepository implements StudentRepository {
   }
 
   async update(
-    _id: string,
-    _params: StudentRepository.Update.Input,
+    id: string,
+    params: StudentRepository.Update.Input,
   ): Promise<StudentRepository.Update.Output> {
-    throw new Error('Method not implemented.');
+    const student = await this.prisma.student.update({
+      where: {
+        id,
+      },
+      data: {
+        ...params,
+      },
+    });
+
+    return student;
   }
 
   async findBy(

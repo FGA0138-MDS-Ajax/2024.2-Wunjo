@@ -23,18 +23,6 @@ export function databaseProvider() {
   prisma.$disconnect();
 }
 
-export async function bullMQProvider(): Promise<void> {
-  try {
-    logger.info('Setting up and initialize BullMQ');
-
-    await BullMQ.setupAndInitWorkersAndQueues();
-
-    logger.info('BullMQ connected');
-  } catch (error) {
-    logger.error(error, 'Error on setting up BullMQ', 'MSG');
-  }
-}
-
 export async function redisProvider(): Promise<void> {
   try {
     logger.info('Setting up and initialize Redis');
@@ -44,6 +32,18 @@ export async function redisProvider(): Promise<void> {
     logger.info('Redis conencted');
   } catch (error) {
     logger.error(error, 'Error on setting up Redis', 'MSG');
+  }
+}
+
+export async function bullMQProvider(): Promise<void> {
+  try {
+    logger.info('Setting up and initialize BullMQ');
+
+    await BullMQ.setupAndInitWorkersAndQueues();
+
+    logger.info('BullMQ connected');
+  } catch (error) {
+    logger.error(error, 'Error on setting up BullMQ', 'MSG');
   }
 }
 

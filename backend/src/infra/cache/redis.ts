@@ -1,5 +1,7 @@
 import { env } from '@/env';
+import { isTestEnv } from '@/helpers/env';
 import IORedis from 'ioredis';
+import RedisMemoryServer from 'redis-memory-server';
 
 export class RedisCache {
   private client: IORedis;
@@ -8,7 +10,7 @@ export class RedisCache {
   private constructor(url?: any) {
     const conn = url ?? env.REDIS_URL;
 
-    this.client = new IORedis(conn);
+    this.client = new IORedis(conn, { maxRetriesPerRequest: null });
   }
 
   public static async connect(): Promise<RedisCache> {
@@ -16,17 +18,22 @@ export class RedisCache {
       return this.instance;
     }
 
-    this.instance = new RedisCache();
+    let config;
+    if (isTestEnv) {
+      const redisServer = new RedisMemoryServer();
+      const fakeInstance = await redisServer._startUpInstance();
+      config = `redis://${fakeInstance.ip}:${fakeInstance.port}`;
+    }
+
+    this.instance = new RedisCache(config);
     await this.instance.connection();
     return this.instance;
   }
 
   public async connection(): Promise<void> {
-    if (this.client.status === 'ready') {
-      return;
+    if (['close', 'end'].includes(this.client.status)) {
+      await this.client.connect();
     }
-
-    await this.client.connect();
   }
 
   public disconnect(): void {

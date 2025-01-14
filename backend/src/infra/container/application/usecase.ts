@@ -1,5 +1,6 @@
 import {
   LoginUsecase,
+  RegisterConfirmUsecase,
   RegisterUsecase,
   SendEmailUsecase,
 } from '@/application/usecases';
@@ -13,8 +14,16 @@ export function configureApplicationUsecaseDI(container: InfraDI) {
   return container
     .add(
       SendEmailUsecase.Name,
-      ({ StudentRepository, ProviderEmailServiceFacade, EmailTemplateRepository }) =>
-        new SendEmailUsecase(StudentRepository, ProviderEmailServiceFacade, EmailTemplateRepository),
+      ({
+        StudentRepository,
+        ProviderEmailServiceFacade,
+        EmailTemplateRepository,
+      }) =>
+        new SendEmailUsecase(
+          StudentRepository,
+          ProviderEmailServiceFacade,
+          EmailTemplateRepository,
+        ),
     )
     .add(
       LoginUsecase.Name,
@@ -41,6 +50,11 @@ export function configureApplicationUsecaseDI(container: InfraDI) {
           DispatchEmailService,
           EmailRepository,
         ),
+    )
+    .add(
+      RegisterConfirmUsecase.Name,
+      ({ StudentRepository, EmailRepository }) =>
+        new RegisterConfirmUsecase(StudentRepository, EmailRepository),
     );
 }
 

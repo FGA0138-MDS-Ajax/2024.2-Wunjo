@@ -106,7 +106,7 @@ model Subject {
 }
 
 model EmailTemplates {
-  type    String @unique
+  type    String @id @unique
   from    String
   subject String
   content String

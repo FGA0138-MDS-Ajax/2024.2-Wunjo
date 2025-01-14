@@ -1,4 +1,7 @@
-import { EmailRepository, EmailTemplateRepository } from '@/application/repositories';
+import {
+  EmailRepository,
+  EmailTemplateRepository,
+} from '@/application/repositories';
 import { StudentRepository } from '@/application/repositories/student-repository';
 import { RedisCache } from '@/infra/cache';
 import { EmailCacheRepository } from '@/infra/cache/repositories/email-cache-repository';
