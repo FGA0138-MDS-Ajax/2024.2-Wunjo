@@ -1,5 +1,4 @@
-import type { Question, Student } from '@/domain';
-import { Season } from '@/domain/Season';
+import type { Question, Season, Student } from '@/domain';
 
 export namespace StudentRepository {
   export const Name = 'StudentRepository';

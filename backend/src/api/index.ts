@@ -1,5 +1,5 @@
+/* eslint-disable perfectionist/sort-imports */
 import 'express-async-errors';
-// eslint-disable-next-line perfectionist/sort-imports
 import setupSwagger from '@/infra/docs/swagger';
 import cors from 'cors';
 import express from 'express';

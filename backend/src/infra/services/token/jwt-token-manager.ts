@@ -27,7 +27,7 @@ export class JWTStudentTokenManager implements StudentTokenManager {
     if (!decoded) {
       return false;
     }
-    
+
     return true;
   }
 

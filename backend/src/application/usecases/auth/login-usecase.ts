@@ -1,6 +1,5 @@
-import { UnauthenticatedError } from '@/application/error';
-import { NotFoundError } from '@/application/error/not-found-error';
-import { StudentRepository } from '@/application/repositories/student-repository';
+import { NotFoundError, UnauthenticatedError } from '@/application/error';
+import { StudentRepository } from '@/application/repositories';
 import {
   PasswordHash,
   StudentTokenManager,
@@ -42,7 +41,10 @@ export class LoginUsecase {
     }
 
     if (studentExists.status === StudentRegistrationStatus.PENDING) {
-      throw new UnauthenticatedError('Registro pendente de aprovação', 'PENDING_REGISTRATION');
+      throw new UnauthenticatedError(
+        'Registro pendente de aprovação',
+        'PENDING_REGISTRATION',
+      );
     }
 
     const token = await this.studentTokenManager.generate({

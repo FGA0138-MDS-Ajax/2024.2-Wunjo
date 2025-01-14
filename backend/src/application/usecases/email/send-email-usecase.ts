@@ -4,9 +4,7 @@ import {
   StudentRepository,
 } from '@/application/repositories';
 import { EmailTemplate, EmailTypes } from '@/domain';
-import {
-  ProviderEmailServiceFacade,
-} from '@/infra/services/email';
+import { ProviderEmailServiceFacade } from '@/infra/services';
 
 export class SendEmailUsecase {
   public static Name = 'SendEmailUsecase' as const;

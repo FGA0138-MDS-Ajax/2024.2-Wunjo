@@ -15,7 +15,6 @@ import {
   StudentRegistrationStatus,
   StudentRegistrationStatuses,
 } from '@/domain';
-import logger from '@/infra/logger';
 
 export class RegisterUsecase {
   public static Name = 'RegisterUsecase' as const;
@@ -90,14 +89,6 @@ export class RegisterUsecase {
         },
       }),
     ]);
-
-    logger.info(`User ${student.id} registered`);
-    logger.info(
-      `REDIS CACHE: ${await this.emailRepository.get({
-        studentId: student.id,
-        type: EmailType.REGISTRATION,
-      })}`,
-    );
 
     return {
       studentId: student.id,

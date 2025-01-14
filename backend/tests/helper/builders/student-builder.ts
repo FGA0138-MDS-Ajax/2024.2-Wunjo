@@ -1,6 +1,8 @@
 import {
   Course,
   Courses,
+  Question,
+  Season,
   Student,
   StudentRegistrationStatus,
   StudentRegistrationStatuses,
@@ -10,7 +12,11 @@ import { faker } from '@faker-js/faker';
 import { PrismaClient } from '@prisma/client';
 
 export class StudentBuilder {
-  private data: Student;
+  private data: Student & {
+    questions: Question[];
+    seasons: Season[];
+  };
+
   private readonly prisma: PrismaClient;
 
   private constructor() {
@@ -68,7 +74,12 @@ export class StudentBuilder {
     return this.data;
   }
 
-  public async save(): Promise<Student> {
+  public async save(): Promise<
+    Student & {
+      questions: Question[];
+      seasons: Season[];
+    }
+  > {
     const student = await this.prisma.student.create({
       data: {
         id: this.data.id,
@@ -112,7 +123,7 @@ export class StudentBuilder {
             create: {
               id: season.id,
               points: season.points,
-              seasonId: season.seasonId,
+              seasonId: season.id,
             },
           })),
         },
