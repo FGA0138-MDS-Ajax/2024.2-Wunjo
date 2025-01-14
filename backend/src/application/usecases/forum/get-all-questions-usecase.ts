@@ -20,6 +20,6 @@ export namespace GetAllQuestionsUsecase {
   };
 
   export type Output = {
-    question: Question;
+    question: Question[];
   };
 }

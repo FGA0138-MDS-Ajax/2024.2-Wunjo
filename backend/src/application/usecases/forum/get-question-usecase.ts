@@ -15,6 +15,6 @@ export namespace GetQuestionUsecase {
   };
 
   export type Output = {
-    question: Question;
+    question: Question | null;
   };
 }
