@@ -9,6 +9,35 @@ import { Text } from "@/components/ui/text";
 import { Box } from "@/components/ui/box";
 import { View } from "react-native";
 
+import Logo from "../assets/images/logo";
+import Island from "../assets/images/island";
+import Snowflake from "../assets/images/snowflake";
+
+function LoginButton({onPress}: {onPress: () => void}) {
+  return <Button
+    variant="solid"
+    onPress={onPress}
+    size="lg"
+    style={{
+      height: 54,
+      borderColor: "#0F2D89",
+      position: "relative",
+      borderRadius: 22.5
+    }}
+  >
+    <ButtonText>Entrar</ButtonText>
+    <Box style={{
+        position: "absolute",
+        right: 0,
+        top: 0,
+        width: "13.5%",
+        height: "100%"
+      }}>
+        <Snowflake></Snowflake>
+      </Box>
+  </Button>
+}
+
 export default function Login() {
   const router = useRouter();
   return (
@@ -22,12 +51,7 @@ export default function Login() {
             // backgroundColor: "rgba(0, 0, 0, 0.05)",
             flex: 1.3,
           }}>
-            <Text style={{
-              backgroundColor: "rgba(0, 0, 0, 0.05)",
-              width: "60%",
-              height: "50%",
-              textAlign: "center"
-            }}>Logo</Text>
+            <Logo/>
           </View>
           <Box style={{
             flex: 3,
@@ -40,7 +64,7 @@ export default function Login() {
              * Student ID label and input.
              * */ }
             <View>
-              <Text style={{
+              <Text className="font-itim" style={{
                 color: "black",
                 fontSize: 15,
                 marginBottom: 5,
@@ -50,7 +74,11 @@ export default function Login() {
                 borderRadius: 8,
                 height: 48,
               }}>
-                <InputField variant="solid" />
+                <InputField className="font-raleway" placeholder="Digite aqui..." variant="solid" style={{
+                  fontSize: 16,
+                  paddingLeft: 20
+                }}
+                />
               </Input>
             </View>
             
@@ -58,7 +86,7 @@ export default function Login() {
              * Password label and input.
              * */ }
             <View>
-              <Text style={{
+              <Text className="font-itim" style={{
                 color: "black",
                 fontSize: 15,
                 marginBottom: 5,
@@ -68,23 +96,15 @@ export default function Login() {
                 borderRadius: 8,
                 height: 48,
               }}>
-                <InputField variant="solid" />
+                <InputField className="font-raleway" placeholder="Digite aqui..." variant="solid" style={{
+                  fontSize: 16,
+                  paddingLeft: 20
+                }}/>
               </Input>
             </View>
 
-            { /**
-             * Login button.
-             */}
-            <Button
-              variant="solid"
-              onPress={() => router.push("/(app)/(home)")}
-              size="lg"
-              style={{
-                height: 55,
-              }}
-            >
-              <ButtonText>Entrar</ButtonText>
-            </Button>
+            { /** Go back to initial screen of router. */ }
+            <LoginButton onPress={() => router.push("/")}/>
 
             { /**
              * Create account and forgot password links.
@@ -92,7 +112,7 @@ export default function Login() {
             <View style={{
                 // backgroundColor: "rgba(0, 0, 0, 0.05)"
               }}>
-              <Text style={{
+              <Text onPress={() => router.push("/(register)")} style={{
                 color: "#703111",
                 textAlign: "center",
                 textDecorationLine: "underline",
@@ -108,15 +128,14 @@ export default function Login() {
         </View>
       </Layout>
       <Box style={{
-        backgroundColor: "rgba(0, 0, 0, 0.1)",
         position: "absolute",
         flex: 1,
-        left: 0,
+        left: -25,
         bottom: 0,
         width: "100%",
         height: "25%"
       }}>
-        <Text>Image in bottom</Text>
+        <Island width={446} height={251}/>
       </Box>
     </SafeAreaView>
   );
