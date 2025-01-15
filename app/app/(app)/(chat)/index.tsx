@@ -54,7 +54,7 @@ const ItemSeparator = () => {
 };
 
 export default function ChatList() {
-  const handleChatPress = (username) => {
+  const handleChatPress = (username : string) => {
     // TODO: logica para abrir o chat
     console.log(`Abrir chat com ${username}`);
   };
