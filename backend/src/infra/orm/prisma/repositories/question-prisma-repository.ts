@@ -1,5 +1,4 @@
 import { QuestionRepository } from '@/application/repositories';
-import { Question, Tutor } from '@/domain';
 import { PrismaClient } from '@prisma/client';
 
 export class QuestionPrismaRepository implements QuestionRepository {
