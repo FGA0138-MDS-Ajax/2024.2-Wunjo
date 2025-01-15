@@ -1,4 +1,4 @@
-import { Question } from '@/domain';
+import { Question, QuestionDifficulties, QuestionUrgencies } from '@/domain';
 
 export namespace QuestionRepository {
   export const name = 'QuestionRepository';
@@ -21,6 +21,8 @@ export namespace QuestionRepository {
       studentId: string;
       subjectId: string;
       tutorId: string;
+      urgency: QuestionUrgencies;
+      difficulty: QuestionDifficulties;
     }>;
 
     export type Output = Question;
