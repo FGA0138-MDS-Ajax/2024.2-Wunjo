@@ -64,6 +64,7 @@ const buttonStyle = tva({
       md: 'px-5 h-10',
       lg: 'px-6 h-11',
       xl: 'px-7 h-12',
+      free: ''
     },
   },
   compoundVariants: [
@@ -143,6 +144,7 @@ const buttonTextStyle = tva({
       md: 'text-base',
       lg: 'text-lg',
       xl: 'text-xl',
+      free: ''
     },
   },
   parentCompoundVariants: [
