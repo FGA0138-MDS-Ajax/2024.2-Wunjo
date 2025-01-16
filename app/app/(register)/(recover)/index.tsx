@@ -7,6 +7,7 @@ import { BackHeader } from "@/components/ui/backheader";
 import { Box } from "@/components/ui/box";
 import { TextInput, View } from 'react-native';
 import { Input } from "@/components/ui/input2";
+import { Button } from "@/components/ui/button2";
 
 
 export default function Screen() {
@@ -21,22 +22,52 @@ export default function Screen() {
 
             <View style={{
                 width: "100%",
-                padding: 15,
                 flex: 5,
-                backgroundColor: "red",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-
             }}>
-                <Input label="Matrícula" placeholder="Digite aqui..."/>
-                <SVGPirateThinking
+                <View
                     style={{
-                        position: "absolute",
-                        bottom: 0
+                        flex: 1,
+                        width: "100%",
+                        display: "flex",
+                        justifyContent: "flex-end",
+                        alignItems: "center",
+                        zIndex: 2,
+                        padding: 15,
                     }}
-                    width={291}
-                    height={367}/>
+                >
+                    <Input
+                        keyboardType="numeric"
+                        label="Matrícula"
+                        placeholder="Digite aqui..."
+                    />
+                </View>     
+                <View
+                    style={{
+                        flex: 2,
+                        width: "100%",
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                    }}
+                >
+                    <Button
+                        onPress={() => console.log('heloo')}
+                        label="Continuar"
+                        variant="wide"
+                        style={{
+                            width: "75%"
+                        }}
+                    >
+                        
+                    </Button>
+                    <SVGPirateThinking
+                        width={291}
+                        height={367}
+                    />
+                </View>
             </View>
         </SafeAreaView>
     );
