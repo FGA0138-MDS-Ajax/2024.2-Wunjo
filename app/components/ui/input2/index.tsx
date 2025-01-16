@@ -1,4 +1,4 @@
-import { View, Text, TextInput } from "react-native";
+import { View, Text, TextInput, KeyboardType } from "react-native";
 
 export function Input({
     label,
@@ -6,14 +6,16 @@ export function Input({
     secureTextEntry,
     onPress,
     editable = true,
-    value
+    value,
+    keyboardType = 'default'
 }: {
     label?: string,
     placeholder?: string,
     secureTextEntry?: boolean,
     onPress?: () => void,
     editable?: boolean,
-    value?: string
+    value?: string,
+    keyboardType?: KeyboardType
 }) {
     return <View style={{
         display: "flex",
@@ -26,6 +28,7 @@ export function Input({
             fontSize: 15,
         }}>{label}</Text>
         <TextInput
+            keyboardType={keyboardType}
             editable={editable}
             secureTextEntry={secureTextEntry}
             className={"font-raleway"}
