@@ -1,4 +1,4 @@
-import { Season } from '@/domain';
+import { Season } from '@/domain/Season';
 
 export namespace SeasonRepository {
   export const name = 'SeasonRepository';
