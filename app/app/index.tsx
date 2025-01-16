@@ -36,7 +36,7 @@ export default function Screen() {
                         rowGap: 24,
                     }}>
                         <Input keyboardType="numeric" label="Matrícula" placeholder="Digite aqui..." />
-                        <Input label="Senha" placeholder="Digite aqui..." />
+                        <Input secureTextEntry={true} label="Senha" placeholder="Digite aqui..." />
 
                         <Button
                             label="Entrar"
