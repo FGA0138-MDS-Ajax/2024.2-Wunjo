@@ -3,7 +3,7 @@ import { View, Pressable, Keyboard } from "react-native";
 
 import Layout from "@/components/Layout";
 import SafeAreaView from "@/components/SafeAreaView";
-import { Button, ButtonText } from "@/components/ui/button";
+import { Button } from "@/components/ui/button2";
 import { Input } from "@/components/ui/input2";
 import { VStack } from "@/components/ui/vstack";
 import { useRouter } from "expo-router";
@@ -15,32 +15,8 @@ import { BackHeader } from "@/components/ui/backheader";
 import { Select } from "@/components/ui/select";
 
 import SVGPirate from "../../assets/images/pirate";
-import SVGBackButton from "../../assets/images/back-button";
 import SVGSnowflake from "../../assets/images/snowflake-complete";
 import SVGCheck from "../../assets/images/check";
-
-function RegisterButton({ onPress }: { onPress: () => void }) {
-    return <Button
-        variant="solid"
-        onPress={onPress}
-        size="lg"
-        style={{
-            height: 54,
-            marginTop: 25,
-            borderColor: "#0F2D89",
-            position: "relative",
-            borderRadius: 22.5
-        }}
-    >
-        <Box style={{
-            height: "50%",
-            aspectRatio: 1,
-        }}>
-            <SVGSnowflake size={28} />
-        </Box>
-        <ButtonText>Criar conta</ButtonText>
-    </Button>
-}
 
 
 function Link({ children }: { children: React.ReactNode }) {
@@ -60,8 +36,7 @@ function CheckBox({ onPress }: { onPress: (checked: boolean) => void }) {
             justifyContent: "center",
             paddingTop: 3
         }}>
-            <Button
-                size="free"
+            <Pressable
                 onPress={() => {
                     setChecked(!checked);
                     onPress(checked);
@@ -76,27 +51,9 @@ function CheckBox({ onPress }: { onPress: (checked: boolean) => void }) {
                 }}
             >
                 {checked ? <SVGCheck size={10} color="black" /> : ""}
-            </Button>
+            </Pressable>
         </View>
     )
-}
-
-function BackButton({ onPress }: { onPress: () => void }) {
-    return <Button
-        variant="solid"
-        size="lg"
-        onPress={onPress}
-        style={{
-            backgroundColor: "#DDE4EE",
-            borderRadius: 12,
-            position: "absolute",
-            width: 36,
-            aspectRatio: 1,
-            left: 0,
-        }}
-    >
-        <SVGBackButton />
-    </Button>
 }
 
 function Option({ actual, label, set }: { actual: string, label: string, set: (value: string) => void }) {
@@ -153,15 +110,14 @@ export default function Register() {
                 <Box style={{
                     flex: 6,
                     display: "flex",
-                    // backgroundColor: "rgba(0, 0, 0, 0.1)",
-                    rowGap: 6,
+                    rowGap: 25,
                 }}>
-                    <Text className="font-raleway">
-                        Preencha seus dados e embarque conosco!
-                    </Text>
                     <VStack style={{
                         rowGap: 10,
                     }}>
+                        <Text className="font-raleway">
+                            Preencha seus dados e embarque conosco!
+                        </Text>
                         <Input label="Nome" placeholder="Digite aqui..." />
                         <Input label="Matrícula" placeholder="Digite aqui..." />
                         <Select
@@ -205,8 +161,6 @@ export default function Register() {
                         <Input secureTextEntry={true} label="Senha" placeholder="Digite aqui..." />
                     </VStack>
                     <HStack style={{
-                        marginTop: 25,
-                        // backgroundColor: "rgba(0, 0, 0, 0.1)",
                         columnGap: 5,
                     }}>
                         <CheckBox onPress={() => console.log("lol")} />
@@ -220,7 +174,20 @@ export default function Register() {
                             </Link>
                         </Text>
                     </HStack>
-                    <RegisterButton onPress={() => router.push("/(register)/(complete)")} />
+                    <Button
+                        onPress={() => router.push("/(register)/(complete)")}
+                        label="Criar conta"
+                    >
+                        <SVGSnowflake
+                            size={28}
+                            style={{
+                                position: "absolute",
+                                height: "50%",
+                                aspectRatio: 1,
+                                left: "30%",
+                            }}
+                        />
+                    </Button>                    
                 </Box>
             </Layout>
         </SafeAreaView>

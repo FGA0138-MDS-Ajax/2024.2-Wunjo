@@ -1,6 +1,6 @@
 import Layout from "@/components/Layout";
 import SafeAreaView from "@/components/SafeAreaView";
-import { Button, ButtonText } from "@/components/ui/button";
+import { Button } from "@/components/ui/button2";
 import { Pressable, Button as ReactButton } from "react-native";
 import { Heading } from "@/components/ui/heading";
 import { Input, InputField } from "@/components/ui/input";
@@ -56,21 +56,15 @@ export function Complete({children, onPress}: {children?: React.ReactNode, onPre
                     display: "flex",
                     alignItems: "flex-end",
                 }}>
-                    <Pressable
+                    <Button
+                        variant="square"
                         onPress={onPress}
                         style={{
-                            width: 75,
-                            height: 75,
-                            backgroundColor: "#173CAC",
-                            borderRadius: 75,
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            margin: 20
+                            margin: 20,
                         }}
                     >
                         <SVGArrow size={24} />
-                    </Pressable>
+                    </Button>
                 </Box>
             </VStack>
         </SafeAreaView>
