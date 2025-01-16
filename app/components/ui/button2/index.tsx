@@ -31,6 +31,9 @@ export function Button({
     return <Pressable
         onPress={onPress}
         style={[
+            {
+                width: defaultStyle[variant].width,
+            },
             style,
             {
                 position: "relative",
