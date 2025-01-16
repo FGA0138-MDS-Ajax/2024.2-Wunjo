@@ -119,7 +119,7 @@ export default function Register() {
                             Preencha seus dados e embarque conosco!
                         </Text>
                         <Input label="Nome" placeholder="Digite aqui..." />
-                        <Input label="Matrícula" placeholder="Digite aqui..." />
+                        <Input keyboardType="numeric" label="Matrícula" placeholder="Digite aqui..." />
                         <Select
                             modalVisible={modalVisible}
                             setModalVisible={setModalVisible}

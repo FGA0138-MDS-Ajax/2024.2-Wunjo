@@ -1,4 +1,4 @@
-import { View, Text, Pressable, Modal, TextInput } from "react-native";
+import { View, Text, Pressable, Modal, TextInput, Keyboard } from "react-native";
 import GestureRecognizer from 'react-native-swipe-gestures';
 import { Input } from "../input2";
 
@@ -24,7 +24,11 @@ export function Select ({
         rowGap: 2,
     }}>
         <Input
-            onPress={() => setModalVisible(true)}
+            showSoftInputOnFocus={false}
+            onPress={() => {
+                setModalVisible(true);
+                Keyboard.dismiss();
+            }}
             label={label}
             placeholder={placeholder}
             value={value}

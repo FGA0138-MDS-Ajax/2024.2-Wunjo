@@ -7,7 +7,8 @@ export function Input({
     onPress,
     editable = true,
     value,
-    keyboardType = 'default'
+    keyboardType = 'default',
+    showSoftInputOnFocus = true
 }: {
     label?: string,
     placeholder?: string,
@@ -15,7 +16,8 @@ export function Input({
     onPress?: () => void,
     editable?: boolean,
     value?: string,
-    keyboardType?: KeyboardType
+    keyboardType?: KeyboardType,
+    showSoftInputOnFocus?: boolean
 }) {
     return <View style={{
         display: "flex",
@@ -28,6 +30,7 @@ export function Input({
             fontSize: 15,
         }}>{label}</Text>
         <TextInput
+            showSoftInputOnFocus={showSoftInputOnFocus}
             keyboardType={keyboardType}
             editable={editable}
             secureTextEntry={secureTextEntry}
