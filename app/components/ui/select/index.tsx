@@ -45,6 +45,7 @@ export function Select ({
                     <Pressable
                         style={{
                             flex: 1.75,
+                            backgroundColor: "rgba(0, 0, 0, 0.05)"
                         }}
                         onPress={() => setModalVisible(false)}
                     ></Pressable>
