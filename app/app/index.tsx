@@ -118,7 +118,7 @@ export default function Login() {
                 textDecorationLine: "underline",
                 fontSize: 12,
               }}>Criar conta</Text>
-              <Text style={{
+              <Text onPress={() => router.push("/(register)/(recover)")} style={{
                 textAlign: "center",
                 textDecorationLine: "underline",
                 fontSize: 12,

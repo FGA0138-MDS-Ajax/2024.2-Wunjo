@@ -12,12 +12,12 @@ import { Text } from "@/components/ui/text";
 import { Box } from "@/components/ui/box";
 import { HStack } from "@/components/ui/hstack";
 import { useKeyboardVisible } from "@/components/KeyboardListener";
+import { BackHeader } from "@/components/ui/backheader";
 
 import SVGPirate from "../../assets/images/pirate";
 import SVGBackButton from "../../assets/images/back-button";
 import SVGSnowflake from "../../assets/images/snowflake-complete";
 import SVGCheck from "../../assets/images/check";
-
 
 function RegisterButton({ onPress }: { onPress: () => void }) {
     return <Button
@@ -51,7 +51,7 @@ function Link({ children }: { children: React.ReactNode }) {
 
 function CheckBox({ onPress }: { onPress: (checked: boolean) => void }) {
 
-    const [checked, setChecked] = useState(true);
+    const [checked, setChecked] = useState(false);
 
     return (
         <View style={{
@@ -205,15 +205,7 @@ export default function Register() {
             }
             
             <Layout className="h-full">
-                <View className="flex items-center justify-center" style={{
-                    flex: 1,
-                    display: "flex",
-                    flexDirection: "row",
-                    position: "relative",
-                }}>
-                    <BackButton onPress={() => router.push("..")} />
-                    <Text style={{ color: "#1E293B" }} className="font-itim text-xl">Criar conta</Text>
-                </View>
+                <BackHeader onPress={() => router.back()} label="Criar conta" />
                 <Box style={{
                     flex: 6,
                     display: "flex",

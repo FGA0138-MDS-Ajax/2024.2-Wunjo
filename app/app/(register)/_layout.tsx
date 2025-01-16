@@ -5,6 +5,7 @@ export default function Layout() {
     <Stack initialRouteName="index">
       <Stack.Screen name="index" options={{ headerShown: false }} />
       <Stack.Screen name="(complete)" options={{ headerShown: false }} />
+      <Stack.Screen name="(recover)" options={{ headerShown: false }} />
     </Stack>
   )
 }
