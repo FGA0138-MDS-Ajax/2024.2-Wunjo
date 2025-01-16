@@ -2,7 +2,7 @@ import Layout from "@/components/Layout";
 import SafeAreaView from "@/components/SafeAreaView";
 import { Button, ButtonText } from "@/components/ui/button";
 import { Heading } from "@/components/ui/heading";
-import { Input, InputField } from "@/components/ui/input";
+import { Input } from "@/components/ui/input2";
 import { VStack } from "@/components/ui/vstack";
 import { useRouter } from "expo-router";
 import { Text } from "@/components/ui/text";
@@ -60,48 +60,8 @@ export default function Login() {
             rowGap: 24,
           }}>
 
-            { /**
-             * Student ID label and input.
-             * */ }
-            <View>
-              <Text className="font-itim" style={{
-                color: "black",
-                fontSize: 15,
-                marginBottom: 5,
-              }}>Matrícula</Text>
-              <Input variant="outline" style={{
-                backgroundColor: "white",
-                borderRadius: 8,
-                height: 48,
-              }}>
-                <InputField className="font-raleway" placeholder="Digite aqui..." variant="solid" style={{
-                  fontSize: 16,
-                  paddingLeft: 20
-                }}
-                />
-              </Input>
-            </View>
-            
-            { /**
-             * Password label and input.
-             * */ }
-            <View>
-              <Text className="font-itim" style={{
-                color: "black",
-                fontSize: 15,
-                marginBottom: 5,
-              }}>Senha</Text>
-              <Input variant="outline" style={{
-                backgroundColor: "white",
-                borderRadius: 8,
-                height: 48,
-              }}>
-                <InputField className="font-raleway" placeholder="Digite aqui..." variant="solid" style={{
-                  fontSize: 16,
-                  paddingLeft: 20
-                }}/>
-              </Input>
-            </View>
+            <Input label="Matrícula" placeholder="Digite aqui..."/>
+            <Input label="Senha" placeholder="Digite aqui..."/>
 
             { /** Go back to initial screen of router. */ }
             <LoginButton onPress={() => router.push("/")}/>

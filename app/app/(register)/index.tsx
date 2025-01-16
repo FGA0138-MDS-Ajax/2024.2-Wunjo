@@ -1,11 +1,10 @@
 import { useState } from "react";
-import { View , Modal, Pressable, Keyboard } from "react-native";
-import GestureRecognizer from 'react-native-swipe-gestures';
+import { View, Pressable, Keyboard } from "react-native";
 
 import Layout from "@/components/Layout";
 import SafeAreaView from "@/components/SafeAreaView";
 import { Button, ButtonText } from "@/components/ui/button";
-import { Input, InputField } from "@/components/ui/input";
+import { Input } from "@/components/ui/input2";
 import { VStack } from "@/components/ui/vstack";
 import { useRouter } from "expo-router";
 import { Text } from "@/components/ui/text";
@@ -13,6 +12,7 @@ import { Box } from "@/components/ui/box";
 import { HStack } from "@/components/ui/hstack";
 import { useKeyboardVisible } from "@/components/KeyboardListener";
 import { BackHeader } from "@/components/ui/backheader";
+import { Select } from "@/components/ui/select";
 
 import SVGPirate from "../../assets/images/pirate";
 import SVGBackButton from "../../assets/images/back-button";
@@ -99,62 +99,6 @@ function BackButton({ onPress }: { onPress: () => void }) {
     </Button>
 }
 
-function LabelInput({ label, placeholder, password = false  }: { label: string, placeholder: string, password?: boolean }) {
-    return <VStack style={{
-        rowGap: 2,
-        //backgroundColor: "rgba(0, 0, 0, 0.1)",
-    }}>
-        <Text className="font-itim" style={{
-            color: "black",
-            fontSize: 15,
-        }}>{label}</Text>
-        <Input variant="outline" style={{
-            backgroundColor: "white",
-            borderRadius: 8,
-            height: 48,
-        }}>
-            <InputField
-                secureTextEntry={password}
-                className="font-raleway"
-                placeholder={placeholder} style={{
-                    backgroundColor: "#FFFFFF",
-                    borderColor: "#D1D5DB",
-                    height: 48,
-                    paddingLeft: 16,
-            }} />
-        </Input>
-    </VStack>
-}
-
-function LabelSelect({ label, placeholder, onPress, value, }: { label: string, placeholder: string, onPress: () => void, value?: string }) {
-    return <VStack style={{
-        rowGap: 2,
-        //backgroundColor: "rgba(0, 0, 0, 0.1)",
-    }}>
-        <Text className="font-itim" style={{
-            color: "black",
-            fontSize: 15,
-        }}>{label}</Text>
-        <Button
-            size="free"
-            onPress={onPress}
-            style={{
-                backgroundColor: "white",
-                borderRadius: 8,
-                height: 48,
-                justifyContent: "flex-start",
-                paddingLeft: 16
-            }}
-        >
-            <Text className="font-raleway" style={{
-                fontSize: 15,
-                fontWeight: "normal",
-                color: value && "black" || "#969696"
-            }}>{value || placeholder}</Text>
-        </Button>
-    </VStack>
-}
-
 function Option({ actual, label, set }: { actual: string, label: string, set: (value: string) => void }) {
     return <Pressable
         onPress={() => {
@@ -185,7 +129,7 @@ function setCourseHideModel(setCourse: (value: string) => void, setVisible: (val
 
 export default function Register() {
     const router = useRouter();
-    const [visible, setVisible] = useState(false);
+    const [modalVisible, setModalVisible] = useState(false);
     const [course, setCourse] = useState("");
 
     const keyboardVisible = useKeyboardVisible();
@@ -203,7 +147,7 @@ export default function Register() {
                     <SVGPirate />
                 </Box>
             }
-            
+
             <Layout className="h-full">
                 <BackHeader onPress={() => router.back()} label="Criar conta" />
                 <Box style={{
@@ -217,12 +161,48 @@ export default function Register() {
                     </Text>
                     <VStack style={{
                         rowGap: 10,
-                        // backgroundColor: "rgba(0, 0, 0, 0.1)",
                     }}>
-                        <LabelInput label="Nome" placeholder="Digite aqui..." />
-                        <LabelInput label="Matrícula" placeholder="Digite aqui..." />
-                        <LabelSelect onPress={() => setVisible(!visible)} label="Curso" placeholder="Selecione..." value={course} />
-                        <LabelInput password={true} label="Senha" placeholder="Digite aqui..." />
+                        <Input label="Nome" placeholder="Digite aqui..." />
+                        <Input label="Matrícula" placeholder="Digite aqui..." />
+                        <Select
+                            modalVisible={modalVisible}
+                            setModalVisible={setModalVisible}
+                            label="Curso"
+                            placeholder="Selecione..."
+                            value={course}
+                        >
+                            <Option
+                                label="Engenharias"
+                                actual={course}
+                                set={setCourseHideModel(setCourse, setModalVisible)}
+                            />
+                            <Option
+                                actual={course}
+                                set={setCourseHideModel(setCourse, setModalVisible)}
+                                label="Engenharia de Software"
+                            />
+                            <Option
+                                actual={course}
+                                set={setCourseHideModel(setCourse, setModalVisible)}
+                                label="Engenharia Aeroespacial"
+                            />
+                            <Option
+                                actual={course}
+                                set={setCourseHideModel(setCourse, setModalVisible)}
+                                label="Engenharia Automotiva"
+                            />
+                            <Option
+                                actual={course}
+                                set={setCourseHideModel(setCourse, setModalVisible)}
+                                label="Engenharia de Energia"
+                            />
+                            <Option
+                                actual={course}
+                                set={setCourseHideModel(setCourse, setModalVisible)}
+                                label="Engenharia de Eletrônica"
+                            />
+                        </Select>
+                        <Input secureTextEntry={true} label="Senha" placeholder="Digite aqui..." />
                     </VStack>
                     <HStack style={{
                         marginTop: 25,
@@ -243,73 +223,6 @@ export default function Register() {
                     <RegisterButton onPress={() => router.push("/(register)/(complete)")} />
                 </Box>
             </Layout>
-            <GestureRecognizer
-                onSwipeDown={() => setVisible(false)}
-            >
-                <Modal
-                    visible={visible}
-                    onRequestClose={() => setVisible(false)}
-                    animationType="slide"
-                    transparent
-                    style={{
-                        height: "100%",
-                        borderRadius: 0,
-                    }}
-                >
-                    <VStack
-                        style={{
-                            display: "flex",
-                        }}
-                    >
-
-                    </VStack>
-                    <Pressable
-                        style={{
-                            flex: 1.75,
-                        }}
-                        onPress={() => setVisible(false)}
-                    ></Pressable>
-                    <View
-                        style={{
-                            flex: 1,
-                            backgroundColor: "#FFFFFF",
-                            borderTopLeftRadius: 20,
-                            borderTopRightRadius: 20,
-                        }}
-                    >
-                        <Box
-                            style={{
-                                height: 20,
-                                display: "flex",
-                                justifyContent: "center",
-                                alignItems: "center",
-                            }}
-                        >
-                            <Box
-                                style={{
-                                    height: 3,
-                                    width: "50%",
-                                    backgroundColor: "#E1E1E6",
-                                    borderRadius: 2,
-                                }}
-                            >
-
-                            </Box>
-                        </Box>
-                        <VStack>
-                            <Option actual={course} set={label => {
-                                setCourse(label);
-                                setVisible(false);
-                            }} label="Engenharias"/>
-                            <Option actual={course} set={setCourseHideModel(setCourse, setVisible)} label="Engenharia Aeroespacial"/>
-                            <Option actual={course} set={setCourseHideModel(setCourse, setVisible)} label="Engenharia Automotiva"/>
-                            <Option actual={course} set={setCourseHideModel(setCourse, setVisible)} label="Engenharia de Energia"/>
-                            <Option actual={course} set={setCourseHideModel(setCourse, setVisible)} label="Engenharia de Software"/>
-                            <Option actual={course} set={setCourseHideModel(setCourse, setVisible)} label="Engenharia Eletrônica"/>
-                        </VStack>
-                    </View>
-                </Modal>
-            </GestureRecognizer>
         </SafeAreaView>
     );
 }
