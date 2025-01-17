@@ -18,7 +18,7 @@ describe('Create StudentPrismaRepository', () => {
 
   afterAll(async () => {
     await prisma.$disconnect();
-    await prisma.$executeRaw`'TRUNCATE TABLE "students" CASCADE;'`;
+    await prisma.$executeRaw`TRUNCATE TABLE "students" CASCADE;`;
   });
 
   it('should create a student', async () => {
@@ -41,7 +41,7 @@ describe('Create StudentPrismaRepository', () => {
   });
 
   it('should create student with season', async () => {
-    await prisma.$executeRaw`'TRUNCATE TABLE "questions" CASCADE;'`;
+    await prisma.$executeRaw`TRUNCATE TABLE "students" CASCADE;`;
     const season = await prisma.season.create({
       data: {
         name: 'Season create student test',
@@ -76,8 +76,6 @@ describe('Create StudentPrismaRepository', () => {
         },
       },
     });
-
-    await prisma.$executeRaw`'TRUNCATE TABLE "questions" CASCADE;'`;
 
     expect(student).toEqual({
       id: input.id,

@@ -22,6 +22,7 @@ describe('Create QuestionPrismaRepository', () => {
 
   afterAll(async () => {
     await prisma.$queryRaw`TRUNCATE TABLE "questions" CASCADE;`;
+    await prisma.$queryRaw`TRUNCATE TABLE "students" CASCADE;`;
   });
 
   it('should create a question', async () => {
