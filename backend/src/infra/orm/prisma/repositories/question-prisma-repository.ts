@@ -9,6 +9,7 @@ export class QuestionPrismaRepository implements QuestionRepository {
   ): Promise<QuestionRepository.Create.Output> {
     const question = await this.prisma.question.create({
       data: {
+        id: params.id,
         subjectId: params.subjectId,
         title: params.title,
         description: params.description,
