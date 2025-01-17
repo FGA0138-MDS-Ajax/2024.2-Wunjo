@@ -1,3 +1,4 @@
+import { randomUUID } from 'node:crypto';
 import {
   AlreadyExistsError,
   AlreadyExistsErrorType,
@@ -46,6 +47,7 @@ export class RegisterUsecase {
     );
 
     const student = await this.studentRepository.create({
+      id: randomUUID(),
       name: validatedInput.name,
       email: studentEmail,
       registration: validatedInput.registration,

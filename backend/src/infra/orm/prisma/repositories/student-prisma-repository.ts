@@ -9,6 +9,7 @@ export class StudentPrismaRepository implements StudentRepository {
   ): Promise<StudentRepository.Create.Output> {
     const student = await this.prisma.student.create({
       data: {
+        id: params.id,
         name: params.name,
         registration: params.registration,
         email: params.email,

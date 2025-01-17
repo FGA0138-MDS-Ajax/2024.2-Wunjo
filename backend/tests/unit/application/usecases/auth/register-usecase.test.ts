@@ -1,3 +1,4 @@
+import { randomUUID } from 'node:crypto';
 import {
   AlreadyExistsError,
   AlreadyExistsErrorType,
@@ -87,6 +88,7 @@ describe('RegisterUsecase', () => {
     expect(hashPassword.calledOnceWithExactly(input.password)).toBeTruthy();
     expect(
       createRepo.calledOnceWithExactly({
+        id: randomUUID(),
         name: input.name,
         email: studentEmail,
         registration: input.registration,
