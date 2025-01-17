@@ -12,12 +12,10 @@ describe('Create StudentPrismaRepository', () => {
   const input = StudentBuilder.aStudent().get();
 
   beforeAll(async () => {
-    await prisma.$connect();
     repo = new StudentPrismaRepository(prisma);
   });
 
   afterAll(async () => {
-    await prisma.$disconnect();
     await prisma.$executeRaw`TRUNCATE TABLE "students" CASCADE;`;
   });
 
