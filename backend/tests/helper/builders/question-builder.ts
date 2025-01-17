@@ -1,4 +1,10 @@
-import { Question, QuestionDifficulties, QuestionDifficulty, QuestionUrgencies, QuestionUrgency } from '@/domain';
+import {
+  Question,
+  QuestionDifficulties,
+  QuestionDifficulty,
+  QuestionUrgencies,
+  QuestionUrgency,
+} from '@/domain';
 import { prisma } from '@/infra/orm/prisma/datasource';
 import { faker } from '@faker-js/faker';
 import { PrismaClient } from '@prisma/client';
@@ -13,15 +19,49 @@ export class QuestionBuilder {
       subjectId: faker.string.uuid(),
       title: faker.string.alpha({ length: { min: 1, max: 20 } }),
       description: faker.string.alpha({ length: { min: 1, max: 250 } }),
-      points: faker.number.int(),
-      status: faker.helpers.arrayElement(Object.values(['OPEN', 'IN_PROGRESS', 'FINISHED'])),
-      difficulty: faker.helpers.arrayElement(Object.values(QuestionDifficulty)) as QuestionDifficulties,
-      urgency: faker.helpers.arrayElement(Object.values(QuestionUrgency)) as QuestionUrgencies,
+      points: faker.number.int({
+        min: 1,
+        max: 100,
+      }),
+      status: faker.helpers.arrayElement(
+        Object.values(['OPEN', 'IN_PROGRESS', 'FINISHED']),
+      ),
+      difficulty: faker.helpers.arrayElement(
+        Object.values(QuestionDifficulty),
+      ) as QuestionDifficulties,
+      urgency: faker.helpers.arrayElement(
+        Object.values(QuestionUrgency),
+      ) as QuestionUrgencies,
       tutorId: faker.string.uuid(),
       studentId: faker.string.uuid(),
       tutors: [],
       id: faker.string.uuid(),
     };
+  }
+
+  public withParams(params: Partial<Question>): QuestionBuilder {
+    for (const key in params) {
+      const _key = key as keyof typeof params;
+      if (typeof params[_key] !== 'undefined') {
+        if (typeof params[_key] === 'object') {
+          if (
+            typeof this.data[_key] === 'object'
+            && typeof params[_key] === 'object'
+          ) {
+            // @ts-expect-error ype 'Question[] | StudentSeason[] | Date' is not assignable to type 'never'. Type 'Question[]' is not assignable to type 'never'
+            this.data[_key] = { ...this.data[_key], ...params[_key] };
+          } else {
+            // @ts-expect-error ype 'Question[] | StudentSeason[] | Date' is not assignable to type 'never'. Type 'Question[]' is not assignable to type 'never'
+            this.data[_key] = params[_key];
+          }
+          continue;
+        } else {
+          // @ts-expect-error ype 'Question[] | StudentSeason[] | Date' is not assignable to type 'never'. Type 'Question[]' is not assignable to type 'never'
+          this.data[_key] = params[_key];
+        }
+      }
+    }
+    return this;
   }
 
   static aQuestion(): QuestionBuilder {
