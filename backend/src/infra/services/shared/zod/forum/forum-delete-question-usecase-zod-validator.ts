@@ -3,7 +3,7 @@ import { Validator } from '@/application/services';
 import { DeleteQuestionUsecase } from '@/application/usecases';
 import { z } from 'zod';
 
-export class ForumDeleteQuestionUsecaseZodValitador implements Validator<DeleteQuestionUsecase.Input> {
+export class ForumDeleteQuestionUsecaseZodValidator implements Validator<DeleteQuestionUsecase.Input> {
   private readonly schema = z
     .object({
       questionId: z.string().uuid(),

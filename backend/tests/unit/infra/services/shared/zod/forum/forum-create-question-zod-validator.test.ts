@@ -1,7 +1,9 @@
+import { ValidationError } from '@/application/error';
 import { CreateQuestionUsecase } from '@/application/usecases';
 import { QuestionDifficulties, QuestionDifficulty, QuestionUrgencies, QuestionUrgency } from '@/domain';
 import { ForumCreateQuestionUsecaseZodValidator } from '@/infra/services/shared/zod/forum/forum-create-question-usecase-zod-validator';
 import { faker } from '@faker-js/faker';
+import { getError } from '@tests/helper';
 import { beforeAll, describe, expect, it } from 'vitest';
 
 describe('Test forum create question zod validator', () => {
@@ -32,5 +34,19 @@ describe('Test forum create question zod validator', () => {
       difficulty: input.difficulty,
       urgency: input.urgency,
     });
+  });
+
+  it('should validate if the create question usecase input data is wrong', async () => {
+    const output = await getError<ValidationError>(() =>
+      forumCreateQuestionUsecaseValidator.validate({
+        subjectId: input.subjectId,
+        title: 12,
+        description: input.description,
+        points: input.points,
+        difficulty: 'INVALID DIFF',
+        urgency: 'INVALID_DATA_URGENCY',
+      }),
+    );
+    expect(output).instanceOf(ValidationError);
   });
 });
