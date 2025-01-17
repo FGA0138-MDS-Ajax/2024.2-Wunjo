@@ -54,7 +54,7 @@ export default function Screen() {
                     }}
                 >
                     <Button
-                        onPress={() => console.log('heloo')}
+                        onPress={() => router.push('/(register)/(recover)/(input)')}
                         label="Continuar"
                         variant="wide"
                         style={{
