@@ -1,11 +1,11 @@
 import { CreateQuestionUsecase } from '@/application/usecases';
 import { QuestionDifficulties, QuestionDifficulty, QuestionUrgencies, QuestionUrgency } from '@/domain';
-import { ForumCreateQuestionUsecaseValidator } from '@/infra/services/shared/zod/forum/forum-create-question-usecase-zod-validator';
+import { ForumCreateQuestionUsecaseZodValidator } from '@/infra/services/shared/zod/forum/forum-create-question-usecase-zod-validator';
 import { faker } from '@faker-js/faker';
 import { beforeAll, describe, expect, it } from 'vitest';
 
 describe('Test forum create question zod validator', () => {
-  let forumCreateQuestionUsecaseValidator: ForumCreateQuestionUsecaseValidator;
+  let forumCreateQuestionUsecaseValidator: ForumCreateQuestionUsecaseZodValidator;
   const input: CreateQuestionUsecase.Input = {
     subjectId: faker.string.uuid(),
     title: faker.string.alpha({ length: { min: 1, max: 20 } }),
@@ -18,7 +18,7 @@ describe('Test forum create question zod validator', () => {
     urgency: faker.helpers.arrayElement(Object.values(QuestionUrgency)) as QuestionUrgencies,
   };
   beforeAll(() => {
-    forumCreateQuestionUsecaseValidator = new ForumCreateQuestionUsecaseValidator();
+    forumCreateQuestionUsecaseValidator = new ForumCreateQuestionUsecaseZodValidator();
   });
 
   it('should validate the create question usecase input data', async () => {

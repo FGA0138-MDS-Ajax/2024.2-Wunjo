@@ -4,7 +4,7 @@ import { CreateQuestionUsecase } from '@/application/usecases';
 import { QuestionDifficulty, QuestionUrgency } from '@/domain';
 import { z } from 'zod';
 
-export class ForumCreateQuestionUsecaseValidator implements Validator<CreateQuestionUsecase.Input> {
+export class ForumCreateQuestionUsecaseZodValidator implements Validator<CreateQuestionUsecase.Input> {
   private readonly schema = z
     .object({
       subjectId: z.string(),
