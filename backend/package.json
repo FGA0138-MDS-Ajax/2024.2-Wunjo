@@ -14,7 +14,8 @@
     "lint:fix": "npm run lint -- --fix",
     "prisma:local": "dotenv -e ./env/.env.local -- npx prisma",
     "prisma": "dotenv -e ./env/.env -- npx prisma",
-    "test": "dotenv -e ./env/.env.test -- vitest"
+    "test": "dotenv -e ./env/.env.test -- vitest",
+    "test:ci": "export $(cat ./env/.env.test | xargs) && vitest"
   },
   "keywords": [],
   "author": "",

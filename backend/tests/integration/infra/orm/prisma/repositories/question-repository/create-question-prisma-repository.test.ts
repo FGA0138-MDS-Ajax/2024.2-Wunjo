@@ -15,7 +15,7 @@ describe('Create QuestionPrismaRepository', () => {
 
   afterAll(async () => {
     await prisma.$disconnect();
-    await prisma.question.delete({ where: { id: input.subjectId } });
+    await prisma.$executeRaw`'TRUNCATE TABLE "questions" CASCADE;'`;
   });
 
   it('should create a question', async () => {
