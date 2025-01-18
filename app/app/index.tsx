@@ -16,6 +16,8 @@ import Snowflake from "../assets/images/snowflake";
 export default function Screen() {
     const router = useRouter();
 
+    const wrong_credentials = true;
+
     return (
         <SafeAreaView style={{
             backgroundColor: "#F5F6FA"
@@ -35,6 +37,17 @@ export default function Screen() {
                         // backgroundColor: "rgba(0, 255, 0, 0.1)",
                         rowGap: 24,
                     }}>
+                        {
+                            wrong_credentials && <Text
+                                className="font-raleway"
+                                style={{
+                                    color: "#C90000",
+                                    fontSize: 15
+                            }}>
+                                *Matrícula ou senha incorretas.
+                            </Text>
+                        }
+                        
                         <Input keyboardType="numeric" label="Matrícula" placeholder="Digite aqui..." />
                         <Input secureTextEntry={true} label="Senha" placeholder="Digite aqui..." />
 
