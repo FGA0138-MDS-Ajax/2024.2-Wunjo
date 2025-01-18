@@ -50,3 +50,25 @@ export function BackHeader({
     </HStack>
 
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
+    button: {
+        backgroundColor: "#DDE4EE",
+        borderRadius: 12,
+        width: 36,
+        marginLeft: 12,
+        aspectRatio: 1,
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    label: {
+        color: "#1E293B",
+        fontSize: 32,
+        fontFamily: 'Itim_400Regular',
+        marginLeft: 10,
+    },
+});

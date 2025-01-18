@@ -1,4 +1,3 @@
-import ChatBox from '@/components/ui/chat/chatBox';
 import React from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
 import { useChat } from './chat';
@@ -6,10 +5,9 @@ import { Box } from '@/components/ui/box';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useUnBordo } from '@/hooks/unbordo';
 
-//lnha entre as conversas
-const ItemSeparator = () => {
-  return <View style={styles.separator} />;
-};
+const ChatList = () => {
+  const router = useRouter();
+  const currentUserId = '123'; // ID do usuário atual
 
 export default function ChatList() {
   const handleChatPress = (chatId: string) => {
@@ -21,7 +19,6 @@ export default function ChatList() {
   const { auth } = useUnBordo();
 
   return (
-    //o <layout> n ta deixando scrollar
     <View style={styles.container}>
       <Text style={styles.title}>Conversas</Text>
       <FlatList
@@ -83,13 +80,13 @@ export default function ChatList() {
   );
 
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 30,
-    marginHorizontal: 20,
+    paddingTop: 30,
+    paddingHorizontal: 20,
   },
   title: {
     fontSize: 32,
@@ -97,8 +94,29 @@ const styles = StyleSheet.create({
     color: '#1E293B',
     paddingBottom: 18,
   },
+  chatItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
+  },
+  userImage: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    marginRight: 10,
+  },
+  username: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  lastMessage: {
+    fontSize: 14,
+    color: '#666',
+  },
   listContent: {
-    paddingBottom: 20,
+    paddingBottom: 16,
   },
   separator: {
     height: 1,
