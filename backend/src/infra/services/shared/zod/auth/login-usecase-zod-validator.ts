@@ -1,6 +1,6 @@
 import { ValidationError } from '@/application/error';
 import { Validator } from '@/application/services';
-import { LoginUsecase } from '@/application/usecases/auth/login-usecase';
+import { LoginUsecase } from '@/application/usecases';
 import { z } from 'zod';
 import { validateStudentRegistration } from '../helper/registration';
 

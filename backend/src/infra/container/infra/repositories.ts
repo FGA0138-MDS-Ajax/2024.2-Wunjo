@@ -1,13 +1,15 @@
 import {
   EmailRepository,
   EmailTemplateRepository,
+  StudentRepository,
 } from '@/application/repositories';
-import { StudentRepository } from '@/application/repositories/student-repository';
 import { RedisCache } from '@/infra/cache';
-import { EmailCacheRepository } from '@/infra/cache/repositories/email-cache-repository';
+import { EmailCacheRepository } from '@/infra/cache/repositories';
 import { prisma } from '@/infra/orm/prisma/datasource';
-import { StudentPrismaRepository } from '@/infra/orm/prisma/repositories';
-import { EmailTemplatePrismaRepository } from '@/infra/orm/prisma/repositories/email-template-prisma-repository';
+import {
+  EmailTemplatePrismaRepository,
+  StudentPrismaRepository,
+} from '@/infra/orm/prisma/repositories';
 import { DIContainer } from 'rsdi';
 
 // eslint-disable-next-line antfu/no-top-level-await
