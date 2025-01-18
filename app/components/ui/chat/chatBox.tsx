@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, Modal, Button, TouchableWithoutFeedback } from "react-native";
+import ChatOptions from '@/components/ui/chat/chatOption';
+import { Button, ButtonText } from '@/components/ui/button';
+import { Input, InputField } from "@/components/ui/input";
+import { View, Text, StyleSheet, Image, TouchableOpacity, Modal, TouchableWithoutFeedback } from "react-native";
 
 interface ChatBoxProps {
   username: string;
@@ -9,7 +12,17 @@ interface ChatBoxProps {
 }
 
 export default function ChatBox({ username, message, userImage, onPress }: ChatBoxProps) {
+  
   const [modalVisible, setModalVisible] = useState(false);
+  const [EndChatConfirmation, setEndChatConfirmation] = useState(false);
+  const [endChatQuestion, setEndChatQuestion] = useState(false);
+  const [rateChatResponse, setRateChatResponse] = useState(false);
+  const [rateChatNotResponse, setRateChatNotResponse] = useState(false);
+  const [ChatEndResponse, setChatEndResponse] = useState(false);
+  const [ChatEndNotResponse, setChatEndNotResponse] = useState(false);
+  const [reportModalVisible, setReportModalVisible] = useState(false);
+  const [reportQuestionVisible, setReportQuestionVisible] = useState(false);
+  const [reportEndVisible, setReportEndVisible] = useState(false);
 
   return (
     <TouchableOpacity onPress={onPress} style={styles.chatItems}>
@@ -22,23 +35,28 @@ export default function ChatBox({ username, message, userImage, onPress }: ChatB
         <Text style={styles.options}>...</Text>
       </TouchableOpacity>
 
-      <Modal
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => setModalVisible(false)}
-      >
-        <TouchableWithoutFeedback onPress={() => setModalVisible(false)}>
-          <View style={styles.modalOverlay}>
-            <TouchableWithoutFeedback onPress={() => { }}>
-              <View style={styles.modalContent}>
-                <Text style={styles.modalButtonText}>Encerrar bate papo</Text>
-                <Text style={styles.modalButtonText}>Ver perfil</Text>
-                <Text style={styles.modalButtonText}>Denunciar</Text>
-              </View>
-            </TouchableWithoutFeedback>
-          </View>
-        </TouchableWithoutFeedback>
-      </Modal>
+      <ChatOptions
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+        EndChatConfirmation={EndChatConfirmation}
+        setEndChatConfirmation={setEndChatConfirmation}
+        endChatQuestion={endChatQuestion}
+        setEndChatQuestion={setEndChatQuestion}
+        rateChatResponse={rateChatResponse}
+        setRateChatResponse={setRateChatResponse}
+        rateChatNotResponse={rateChatNotResponse}
+        setRateChatNotResponse={setRateChatNotResponse}
+        ChatEndResponse={ChatEndResponse}
+        setChatEndResponse={setChatEndResponse}
+        ChatEndNotResponse={ChatEndNotResponse}
+        setChatEndNotResponse={setChatEndNotResponse}
+        reportModalVisible={reportModalVisible}
+        setReportModalVisible={setReportModalVisible}
+        reportQuestionVisible={reportQuestionVisible}
+        setReportQuestionVisible={setReportQuestionVisible}
+        reportEndVisible={reportEndVisible}
+        setReportEndVisible={setReportEndVisible}
+      />
     </TouchableOpacity>
   );
 }
@@ -76,35 +94,5 @@ const styles = StyleSheet.create({
     fontFamily: "Itim_400Regular",
     color: "#1a1a2d",
     marginLeft: 10,
-  },
-  modalContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: 'rgba(0,0,0,0.5)',
-  },
-  modalOverlay: {
-    flex: 1,
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  modalContent: {
-    width: "60%",
-    backgroundColor: "#FFF",
-    borderRadius: 10,
-    padding: 20,
-    alignItems: "flex-start",
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  modalButtonText: {
-    color: "#1A1A2D",
-    fontFamily: "Raleway_400Regular",
-    fontSize: 16,
-    marginVertical: 2,
   },
 });
