@@ -96,7 +96,7 @@ export default function Screen() {
                         }}
                     />
                     <Button
-                        variant="square"
+                        variant="circle"
                         onPress={() => router.push("/(register)/(recover)/(password)")}
                         style={{
                             margin: 20,
