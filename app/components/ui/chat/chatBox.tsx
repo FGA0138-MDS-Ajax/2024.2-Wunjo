@@ -25,6 +25,15 @@ export default function ChatBox({
   onPress,
 }: ChatBoxProps) {
   const [modalVisible, setModalVisible] = useState(false);
+  const [EndChatConfirmation, setEndChatConfirmation] = useState(false);
+  const [endChatQuestion, setEndChatQuestion] = useState(false);
+  const [rateChatResponse, setRateChatResponse] = useState(false);
+  const [rateChatNotResponse, setRateChatNotResponse] = useState(false);
+  const [ChatEndResponse, setChatEndResponse] = useState(false);
+  const [ChatEndNotResponse, setChatEndNotResponse] = useState(false);
+  const [reportModalVisible, setReportModalVisible] = useState(false);
+  const [reportQuestionVisible, setReportQuestionVisible] = useState(false);
+  const [reportEndVisible, setReportEndVisible] = useState(false);
 
   return (
     <TouchableOpacity onPress={onPress} style={styles.chatItems}>
