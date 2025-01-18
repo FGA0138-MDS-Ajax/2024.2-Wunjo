@@ -9,28 +9,19 @@ import { Input } from "@/components/ui/input2";
 import { Button } from "@/components/ui/button2";
 import { useKeyboardVisible } from "@/components/KeyboardListener";
 
-import SVGPirateThinkinginSide from "@/assets/images/pirate-thinking-side";
+import SVGPirateSmile from "@/assets/images/pirate-smile";
 import SVGArrow from "@/assets/images/arrow";
 
 export default function Screen() {
     const router = useRouter();
     const hasKeyboard = useKeyboardVisible();
 
-    const pirateOriginal = {
-        width: 278,
-        height: 351
+    const pirate = {
+        width: 159,
+        height: 327
     }
 
-    const pirate = {
-        keyboard: {
-            width: pirateOriginal.width / 1.5,
-            height: pirateOriginal.height / 1.5
-        },
-        free: {
-            width: pirateOriginal.width,
-            height: pirateOriginal.height
-        }
-    }
+    const decreaser = 2;
 
     return (
         <SafeAreaView style={{
@@ -46,65 +37,88 @@ export default function Screen() {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
+                // backgroundColor: "red"
             }}>
                 <View
                     style={{
-                        flex: 3,
+                        flex: 4,
                         width: "100%",
                         zIndex: 2,
                         padding: 15,
                         display: "flex",
                         justifyContent: "flex-end",
                         alignItems: "center",
-                        rowGap: 10
+                        rowGap: 25,
+                        // backgroundColor: "green"
                     }}
                 >
-                    <Text>
-                        Digite as coordenadas do tesouro que te enviamos pelo e-mail!
+                    <Text
+                        className="font-raleway"
+                        style={{
+                            // backgroundColor: "blue",
+                            alignSelf: "flex-start",
+                            fontSize: 16
+                        }}
+                    >
+                        Digite seu novo segredo do tesouro!
                     </Text>
                     <View style={{
-                        backgroundColor: "#F5F6FA",
                         display: "flex",
-                        flexDirection: "row",
+                        width: "100%",
                         justifyContent: "center",
                         alignItems: "center",
-                        columnGap: 25
+                        rowGap: 15,
                     }}>
-                        <Input maxLength={1} keyboardType="numeric" variant="square" />
-                        <Input maxLength={1} keyboardType="numeric" variant="square" />
-                        <Input maxLength={1} keyboardType="numeric" variant="square" />
-                        <Input maxLength={1} keyboardType="numeric" variant="square" />
+                        <Input
+                            secureTextEntry={true}
+                            label="Senha"
+                            placeholder="Digite aqui..."
+                        />
+                        <Input
+                            secureTextEntry={true}
+                            label="Confirmar senha"
+                            placeholder="Digite aqui..."
+                        />
                     </View>
+                    <Button
+                        label="Redefinir"
+                        onPress={() => router.push('/(register)/(recover)/(success)')}
+                        style={{
+                            width: "75%"
+                        }}
+                    >
+
+                    </Button>
                 </View>     
                 <View
                     style={{
-                        flex: 4,
+                        flex: hasKeyboard ? 4.5 / (decreaser * 1.25) : 4.5,
                         width: "100%",
                         display: "flex",
-                        justifyContent: "flex-end",
+                        justifyContent: "center",
                         alignItems: "flex-end",
                         position: "relative",
                     }}
                 >
-                    <SVGPirateThinkinginSide 
-                        width={hasKeyboard ? pirate.keyboard.width : pirate.free.width}
-                        height={hasKeyboard ? pirate.keyboard.height : pirate.free.height}
+                    <SVGPirateSmile 
+                        width={hasKeyboard ? pirate.width / decreaser : pirate.width}
+                        height={hasKeyboard ? pirate.height / decreaser : pirate.height}
                         style={{
                             position: "absolute",
                             bottom: 0,
                             left: 0,
                         }}
                     />
-                    <Button
-                        variant="square"
-                        onPress={() => router.push("/(register)/(recover)/(password)")}
+                    <Text
+                        className='font-raleway'
                         style={{
-                            margin: 20,
-                            marginBottom: "25%"
+                            marginRight: "10%",
+                            fontSize: 16
                         }}
                     >
-                        <SVGArrow size={24} />
-                    </Button>
+                        {"-não estou vendo sua senha :)"}
+                    </Text>
+
                 </View>
             </View>
         </SafeAreaView>

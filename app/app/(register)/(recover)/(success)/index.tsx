@@ -6,8 +6,11 @@ import { Complete } from "../../(complete)/index"
 export default function Screen() {
     const router = useRouter();
     return (
-        <Complete onPress={() => router.push("..")}>
-            <Text className="font-raleway"
+        <Complete onPress={() => {
+            while (router.canGoBack())
+                router.back();
+        }}>
+            <Text className="font-itim"
                 style={{
                     color: "#173CAC",
                     fontSize: 36,

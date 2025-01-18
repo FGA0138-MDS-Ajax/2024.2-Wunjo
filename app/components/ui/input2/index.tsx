@@ -1,4 +1,31 @@
-import { View, Text, TextInput, KeyboardType } from "react-native";
+import {
+    View,
+    Text,
+    TextInput,
+    KeyboardType,
+    StyleSheet,
+    StyleProp,
+    TextStyle
+} from "react-native";
+
+const variants = StyleSheet.create({
+    square: {
+        backgroundColor: "#703111",
+        borderRadius: 12,
+        width: 66,
+        aspectRatio: 1,
+        textAlign: "center",
+        color: "#FFA33D",
+        fontSize: 32
+    },
+    wide: {
+        backgroundColor: "white",
+        borderRadius: 8,
+        height: 48,
+        width: "100%",
+        paddingLeft: 15,  
+    },
+})
 
 export function Input({
     label,
@@ -8,7 +35,10 @@ export function Input({
     editable = true,
     value,
     keyboardType = 'default',
-    showSoftInputOnFocus = true
+    showSoftInputOnFocus = true,
+    variant = "wide",
+    style,
+    maxLength
 }: {
     label?: string,
     placeholder?: string,
@@ -17,18 +47,39 @@ export function Input({
     editable?: boolean,
     value?: string,
     keyboardType?: KeyboardType,
-    showSoftInputOnFocus?: boolean
+    showSoftInputOnFocus?: boolean,
+    variant?: "square" | "wide",
+    style?: StyleProp<TextStyle>,
+    maxLength?: number
 }) {
     return <View style={{
         display: "flex",
         flexDirection: "column",
         rowGap: 2,
-        width: "100%",
+        width: variants[variant].width,
+        position: "relative"
     }}>
-        <Text className="font-itim" style={{
-            color: "black",
-            fontSize: 15,
-        }}>{label}</Text>
+        {
+            label && <Text className="font-itim" style={{
+                color: "black",
+                fontSize: 15,
+            }}>
+                {label}
+            </Text>
+        }
+        
+        {
+            variant === "square" && <View
+                style={{
+                    position: "absolute",
+                    backgroundColor: "#55250C",
+                    width: "100%",
+                    height: "100%",
+                    bottom: -4,
+                    borderRadius: variants[variant].borderRadius
+                }}
+            />
+        }
         <TextInput
             showSoftInputOnFocus={showSoftInputOnFocus}
             keyboardType={keyboardType}
@@ -38,12 +89,8 @@ export function Input({
             placeholder={placeholder}
             onPress={onPress}
             value={value}
-            style={{
-                backgroundColor: "white",
-                borderRadius: 8,
-                height: 48,
-                width: "100%",
-                paddingLeft: 15,
-        }}/>
+            {...maxLength && {maxLength: maxLength}}
+            style={[variants[variant], style]}
+        />
     </View>
 }
