@@ -1,6 +1,7 @@
 import { View, Text, Pressable, Modal, TextInput, Keyboard } from "react-native";
 import GestureRecognizer from 'react-native-swipe-gestures';
 import { Input } from "../input2";
+import SVGArrowDown from "@/assets/images/arrow-down";
 
 export function Select ({
     label,
@@ -32,7 +33,15 @@ export function Select ({
             label={label}
             placeholder={placeholder}
             value={value}
-        />
+        >
+            <SVGArrowDown
+                size={25}
+                style={{
+                    position: "absolute",
+                    right: "5%",
+                }}
+            />
+        </Input>
         <GestureRecognizer
                 onSwipeDown={() => setModalVisible(false)}
             >

@@ -1,3 +1,4 @@
+import React from "react";
 import {
     View,
     Text,
@@ -5,7 +6,8 @@ import {
     KeyboardType,
     StyleSheet,
     StyleProp,
-    TextStyle
+    TextStyle,
+    Pressable
 } from "react-native";
 
 const variants = StyleSheet.create({
@@ -38,7 +40,8 @@ export function Input({
     showSoftInputOnFocus = true,
     variant = "wide",
     style,
-    maxLength
+    maxLength,
+    children
 }: {
     label?: string,
     placeholder?: string,
@@ -50,7 +53,8 @@ export function Input({
     showSoftInputOnFocus?: boolean,
     variant?: "square" | "wide",
     style?: StyleProp<TextStyle>,
-    maxLength?: number
+    maxLength?: number,
+    children?: React.ReactNode
 }) {
     return <View style={{
         display: "flex",
@@ -80,17 +84,29 @@ export function Input({
                 }}
             />
         }
-        <TextInput
-            showSoftInputOnFocus={showSoftInputOnFocus}
-            keyboardType={keyboardType}
-            editable={editable}
-            secureTextEntry={secureTextEntry}
-            className={"font-raleway"}
-            placeholder={placeholder}
+        <Pressable
             onPress={onPress}
-            value={value}
-            {...maxLength && {maxLength: maxLength}}
-            style={[variants[variant], style]}
-        />
+            style={{
+                position: "relative",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center"
+            }}
+        >
+            <TextInput
+                showSoftInputOnFocus={showSoftInputOnFocus}
+                keyboardType={keyboardType}
+                editable={editable}
+                secureTextEntry={secureTextEntry}
+                className={"font-raleway"}
+                placeholder={placeholder}
+                onPress={onPress}
+                value={value}
+                {...maxLength && { maxLength: maxLength }}
+                style={[variants[variant], style]}
+            />
+            {children}
+        </Pressable>
+        
     </View>
 }
