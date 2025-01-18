@@ -33,7 +33,7 @@ const mockMessages: { [key: string]: Message[] } = {
 };
 
 export default function ChatView() {
-    const { chatId, username, userImage } = useLocalSearchParams<{ chatId: string; username: string; userImage: string }>();
+    const { chatId, username, userImage, } = useLocalSearchParams<{ chatId: string; username: string; userImage: string }>();
     const currentUserId = '123'; // ID do usuário atual
     const [messages, setMessages] = useState<Message[]>([]);
     const [inputMessage, setInputMessage] = useState('');
