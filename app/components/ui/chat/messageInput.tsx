@@ -1,6 +1,7 @@
 import CameraIcon from '@/assets/images/camera';
 import React from 'react';
-import { View, TextInput, Button, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { View, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { Button, ButtonText } from '@/components/ui/button';
 
 interface MessageInputProps {
     inputMessage: string;
@@ -19,10 +20,12 @@ const MessageInput: React.FC<MessageInputProps> = ({ inputMessage, setInputMessa
                     placeholder="Digite sua mensagem..."
                 />
                 <TouchableOpacity>
-                <CameraIcon width={24} height={24} />
+                    <CameraIcon width={24} height={24} />
                 </TouchableOpacity>
             </View>
-            <Button title="Enviar" onPress={handleSendMessage} />
+            <Button action="primary" variant="solid" onPress={handleSendMessage} >
+                <ButtonText>Enviar</ButtonText>
+            </Button>
         </View>
     );
 };
@@ -44,6 +47,7 @@ const styles = StyleSheet.create({
         borderColor: '#173CAC',
         borderRadius: 20,
         paddingHorizontal: 10,
+        marginRight: 8,
     },
     input: {
         flex: 1,

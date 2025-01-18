@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { useRouter } from 'expo-router';
-import { BackButton } from '@/components/ui/backheader';
-import ChatOptions from '@/components/ui/chat/chatOption';
+import ChatOptions from '@/components/ui/chat/chatOption'; // Certifique-se de que o caminho está correto
+import { BackButton } from '@/components/ui/backheader'; // Certifique-se de que o caminho está correto
 
 interface ChatHeaderProps {
     username: string;
     userImage: string;
-    userId: string;
 }
 
 const ChatHeader: React.FC<ChatHeaderProps> = ({ username, userImage }) => {
@@ -30,7 +29,7 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({ username, userImage }) => {
             </TouchableOpacity>
             <Image source={{ uri: userImage }} style={styles.userImage} />
             <Text style={styles.title}>{username}</Text>
-            <TouchableOpacity onPress={() => setModalVisible(true)}>
+            <TouchableOpacity style={styles.optionsButton} onPress={() => setModalVisible(true)}>
                 <Text style={styles.options}>...</Text>
             </TouchableOpacity>
             <ChatOptions
@@ -78,6 +77,8 @@ const styles = StyleSheet.create({
         height: 66,
         borderRadius: 33,
         marginRight: 8,
+        borderWidth: 1,
+        borderColor: '#1A1A2D', // Adiciona borda branca à imagem
     },
     title: {
         fontSize: 32,
@@ -85,11 +86,15 @@ const styles = StyleSheet.create({
         fontFamily: 'Itim_400Regular',
         color: '#F5F6FA', // Cor da fonte do título
     },
+    optionsButton: {
+        position: 'absolute',
+        right: 20,
+        top: 60,
+    },
     options: {
         fontSize: 40,
         fontFamily: "Itim_400Regular",
         color: "#FFF",
-        marginLeft: 10,
         transform: [{ rotate: '90deg' }], // Rotaciona o texto
     },
 });
