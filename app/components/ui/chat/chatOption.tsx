@@ -320,16 +320,29 @@ const ChatOptions: React.FC<ChatOptionsProps> = ({
         <TouchableWithoutFeedback onPress={() => setReportModalVisible(false)}>
           <View style={styles.modalOverlay}>
             <TouchableWithoutFeedback onPress={() => { }}>
-              <View style={[styles.modalContent, { height: "30%" }]}>
-                <Text style={styles.textReport}>Por qual motivo deseja denunciar?</Text>
-                <Input variant="outline" size="lg">
-                  <InputField placeholder="Discorra sobre o ocorrido" />
+              <View style={[styles.modalContent, { height: "40%", justifyContent: 'center' }]}>
+                <Text style={styles.textReport}>Discorra sobre o acontecimento</Text>
+                <Text style={{textAlign: 'left', fontSize: 12, marginTop: 10, fontFamily: 'Raleway_400Regular', marginLeft: -10}}>Descreva o motivo da denúncia</Text>
+                <Input
+                variant="outline"  // Usando a variante 'outline' para borda
+                style={{ 
+                    borderColor: 'black', 
+                    marginBottom: 20,
+                    height: "15%",               // Altura ajustada
+                    width: "100%",            // Largura ajustada
+                    paddingLeft: 15,          // Para o texto não ficar colado na borda
+                }}>
+                    <InputField 
+                    placeholder="Digite o motivo aqui" 
+                    multiline={true}  // Permite múltiplas linhas
+                    numberOfLines={4}  // Número de linhas
+                    />  
                 </Input>
                 <Button
                   size="lg"
                   action="primary"
                   variant="solid"
-                  style={{ marginBottom: 10, width: "100%" }}
+                  style={{ marginBottom: 10, width: "100%", marginTop: 20 }}
                   onPress={() => {
                     setReportQuestionVisible(false);
                     setReportEndVisible(true);
@@ -363,7 +376,7 @@ const ChatOptions: React.FC<ChatOptionsProps> = ({
         onRequestClose={() => setReportEndVisible(false)}
       >
         <TouchableWithoutFeedback onPress={() => setReportQuestionVisible(false)}>
-          <View style={styles.modalOverlay}>
+          <View style={[styles.modalOverlay, { justifyContent: 'center' }]}>
             <TouchableWithoutFeedback onPress={() => { }}>
               <View style={[styles.modalContent, { height: "30%" }]}>
                 <Text style={styles.textReport}>Agradecemos seu feedback!</Text>
