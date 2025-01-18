@@ -91,6 +91,8 @@ export default function Register() {
 
     const keyboardVisible = useKeyboardVisible();
 
+    const wrongFields = true;
+
     return (
         <SafeAreaView>
             {
@@ -115,9 +117,23 @@ export default function Register() {
                     <VStack style={{
                         rowGap: 10,
                     }}>
-                        <Text className="font-raleway">
-                            Preencha seus dados e embarque conosco!
-                        </Text>
+                        {
+                            wrongFields && <Text
+                                className="font-raleway"
+                                style={{
+                                    color: "#C90000",
+                                    fontSize: 15
+                                }}
+                            >
+                                *Preencha todos os campos para prosseguir.
+                            </Text>
+                            || <Text
+                                className="font-raleway"
+                            >
+                                Preencha seus dados e embarque conosco!
+                            </Text>
+                        }
+                        
                         <Input label="Nome" placeholder="Digite aqui..." />
                         <Input keyboardType="numeric" label="Matrícula" placeholder="Digite aqui..." />
                         <Select
