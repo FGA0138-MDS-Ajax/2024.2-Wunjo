@@ -1,93 +1,93 @@
-import ChatBox from '@/components/ui/chat/chatBox';
 import React from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { View, Text, FlatList, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { useRouter } from 'expo-router';
+import ChatBox from '@/components/ui/chat/chatBox';
 
-// Dados de exemplo
 const chatData = [
   {
     id: '1',
-    username: 'arthurtopzera',
-    message: 'Seguinte, voce faz aeweufbouwbc',
-    userImage: 'https://picsum.photos/66',
+    chatId: 'chat1',
+    users: [
+      { id: '123', name: 'Você', image: 'https://picsum.photos/96' },
+      { id: '456', name: 'Arthur', image: 'https://picsum.photos/96' },
+    ],
+    lastMessage: 'Olá, como posso te ajudar hoje?',
   },
   {
     id: '2',
-    username: 'johndoe',
-    message: 'Hello, how are you?',
-    userImage: 'https://picsum.photos/67',
+    chatId: 'chat2',
+    users: [
+      { id: '123', name: 'Você', image: 'https://picsum.photos/95' },
+      { id: '789', name: 'João', image: 'https://picsum.photos/95' },
+    ],
+    lastMessage: 'Oi! Estou com dificuldade em entender o conceito de closures em JavaScript.',
   },
   {
     id: '3',
-    username: 'yanxbao',
-    message: 'fala meu peixe',
-    userImage: 'https://picsum.photos/68',
+    chatId: 'chat3',
+    users: [
+      { id: '123', name: 'Você', image: 'https://picsum.photos/98' },
+      { id: '122', name: 'Pedro', image: 'https://picsum.photos/92' },
+    ],
+    lastMessage: 'Oi! Estou com dificuldade em entender o conceito de closures em JavaScript.',
   },
   {
     id: '4',
-    username: 'desalmado',
-    message: 'então parceiro, voce faz aewufbouwbc',
-    userImage: 'https://picsum.photos/69',
+    chatId: 'chat4',
+    users: [
+      { id: '123', name: 'Você', image: 'https://picsum.photos/99' },
+      { id: '198', name: 'Marcelo', image: 'https://picsum.photos/98' },
+    ],
+    lastMessage: 'Oi! Estou com dificuldade em entender o conceito de closures em JavaScript.',
   },
-  {
-    id: '5',
-    username: 'john textor',
-    message: 'eu ein',
-    userImage: 'https://picsum.photos/65',
-  },
-  {
-    id: '6',
-    username: 'jao das neves',
-    message: 'nunca na minha vida eu vi alguem tao',
-    userImage: 'https://picsum.photos/676',
-  },
-  {
-    id: '7',
-    username: 'nepo baby',
-    message: 'chuchuuuu',
-    userImage: 'https://picsum.photos/96',
-  },
+
 ];
 
-//lnha entre as conversas
-const ItemSeparator = () => {
-  return <View style={styles.separator} />;
-};
+const ChatList = () => {
+  const router = useRouter();
+  const currentUserId = '123'; // ID do usuário atual
 
-export default function ChatList() {
-  const handleChatPress = (username : string) => {
-    // TODO: logica para abrir o chat
-    console.log(`Abrir chat com ${username}`);
+  const handleChatPress = (chat) => {
+    const otherUser = chat.users.find(user => user.id !== currentUserId);
+    router.push({
+      pathname: '/view',
+      params: {
+        chatId: chat.chatId,
+        username: otherUser.name,
+        userImage: otherUser.image,
+        otherUserId: otherUser.id,
+      },
+    });
+  };
+
+  const renderChatItem = ({ item }) => {
+    const otherUser = item.users.find(user => user.id !== currentUserId);
+    return (
+      <TouchableOpacity onPress={() => handleChatPress(item)}>
+        <ChatBox username={otherUser.name} message={item.lastMessage} userImage={otherUser.image} onPress={() => handleChatPress(item)} />
+      </TouchableOpacity>
+    );
   };
 
   return (
-    //o <layout> n ta deixando scrollar
     <View style={styles.container}>
       <Text style={styles.title}>Conversas</Text>
       <FlatList
         data={chatData}
         keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <ChatBox
-            username={item.username}
-            message={item.message}
-            userImage={item.userImage}
-            onPress={() => handleChatPress(item.username)}
-          />
-        )}
-        ItemSeparatorComponent={ItemSeparator}
+        renderItem={renderChatItem}
         contentContainerStyle={styles.listContent}
         showsVerticalScrollIndicator={false}
       />
     </View>
-
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 30,
-    marginHorizontal: 20,
+    paddingTop: 30,
+    paddingHorizontal: 20,
   },
   title: {
     fontSize: 32,
@@ -95,12 +95,30 @@ const styles = StyleSheet.create({
     color: "#1E293B",
     paddingBottom: 18,
   },
-  listContent: {
-    paddingBottom: 20,
+  chatItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
   },
-  separator: {
-    height: 1,
-    backgroundColor: '#ddd',
-    marginVertical: 5,
+  userImage: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    marginRight: 10,
+  },
+  username: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  lastMessage: {
+    fontSize: 14,
+    color: '#666',
+  },
+  listContent: {
+    paddingBottom: 16,
   },
 });
+
+export default ChatList;
