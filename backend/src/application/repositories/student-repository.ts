@@ -1,12 +1,12 @@
-import type { Question, Season, Student } from '@/domain';
+import type { Question, Student, StudentSeason } from '@/domain';
 
 export namespace StudentRepository {
   export const Name = 'StudentRepository';
 
   export namespace Create {
     export type Input = Student & Partial<{
-      questions: Question[];
-      seasons: Season[];
+      questions: Array<Question>;
+      seasons: Array<Omit<StudentSeason, 'studentId'>>;
     }>;
 
     export type Output = Omit<Student, 'questions' | 'seasons'>;

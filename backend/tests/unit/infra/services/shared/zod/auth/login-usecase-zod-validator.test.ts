@@ -39,16 +39,16 @@ describe('Test case login usecase validator', () => {
     expect(output.fields).toEqual([
       {
         code: 'custom',
-        message: 'Invalid input',
-        path: [],
+        message: 'A matrícula deve começar com 1 ou 2',
+        path: ['registration'],
       },
     ]);
   });
 
   it('should throw an ValidationError if the password size doesnt match the condition', async () => {
     const input = {
-      registration: '332001649',
-      password: '12345678',
+      registration: '232001649',
+      password: '1234567',
     };
 
     const output = await getError<ValidationError>(() =>
@@ -59,9 +59,13 @@ describe('Test case login usecase validator', () => {
     expect(output.status).toBe(400);
     expect(output.fields).toEqual([
       {
-        code: 'custom',
-        message: 'Invalid input',
-        path: [],
+        code: 'too_small',
+        exact: false,
+        inclusive: true,
+        minimum: 8,
+        type: 'string',
+        message: 'String must contain at least 8 character(s)',
+        path: ['password'],
       },
     ]);
   });

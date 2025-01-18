@@ -6,6 +6,7 @@ import {
 } from '@/application/error';
 import { RegisterUsecase } from '@/application/usecases';
 import { Course, EmailType, StudentRegistrationStatus } from '@/domain';
+import { EmailCacheRepository } from '@/infra/cache/repositories';
 import { container } from '@/infra/container';
 import { StudentPrismaRepository } from '@/infra/orm/prisma/repositories';
 import { DispatchEmailJobService } from '@/infra/services/bullMq';
@@ -71,6 +72,9 @@ describe('RegisterUsecase', () => {
     const dispatchEmail = sinon
       .stub(DispatchEmailJobService.prototype, 'dispatch')
       .resolves();
+    const emailRepo = sinon
+      .stub(EmailCacheRepository.prototype, 'create')
+      .resolves();
 
     const student = await usecase.execute(input);
 
@@ -111,6 +115,19 @@ describe('RegisterUsecase', () => {
         data: {
           studentId: student.studentId,
           type: EmailType.REGISTRATION,
+          data: {
+            code: sinon.match.string,
+          },
+        },
+      }),
+    ).toBeTruthy();
+    expect(
+      emailRepo.calledOnceWithExactly({
+        studentId: student.studentId,
+        email: {
+          data: sinon.match.string,
+          type: EmailType.REGISTRATION,
+          to: studentEmail,
         },
       }),
     ).toBeTruthy();

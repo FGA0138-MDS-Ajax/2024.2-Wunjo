@@ -21,39 +21,43 @@ export class StudentPrismaRepository implements StudentRepository {
         status: params.status,
         createdAt: new Date(),
         updatedAt: new Date(),
-        questions: {
-          connectOrCreate: params.questions?.map((question) => ({
-            where: { id: question.id },
-            create: {
-              id: question.id,
-              description: question.description,
-              difficulty: question.difficulty,
-              points: question.points,
-              status: question.status,
-              subjectId: question.subjectId,
-              title: question.title,
-              tutorId: question.tutorId,
-              urgency: question.urgency,
-              tutors: {
-                set: question.tutors.map((tutor) => ({
-                  id: tutor.id,
-                  avaliations: tutor.avaliation,
-                  chatRoomId: tutor.chatRoomId,
-                })),
+        ...(params.questions && params.questions.length > 0 && {
+          questions: {
+            connectOrCreate: params.questions?.map((question) => ({
+              where: { id: question.id },
+              create: {
+                id: question.id,
+                description: question.description,
+                difficulty: question.difficulty,
+                points: question.points,
+                status: question.status,
+                subjectId: question.subjectId,
+                title: question.title,
+                tutorId: question.tutorId,
+                urgency: question.urgency,
+                tutors: {
+                  set: question.tutors.map((tutor) => ({
+                    id: tutor.id,
+                    avaliations: tutor.avaliation,
+                    chatRoomId: tutor.chatRoomId,
+                  })),
+                },
               },
-            },
-          })),
-        },
-        seasons: {
-          connectOrCreate: params.seasons?.map((season) => ({
-            where: { id: season.id },
-            create: {
-              id: season.id,
-              points: season.points,
-              seasonId: season.id,
-            },
-          })),
-        },
+            })),
+          },
+        }),
+        ...(params.seasons && params.seasons.length > 0 && {
+          seasons: {
+            connectOrCreate: params.seasons?.map((season) => ({
+              where: { id: season.id },
+              create: {
+                id: season.id,
+                points: season.points,
+                seasonId: season.seasonId,
+              },
+            })),
+          },
+        }),
       },
     });
 
