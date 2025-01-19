@@ -16,7 +16,7 @@ describe('Test forum create question zod validator', () => {
   beforeAll(() => {
     forumGetAllQuestionsUsecaseValidator = new ForumGetAllQuestionsUsecaseZodValidator();
   });
-  console.log('iinput: ', input);
+
   it('should validate the get question usecase input data', async () => {
     const output = await forumGetAllQuestionsUsecaseValidator.validate(input);
 
