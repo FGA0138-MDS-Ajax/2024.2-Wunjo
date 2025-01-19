@@ -70,15 +70,12 @@ export class StudentPrismaRepository implements StudentRepository {
   async findBy(
     _params: StudentRepository.FindBy.Input,
   ): Promise<StudentRepository.FindBy.Output> {
-    const student = await this.prisma.student.findUniqueOrThrow({
+    const student = await this.prisma.student.findUnique({
       where: {
-        id: _params.id,
         registration: _params.registration,
-        email: _params.email
       },
 
     });
-
     return student;
 
   }
