@@ -18,6 +18,7 @@ describe('Test forum create question zod validator', () => {
     }),
     difficulty: faker.helpers.arrayElement(Object.values(QuestionDifficulty)) as QuestionDifficulties,
     urgency: faker.helpers.arrayElement(Object.values(QuestionUrgency)) as QuestionUrgencies,
+    studentId: faker.string.uuid(),
   };
   beforeAll(() => {
     forumCreateQuestionUsecaseValidator = new ForumCreateQuestionUsecaseZodValidator();
@@ -33,6 +34,7 @@ describe('Test forum create question zod validator', () => {
       points: input.points,
       difficulty: input.difficulty,
       urgency: input.urgency,
+      studentId: input.studentId,
     });
   });
 
@@ -45,6 +47,7 @@ describe('Test forum create question zod validator', () => {
         points: input.points,
         difficulty: 'INVALID DIFF',
         urgency: 'INVALID_DATA_URGENCY',
+        studentId: 'IDErradow13423d',
       }),
     );
     expect(output).instanceOf(ValidationError);

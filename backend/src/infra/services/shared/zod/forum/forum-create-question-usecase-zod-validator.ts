@@ -13,6 +13,7 @@ export class ForumCreateQuestionUsecaseZodValidator implements Validator<CreateQ
       points: z.number().int(),
       difficulty: z.nativeEnum(QuestionDifficulty),
       urgency: z.nativeEnum(QuestionUrgency),
+      studentId: z.string().uuid(),
     });
 
   async validate(input: any): Promise<CreateQuestionUsecase.Input> {
