@@ -46,7 +46,7 @@ export class QuestionPrismaRepository implements QuestionRepository {
   }
 
   async delete(
-    params: QuestionRepository.Delete.Input
+    params: QuestionRepository.Delete.Input,
   ): Promise<QuestionRepository.Delete.Output> {
     const question = await this.prisma.question.delete({
       where: {
