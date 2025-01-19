@@ -1,4 +1,5 @@
 import {
+  AuthUsecase,
   LoginUsecase,
   RegisterConfirmUsecase,
   RegisterUsecase,
@@ -55,6 +56,10 @@ export function configureApplicationUsecaseDI(container: InfraDI) {
       RegisterConfirmUsecase.Name,
       ({ StudentRepository, EmailRepository }) =>
         new RegisterConfirmUsecase(StudentRepository, EmailRepository),
+    )
+    .add(
+      AuthUsecase.Name,
+      ({ StudentTokenManager }) => new AuthUsecase(StudentTokenManager),
     );
 }
 
