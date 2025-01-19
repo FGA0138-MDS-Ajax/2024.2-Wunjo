@@ -71,4 +71,19 @@ export class QuestionBuilder {
   public get(): Question {
     return this.data;
   }
+
+  public async save(): Promise<Question> {
+    const question = await this.prisma.question.create({
+      data: this.data,
+    });
+
+    return {
+      ...question,
+      tutors: (question.tutors as Question['tutors']).map((item) => ({
+        id: item.id,
+        avaliation: item.avaliation,
+        chatRoomId: item.chatRoomId,
+      })),
+    }
+  }
 }

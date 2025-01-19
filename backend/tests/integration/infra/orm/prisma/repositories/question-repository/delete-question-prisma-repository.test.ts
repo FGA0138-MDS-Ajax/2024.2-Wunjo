@@ -9,43 +9,26 @@ describe('Create QuestionPrismaRepository and Delete', () => {
   let repo: QuestionRepository;
   const studentBuilder = StudentBuilder.aStudent();
   const student = studentBuilder.get();
-  const input = QuestionBuilder.aQuestion()
+  const questionBuilder = QuestionBuilder.aQuestion()
     .withParams({
       studentId: student.id,
-    })
-    .get();
-
-    beforeAll(async () => {
-      await studentBuilder.save();
-      repo = new QuestionPrismaRepository(prisma);
-    });
-  
-    afterAll(async () => {
-      await prisma.$queryRaw`TRUNCATE TABLE "questions" CASCADE;`;
-      await prisma.$queryRaw`TRUNCATE TABLE "students" CASCADE;`;
     });
 
-  it('should create a question', async () => {
-    const question = await repo.create(input);
+  const question = questionBuilder.get();
 
-    expect(question).toEqual({
-      id: input.id,
-      subjectId: input.subjectId,
-      title: input.title,
-      description: input.description,
-      points: input.points,
-      status: input.status,
-      difficulty: input.difficulty,
-      urgency: input.urgency,
-      tutorId: input.tutorId,
-      studentId: input.studentId,
-      tutors: [],
-    } as QuestionRepository.Create.Output);
+  beforeAll(async () => {
+    await studentBuilder.save();
+    await questionBuilder.save();
+    repo = new QuestionPrismaRepository(prisma);
+  });
+
+  afterAll(async () => {
+    await prisma.$queryRaw`TRUNCATE TABLE "questions" CASCADE;`;
+    await prisma.$queryRaw`TRUNCATE TABLE "students" CASCADE;`;
   });
 
   it('should delete a question', async () => {
-    const has_deleted = await repo.delete({id: input.id});
-
+    const has_deleted = await repo.delete({ id: question.id });
     expect(has_deleted).toEqual(true);
   });
 });
