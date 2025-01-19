@@ -1,16 +1,27 @@
-import { Text, Pressable } from "react-native";
+import { Text, Pressable, StyleProp, ViewStyle } from "react-native";
 import { HStack } from "@/components/ui/hstack";
 import SVGBackButton from "@/assets/images/back-button";
 
-export function BackHeader({ onPress, label }: { onPress: () => void, label: string }) {
+export function BackHeader({
+    onPress,
+    label,
+    children,
+    style
+}: {
+    onPress: () => void,
+    label: string,
+    children?: React.ReactNode,
+    style?: StyleProp<ViewStyle>
+}) {
     return <HStack
-        style={{
+        style={
+            [{
             flex: 1,
             height: "auto",
             alignItems: "center",
             justifyContent: "center",
             width: "100%"
-        }}
+        }, style]}
     >
         <Pressable
             onPress={onPress}
@@ -35,6 +46,7 @@ export function BackHeader({ onPress, label }: { onPress: () => void, label: str
         }}>
             {label}
         </Text>
+        {children}
     </HStack>
 
 }
