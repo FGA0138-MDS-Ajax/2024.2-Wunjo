@@ -5,15 +5,12 @@ import { QuestionDifficulty, QuestionUrgency } from '@/domain';
 import { z } from 'zod';
 
 export class ForumGetAllQuestionsUsecaseZodValidator implements Validator<GetAllQuestionsUsecase.Input> {
-  private readonly filter = z
-    .object({
-      urgency: z.nativeEnum(QuestionUrgency).optional(),
-      difficulty: z.nativeEnum(QuestionDifficulty).optional(),
-    });
-
   private readonly schema = z
     .object({
-      filter: this.filter.partial(),
+      filter: z.object({
+        urgency: z.nativeEnum(QuestionUrgency).optional(),
+        difficulty: z.nativeEnum(QuestionDifficulty).optional(),
+      }),
     });
 
   async validate(input: any): Promise<GetAllQuestionsUsecase.Input> {

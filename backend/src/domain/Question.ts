@@ -10,14 +10,14 @@ export const QuestionUrgency = {
   LOW: 'LOW',
   MEDIUM: 'MEDIUM',
   HIGH: 'HIGH',
-};
+} as const;
 export type QuestionUrgencies = keyof typeof QuestionUrgency;
 
 export const QuestionDifficulty = {
   EASY: 'EASY',
   MEDIUM: 'MEDIUM',
   HARD: 'HARD',
-};
+} as const;
 
 export type QuestionDifficulties = keyof typeof QuestionDifficulty;
 

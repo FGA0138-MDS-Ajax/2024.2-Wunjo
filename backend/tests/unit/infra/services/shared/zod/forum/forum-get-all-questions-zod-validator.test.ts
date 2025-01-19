@@ -1,7 +1,5 @@
 import { ValidationError } from '@/application/error';
-import { GetAllQuestionsUsecase } from '@/application/usecases';
-import { QuestionDifficulties, QuestionDifficulty, QuestionUrgencies, QuestionUrgency } from '@/domain';
-import { ForumGetQuestionUsecaseZodValidator } from '@/infra/services/shared/zod';
+import { QuestionUrgencies, QuestionUrgency } from '@/domain';
 import { ForumGetAllQuestionsUsecaseZodValidator } from '@/infra/services/shared/zod/forum/forum-get-all-questions-usecase-zod-validator';
 import { faker } from '@faker-js/faker';
 import { getError } from '@tests/helper';
@@ -10,18 +8,20 @@ import { beforeAll, describe, expect, it } from 'vitest';
 describe('Test forum create question zod validator', () => {
   let forumGetAllQuestionsUsecaseValidator: ForumGetAllQuestionsUsecaseZodValidator;
 
-  const input: Partial<GetAllQuestionsUsecase.Input | undefined> = {
-    filter: faker.helpers.arrayElement(Object.values(QuestionUrgency)) as QuestionUrgencies,
+  const input = {
+    filter: {
+      urgency: faker.helpers.arrayElement(Object.values(QuestionUrgency)) as QuestionUrgencies,
+    },
   };
   beforeAll(() => {
     forumGetAllQuestionsUsecaseValidator = new ForumGetAllQuestionsUsecaseZodValidator();
   });
-
+  console.log('iinput: ', input);
   it('should validate the get question usecase input data', async () => {
     const output = await forumGetAllQuestionsUsecaseValidator.validate(input);
 
     expect(output).toEqual({
-      urgency: input,
+      filter: input.filter,
     });
   });
 
@@ -32,6 +32,6 @@ describe('Test forum create question zod validator', () => {
       }),
     );
 
-    expect(output).instanceOf(ValidationError);
+    expect(output).toBeInstanceOf(ValidationError);
   });
 });
