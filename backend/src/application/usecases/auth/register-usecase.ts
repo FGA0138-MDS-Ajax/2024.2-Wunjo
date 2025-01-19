@@ -3,7 +3,7 @@ import {
   AlreadyExistsError,
   AlreadyExistsErrorType,
 } from '@/application/error';
-import { StudentRepository } from '@/application/repositories';
+import { EmailRepository, StudentRepository } from '@/application/repositories';
 import {
   DispatchEmailService,
   PasswordHash,
@@ -24,13 +24,16 @@ export class RegisterUsecase {
     private readonly studentRepository: StudentRepository,
     private readonly passwordHash: PasswordHash,
     private readonly dispatchEmailService: DispatchEmailService,
+    private readonly emailRepository: EmailRepository,
   ) {}
 
   async execute(input: RegisterUsecase.Input): Promise<RegisterUsecase.Output> {
     const validatedInput = await this.validator.validate(input);
 
     const studentExists = await this.studentRepository.findBy({
-      registration: validatedInput.registration,
+      where: {
+        registration: validatedInput.registration,
+      },
     });
 
     if (studentExists) {
@@ -63,12 +66,29 @@ export class RegisterUsecase {
       createdAt: new Date(),
     });
 
-    await this.dispatchEmailService.dispatch({
-      data: {
+    const code = `${student.registration}${new Date().getTime()}`;
+
+    await Promise.all([
+      this.dispatchEmailService.dispatch({
+        data: {
+          studentId: student.id,
+          type: EmailType.REGISTRATION,
+          data: {
+            code,
+          },
+        },
+      }),
+      this.emailRepository.create({
         studentId: student.id,
-        type: EmailType.REGISTRATION,
-      },
-    });
+        email: {
+          data: JSON.stringify({
+            code,
+          }),
+          type: EmailType.REGISTRATION,
+          to: student.email,
+        },
+      }),
+    ]);
 
     return {
       studentId: student.id,

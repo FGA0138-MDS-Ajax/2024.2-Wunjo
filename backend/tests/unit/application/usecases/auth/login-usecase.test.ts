@@ -30,13 +30,12 @@ describe('LoginUsecase', () => {
 
   it('should log in a user with correct credentials', async () => {
 
-    const student = StudentBuilder.aStudent().get();
-      
+    const student = StudentBuilder.aStudent().withParams({status: 'APPROVED'}).get();
+
     const input = {
       registration: student.registration,
       password: student.password,
     };
-      
     const validate = sinon
       .stub(LoginUsecaseZodValidator.prototype, 'validate')
       .resolves(input);
@@ -55,8 +54,10 @@ describe('LoginUsecase', () => {
     expect(validate.calledOnceWithExactly(input)).toBeTruthy();
     expect(
       findRepo.calledOnceWithExactly({
-        registration: input.registration,
-      }),
+        where: {
+          registration: input.registration,
+        }
+      })
     ).toBeTruthy();
     expect(
       comparePwHash.calledOnceWithExactly(input.password, student.password)
@@ -71,6 +72,7 @@ describe('LoginUsecase', () => {
   });
   
   it('should throw NotFoundError when user does not exist', async () => {
+    
     const input = {
       registration: faker.string.numeric(9),
       password: faker.internet.password(),
@@ -99,7 +101,9 @@ describe('LoginUsecase', () => {
     expect(validate.calledOnceWithExactly(input)).toBeTruthy();
     expect(
       findRepo.calledOnceWithExactly({
-        registration: input.registration,
+        where: {
+          registration: input.registration,
+        }
       })
     ).toBeTruthy();
     expect(comparePwHash.notCalled).toBeTruthy();
@@ -129,16 +133,60 @@ describe('LoginUsecase', () => {
       usecase.execute(input)
     );
     expect(error).toBeInstanceOf(UnauthenticatedError);
-
+    expect(error.message).toBe('Usuário não foi autenticado!');
     expect(validate.calledOnceWithExactly(input)).toBeTruthy();
     expect(
       findRepo.calledOnceWithExactly({
-        registration: input.registration,
+        where: {
+          registration: input.registration,
+        }
       })
     ).toBeTruthy();
     expect(
       comparePwHash.calledOnceWithExactly(input.password, student.password)
     ).toBeTruthy();
+  });
+
+  it('should throw UnauthenticatedError when student registration is pending', async () => {
+    const student = StudentBuilder.aStudent().withParams({status: 'PENDING'}).get();
+  
+    const input = {
+      registration: student.registration,
+      password: student.password,
+    };
+  
+    const validate = sinon
+      .stub(LoginUsecaseZodValidator.prototype, 'validate')
+      .resolves(input);
+    const findRepo = sinon
+      .stub(StudentPrismaRepository.prototype, 'findBy')
+      .resolves(student);
+    const comparePwHash = sinon
+      .stub(BcryptPasswordHash.prototype, 'compare')
+      .resolves(true);
+    const tokenStub = sinon
+      .stub(JWTStudentTokenManager.prototype, 'generate')
+      .resolves('fake-jwt-token');
+  
+    const error = await getError<UnauthenticatedError>(() => 
+      usecase.execute(input)
+    );
+
+    expect(error).toBeInstanceOf(UnauthenticatedError);
+    expect(error.message).toBe('Registro pendente de aprovação');
+  
+    expect(validate.calledOnceWithExactly(input)).toBeTruthy();
+    expect(
+      findRepo.calledOnceWithExactly({
+        where: {
+          registration: input.registration,
+        },
+      }),
+    ).toBeTruthy();
+    expect(
+      comparePwHash.calledOnceWithExactly(input.password, student.password),
+    ).toBeTruthy();
+    expect(tokenStub.notCalled).toBeTruthy();
   });
   
   it('should throw ValidationError for invalid input', async () => {
@@ -153,7 +201,7 @@ describe('LoginUsecase', () => {
       new ValidationError([
         {
           path: ['registration'],
-          message: 'registration must be a valid registration',
+          message: 'must be a valid registration',
         },
       ]),
     );
@@ -176,7 +224,7 @@ describe('LoginUsecase', () => {
     expect({ ...error }).toEqual({
       fields: [
         {
-          message: 'registration must be a valid registration',
+          message: 'must be a valid registration',
           path: ['registration'],
         },
       ],
