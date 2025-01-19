@@ -24,7 +24,7 @@ export namespace QuestionRepository {
       difficulty: QuestionDifficulties;
     }>;
 
-    export type Output = Question;
+    export type Output = Question | null;
   };
 
   export namespace FindAll {
