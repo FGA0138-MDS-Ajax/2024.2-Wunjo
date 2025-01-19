@@ -1,14 +1,13 @@
-import { CreateQuestionUsecase, DeleteQuestionUsecase } from '@/application/usecases';
-import { QuestionDifficulties, QuestionDifficulty, QuestionUrgencies, QuestionUrgency } from '@/domain';
+import { DeleteQuestionUsecase } from '@/application/usecases';
 import { container } from '@/infra/container';
 import { QuestionPrismaRepository } from '@/infra/orm/prisma/repositories';
-import { ForumCreateQuestionUsecaseZodValidator, ForumDeleteQuestionUsecaseZodValidator } from '@/infra/services/shared/zod';
+import { ForumDeleteQuestionUsecaseZodValidator } from '@/infra/services/shared/zod';
 import { faker } from '@faker-js/faker';
 import { QuestionBuilder } from '@tests/helper/builders/question-builder';
 import Sinon from 'sinon';
-import { beforeAll, beforeEach, describe, expect, expectTypeOf, it } from 'vitest';
+import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
 
-describe('CreateQuestionUsecase', async () => {
+describe('DeleteQuestionUsecase', async () => {
   let sandbox: Sinon.SinonSandbox;
   let usecase: DeleteQuestionUsecase;
   const input = {
@@ -25,7 +24,7 @@ describe('CreateQuestionUsecase', async () => {
     sandbox.reset();
   });
 
-  it('should be able to create a new question', async () => {
+  it('should be able to delete a new question', async () => {
     const question = QuestionBuilder.aQuestion().get();
 
     const validateStub = sandbox

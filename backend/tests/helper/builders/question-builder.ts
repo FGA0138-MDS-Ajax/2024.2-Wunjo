@@ -84,6 +84,6 @@ export class QuestionBuilder {
         avaliation: item.avaliation,
         chatRoomId: item.chatRoomId,
       })),
-    }
+    };
   }
 }

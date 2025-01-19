@@ -1,6 +1,6 @@
 import { ValidationError } from '@/application/error';
 import { Validator } from '@/application/services';
-import { GetAllQuestionsUsecase, GetQuestionUsecase } from '@/application/usecases';
+import { GetAllQuestionsUsecase } from '@/application/usecases';
 import { QuestionDifficulty, QuestionUrgency } from '@/domain';
 import { z } from 'zod';
 
