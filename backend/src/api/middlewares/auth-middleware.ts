@@ -1,4 +1,4 @@
-import { CustomError, UnauthenticatedError } from '@/application/error';
+import { UnauthenticatedError } from '@/application/error';
 import { AuthUsecase } from '@/application/usecases';
 import { container } from '@/infra/container';
 import { NextFunction, Request, Response } from 'express';
