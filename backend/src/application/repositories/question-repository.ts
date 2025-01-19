@@ -8,7 +8,6 @@ export namespace QuestionRepository {
 
     export type Output = Question;
   };
-
   export namespace Update {
     export type Input = Partial<Question>;
 
@@ -27,10 +26,19 @@ export namespace QuestionRepository {
 
     export type Output = Question;
   };
+
+  export namespace Delete {
+    export type Input = {
+      id: string;
+    };
+  
+    export type Output = boolean;
+  };
 };
 
 export interface QuestionRepository {
   create: (params: QuestionRepository.Create.Input) => Promise<QuestionRepository.Create.Output>;
   update: (id: string, params: QuestionRepository.Update.Input) => Promise<QuestionRepository.Update.Output>;
   findBy: (params: QuestionRepository.FindBy.Input) => Promise<QuestionRepository.FindBy.Output>;
+  delete: (params: QuestionRepository.Delete.Input) => Promise<QuestionRepository.Delete.Output>;
 };

@@ -44,4 +44,16 @@ export class QuestionPrismaRepository implements QuestionRepository {
   ): Promise<QuestionRepository.FindBy.Output> {
     throw new Error('Not implemented');
   }
+
+  async delete(
+    params: QuestionRepository.Delete.Input
+  ): Promise<QuestionRepository.Delete.Output> {
+    const question = await this.prisma.question.delete({
+      where: {
+        id: params.id
+      }
+    });
+
+    return !!question;
+  }
 }
