@@ -10,7 +10,6 @@ export class ForumCreateQuestionUsecaseZodValidator implements Validator<CreateQ
       subjectId: z.string(),
       title: z.string(),
       description: z.string(),
-      points: z.number().int(),
       difficulty: z.nativeEnum(QuestionDifficulty),
       urgency: z.nativeEnum(QuestionUrgency),
       studentId: z.string().uuid(),

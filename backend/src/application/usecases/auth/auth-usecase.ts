@@ -1,4 +1,4 @@
-import { NotFoundError } from '@/application/error';
+import { NotFoundError, UnauthenticatedError } from '@/application/error';
 import { StudentRepository } from '@/application/repositories';
 import { StudentTokenManager } from '@/application/services';
 import { Student } from '@/domain';
@@ -12,19 +12,27 @@ export class AuthUsecase {
   ) {}
 
   async execute(input: AuthUsecase.Input): Promise<AuthUsecase.Output> {
-    const decrypt = await this.studentTokenManager.decrypt(input.token);
+    try {
+      const decrypt = await this.studentTokenManager.decrypt(input.token);
 
-    const studentExists = await this.studentRepository.findBy({
-      where: {
-        id: decrypt.studentId,
-      },
-    });
+      const studentExists = await this.studentRepository.findBy({
+        where: {
+          id: decrypt.studentId,
+        },
+      });
 
-    if (!studentExists) {
-      throw new NotFoundError('Estudante não encontrado', 'STUDENT');
+      if (!studentExists) {
+        throw new NotFoundError('Estudante não encontrado', 'STUDENT');
+      }
+
+      return studentExists;
+    } catch (err) {
+      if (err instanceof NotFoundError) {
+        throw err;
+      }
+
+      throw new UnauthenticatedError();
     }
-
-    return studentExists;
   }
 }
 

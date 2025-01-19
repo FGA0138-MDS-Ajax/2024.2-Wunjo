@@ -52,6 +52,7 @@ export class QuestionPrismaRepository implements QuestionRepository {
         urgency: params.urgency,
         difficulty: params.difficulty,
       },
+      include: params.include,
     });
     if (!question) {
       return null;
@@ -74,6 +75,7 @@ export class QuestionPrismaRepository implements QuestionRepository {
         urgency: params.urgency,
         difficulty: params.difficulty,
       },
+      include: params.include,
     });
 
     return questions.map((q) => ({

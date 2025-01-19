@@ -48,7 +48,7 @@ export class LoginUsecase {
     }
 
     const token = await this.studentTokenManager.generate({
-      studentId: validateInput.registration,
+      studentId: studentExists.id,
     });
 
     return {
