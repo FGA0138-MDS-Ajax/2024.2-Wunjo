@@ -17,6 +17,8 @@ describe('Create StudentPrismaRepository', () => {
 
   afterAll(async () => {
     await prisma.$executeRaw`TRUNCATE TABLE "students" CASCADE;`;
+    await prisma.$executeRaw`TRUNCATE TABLE "season_student" CASCADE;`;
+    await prisma.$executeRaw`TRUNCATE TABLE "season" CASCADE;`;
   });
 
   it('should create a student', async () => {
@@ -46,6 +48,7 @@ describe('Create StudentPrismaRepository', () => {
         period: '24.2',
       },
     });
+
     const seasonInput = {
       id: faker.string.uuid(),
       points: faker.number.int({ min: 0, max: 100 }),
@@ -57,7 +60,9 @@ describe('Create StudentPrismaRepository', () => {
       ...input,
       seasons: [
         {
-          ...seasonInput,
+          id: seasonInput.id,
+          points: seasonInput.points,
+          seasonId: seasonInput.seasonId,
         },
       ],
     });
@@ -65,14 +70,6 @@ describe('Create StudentPrismaRepository', () => {
     const student = await prisma.student.findUnique({
       where: { id: input.id },
       include: { seasons: true },
-    });
-
-    await prisma.seasonStudent.deleteMany({
-      where: {
-        seasonId: {
-          equals: season.id,
-        },
-      },
     });
 
     expect(student).toEqual({
@@ -104,7 +101,9 @@ describe('Create StudentPrismaRepository', () => {
       repo.create(input),
     );
 
-    expect(error.message).toContain('Unique constraint failed on the fields: (`id`)');
+    expect(error.message).toContain(
+      'Unique constraint failed on the fields: (`id`)',
+    );
     expect(error).toMatchObject({
       code: 'P2002',
       name: 'PrismaClientKnownRequestError',

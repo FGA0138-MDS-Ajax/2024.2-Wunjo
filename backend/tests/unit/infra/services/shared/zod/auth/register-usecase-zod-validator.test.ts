@@ -75,8 +75,8 @@ describe('Test case register use case validator', () => {
     expect(output.fields).toEqual([
       {
         code: 'custom',
-        message: 'Invalid input',
-        path: [],
+        message: 'A matrícula deve começar com 1 ou 2',
+        path: ['registration'],
       },
     ]);
   });
