@@ -1,11 +1,13 @@
 import {
   AuthUsecase,
+  CreateQuestionUsecase,
   LoginUsecase,
   RegisterConfirmUsecase,
   RegisterUsecase,
   SendEmailUsecase,
 } from '@/application/usecases';
 import {
+  ForumCreateQuestionUsecaseZodValidator,
   LoginUsecaseZodValidator,
   RegisterUsecaseZodValidator,
 } from '@/infra/services/shared/zod';
@@ -61,6 +63,10 @@ export function configureApplicationUsecaseDI(container: InfraDI) {
       AuthUsecase.Name,
       ({ StudentTokenManager, StudentRepository }) =>
         new AuthUsecase(StudentTokenManager, StudentRepository),
+    )
+    .add(
+      CreateQuestionUsecase.Name,
+      ({ QuestionRepository }) => new CreateQuestionUsecase(QuestionRepository, new ForumCreateQuestionUsecaseZodValidator()),
     );
 }
 

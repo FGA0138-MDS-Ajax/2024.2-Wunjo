@@ -1,8 +1,9 @@
 import { CustomError } from './custom-error';
 
 export const AlreadyExistsErrorType = {
-  ESTUDANTE: 'ESTUDANTE' as const,
-};
+  ESTUDANTE: 'ESTUDANTE',
+  QUESTAO: 'QUESTAO',
+} as const;
 
 export type AlreadyExistsErrorTypes = keyof typeof AlreadyExistsErrorType;
 

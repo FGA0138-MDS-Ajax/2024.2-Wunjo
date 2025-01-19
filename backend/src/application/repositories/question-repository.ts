@@ -1,7 +1,7 @@
 import { Question, QuestionDifficulties, QuestionUrgencies } from '@/domain';
 
 export namespace QuestionRepository {
-  export const name = 'QuestionRepository';
+  export const Name = 'QuestionRepository';
 
   export namespace Create {
     export type Input = Question;
@@ -31,7 +31,7 @@ export namespace QuestionRepository {
     export type Input = {
       id: string;
     };
-  
+
     export type Output = boolean;
   };
 };

@@ -1,6 +1,7 @@
 import {
   EmailRepository,
   EmailTemplateRepository,
+  QuestionRepository,
   StudentRepository,
 } from '@/application/repositories';
 import { RedisCache } from '@/infra/cache';
@@ -8,6 +9,7 @@ import { EmailCacheRepository } from '@/infra/cache/repositories';
 import { prisma } from '@/infra/orm/prisma/datasource';
 import {
   EmailTemplatePrismaRepository,
+  QuestionPrismaRepository,
   StudentPrismaRepository,
 } from '@/infra/orm/prisma/repositories';
 import { DIContainer } from 'rsdi';
@@ -30,6 +32,8 @@ export function configureInfraRepositoryDI() {
     .add(
       EmailTemplateRepository.Name,
       ({ pgDataSource }) => new EmailTemplatePrismaRepository(pgDataSource),
+    )
+    .add(QuestionRepository.Name, ({ pgDataSource }) => new QuestionPrismaRepository(pgDataSource),
     );
 }
 
