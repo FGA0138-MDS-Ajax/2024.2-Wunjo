@@ -45,6 +45,12 @@ export class QuestionPrismaRepository implements QuestionRepository {
     throw new Error('Not implemented');
   }
 
+  async findAll(
+    _params: QuestionRepository.FindAll.Input,
+  ): Promise<QuestionRepository.FindAll.Output> {
+    throw new Error('Not implemented');
+  }
+
   async delete(
     params: QuestionRepository.Delete.Input,
   ): Promise<QuestionRepository.Delete.Output> {
