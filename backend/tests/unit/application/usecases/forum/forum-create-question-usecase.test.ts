@@ -1,4 +1,3 @@
-import { QuestionRepository } from '@/application/repositories';
 import { CreateQuestionUsecase } from '@/application/usecases';
 import { QuestionDifficulties, QuestionDifficulty, QuestionUrgencies, QuestionUrgency } from '@/domain';
 import { container } from '@/infra/container';
