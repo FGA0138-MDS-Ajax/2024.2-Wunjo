@@ -2,6 +2,7 @@ import {
   AuthUsecase,
   CreateQuestionUsecase,
   DeleteQuestionUsecase,
+  GetQuestionUsecase,
   LoginUsecase,
   RegisterConfirmUsecase,
   RegisterUsecase,
@@ -10,9 +11,11 @@ import {
 import {
   ForumCreateQuestionUsecaseZodValidator,
   ForumDeleteQuestionUsecaseZodValidator,
+  ForumGetQuestionUsecaseZodValidator,
   LoginUsecaseZodValidator,
   RegisterUsecaseZodValidator,
 } from '@/infra/services/shared/zod';
+import { ForumGetAllQuestionsUsecaseZodValidator } from '@/infra/services/shared/zod/forum/forum-get-all-questions-usecase-zod-validator';
 import { InfraDI } from '../infra';
 
 export function configureApplicationUsecaseDI(container: InfraDI) {
@@ -70,7 +73,8 @@ export function configureApplicationUsecaseDI(container: InfraDI) {
       CreateQuestionUsecase.Name,
       ({ QuestionRepository }) => new CreateQuestionUsecase(QuestionRepository, new ForumCreateQuestionUsecaseZodValidator()),
     )
-    .add(DeleteQuestionUsecase.Name, ({ QuestionRepository }) => new DeleteQuestionUsecase(new ForumDeleteQuestionUsecaseZodValidator(), QuestionRepository));
+    .add(DeleteQuestionUsecase.Name, ({ QuestionRepository }) => new DeleteQuestionUsecase(new ForumDeleteQuestionUsecaseZodValidator(), QuestionRepository))
+    .add(GetQuestionUsecase.Name, ({ QuestionRepository }) => new GetQuestionUsecase(QuestionRepository, new ForumGetQuestionUsecaseZodValidator()));
 }
 
 export type ApplicationUsecaseDI = ReturnType<
