@@ -3,83 +3,81 @@
 import React, { useState } from "react";
 import {
   View,
+  Text,
   TextInput,
   TouchableOpacity,
-  KeyboardAvoidingView,
-  Platform,
   SafeAreaView
 } from "react-native";
-import { Button, Avatar } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 
-const Postagem = () => {
-  const [text, setText] = useState("");
+const FiltroScreen = () => {
   const navigation = useNavigation();
+  const [disciplina, setDisciplina] = useState("");
+  const [dificuldade, setDificuldade] = useState("");
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
-      {/* Cabeçalho fixo no topo */}
-      <View style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        right: 0,
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
-        padding: 16,
-        backgroundColor: "white",
-        elevation: 5, 
-        shadowColor: "#000",
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.2,
-        shadowRadius: 4,
-        zIndex: 10 
+    <SafeAreaView style={{
+        flex: 1,
+        padding: 20,
+        height: "100%",
       }}>
-        <TouchableOpacity onPress={() => navigation.goBack()} style={{ padding: 10 }}>
-          <Button mode="text" textColor="black">Voltar</Button>
-        </TouchableOpacity>
+      {/* Botão de voltar */}
+      <TouchableOpacity onPress={() => navigation.goBack()} style={{ position: "absolute", top: 40, left: 20 }}>
+        <Text style={{ fontSize: 20, color: "#444" }}>⬅</Text>
+      </TouchableOpacity>
 
-        <Button 
-          mode="contained" 
-          onPress={() => console.log("Post publicado:", text)}
-          buttonColor="blue"
-          textColor="white"
-        >
-          Publicar
-        </Button>
+      {/* Título */}
+      <Text style={{ fontSize: 22, fontWeight: "bold", color: "#8B0000", textAlign: "center", marginTop: 80 }}>
+        Filtre sua caça ao tesouro!
+      </Text>
+
+      {/* colocar Disciplina */}
+      <View style={{ marginTop: 100 }}>
+        <Text style={{ fontSize: 16, color: "#333", marginBottom: 5 }}>Disciplina</Text>
+        <TextInput
+          placeholder="Digite aqui..."
+          value={disciplina}
+          onChangeText={setDisciplina}
+          style={{
+            backgroundColor: "white",
+            padding: 12,
+            borderRadius: 8,
+            fontSize: 16
+          }}
+        />
       </View>
 
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-        style={{ flex: 1, padding: 16, justifyContent: "center" }}
-      >
-        {/* Avatar e Campo de Texto */}
-        <View style={{
-          flexDirection: "row",
+      {/* Colocar Dificuldade */}
+      <View style={{ marginTop: 30 }}>
+        <Text style={{ fontSize: 16, color: "#333", marginBottom: 5 }}>Dificuldade</Text>
+        <TextInput
+          placeholder="Digite aqui..."
+          value={dificuldade}
+          onChangeText={setDificuldade}
+          style={{
+            backgroundColor: "white",
+            padding: 12,
+            borderRadius: 8,
+            fontSize: 16
+          }}
+        />
+      </View>
+
+      {/* Botão Filtrar */}
+      <TouchableOpacity
+        onPress={() => console.log("Filtrando...")}
+        style={{
+          backgroundColor: "#0033A0",
+          padding: 15,
+          borderRadius: 30,
           alignItems: "center",
-          padding: 10,
-          marginTop: 80 
-        }}>
-          <Avatar.Icon size={55} icon="account" color="white" style={{ backgroundColor: "black" }} />
-          <TextInput
-            placeholder="Digite aqui sua dúvida..."
-            value={text}
-            onChangeText={setText}
-            style={{
-              flex: 1,
-              marginLeft: 10,
-              paddingVertical: 10,
-              fontSize: 16,
-              color: "black",
-              backgroundColor: "#F5F5F5",
-              borderRadius: 8,
-              paddingHorizontal: 10
-            }}
-            multiline
-          />
-        </View>
-      </KeyboardAvoidingView>
+          marginTop: 50
+        }}
+      >
+        <Text style={{ fontSize: 18, color: "white", fontWeight: "bold" }}>Filtrar</Text>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 };
+
+export default FiltroScreen;
