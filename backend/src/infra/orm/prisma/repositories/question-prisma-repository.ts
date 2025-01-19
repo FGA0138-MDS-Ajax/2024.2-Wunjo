@@ -50,8 +50,8 @@ export class QuestionPrismaRepository implements QuestionRepository {
   ): Promise<QuestionRepository.Delete.Output> {
     const question = await this.prisma.question.delete({
       where: {
-        id: params.id
-      }
+        id: params.id,
+      },
     });
 
     return !!question;
