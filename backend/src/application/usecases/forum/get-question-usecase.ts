@@ -13,7 +13,7 @@ export class GetQuestionUsecase {
   ) {}
 
   async execute(input: GetQuestionUsecase.Input): Promise<GetQuestionUsecase.Output> {
-    const validatedInput = await this.validator.validate(input.questionId);
+    const validatedInput = await this.validator.validate(input);
 
     const question = await this.questionRepository.findBy({ id: validatedInput.questionId });
     if (!question) {

@@ -1,4 +1,5 @@
 import { QuestionRepository } from '@/application/repositories';
+import { Question } from '@/domain';
 import { PrismaClient } from '@prisma/client';
 
 export class QuestionPrismaRepository implements QuestionRepository {
@@ -40,15 +41,49 @@ export class QuestionPrismaRepository implements QuestionRepository {
   }
 
   async findBy(
-    _params: QuestionRepository.FindBy.Input,
+    params: QuestionRepository.FindBy.Input,
   ): Promise<QuestionRepository.FindBy.Output> {
-    throw new Error('Not implemented');
+    const question = await this.prisma.question.findFirst({
+      where: {
+        id: params.id,
+        studentId: params.studentId,
+        subjectId: params.subjectId,
+        tutorId: params.tutorId,
+        urgency: params.urgency,
+        difficulty: params.difficulty,
+      },
+    });
+    if (!question) {
+      return null;
+    }
+    return {
+      ...question,
+      tutors: (question.tutors as Question['tutors']).map((item) => ({
+        id: item.id,
+        avaliation: item.avaliation,
+        chatRoomId: item.chatRoomId,
+      })),
+    };
   }
 
   async findAll(
-    _params: QuestionRepository.FindAll.Input,
+    params: QuestionRepository.FindAll.Input,
   ): Promise<QuestionRepository.FindAll.Output> {
-    throw new Error('Not implemented');
+    const questions = await this.prisma.question.findMany({
+      where: {
+        urgency: params.urgency,
+        difficulty: params.difficulty,
+      },
+    });
+
+    return questions.map((q) => ({
+      ...q,
+      tutors: (q.tutors as Question['tutors']).map((item) => ({
+        id: item.id,
+        avaliation: item.avaliation,
+        chatRoomId: item.chatRoomId,
+      })),
+    }));
   }
 
   async delete(
