@@ -59,7 +59,8 @@ export function configureApplicationUsecaseDI(container: InfraDI) {
     )
     .add(
       AuthUsecase.Name,
-      ({ StudentTokenManager }) => new AuthUsecase(StudentTokenManager),
+      ({ StudentTokenManager, StudentRepository }) =>
+        new AuthUsecase(StudentTokenManager, StudentRepository),
     );
 }
 

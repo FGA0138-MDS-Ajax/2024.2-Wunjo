@@ -1,14 +1,30 @@
+import { NotFoundError } from '@/application/error';
+import { StudentRepository } from '@/application/repositories';
 import { StudentTokenManager } from '@/application/services';
+import { Student } from '@/domain';
 
 export class AuthUsecase {
   public static Name = 'AuthUsecase' as const;
 
-  constructor(private readonly studentTokenManager: StudentTokenManager) {}
+  constructor(
+    private readonly studentTokenManager: StudentTokenManager,
+    private readonly studentRepository: StudentRepository,
+  ) {}
 
   async execute(input: AuthUsecase.Input): Promise<AuthUsecase.Output> {
-    const isValidToken = await this.studentTokenManager.verify(input.token);
+    const decrypt = await this.studentTokenManager.decrypt(input.token);
 
-    return isValidToken;
+    const studentExists = await this.studentRepository.findBy({
+      where: {
+        id: decrypt.studentId,
+      },
+    });
+
+    if (!studentExists) {
+      throw new NotFoundError('Estudante não encontrado', 'STUDENT');
+    }
+
+    return studentExists;
   }
 }
 
@@ -17,5 +33,5 @@ export namespace AuthUsecase {
     token: string;
   };
 
-  export type Output = boolean;
+  export type Output = Student;
 }
