@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, TextInput, StyleSheet, FlatList, TouchableOpacity, Modal, Pressable } from "react-native";
+import { View, Text, TextInput, StyleSheet, FlatList, TouchableOpacity, Modal, Pressable, Dimensions, SafeAreaView } from "react-native";
 import { FontAwesome, MaterialIcons } from "@expo/vector-icons";
 import UnbLogo_Home from "@/assets/images/UnbLogo_Home";
 import { Input } from "@/components/ui/input";
@@ -154,7 +154,7 @@ const ForumHome = () => {
   const router = useRouter();
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <View style={styles.header}>
         <UnbLogo_Home style={styles.title}/>
         <HelmIcon style={{
@@ -232,7 +232,7 @@ const ForumHome = () => {
           </View>
         </View>
       </Modal>
-    </View>
+    </SafeAreaView>
   );
 };
 
@@ -242,6 +242,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#F5F6FA",
     justifyContent: "center",
     alignItems: "center",
+    position: "relative",
+    height: Dimensions.get("screen").height
   },
   header: { 
     backgroundColor: "#173CAC", 
