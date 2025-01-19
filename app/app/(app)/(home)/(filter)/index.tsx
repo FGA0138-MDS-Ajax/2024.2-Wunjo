@@ -38,7 +38,27 @@ function Option({ actual, label, set }: { actual: string, label: string, set: (v
     </Pressable>
 }
 
-export default function Screen() {
+export function Template({
+    title,
+    error_message,
+    hasError,
+    setHasError,
+    image,
+    button_label,
+    first_input_label,
+    second_input_label,
+    button_onPress
+}: {
+    title: string,
+    error_message: string,
+    hasError: boolean,
+    setHasError: (param1: boolean) => void,
+    image: React.ReactNode,
+    button_label: string,
+    first_input_label: string,
+    second_input_label: string,
+    button_onPress: () => void
+}) {
     const navigation = useNavigation();
     const [disciplina, setDisciplina] = useState("");
     const [dificuldade, setDificuldade] = useState<"Baixa" | "Média" | "Alta" | "">("");
@@ -51,6 +71,7 @@ export default function Screen() {
             height: "100%",
             alignItems: "center"
         }}>
+            {image}
             {/* Botão de voltar */}
             <BackHeader
                 onPress={() => navigation.goBack()}
@@ -68,7 +89,7 @@ export default function Screen() {
                 }}
                 className="font-itim"
                 >
-                Filtre sua caça ao tesouro!
+                {title}
             </Text>
 
             <View
@@ -81,8 +102,20 @@ export default function Screen() {
                     alignItems: "center"
                 }}
             >
+                {
+                    hasError &&
+                    <Text
+                        style={{
+                            alignSelf: "flex-start",
+                            color: "#C90000"
+                        }}
+                        className="font-raleway"
+                    >
+                        {error_message}
+                    </Text>
+                }
                 <Input
-                    label="Disciplina"
+                    label={first_input_label}
                     placeholder="Digite aqui..."
                 />
 
@@ -91,7 +124,7 @@ export default function Screen() {
                     <Select
                         modalVisible={modalVisible}
                         setModalVisible={setModalVisible}
-                        label="Dificuldade"
+                        label={second_input_label}
                         placeholder="Selecione..."
                         value={dificuldade}
                         modalHeight={3}
@@ -144,13 +177,26 @@ export default function Screen() {
 
                 {/* Botão Filtrar */}
                 <Button
-                    onPress={() => router.back()}
-                    label="Filtrar"
+                    onPress={button_onPress}
+                    label={button_label}
                     style={{
                         width: "90%"
                     }}
                 />
             </View>
+        </SafeAreaView>
+    );
+}
+
+export default function Screen()
+{
+    return <Template
+        title="Filtre sua caça ao tesouro!"
+        error_message=""
+        hasError={false}
+        button_onPress={() => router.back()}
+        setHasError={() => {}}
+        image={
             <Binoculars
                 style={{
                     // backgroundColor: "red",
@@ -159,6 +205,9 @@ export default function Screen() {
                     right: 0,
                 }}
             />
-        </SafeAreaView>
-    );
+        }
+        button_label="Filtrar"
+        first_input_label="Disciplina"
+        second_input_label="Dificuldade"
+    />
 }

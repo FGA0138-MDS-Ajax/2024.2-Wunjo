@@ -1,81 +1,25 @@
-import React, { useState } from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  SafeAreaView
-} from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useRouter } from "expo-router";
+import { Pressable, Text, View } from "react-native";
 
-const FiltroScreen = () => {
-  const navigation = useNavigation();
-  const [disciplina, setDisciplina] = useState("");
-  const [dificuldade, setDificuldade] = useState("");
+export default function Screen() {
 
-  return (
-    <SafeAreaView style={{
-        flex: 1,
-        padding: 20,
-        height: "100%",
-      }}>
-      {/* Botão de voltar */}
-      <TouchableOpacity onPress={() => navigation.goBack()} style={{ position: "absolute", top: 40, left: 20 }}>
-        <Text style={{ fontSize: 20, color: "#444" }}>⬅</Text>
-      </TouchableOpacity>
+  const router = useRouter();
 
-      {/* Título */}
-      <Text style={{ fontSize: 22, fontWeight: "bold", color: "#8B0000", textAlign: "center", marginTop: 80 }}>
-        Filtre sua caça ao tesouro!
-      </Text>
+  return <View
+    style={{
+      height: "100%",
+      width: "100%",
+    }}
+  >
 
-      {/* colocar Disciplina */}
-      <View style={{ marginTop: 100 }}>
-        <Text style={{ fontSize: 16, color: "#333", marginBottom: 5 }}>Disciplina</Text>
-        <TextInput
-          placeholder="Digite aqui..."
-          value={disciplina}
-          onChangeText={setDisciplina}
-          style={{
-            backgroundColor: "white",
-            padding: 12,
-            borderRadius: 8,
-            fontSize: 16
-          }}
-        />
-      </View>
-
-      {/* Colocar Dificuldade */}
-      <View style={{ marginTop: 30 }}>
-        <Text style={{ fontSize: 16, color: "#333", marginBottom: 5 }}>Dificuldade</Text>
-        <TextInput
-          placeholder="Digite aqui..."
-          value={dificuldade}
-          onChangeText={setDificuldade}
-          style={{
-            backgroundColor: "white",
-            padding: 12,
-            borderRadius: 8,
-            fontSize: 16
-          }}
-        />
-      </View>
-
-      {/* Botão Filtrar */}
-      <TouchableOpacity
-        onPress={() => console.log("Filtrando...")}
-        style={{
-          backgroundColor: "#0033A0",
-          padding: 15,
-          borderRadius: 30,
-          alignItems: "center",
-          marginTop: 50
-        }}
-      >
-        <Text style={{ fontSize: 18, color: "white", fontWeight: "bold" }}>Filtrar</Text>
-      </TouchableOpacity>
-    </SafeAreaView>
-  );
-};
-
-export default FiltroScreen;
+    <Pressable
+      style={{
+        marginTop: "auto",
+        backgroundColor: 'blue'
+      }}
+      onPress={() => router.push("/(app)/(home)/(post)/(tag)")}
+    >
+      <Text>Edit question!</Text>
+    </Pressable>
+  </View>
+}

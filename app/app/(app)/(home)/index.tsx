@@ -189,6 +189,7 @@ const ForumHome = () => {
       />
 
       <TouchableOpacity
+        onPress={() => router.push("/(app)/(home)/(post)")}
         style={{
           position: "absolute",
           bottom: "2.5%",
