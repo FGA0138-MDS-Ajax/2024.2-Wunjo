@@ -25,24 +25,12 @@ const variants = StyleSheet.create({
         borderRadius: 8,
         height: 48,
         width: "100%",
-        paddingLeft: 15,  
+        paddingLeft: 15,
     },
 })
 
-export function Input({
-    label,
-    placeholder,
-    secureTextEntry,
-    onPress,
-    editable = true,
-    value,
-    keyboardType = 'default',
-    showSoftInputOnFocus = true,
-    variant = "wide",
-    style,
-    maxLength,
-    children
-}: {
+
+type IInputProps = {
     label?: string,
     placeholder?: string,
     secureTextEntry?: boolean,
@@ -55,7 +43,24 @@ export function Input({
     style?: StyleProp<TextStyle>,
     maxLength?: number,
     children?: React.ReactNode
-}) {
+} & React.ComponentProps<typeof TextInput>;
+
+export function Input({
+    label,
+    placeholder,
+    secureTextEntry,
+    onPress,
+    editable = true,
+    value,
+    keyboardType = 'default',
+    showSoftInputOnFocus = true,
+    onChangeText,
+    variant = "wide",
+    style,
+    maxLength,
+    children,
+    ...props
+}: IInputProps) {
     return <View style={{
         display: "flex",
         flexDirection: "column",
@@ -101,9 +106,11 @@ export function Input({
                 className={"font-raleway"}
                 placeholder={placeholder}
                 onPress={onPress}
+                onChangeText={onChangeText}
                 value={value}
                 {...maxLength && { maxLength: maxLength }}
                 style={[variants[variant], style]}
+                {...props}
             />
             {children}
         </Pressable>

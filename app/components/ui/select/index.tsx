@@ -5,10 +5,10 @@ import {
   Modal,
   TextInput,
   Keyboard,
-} from "react-native";
-import GestureRecognizer from "react-native-swipe-gestures";
-import { Input } from "@/components/ui/input2";
-import SVGArrowDown from "@/assets/images/arrow-down";
+} from 'react-native';
+import GestureRecognizer from 'react-native-swipe-gestures';
+import { Input } from '@/components/ui/input2';
+import SVGArrowDown from '@/assets/images/arrow-down';
 
 export function Select({
   label,
@@ -30,8 +30,8 @@ export function Select({
   return (
     <View
       style={{
-        display: "flex",
-        flexDirection: "row",
+        display: 'flex',
+        flexDirection: 'row',
         rowGap: 2,
       }}
     >
@@ -48,8 +48,8 @@ export function Select({
         <SVGArrowDown
           size={25}
           style={{
-            position: "absolute",
-            right: "5%",
+            position: 'absolute',
+            right: '5%',
           }}
         />
       </Input>
@@ -60,21 +60,21 @@ export function Select({
           animationType="slide"
           transparent
           style={{
-            height: "100%",
+            height: '100%',
             borderRadius: 0,
           }}
         >
           <Pressable
             style={{
               flex: modalHeight,
-              backgroundColor: "rgba(0, 0, 0, 0.05)",
+              backgroundColor: 'rgba(0, 0, 0, 0.05)',
             }}
             onPress={() => setModalVisible(false)}
           ></Pressable>
           <View
             style={{
               flex: 1,
-              backgroundColor: "#FFFFFF",
+              backgroundColor: '#FFFFFF',
               borderTopLeftRadius: 20,
               borderTopRightRadius: 20,
             }}
@@ -82,16 +82,16 @@ export function Select({
             <View
               style={{
                 height: 20,
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
               }}
             >
               <View
                 style={{
                   height: 3,
-                  width: "50%",
-                  backgroundColor: "#E1E1E6",
+                  width: '50%',
+                  backgroundColor: '#E1E1E6',
                   borderRadius: 2,
                 }}
               ></View>

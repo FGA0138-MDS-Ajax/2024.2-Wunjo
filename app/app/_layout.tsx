@@ -1,11 +1,12 @@
-import "@/global.css";
+import '@/global.css';
+import '@/helpers/zod-mapper';
 // import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
-import { Stack } from "expo-router";
-import * as SplashScreen from "expo-splash-screen";
-import { StatusBar } from "expo-status-bar";
-import { useEffect } from "react";
-import "react-native-reanimated";
-import { Itim_400Regular } from "@expo-google-fonts/itim";
+import { Stack } from 'expo-router';
+import * as SplashScreen from 'expo-splash-screen';
+import { StatusBar } from 'expo-status-bar';
+import { useEffect } from 'react';
+import 'react-native-reanimated';
+import { Itim_400Regular } from '@expo-google-fonts/itim';
 import {
   Raleway_400Regular,
   Raleway_400Regular_Italic,
@@ -17,10 +18,12 @@ import {
   Raleway_700Bold_Italic,
   Raleway_800ExtraBold,
   Raleway_800ExtraBold_Italic,
-} from "@expo-google-fonts/raleway";
-import { useFonts } from "expo-font";
-import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
-// import { useFonts } from "@unitools/fonts";
+} from '@expo-google-fonts/raleway';
+import { useFonts } from 'expo-font';
+import { GluestackUIProvider } from '@/components/ui/gluestack-ui-provider';
+import { QueryClientProvider } from '@tanstack/react-query';
+import { queryClient } from '@/hooks/react-query';
+import UnBordoApp from '@/contexts/AppContext';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -50,14 +53,18 @@ export default function RootLayout() {
   }
 
   return (
-    <GluestackUIProvider mode="light">
-      <Stack initialRouteName="index">
-        <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen name="(app)" options={{ headerShown: false }} />
-        <Stack.Screen name="(register)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
-    </GluestackUIProvider>
+    <UnBordoApp.Provider>
+      <GluestackUIProvider mode="light">
+        <QueryClientProvider client={queryClient}>
+          <Stack initialRouteName="index">
+            <Stack.Screen name="index" options={{ headerShown: false }} />
+            <Stack.Screen name="(app)" options={{ headerShown: false }} />
+            <Stack.Screen name="(register)" options={{ headerShown: false }} />
+            <Stack.Screen name="+not-found" />
+          </Stack>
+          <StatusBar style="auto" />
+        </QueryClientProvider>
+      </GluestackUIProvider>
+    </UnBordoApp.Provider>
   );
 }
