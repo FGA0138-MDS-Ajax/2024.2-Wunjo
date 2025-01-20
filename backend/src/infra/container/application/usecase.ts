@@ -3,6 +3,7 @@ import {
   CreateQuestionUsecase,
   DeleteQuestionUsecase,
   GetAllQuestionsUsecase,
+  GetAllSubjectsUsecase,
   GetQuestionUsecase,
   LoginUsecase,
   RegisterConfirmUsecase,
@@ -18,7 +19,6 @@ import {
 } from '@/infra/services/shared/zod';
 import { ForumGetAllQuestionsUsecaseZodValidator } from '@/infra/services/shared/zod/forum/forum-get-all-questions-usecase-zod-validator';
 import { InfraDI } from '../infra';
-import { GetAllSubjectsUsecase } from '@/application/usecases/subject/get-all-subjects-usecase';
 
 export function configureApplicationUsecaseDI(container: InfraDI) {
   return container

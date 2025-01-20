@@ -11,7 +11,7 @@ export type RegisterOptions = keyof typeof RegisterOptions;
 export class NotFoundError extends CustomError {
   public register: RegisterOptions;
   constructor(message: string, register: RegisterOptions) {
-    super(message, 'Not found error', 404);
+    super(message, 'NotFoundError', 404);
     this.register = register;
   }
 }

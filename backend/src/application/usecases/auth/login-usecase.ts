@@ -43,7 +43,7 @@ export class LoginUsecase {
     if (studentExists.status === StudentRegistrationStatus.PENDING) {
       throw new UnauthenticatedError(
         'Registro pendente de aprovação',
-        'PENDING_REGISTRATION',
+        'PendingRegistrationError',
       );
     }
 
