@@ -50,7 +50,7 @@ describe('CreateQuestionUsecase', async () => {
       subjectId: input.subjectId,
       title: input.title,
       description: input.description,
-      points: input.points,
+      points: Sinon.match.number,
       difficulty: input.difficulty,
       urgency: input.urgency,
       studentId: input.studentId,

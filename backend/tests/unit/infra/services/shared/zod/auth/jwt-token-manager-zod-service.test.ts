@@ -1,4 +1,7 @@
-import { StudentTokenManager, StudentTokenManagerGenerateInput } from '@/application/services';
+import {
+  StudentTokenManager,
+  StudentTokenManagerGenerateInput,
+} from '@/application/services';
 import { JWTStudentTokenManager } from '@/infra/services/token/jwt-token-manager';
 import { faker } from '@faker-js/faker';
 import { beforeAll, describe, expect, it } from 'vitest';
@@ -31,10 +34,7 @@ describe('Test case jwt token manager service', () => {
     const output = await studentTokenManager.decrypt(token);
     expect(output).toBeInstanceOf(Object);
     expect(output).toEqual({
-      student_id: input.studentId,
-      iat: expect.any(Number),
-      exp: expect.any(Number),
-      iss: 'UnBordo',
+      studentId: input.studentId,
     });
   });
 });

@@ -7,6 +7,7 @@ export default async function (req: Request, res: Response) {
 
   console.log(req.query);
 
+  console.log('acessou a rota de subject');
   const subjects = await usecase.execute({
     sort: {
       name: req.query.sort as 'asc' | 'desc',
@@ -14,5 +15,5 @@ export default async function (req: Request, res: Response) {
     search: req.query.search as string,
   });
 
-  res.json(subjects);
+  res.status(200).json(subjects).send();
 }
