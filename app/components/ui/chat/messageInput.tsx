@@ -1,17 +1,71 @@
-import CameraIcon from '@/assets/images/camera';
-import React from 'react';
-import { View, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { View, TextInput, TouchableOpacity, StyleSheet, Alert, Image } from 'react-native';
 import { Button, ButtonText } from '@/components/ui/button';
+import CameraIcon from '@/assets/images/camera'; 
+import * as ImagePicker from 'expo-image-picker';
+import ImageViewing from 'react-native-image-viewing';
 
 interface MessageInputProps {
     inputMessage: string;
     setInputMessage: (text: string) => void;
-    handleSendMessage: () => void;
+    handleSendMessage: (message: string, imageUri: string | null) => void;
 }
 
 const MessageInput: React.FC<MessageInputProps> = ({ inputMessage, setInputMessage, handleSendMessage }) => {
+    const [selectedImage, setSelectedImage] = useState<string | null>(null);
+    const [isImageViewerVisible, setImageViewerVisible] = useState(false);
+
+    const pickImage = async () => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.Images , //ver dps se tem outro jeito de pegar só imagens
+            allowsEditing: true, 
+            quality: 1,
+        });
+
+        if (!result.canceled) {
+            console.log(result.assets[0].uri);
+            setSelectedImage(result.assets[0].uri); // armazenar a imagem selecionada
+        }
+    };
+
+    const takePhoto = async () => {
+        let result = await ImagePicker.launchCameraAsync({
+            allowsEditing: true,
+            quality: 1,
+        });
+
+        if (!result.canceled) {
+            console.log(result.assets[0].uri);
+            setSelectedImage(result.assets[0].uri); // Armazenar a imagem tirada
+        }
+    };
+
+    // Função para exibir um alerta com as opcoes de pegar a imagem, talvez criar um popup mais bonito dps
+    const handleCameraPress = () => {
+        Alert.alert(
+            "Enviar Imagem",
+            "Escolha uma opção",
+            [
+                { text: "Tirar Foto", onPress: takePhoto },
+                { text: "Escolher da Galeria", onPress: pickImage },
+                { text: "Cancelar", style: "cancel" }
+            ]
+        );
+    };
+
+    const onSendMessage = () => {
+        handleSendMessage(inputMessage, selectedImage);
+        setInputMessage('');
+        setSelectedImage(null);
+    };
+
     return (
         <View style={styles.inputContainer}>
+            {selectedImage && (
+                <TouchableOpacity onPress={() => setImageViewerVisible(true)}>
+                    <Image source={{ uri: selectedImage }} style={styles.previewImage} />
+                </TouchableOpacity>
+            )}
             <View style={styles.inputWrapper}>
                 <TextInput
                     style={styles.input}
@@ -19,13 +73,20 @@ const MessageInput: React.FC<MessageInputProps> = ({ inputMessage, setInputMessa
                     onChangeText={setInputMessage}
                     placeholder="Digite sua mensagem..."
                 />
-                <TouchableOpacity>
+                <TouchableOpacity style={styles.cameraButton} onPress={handleCameraPress}>
                     <CameraIcon width={24} height={24} />
                 </TouchableOpacity>
             </View>
-            <Button action="primary" variant="solid" onPress={handleSendMessage} >
+            <Button style={styles.sendButton} action="primary" variant="solid" onPress={onSendMessage}>
                 <ButtonText>Enviar</ButtonText>
             </Button>
+            {/*deixa a imagem clicavel, para os usuarios olharem ela em tela cheia*/}
+            <ImageViewing
+                images={selectedImage ? [{ uri: selectedImage }] : []}
+                imageIndex={0}
+                visible={isImageViewerVisible}
+                onRequestClose={() => setImageViewerVisible(false)}
+            />
         </View>
     );
 };
@@ -37,7 +98,7 @@ const styles = StyleSheet.create({
         padding: 16,
         borderTopWidth: 1,
         borderTopColor: '#ccc',
-        backgroundColor: '#fff', // Adiciona cor de fundo para o campo de entrada
+        backgroundColor: '#F5F6FA',
     },
     inputWrapper: {
         flex: 1,
@@ -47,7 +108,7 @@ const styles = StyleSheet.create({
         borderColor: '#173CAC',
         borderRadius: 20,
         paddingHorizontal: 10,
-        marginRight: 8,
+        marginRight: 10, 
     },
     input: {
         flex: 1,
@@ -56,8 +117,14 @@ const styles = StyleSheet.create({
     cameraButton: {
         marginLeft: 8,
     },
-    cameraButtonText: {
-        fontSize: 24,
+    sendButton: {
+        paddingHorizontal: 20,
+    },
+    previewImage: {
+        width: 50,
+        height: 50,
+        borderRadius: 4,
+        marginRight: 4,
     },
 });
 
