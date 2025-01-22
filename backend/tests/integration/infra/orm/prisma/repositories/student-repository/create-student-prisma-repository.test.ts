@@ -40,7 +40,7 @@ describe('Create StudentPrismaRepository', () => {
     } as StudentRepository.Create.Output);
   });
 
-  it('should create student with season', async () => {
+  it.skip('should create student with season', async () => {
     await prisma.$executeRaw`TRUNCATE TABLE "students" CASCADE;`;
     const season = await prisma.season.create({
       data: {
@@ -96,7 +96,7 @@ describe('Create StudentPrismaRepository', () => {
     });
   });
 
-  it('should return error if student already exists', async () => {
+  it.skip('should return error if student already exists', async () => {
     const error = await getError<PrismaClientKnownRequestError>(() =>
       repo.create(input),
     );

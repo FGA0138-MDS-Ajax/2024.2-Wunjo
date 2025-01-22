@@ -10,6 +10,7 @@ import {
   Pressable,
   Dimensions,
   SafeAreaView,
+  Platform,
 } from 'react-native';
 import { FontAwesome, MaterialIcons } from '@expo/vector-icons';
 import UnbLogo_Home from '@/assets/images/UnbLogo_Home';
@@ -24,10 +25,14 @@ import { useQuery } from '@tanstack/react-query';
 import { QuestionService } from '@/http/services/question';
 import { QuestionDificultyLabels } from '@/interfaces/application';
 import { IQuestionService } from '@/interfaces/http';
+import { Skeleton } from '@/components/ui/skeleton';
+import { Box } from '@/components/ui/box';
+import { useUnBordo } from '@/hooks/unbordo';
 
 const ForumHome = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [expandedText, setExpandedText] = useState<string | null>(null); // Armazena o ID do item expandido
+  const { auth } = useUnBordo();
 
   const toggleModal = () => {
     setModalVisible(!modalVisible);
@@ -87,16 +92,20 @@ const ForumHome = () => {
                 <Text style={styles.urgentText}>Urgente</Text>
               </View>
             )}
-            <Balloon />
+            {auth.student.id !== item.student.id && (
+              <>
+                <Balloon />
 
-            <TouchableOpacity onPress={toggleModal}>
-              <MaterialIcons
-                name="more-vert"
-                size={24}
-                color="#000"
-                style={styles.icon}
-              />
-            </TouchableOpacity>
+                <TouchableOpacity onPress={toggleModal}>
+                  <MaterialIcons
+                    name="more-vert"
+                    size={24}
+                    color="#000"
+                    style={styles.icon}
+                  />
+                </TouchableOpacity>
+              </>
+            )}
           </View>
         </View>
         <Text style={styles.text} numberOfLines={isExpanded ? undefined : 3}>
@@ -115,9 +124,18 @@ const ForumHome = () => {
               <Text style={styles.readMore}>Mostrar menos</Text>
             </TouchableOpacity>
           ))}
-        <Text style={styles.difficulty}>
-          Dificuldade: {QuestionDificultyLabels[item.difficulty]}
-        </Text>
+        <Box className="flex flex-row items-center justify-between mt-4">
+          {auth.student.id === item.student.id && (
+            <Text className="font-itim text-gray-500 font-xs">
+              Você postou essa dúvida
+            </Text>
+          )}
+
+          <Text style={styles.difficulty}>
+            {item.points} pontos |
+            Dificuldade: {QuestionDificultyLabels[item.difficulty]}
+          </Text>
+        </Box>
       </View>
     );
   };
@@ -155,13 +173,52 @@ const ForumHome = () => {
       </View>
 
       <FlatList<IQuestionService.Fetch.Response['questions'][0]>
-        data={query.data?.data.questions || []}
+        data={query.data?.data?.questions || []}
         keyExtractor={(item) => item.id}
         renderItem={renderCard}
+        ListEmptyComponent={() =>
+          query.isFetching ? (
+            <Box className="min-w-full flex flex-col gap-2 ">
+              <Skeleton
+                variant="rounded"
+                className="h-40 w-full bg-gray-300"
+                speed={3}
+              />
+              <Skeleton
+                variant="rounded"
+                className="h-40 w-full bg-gray-300"
+                speed={3}
+              />
+              <Skeleton
+                variant="rounded"
+                className="h-40 w-full bg-gray-300"
+                speed={3}
+              />
+              <Skeleton
+                variant="rounded"
+                className="h-40 w-full bg-gray-300"
+                speed={3}
+              />
+              <Skeleton
+                variant="rounded"
+                className="h-40 w-full bg-gray-300"
+                speed={3}
+              />
+              <Skeleton
+                variant="rounded"
+                className="h-40 w-full bg-gray-300"
+                speed={3}
+              />
+            </Box>
+          ) : (
+            <Text className="font-raleway">
+              Nenhum pirata abordo tem dúvidas, que ótimo, podemos seguir nossa
+              viagem!
+            </Text>
+          )
+        }
         contentContainerStyle={{
           paddingHorizontal: 20,
-          // flex: 1,
-          // backgroundColor: '#F00',
         }}
       />
 
@@ -169,11 +226,11 @@ const ForumHome = () => {
         onPress={() => router.push('/(app)/(home)/(post)')}
         style={{
           position: 'absolute',
-          bottom: '2.5%',
-          right: '2.5%',
+          bottom: Platform.OS === 'ios' ? '12%' : '2.5%',
+          right: Platform.OS === 'ios' ? '5%' : '2.5%',
           elevation: 16,
-          shadowOffset: { width: -3, height: 3 },
-          shadowOpacity: 0.1,
+          shadowOffset: { width: 0, height: 0 },
+          shadowOpacity: 0.01,
           shadowRadius: 1,
           borderRadius: '100%',
           width: 70,
@@ -183,8 +240,8 @@ const ForumHome = () => {
         <WoodButton
           style={{
             shadowColor: '#000000',
-            shadowOffset: { width: -10, height: 10 },
-            shadowOpacity: 0.75,
+            shadowOffset: { width: -2, height: 5 },
+            shadowOpacity: 0.3,
             shadowRadius: 3,
             borderRadius: '100%',
           }}
@@ -306,7 +363,6 @@ const styles = StyleSheet.create({
   difficulty: {
     fontSize: 12,
     color: '0000',
-    marginTop: 5,
     fontFamily: 'Itim_400Regular',
     alignSelf: 'flex-end',
   },

@@ -15,6 +15,6 @@ export const QuestionService = {
   },
 
   create: async (body: IQuestionService.Create.Request) => {
-    return api.post<IQuestionService.Create.Response>('/create', body);
+    return api.post<IQuestionService.Create.Response>(`${PREFIX}/create`, body);
   },
 };

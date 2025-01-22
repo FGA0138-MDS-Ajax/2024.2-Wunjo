@@ -10,8 +10,10 @@ import {
   QuestionDifficulties,
   QuestionUrgencies,
 } from '@/interfaces/application';
+import { useUnBordo } from '@/hooks/unbordo';
+import { QuestionService } from '@/http/services/question';
 
-export type IFormInputs = {
+export type IQuestionFormInputs = {
   subjectId: string;
   title: string;
   description: string;
@@ -22,7 +24,7 @@ export type IFormInputs = {
 const schema = z.object({
   subjectId: z.string().min(1).max(255),
   title: z.string().min(1).max(255).default('default'),
-  description: z.string().min(1).max(255),
+  description: z.string(),
   difficulty: z.nativeEnum(QuestionDifficulties, {
     message: 'Selecione uma dificuldade',
   }),
@@ -34,78 +36,86 @@ const schema = z.object({
 export const usePostQuestion = () => {
   const router = useRouter();
 
-  const form = useForm<IFormInputs>({
+  const { forms } = useUnBordo();
+  const form = useForm<IQuestionFormInputs>({
     resolver: zodResolver(schema),
-    // defaultValues
+    defaultValues: {
+      ...forms.question,
+    },
   });
 
   const mutation = useMutation({
-    mutationFn: AuthService.register,
+    mutationFn: QuestionService.create,
   });
 
-  const handleSubmit = async (data: IFormInputs) => {
+  const handleSubmit = async (data: IQuestionFormInputs) => {
     console.log(data);
-    // mutation.mutate(
-    //   {
-    //     registration: data.registration,
-    //     password: data.password,
-    //     course: data.course,
-    //     name: data.name,
-    //   },
-    //   {
-    //     onSuccess: async () => {
-    //       router.push('/(register)/(complete)');
-    //     },
-    //     onError: (error: any) => {
-    //       console.log(JSON.stringify(error?.response?.data, null, 2));
+    mutation.mutate(
+      {
+        description: data.description,
+        difficulty: data.difficulty,
+        subjectId: data.subjectId,
+        title: data.title,
+        urgency: data.urgency,
+      },
+      {
+        onSuccess: async (response) => {
+          console.log(JSON.stringify(response.data, null, 2));
+          router.push('/(app)/(home)/(post)/(success)');
+          forms.setQuestion({
+            subjectId: '',
+            title: '',
+            description: '',
+            difficulty: '' as any,
+            urgency: '' as any,
+          });
+        },
+        onError: (error: any) => {
+          console.log(JSON.stringify(error?.response?.data, null, 2));
 
-    //       switch (error?.response?.data?.type) {
-    //         case 'AlreadyExistsError':
-    //           form.setError('root', {
-    //             type: 'manual',
-    //             message: '*Estudante já cadastrado com essa matrícula',
-    //           });
-    //           break;
-    //         case 'ValidationError':
-    //           const errors = error.response.data.errors;
+          switch (error?.response?.data?.type) {
+            case 'ValidationError':
+              const errors = error.response.data.errors;
 
-    //           errors.map(
-    //             (error: { code: string; message: string; path: string[] }) => {
-    //               form.setError(error.path.join('.') as unknown as any, {
-    //                 type: 'manual',
-    //                 message: error.message,
-    //               });
-    //             },
-    //           );
-    //           break;
-    //         case 'NotFoundError':
-    //           form.setError('root', {
-    //             type: 'manual',
-    //             message: '*Aluno não encontrado',
-    //           });
-    //           break;
-    //         case 'PendingRegistrationError':
-    //           form.setError('root', {
-    //             type: 'PendingRegistrationError',
-    //             message:
-    //               '*Matrícula pendente de confirmação, verifique seu email institucional e clique no link de confirmação',
-    //           });
-    //           break;
-    //         default:
-    //           form.setError('root', {
-    //             type: 'manual',
-    //             message: 'Erro inesperado',
-    //           });
-    //           break;
-    //       }
-    //     },
-    //   },
-    // );
+              errors.map(
+                (error: { code: string; message: string; path: string[] }) => {
+                  form.setError(error.path.join('.') as unknown as any, {
+                    type: 'manual',
+                    message: error.message,
+                  });
+                },
+              );
+              break;
+            default:
+              form.setError('root', {
+                type: 'manual',
+                message: 'Erro inesperado',
+              });
+              break;
+          }
+        },
+      },
+    );
+  };
+
+  const handleNextPage = () => {
+    if (form.getValues('description').trim() === '') {
+      form.setError('description', {
+        type: 'required',
+        message: 'Digite sua dúvida',
+      });
+      return;
+    }
+
+    form.setValue('description', form.getValues('description').trim());
+    forms.setQuestion(form.getValues());
+    router.push('/(app)/(home)/(post)/(tag)');
   };
 
   return {
     form,
     handleSubmit,
     mutation,
+    handleNextPage,
   };
 };

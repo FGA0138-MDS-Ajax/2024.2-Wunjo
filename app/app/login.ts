@@ -5,6 +5,7 @@ import { useMutation } from '@tanstack/react-query';
 import { AuthService } from '@/http/services/auth';
 import { useRouter } from 'expo-router';
 import { useUnBordo } from '@/hooks/unbordo';
+import { api } from '@/http/api';
 
 export type IFormInputs = {
   registration: string;
@@ -41,6 +42,17 @@ export const useLogin = () => {
   });
 
   const handleSubmit = async (data: IFormInputs) => {
+    // console.log(data);
+    // try {
+    //   console.log('TRY LOGIN');
+    //   const response = await api.get('http://10.0.2.2:3001/api/v1/subject');
+    //   console.log(response);
+    //   return;
+    // } catch (err) {
+    //   console.log(JSON.stringify(err, null, 2));
+    //   return;
+    // }
+
     mutation.mutate(
       {
         registration: data.registration,

@@ -3,11 +3,16 @@ import { createContext, useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { AuthService } from '@/http/services/auth';
 import { useRouter } from 'expo-router';
+import { IQuestionFormInputs } from '@/app/(app)/(home)/(post)/post';
 
 interface AppContext {
   auth: AuthContext & {
     authenticate: (token: string) => Promise<void>;
     unauthenticate: () => Promise<void>;
+  };
+  forms: {
+    question: IQuestionFormInputs;
+    setQuestion: (forms: IQuestionFormInputs) => void;
   };
 }
 
@@ -37,11 +42,22 @@ const initialState: AppContext = {
     authenticate: () => Promise.resolve(),
     unauthenticate: () => Promise.resolve(),
   },
+  forms: {
+    question: {
+      subjectId: '',
+      title: '',
+      description: '',
+      difficulty: '' as any,
+      urgency: '' as any,
+    },
+    setQuestion: (_forms: IQuestionFormInputs) => {},
+  },
 };
 const AppContext = createContext<AppContext>(initialState);
 
 const AppProvider = ({ children }: { children: React.ReactNode }) => {
   const [auth, setAuth] = useState<AuthContext>(initialState.auth);
+  const [questionForm, setQuestionForm] = useState(initialState.forms.question);
   const route = useRouter();
 
   const fetchAuth = async () => {
@@ -80,6 +96,10 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
       isAuthenticated: false,
       token: '',
     });
+
+    route.replace({
+      pathname: '/',
+    });
   };
 
   useEffect(() => {
@@ -104,7 +124,13 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <AppContext.Provider
-      value={{ auth: { ...auth, authenticate, unauthenticate } }}
+      value={{
+        auth: { ...auth, authenticate, unauthenticate },
+        forms: {
+          question: questionForm,
+          setQuestion: setQuestionForm,
+        },
+      }}
     >
       {children}
     </AppContext.Provider>

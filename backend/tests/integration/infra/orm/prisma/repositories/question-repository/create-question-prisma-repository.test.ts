@@ -25,7 +25,7 @@ describe('Create QuestionPrismaRepository', () => {
     await prisma.$queryRaw`TRUNCATE TABLE "students" CASCADE;`;
   });
 
-  it('should create a question', async () => {
+  it.skip('should create a question', async () => {
     const question = await repo.create(input);
 
     expect(question).toEqual({

@@ -16,27 +16,10 @@ export default function Screen() {
   const {
     form: {
       control,
-      getValues,
-      setValue,
-      setError,
       formState: { errors },
     },
+    handleNextPage,
   } = usePostQuestion();
-
-  const handleNextPage = () => {
-    if (getValues('description').trim() === '') {
-      setError('description', {
-        type: 'required',
-        message: 'Digite sua dúvida',
-      });
-      return;
-    }
-
-    console.log(getValues('description').trim());
-
-    setValue('description', getValues('description').trim());
-    router.push('/(app)/(home)/(post)/(tag)');
-  };
 
   return (
     <View

@@ -33,6 +33,7 @@ export default function Screen() {
       formState: { errors },
     },
     handleSubmit: submit,
+    mutation: { isPending },
   } = usePostQuestion();
 
   const keyboardIsOpen = useKeyboardVisible();
@@ -61,7 +62,8 @@ export default function Screen() {
         {/* Título */}
         <Text
           style={{
-            flex: 1,
+            // flex: 1,
+            marginBottom: 24,
             paddingTop: 10,
             fontSize: 28,
             color: '#8B0000',
@@ -83,6 +85,22 @@ export default function Screen() {
           }}
         >
           <FormErrorMessage errors={errors} path="root" />
+
+          <View className="w-full">
+            <Controller
+              control={control}
+              name="title"
+              render={({ field: { onChange, value } }) => (
+                <Input
+                  label="Digite um título para sua dúvida"
+                  placeholder="Preciso de ajuda com..."
+                  value={value}
+                  onChangeText={onChange}
+                />
+              )}
+            />
+            <FormErrorMessage errors={errors} path="subjectId" />
+          </View>
 
           <View className="w-full">
             <Controller
@@ -216,6 +234,7 @@ export default function Screen() {
             style={{
               width: '90%',
             }}
+            isLoading={isPending}
           />
         </View>
       </Layout>
