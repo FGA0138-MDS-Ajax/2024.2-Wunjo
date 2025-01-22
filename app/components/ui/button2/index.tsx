@@ -15,17 +15,30 @@ const defaultStyle = StyleSheet.create({
     }
 })
 
+const colours = {
+    blue: {
+        primary: "#0F2D89",
+        secondary: "#173CAC"
+    },
+    black: {
+        primary: "#1A1A2D",
+        secondary: "#000000"
+    }
+}
+
 export function Button({
     label,
     children,
     onPress,
     variant = "wide",
+    color = "blue",
     style
 }: {
     label?: string,
     children?: React.ReactNode,
     onPress: () => void,
     variant?: "wide" | "circle",
+    color?: "blue" | "black",
     style?: StyleProp<ViewStyle>
 }) {
     return <Pressable
@@ -44,7 +57,7 @@ export function Button({
         <View
             style={{
                 ...defaultStyle[variant],
-                backgroundColor: "#0F2D89",
+                backgroundColor: colours[color].primary,
                 position: "absolute",
                 bottom: -4,
             }}
@@ -52,7 +65,7 @@ export function Button({
         <View
             style={{
                 ...defaultStyle[variant],
-                backgroundColor: "#173CAC",
+                backgroundColor: colours[color].secondary,
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
