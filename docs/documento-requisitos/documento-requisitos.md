@@ -52,8 +52,7 @@ A plataforma solicitada pelo cliente consiste em uma aplicação voltada para a 
 | RQ30 | O sistema deverá receber a matrícula do aluno e enviar para o email institucional uma validação de cadastro.                                                             |
 | RQ31 | A gamificação deverá possuir temporadas com duração de 6 meses onde os rankings serão reiniciados após esse tempo.                                                            |
 | RQ32 | O sistema deverá possuir a opção de recuperar senha                                                            |
-| RQ33 | A gamificação deverá possuir temporadas com duração de 6 meses onde os rankings serão reiniciados após esse tempo.                                                            |
-| RQ34 | O sistema deverá permitir que um estudante acesse o perfil de outro através do ranking e também através do chat privado, podendo visualizar o perfil do tutor que está tirando sua dúvida.                                                                  **  |
+| RQ33 | O sistema deverá permitir que um estudante acesse o perfil de outro através do ranking e também através do chat privado, podendo visualizar o perfil do tutor que está tirando sua dúvida.                                                                  **  |
 
 
 
