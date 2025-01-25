@@ -31,7 +31,7 @@ export class StudentBuilder {
       password: faker.internet.password(),
       questions: [],
       rankingParticipant: faker.datatype.boolean(),
-      registration: faker.string.numeric(9),
+      registration: `${faker.number.int({ min: 1, max: 2 })}${faker.string.numeric(8)}`,
       seasons: [],
       status: faker.helpers.arrayElement(
         Object.values(StudentRegistrationStatus),
