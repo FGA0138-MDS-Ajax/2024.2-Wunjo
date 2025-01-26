@@ -1,7 +1,6 @@
 import { api } from '@/api';
 import { RegisterUsecase } from '@/application/usecases';
 import { Course, StudentRegistrationStatus } from '@/domain';
-import { env } from '@/env';
 import { EmailCacheRepository } from '@/infra/cache/repositories';
 import { container } from '@/infra/container';
 import { DispatchEmailJobService } from '@/infra/services';
@@ -75,11 +74,14 @@ describe('[POST] /api/v1/student/auth/register', async () => {
   });
 
   it('Should throw 400 AlreadyExistsError when student already exists', async () => {
-    await container.get('pgDataSource').$queryRaw`TRUNCATE TABLE students RESTART IDENTITY CASCADE;`;
+    await container.get('pgDataSource')
+      .$queryRaw`TRUNCATE TABLE students RESTART IDENTITY CASCADE;`;
 
-    await StudentBuilder.aStudent().withParams({
-      registration: input.registration,
-    }).save();
+    await StudentBuilder.aStudent()
+      .withParams({
+        registration: input.registration,
+      })
+      .save();
 
     const response = await request(api)
       .post(ENDPOINT)
@@ -93,7 +95,5 @@ describe('[POST] /api/v1/student/auth/register', async () => {
       message: 'ESTUDANTE já existe',
       stack: expect.any(String),
     });
-
-    await container.get('pgDataSource').$queryRaw`TRUNCATE TABLE students RESTART IDENTITY CASCADE;`;
   });
 });

@@ -1,5 +1,5 @@
 import { ValidationError } from '@/application/error';
-import { LoginUsecaseZodValidator } from '@/infra/services/shared/zod/auth/login-usecase-zod-validator';
+import { LoginUsecaseZodValidator } from '@/infra/services/shared/zod';
 import { getError } from '@tests/helper';
 import { beforeAll, describe, expect, it } from 'vitest';
 

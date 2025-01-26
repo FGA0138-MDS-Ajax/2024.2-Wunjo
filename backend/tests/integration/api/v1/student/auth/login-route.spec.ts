@@ -66,6 +66,9 @@ describe('[POST] /api/v1/student/auth/login', async () => {
   });
 
   it('Should throw 401 Unauthenticateduser', async () => {
+    try {
+      await studentBuilder.save();
+    } catch {}
     const response = await request(api)
       .post('/api/v1/student/auth/login')
       .send({

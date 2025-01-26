@@ -2,7 +2,7 @@ import {
   StudentTokenManager,
   StudentTokenManagerGenerateInput,
 } from '@/application/services';
-import { JWTStudentTokenManager } from '@/infra/services/token/jwt-token-manager';
+import { JWTStudentTokenManager } from '@/infra/services';
 import { faker } from '@faker-js/faker';
 import { beforeAll, describe, expect, it } from 'vitest';
 

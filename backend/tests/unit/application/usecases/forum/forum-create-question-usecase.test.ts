@@ -6,7 +6,7 @@ import { ForumCreateQuestionUsecaseZodValidator } from '@/infra/services/shared/
 import { faker } from '@faker-js/faker';
 import { QuestionBuilder } from '@tests/helper/builders/question-builder';
 import Sinon from 'sinon';
-import { beforeAll, beforeEach, describe, expect, expectTypeOf, it } from 'vitest';
+import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
 
 describe('CreateQuestionUsecase', async () => {
   let sandbox: Sinon.SinonSandbox;

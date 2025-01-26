@@ -1,5 +1,5 @@
 import { GetAllQuestionsUsecase } from '@/application/usecases';
-import { Question, QuestionDifficulty, QuestionUrgency } from '@/domain';
+import { QuestionDifficulty, QuestionUrgency } from '@/domain';
 import { container } from '@/infra/container';
 import { QuestionPrismaRepository } from '@/infra/orm/prisma/repositories';
 import { ForumGetAllQuestionsUsecaseZodValidator } from '@/infra/services/shared/zod/forum/forum-get-all-questions-usecase-zod-validator';

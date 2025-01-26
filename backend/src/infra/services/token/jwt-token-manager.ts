@@ -14,7 +14,7 @@ export class JWTStudentTokenManager implements StudentTokenManager {
         { student_id: studentId },
         env.JWT_SECRET_KEY,
         {
-          expiresIn: env.JWT_TOKEN_EXPIRATION,
+          expiresIn: env.JWT_TOKEN_EXPIRATION as any,
           algorithm: 'HS256',
           issuer: 'UnBordo',
         },

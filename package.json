@@ -1,0 +1,12 @@
+{
+  "devDependencies": {
+    "git-commit-msg-linter": "^5.0.8",
+    "husky": "^9.1.7"
+  },
+  "scripts": {
+    "prepare": "husky",
+    "pre-commit": "npm run pre-commit:backend",
+    "pre-commit:app": "cd app && npm run lint",
+    "pre-commit:backend": "cd backend && npm run lint"
+  }
+}

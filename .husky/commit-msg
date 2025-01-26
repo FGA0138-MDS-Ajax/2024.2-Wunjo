@@ -1,0 +1,17 @@
+#!/usr/bin/env sh
+red='\033[0;31m'
+green='\033[0;32m'
+yellow='\033[0;33m'
+no_color='\033[0m'
+
+echo -e "\n${yellow}Executing commit-msg hook${no_color}\n"
+
+echo -e "\n${yellow}Running commitlint${no_color}\n"
+
+
+if ! .git/hooks/commit-msg $1; then
+  echo -e "\n${red}Commitlint failed${no_color}\n"
+  exit 1
+fi
+
+echo -e "\n${green}Commitlint passed${no_color}\n"
