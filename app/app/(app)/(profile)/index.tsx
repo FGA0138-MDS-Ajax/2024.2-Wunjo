@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Switch, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, Switch, StyleSheet, TouchableOpacity, Modal, Button } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { Button as ButtonModal, ButtonText } from "@/components/ui/button";
 import { Itim_400Regular } from '@expo-google-fonts/itim';
 import { ScrollView } from 'react-native';
 import { View, Text, ScrollView, Switch, StyleSheet, TouchableOpacity, Image, Modal } from 'react-native';
@@ -262,10 +263,10 @@ const PerfilScreen = () => {
                 </TouchableOpacity>
             </View>
 
-      <TouchableOpacity>
-        <Text style={styles.logoutText}>Sair da conta</Text>
-      </TouchableOpacity>
-    </View>
+        <TouchableOpacity>
+          <Text style={styles.logoutText}>Sair da conta</Text>
+        </TouchableOpacity>
+      </View>
     </ScrollView>
   );
 };
@@ -329,9 +330,11 @@ const styles = StyleSheet.create({
   },
   pontuacaoItem: {
     alignItems: 'center',
+    justifyContent: 'center',
+    width: 120,
+    height: 100,
     backgroundColor: 'white',
-    margin: 10,
-    padding: 20,
+    margin: 5,
     borderRadius: 10,
   },
   pontuacaoNumero: {
