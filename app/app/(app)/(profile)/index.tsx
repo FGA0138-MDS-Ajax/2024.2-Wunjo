@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Switch, StyleSheet, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { Itim_400Regular } from '@expo-google-fonts/itim';
+import { ScrollView } from 'react-native';
 
 const PerfilScreen = () => {
   const [nome, setNome] = useState('Renan V. Guedes');
@@ -10,6 +12,7 @@ const PerfilScreen = () => {
   const [participarRanking, setParticiparRanking] = useState(true);
 
   return (
+    <ScrollView>
     <View style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
@@ -29,6 +32,7 @@ const PerfilScreen = () => {
           placeholder="Nome"
         />
 
+        <Text style={styles.sectionSubTitle}>Curso</Text>
         <TextInput
           style={styles.input}
           value={curso}
@@ -36,6 +40,7 @@ const PerfilScreen = () => {
           placeholder="Curso"
         />
 
+        <Text style={styles.sectionSubTitle}>Email cadastrado</Text>
         <TextInput
           style={styles.input}
           value={email}
@@ -43,6 +48,7 @@ const PerfilScreen = () => {
           placeholder="Email cadastrado"
         />
 
+        <Text style={styles.sectionSubTitle}>Matrícula</Text>
         <TextInput
           style={styles.input}
           value={matricula}
@@ -55,7 +61,7 @@ const PerfilScreen = () => {
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Gamificação</Text>
         <View style={styles.switchContainer}>
-          <Text>Desejo participar do ranking</Text>
+          <Text style={{fontSize: 16 }}>Desejo participar do ranking</Text>
           <Switch
             value={participarRanking}
             onValueChange={setParticiparRanking}
@@ -65,37 +71,48 @@ const PerfilScreen = () => {
 
       {/* Pontuação */}
       <View style={styles.pontuacaoContainer}>
+        {participarRanking && (
         <View style={styles.pontuacaoItem}>
-          <Text style={styles.pontuacaoNumero}>29</Text>
-          <Text>Cursos</Text>
+          <Text style={styles.pontuacaoNumero}>29°</Text>
+          <Text>Ranking</Text>
         </View>
+        )}
         <View style={styles.pontuacaoItem}>
           <Text style={styles.pontuacaoNumero}>209</Text>
-          <Text>Atividades</Text>
+          <Text>Respostas</Text>
         </View>
         <View style={styles.pontuacaoItem}>
           <Text style={styles.pontuacaoNumero}>10</Text>
-          <Text>Amigos</Text>
+          <Text>Perguntas</Text>
         </View>
+      </View>
+      <View style={styles.pontuacaoContainer}>
+        {participarRanking && (
+        <View style={styles.pontuacaoItem}>
+          <Text style={styles.pontuacaoNumero}>4,75</Text>
+          <Text>Média</Text>
+        </View>
+        )}
       </View>
 
       {/* Conta */}
       <View style={styles.section}>
-        <Text style={styles.sectionTitle}>Conta</Text>
+        <Text style={[styles.sectionTitle, { marginTop: 20 }]}>Conta</Text>
 
         <TouchableOpacity>
-          <Text style={styles.link}>Alterar senha</Text>
+          <Text style={{fontSize: 16, color: '#3b82f6'}}>Alterar senha</Text>
         </TouchableOpacity>
 
         <TouchableOpacity>
-          <Text style={[styles.link, styles.deleteLink]}>Excluir conta</Text>
+          <Text style={styles.deleteLink}>Excluir conta</Text>
         </TouchableOpacity>
       </View>
 
-      <TouchableOpacity style={styles.logoutButton}>
+      <TouchableOpacity>
         <Text style={styles.logoutText}>Sair da conta</Text>
       </TouchableOpacity>
     </View>
+    </ScrollView>
   );
 };
 
@@ -121,14 +138,15 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   sectionTitle: {
-    fontSize: 16,
     fontFamily: 'Itim_400Regular',
+    textAlign: 'center',
+    fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 10,
   },
   sectionSubTitle: {
-    fontSize: 14,
-    marginBottom: 5,
+    fontFamily: 'Itim_400Regular',
+    fontSize: 16,
   },
   input: {
     backgroundColor: 'white',
@@ -145,36 +163,32 @@ const styles = StyleSheet.create({
   },
   pontuacaoContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
-    backgroundColor: 'white',
-    padding: 10,
+    justifyContent: 'center',
     borderRadius: 10,
-    marginBottom: 20,
   },
   pontuacaoItem: {
     alignItems: 'center',
+    backgroundColor: 'white',
+    margin: 10,
+    padding: 20,
+    borderRadius: 10,
   },
   pontuacaoNumero: {
     fontSize: 18,
+    color: '#173CAC',
     fontWeight: 'bold',
   },
-  link: {
-    color: '#3b82f6',
-    marginBottom: 10,
-  },
   deleteLink: {
-    color: 'red',
-  },
-  logoutButton: {
-    marginTop: 20,
-    padding: 15,
-    backgroundColor: 'red',
-    borderRadius: 5,
-    alignItems: 'center',
+    marginTop: 10,
+    fontSize: 16,
+    color: '#FF0000',
   },
   logoutText: {
-    color: 'white',
+    marginTop: 40,
+    textAlign: 'center',
+    color: 'red',
     fontSize: 16,
+    fontFamily: 'Raleway_700Bold',
   },
 });
 
