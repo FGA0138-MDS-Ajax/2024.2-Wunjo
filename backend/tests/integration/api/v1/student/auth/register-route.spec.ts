@@ -37,7 +37,7 @@ describe('[POST] /api/v1/student/auth/register', async () => {
       .$queryRaw`TRUNCATE TABLE students RESTART IDENTITY CASCADE;`;
   });
 
-  it('Should be able to login', async () => {
+  it('Should be able to register', async () => {
     const response = await request(api).post(ENDPOINT).send(input).expect(201);
 
     expect(response.body).toEqual({
