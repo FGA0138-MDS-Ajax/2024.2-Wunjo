@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import { View, Text, TextInput, Switch, StyleSheet, TouchableOpacity } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { Itim_400Regular } from '@expo-google-fonts/itim';
+import { ScrollView } from 'react-native';
 import { View, Text, ScrollView, Switch, StyleSheet, TouchableOpacity, Image, Modal } from 'react-native';
 import { BackHeader } from '@/components/ui/backheader';
 import { router } from 'expo-router';
@@ -40,6 +44,14 @@ const PerfilScreen = () => {
         // Adicione aqui a lógica para salvar as alterações, se necessário
     };
 
+  return (
+    <ScrollView>
+    <View style={styles.container}>
+      {/* Header */}
+      <View style={styles.header}>
+        <Ionicons name="person-circle" size={80} color="white" />
+        <Text style={styles.headerTitle}>Título</Text>
+      </View>
     return (
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
             {/* Header */}
@@ -66,6 +78,13 @@ const PerfilScreen = () => {
                     onEditPress={() => setIsEditingNome(!isEditingNome)}
                 />
 
+        <Text style={styles.sectionSubTitle}>Curso</Text>
+        <TextInput
+          style={styles.input}
+          value={curso}
+          onChangeText={setCurso}
+          placeholder="Curso"
+        />
                 <Text style={styles.sectionSubTitle}>Curso</Text>
                 <EditableInput
                     value={curso}
@@ -75,12 +94,27 @@ const PerfilScreen = () => {
                     onEditPress={() => setIsEditingCurso(!isEditingCurso)}
                 />
 
+        <Text style={styles.sectionSubTitle}>Email cadastrado</Text>
+        <TextInput
+          style={styles.input}
+          value={email}
+          onChangeText={setEmail}
+          placeholder="Email cadastrado"
+        />
                 <Text style={styles.sectionSubTitle}>Email</Text>
                 <NonEditableInput
                     value={email}
                     placeholder="Email"
                 />
 
+        <Text style={styles.sectionSubTitle}>Matrícula</Text>
+        <TextInput
+          style={styles.input}
+          value={matricula}
+          onChangeText={setMatricula}
+          placeholder="Matrícula"
+        />
+      </View>
                 <Text style={styles.sectionSubTitle}>Matrícula</Text>
                 <NonEditableInput
                     value={matricula}
@@ -99,6 +133,17 @@ const PerfilScreen = () => {
             </View>
             <View style={styles.separator} />
 
+      {/* Gamificação */}
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Gamificação</Text>
+        <View style={styles.switchContainer}>
+          <Text style={{fontSize: 16 }}>Desejo participar do ranking</Text>
+          <Switch
+            value={participarRanking}
+            onValueChange={setParticiparRanking}
+          />
+        </View>
+      </View>
             {/* Gamificação */}
 
             <View style={styles.section}>
@@ -134,6 +179,21 @@ const PerfilScreen = () => {
                 </View>
             </Modal>
 
+      {/* Pontuação */}
+      <View style={styles.pontuacaoContainer}>
+        {participarRanking && (
+        <View style={styles.pontuacaoItem}>
+          <Text style={styles.pontuacaoNumero}>29°</Text>
+          <Text>Ranking</Text>
+        </View>
+        )}
+        <View style={styles.pontuacaoItem}>
+          <Text style={styles.pontuacaoNumero}>209</Text>
+          <Text>Respostas</Text>
+        </View>
+        <View style={styles.pontuacaoItem}>
+          <Text style={styles.pontuacaoNumero}>10</Text>
+          <Text>Perguntas</Text>
             {/* Pontuação */}
             <View style={styles.pontuacaoContainer}>
                 {participarRanking && (
@@ -164,25 +224,51 @@ const PerfilScreen = () => {
         <View style={styles.moedasContainer}>
             <Text style={styles.moedasTexto}>459🪙</Text>
         </View>
+      </View>
+      <View style={styles.pontuacaoContainer}>
+        {participarRanking && (
+        <View style={styles.pontuacaoItem}>
+          <Text style={styles.pontuacaoNumero}>4,75</Text>
+          <Text>Média</Text>
+        </View>
+        )}
+      </View>
     )}
 </View>
 
             <View style={styles.separator} />
 
+      {/* Conta */}
+      <View style={styles.section}>
+        <Text style={[styles.sectionTitle, { marginTop: 20 }]}>Conta</Text>
             {/* Conta */}
             <View style={styles.section}>
                 <View style={styles.center}>
                     <Text style={[styles.sectionTitle, { marginTop: 20 }]}>Conta</Text></View>
 
+        <TouchableOpacity>
+          <Text style={{fontSize: 16, color: '#3b82f6'}}>Alterar senha</Text>
+        </TouchableOpacity>
                 <TouchableOpacity>
                     <Text style={{ fontSize: 16, color: '#3b82f6' }}>Alterar senha</Text>
                 </TouchableOpacity>
 
+        <TouchableOpacity>
+          <Text style={styles.deleteLink}>Excluir conta</Text>
+        </TouchableOpacity>
+      </View>
                 <TouchableOpacity>
                     <Text style={styles.deleteLink}>Excluir conta</Text>
                 </TouchableOpacity>
             </View>
 
+      <TouchableOpacity>
+        <Text style={styles.logoutText}>Sair da conta</Text>
+      </TouchableOpacity>
+    </View>
+    </ScrollView>
+  );
+};
             <TouchableOpacity>
                 <Text style={styles.logoutText}>Sair da conta</Text>
             </TouchableOpacity>
@@ -192,6 +278,79 @@ const PerfilScreen = () => {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#f5f5f5',
+    padding: 20,
+  },
+  header: {
+    alignItems: 'center',
+    backgroundColor: '#3b82f6',
+    paddingVertical: 20,
+    borderRadius: 10,
+    marginBottom: 20,
+  },
+  headerTitle: {
+    color: 'white',
+    fontSize: 20,
+    marginTop: 10,
+  },
+  section: {
+    marginBottom: 20,
+  },
+  sectionTitle: {
+    fontFamily: 'Itim_400Regular',
+    textAlign: 'center',
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  sectionSubTitle: {
+    fontFamily: 'Itim_400Regular',
+    fontSize: 16,
+  },
+  input: {
+    backgroundColor: 'white',
+    borderWidth: 1,
+    borderColor: '#ddd',
+    borderRadius: 5,
+    padding: 10,
+    marginBottom: 10,
+  },
+  switchContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  pontuacaoContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    borderRadius: 10,
+  },
+  pontuacaoItem: {
+    alignItems: 'center',
+    backgroundColor: 'white',
+    margin: 10,
+    padding: 20,
+    borderRadius: 10,
+  },
+  pontuacaoNumero: {
+    fontSize: 18,
+    color: '#173CAC',
+    fontWeight: 'bold',
+  },
+  deleteLink: {
+    marginTop: 10,
+    fontSize: 16,
+    color: '#FF0000',
+  },
+  logoutText: {
+    marginTop: 40,
+    textAlign: 'center',
+    color: 'red',
+    fontSize: 16,
+    fontFamily: 'Raleway_700Bold',
+  },
     container: {
         flex: 1,
         backgroundColor: '#F5F6FA',
