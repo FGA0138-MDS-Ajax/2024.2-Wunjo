@@ -51,6 +51,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 10,
   },
+  sectionSubTitle: {
+    fontSize: 14,
+    marginBottom: 5,
+  },
   input: {
     backgroundColor: 'white',
     borderWidth: 1,
