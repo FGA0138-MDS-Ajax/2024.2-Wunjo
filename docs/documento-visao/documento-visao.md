@@ -19,6 +19,7 @@
 | :------------- | :----- | :--------------------------- | :---------------------------- |
 | **24/11/2024** | 0.1    | Primeira versão do documento | David, Gabriel, João e Sophia |
 | **13/12/2024** | 0.2    | Atualização do documento | Sophia |
+| **26/01/2025** | 0.3    | Atualização das Sprints, backlog e gamificação | Sophia |
 
 
 ## **VISÃO GERAL DO PRODUTO**
@@ -63,7 +64,9 @@ As tecnologias foram escolhidas com base em suas grandes bases de documentaçõe
 - Docker
 
 As tecnologias Typescript, NodeJs, ExpressJs, React Native contam com uma ampla disponibilidade de bibliotecas que facilitam o desenvolvimento de novas funcionalidades e otimizam o tempo durante o desenvolvimento, além disso são tecnologias que funcionam com uma alta performance. Para a elaboração da Gamificação, foi escolhido o framework Octalysis, que tem como objetivo modificar os sentimentos e comportamentos do usuário da gamificação. 
+
 Como banco de dados foi decidido o uso do PostgreSQL devido ao amplo suporte para adicionar novos tipos de dados, funções e possuir um alto desempenho. Para seu manuseio será utilizado o Prisma ORM, assim facilitando as operações entre a API e o Banco de Dados.  
+
 Foi escolhido utilizar o Docker visto que possui diversas imagens que irão facilitar durante o desenvolvimento, como a do postgreSQL que poderá ser usada junto ao DBeaver ao invés de armazenar um banco localmente durante o desenvolvimento. Além disso, irá garantir que a aplicação vá rodar da maneira esperada em diversas máquinas, sem haver problema de interoperacionalidade.
 
 #### **Ferramentas**
@@ -110,10 +113,11 @@ Por fim, é notório que a utilização de todos esses frameworks combinam os va
 
 ### **Gamificação**
 
-A partir da anállise feita com o Octalisys e o Hexad, foi decidido o tema "Piratas" para o projeto. Como ferramentas essenciais para a gamificação, temos:
+A partir da análise feita com o Octalisys e o Hexad, foi decidido o tema "Piratas" para o projeto. Como ferramentas essenciais para a gamificação, temos:
 - Perfil: O usuário poderá visualizar seu título e a quantidade de ouro que ele possui;
 - Ranqueamento: É uma classificação dos usuários, de acordo com sua pontuação, podendo o usuário decidir participar ou não do ranking;
 - Pontuação: A pontuação é representada pela quantidade de ouro que o usuário acumulou, seja pelas ajudas dadas ou desafios cumpridos.
+
 O Plano Geral de Gamificação pode ser acessado em sua integridade em: [Plano Geral de Gamificação](https://fga0138-mds-ajax.github.io/2024.2-Wunjo/documentos-gamificacao/pgg/).
 
 ### **Organização do Projeto**
