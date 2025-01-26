@@ -38,7 +38,7 @@ describe('[POST] /api/v1/student/auth/login', async () => {
     });
   });
 
-  it('Should throws 400 ValidationError', async () => {
+  it('Should throw 400 ValidationError', async () => {
     const response = await request(api)
       .post('/api/v1/student/auth/login')
       .send({
@@ -65,7 +65,7 @@ describe('[POST] /api/v1/student/auth/login', async () => {
     });
   });
 
-  it('Should throws 401 Unauthenticateduser', async () => {
+  it('Should throw 401 Unauthenticateduser', async () => {
     const response = await request(api)
       .post('/api/v1/student/auth/login')
       .send({
