@@ -21,6 +21,7 @@ const PerfilScreen = () => {
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Informações Pessoais</Text>
 
+        <Text style={styles.sectionSubTitle}>Nome</Text>
         <TextInput
           style={styles.input}
           value={nome}
@@ -124,6 +125,10 @@ const styles = StyleSheet.create({
     fontFamily: 'Itim_400Regular',
     fontWeight: 'bold',
     marginBottom: 10,
+  },
+  sectionSubTitle: {
+    fontSize: 14,
+    marginBottom: 5,
   },
   input: {
     backgroundColor: 'white',
