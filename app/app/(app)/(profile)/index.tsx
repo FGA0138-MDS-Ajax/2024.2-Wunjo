@@ -1,37 +1,100 @@
-import Layout from '@/components/Layout';
-import { Button } from '@/components/ui/button2';
-import { Text } from '@/components/ui/text';
-import { useUnBordo } from '@/hooks/unbordo';
-import { useRouter } from 'expo-router';
-import { StyleSheet, View } from 'react-native';
-import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import ProfileHeader from '@/assets/images/profile-header';
+import React, { useState } from 'react';
+import { View, Text, TextInput, Switch, StyleSheet, TouchableOpacity } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
-export default function Profile() {
-  const { auth } = useUnBordo();
-  const route = useRouter();
-  const navigation = useNavigation();
+const PerfilScreen = () => {
+  const [nome, setNome] = useState('Renan V. Guedes');
+  const [curso, setCurso] = useState('Engenharia Aeroespacial');
+  const [email, setEmail] = useState('renanv.guedes@aluno.unb.br');
+  const [matricula, setMatricula] = useState('21012345');
+  const [participarRanking, setParticiparRanking] = useState(true);
 
   return (
-    <View>
-      <Layout className="mt-24">
-        <Text>Perfil!</Text>
-        <Button
-          label="LOGOUT"
-          onPress={async () => {
-            await auth.unauthenticate();
-            // route.replace('/');
-          }}
-        />
-      </Layout>
-      <View style={styles.headerbox}>
-        <ProfileHeader />
+    <View style={styles.container}>
+      {/* Header */}
+      <View style={styles.header}>
+        <Ionicons name="person-circle" size={80} color="white" />
+        <Text style={styles.headerTitle}>Título</Text>
       </View>
-      <View style={styles.container}>
 
+      {/* Informações Pessoais */}
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Informações Pessoais</Text>
+
+        <Text style={styles.sectionSubTitle}>Nome</Text>
+        <TextInput
+          style={styles.input}
+          value={nome}
+          onChangeText={setNome}
+          placeholder="Nome"
+        />
+
+        <TextInput
+          style={styles.input}
+          value={curso}
+          onChangeText={setCurso}
+          placeholder="Curso"
+        />
+
+        <TextInput
+          style={styles.input}
+          value={email}
+          onChangeText={setEmail}
+          placeholder="Email cadastrado"
+        />
+
+        <TextInput
+          style={styles.input}
+          value={matricula}
+          onChangeText={setMatricula}
+          placeholder="Matrícula"
+        />
       </View>
+
+      {/* Gamificação */}
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Gamificação</Text>
+        <View style={styles.switchContainer}>
+          <Text>Desejo participar do ranking</Text>
+          <Switch
+            value={participarRanking}
+            onValueChange={setParticiparRanking}
+          />
+        </View>
+      </View>
+
+      {/* Pontuação */}
+      <View style={styles.pontuacaoContainer}>
+        <View style={styles.pontuacaoItem}>
+          <Text style={styles.pontuacaoNumero}>29</Text>
+          <Text>Cursos</Text>
+        </View>
+        <View style={styles.pontuacaoItem}>
+          <Text style={styles.pontuacaoNumero}>209</Text>
+          <Text>Atividades</Text>
+        </View>
+        <View style={styles.pontuacaoItem}>
+          <Text style={styles.pontuacaoNumero}>10</Text>
+          <Text>Amigos</Text>
+        </View>
+      </View>
+
+      {/* Conta */}
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Conta</Text>
+
+        <TouchableOpacity>
+          <Text style={styles.link}>Alterar senha</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity>
+          <Text style={[styles.link, styles.deleteLink]}>Excluir conta</Text>
+        </TouchableOpacity>
+      </View>
+
+      <TouchableOpacity style={styles.logoutButton}>
+        <Text style={styles.logoutText}>Sair da conta</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -115,19 +178,4 @@ const styles = StyleSheet.create({
   },
 });
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  headerbox: {
-    backgroundColor: '#173CAC',
-    height: 200,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  header: {
-    bottom: 0,
-    height: '100%',
-    transform: [{ scale: 2.3 }, { rotate: '180deg' }],
-  },
-});
+export default PerfilScreen;
