@@ -4,10 +4,16 @@ import { Text } from '@/components/ui/text';
 import { useUnBordo } from '@/hooks/unbordo';
 import { useRouter } from 'expo-router';
 import { StyleSheet, View } from 'react-native';
+import React from 'react';
+import { View, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import ProfileHeader from '@/assets/images/profile-header';
 
 export default function Profile() {
   const { auth } = useUnBordo();
   const route = useRouter();
+  const navigation = useNavigation();
+
   return (
     <View>
       <Layout className="mt-24">
@@ -20,6 +26,12 @@ export default function Profile() {
           }}
         />
       </Layout>
+      <View style={styles.headerbox}>
+        <ProfileHeader />
+      </View>
+      <View style={styles.container}>
+
+      </View>
     </View>
   );
 };
@@ -100,5 +112,22 @@ const styles = StyleSheet.create({
   logoutText: {
     color: 'white',
     fontSize: 16,
+  },
+});
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  headerbox: {
+    backgroundColor: '#173CAC',
+    height: 200,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  header: {
+    bottom: 0,
+    height: '100%',
+    transform: [{ scale: 2.3 }, { rotate: '180deg' }],
   },
 });
