@@ -173,8 +173,20 @@ const PerfilScreen = () => {
                         <Text style={styles.modalTitle}>Deseja desativar sua participação no ranking?</Text>
                         <Text style={styles.modalMessage}>Essa ação fará você perder sua posição atual</Text>
                         <View style={styles.modalButtons}>
-                            <Button title="Cancelar" onPress={cancelSwitchChange} color="#FF6347" />
-                            <Button title="Confirmar" onPress={confirmSwitchChange} color="#4CAF50" />
+                            <Button 
+                              size="lg"
+                              variant='outline'
+                              action='primary'
+                              onPress={cancelSwitchChange}>
+                              <ButtonText>Cancelar</ButtonText>
+                              </Button>
+                            <Button 
+                              size="lg"
+                              variant='solid'
+                              action='primary'
+                              onPress={confirmSwitchChange}>
+                              <ButtonText>Continuar</ButtonText>
+                              </Button>
                         </View>
                     </View>
                 </View>
@@ -236,7 +248,6 @@ const PerfilScreen = () => {
       </View>
     )}
 </View>
-
             <View style={styles.separator} />
 
       {/* Conta */}
@@ -464,8 +475,6 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontFamily: 'Raleway_700Bold',
     },
-
-    // Estilos para o Modal
     modalOverlay: {
         flex: 1,
         justifyContent: 'center',
