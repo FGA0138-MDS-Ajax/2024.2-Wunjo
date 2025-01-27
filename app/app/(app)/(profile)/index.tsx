@@ -464,6 +464,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     deleteLink: {
+        marginLeft: 20,
         marginTop: 10,
         fontSize: 16,
         color: '#FF0000',
