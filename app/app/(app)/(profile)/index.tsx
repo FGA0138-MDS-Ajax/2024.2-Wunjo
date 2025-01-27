@@ -127,8 +127,20 @@ const PerfilScreen = () => {
                         <Text style={styles.modalTitle}>Deseja desativar sua participação no ranking?</Text>
                         <Text style={styles.modalMessage}>Essa ação fará você perder sua posição atual</Text>
                         <View style={styles.modalButtons}>
-                            <Button title="Cancelar" onPress={cancelSwitchChange} color="#FF6347" />
-                            <Button title="Confirmar" onPress={confirmSwitchChange} color="#4CAF50" />
+                            <Button 
+                              size="lg"
+                              variant='outline'
+                              action='primary'
+                              onPress={cancelSwitchChange}>
+                              <ButtonText>Cancelar</ButtonText>
+                              </Button>
+                            <Button 
+                              size="lg"
+                              variant='solid'
+                              action='primary'
+                              onPress={confirmSwitchChange}>
+                              <ButtonText>Continuar</ButtonText>
+                              </Button>
                         </View>
                     </View>
                 </View>
@@ -166,7 +178,6 @@ const PerfilScreen = () => {
         </View>
     )}
 </View>
-
             <View style={styles.separator} />
 
             {/* Conta */}
@@ -178,10 +189,10 @@ const PerfilScreen = () => {
                     <Text style={{ fontSize: 16, color: '#3b82f6' }}>Alterar senha</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity>
-                    <Text style={styles.deleteLink}>Excluir conta</Text>
-                </TouchableOpacity>
             </View>
+              <TouchableOpacity onPress={() => router.push('/ExcluirConta')}>
+              <Text style={styles.deleteLink}>Excluir conta</Text>
+            </TouchableOpacity>
 
             <TouchableOpacity>
                 <Text style={styles.logoutText}>Sair da conta</Text>
@@ -302,8 +313,6 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontFamily: 'Raleway_700Bold',
     },
-
-    // Estilos para o Modal
     modalOverlay: {
         flex: 1,
         justifyContent: 'center',
