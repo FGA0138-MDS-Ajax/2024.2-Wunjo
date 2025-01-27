@@ -190,9 +190,7 @@ const PerfilScreen = () => {
                 </TouchableOpacity>
 
             </View>
-              <TouchableOpacity onPress={() => router.push('/ExcluirConta')}>
               <Text style={styles.deleteLink}>Excluir conta</Text>
-            </TouchableOpacity>
 
             <TouchableOpacity>
                 <Text style={styles.logoutText}>Sair da conta</Text>
@@ -302,6 +300,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     deleteLink: {
+        marginLeft: 20,
         marginTop: 10,
         fontSize: 16,
         color: '#FF0000',
