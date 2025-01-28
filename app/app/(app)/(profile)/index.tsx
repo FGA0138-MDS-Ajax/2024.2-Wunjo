@@ -6,7 +6,7 @@ import { Itim_400Regular } from '@expo-google-fonts/itim';
 import { ScrollView } from 'react-native';
 import { View, Text, ScrollView, Switch, StyleSheet, TouchableOpacity, Image, Modal } from 'react-native';
 import { BackHeader } from '@/components/ui/backheader';
-import { router } from 'expo-router';
+import { useRouter } from 'expo-router';
 import ProfileHeader from '@/assets/images/profile-header';
 import { Button, ButtonText } from '@/components/ui/button';
 import EditableInput from '@/components/ui/profileInput/EditableInput';
