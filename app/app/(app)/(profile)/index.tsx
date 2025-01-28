@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, ScrollView, Switch, StyleSheet, TouchableOpacity, Image, Modal } from 'react-native';
 import { BackHeader } from '@/components/ui/backheader';
-import { router } from 'expo-router';
+import { useRouter } from 'expo-router';
 import ProfileHeader from '@/assets/images/profile-header';
 import { Button, ButtonText } from '@/components/ui/button';
 import EditableInput from '@/components/ui/profileInput/EditableInput';
@@ -40,6 +40,7 @@ const PerfilScreen = () => {
         // Adicione aqui a lógica para salvar as alterações, se necessário
     };
 
+    const router = useRouter();
     return (
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
             {/* Header */}
@@ -185,12 +186,14 @@ const PerfilScreen = () => {
                 <View style={styles.center}>
                     <Text style={[styles.sectionTitle, { marginTop: 20 }]}>Conta</Text></View>
 
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => router.push('/alterarSenha')}>
                     <Text style={{ fontSize: 16, color: '#3b82f6' }}>Alterar senha</Text>
                 </TouchableOpacity>
 
             </View>
-              <Text style={styles.deleteLink}>Excluir conta</Text>
+            <TouchableOpacity onPress={() => router.push('/excluirConta')}>
+                <Text style={styles.deleteLink}>Excluir conta</Text>
+            </TouchableOpacity>
 
             <TouchableOpacity>
                 <Text style={styles.logoutText}>Sair da conta</Text>
