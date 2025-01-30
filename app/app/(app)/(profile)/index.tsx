@@ -38,6 +38,12 @@ const PerfilScreen = () => {
     setParticiparRanking(false);
     setModalVisible(false);
   };
+
+  const handleLogout= () => {
+    setModalLogoutVisible(false);
+    while (router.canGoBack()) router.back()
+  }
+
   const [nome, setNome] = useState(usuario.nome);
   const [curso, setCurso] = useState(usuario.curso);
   const [email, setEmail] = useState(usuario.email);
@@ -46,6 +52,7 @@ const PerfilScreen = () => {
   const [isEditingNome, setIsEditingNome] = useState(false); // Estado para controlar a editabilidade do nome
   const [isEditingCurso, setIsEditingCurso] = useState(false); // Estado para controlar a editabilidade do curso
   const [modalVisible, setModalVisible] = useState(false); // Estado para controlar a visibilidade do modal
+  const [modalLogoutVisible, setModalLogoutVisible] = useState(false);
 
   const handleSave = () => {
     setIsEditingNome(false);
@@ -55,6 +62,7 @@ const PerfilScreen = () => {
   };
 
   const router = useRouter();
+
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
       {/* Header */}
@@ -193,6 +201,41 @@ const PerfilScreen = () => {
       <View style={styles.separator} />
 
       {/* Conta */}
+
+      {/* Modal de Confirmação de Logout */}
+      <Modal
+        transparent={true}
+        visible={modalLogoutVisible}
+        onRequestClose={() => setModalLogoutVisible(false)}
+      >
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalContainer}>
+            <Text style={styles.modalTitle}>Deseja sair da sua conta?</Text>
+            <Text style={styles.modalMessage}>Você precisará logar novamente na próxima vez que entrar.</Text>
+            <View style={styles.modalButtons}>
+            <View style={{flex: 1}}>
+            <Button
+                size="lg"
+                variant="outline"
+                onPress={() => setModalLogoutVisible(false)}
+                style={{height: 50}}
+              >
+                <ButtonText>Cancelar</ButtonText>
+              </Button>
+              <Button
+                size="lg"
+                variant="solid"
+                onPress={handleLogout}
+                style={{marginTop: 20, height: 55}}
+              >
+                <ButtonText>Sair</ButtonText>
+              </Button>
+            </View>
+            </View>
+          </View>
+        </View>
+      </Modal>
+
       <View style={styles.section}>
         <View style={styles.center}>
           <Text style={[styles.sectionTitle, { marginTop: 20 }]}>Conta</Text></View>
@@ -206,7 +249,8 @@ const PerfilScreen = () => {
         <Text style={styles.deleteLink}>Excluir conta</Text>
       </TouchableOpacity>
 
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => {
+        setModalLogoutVisible(true)}}>
         <Text style={styles.logoutText}>Sair da conta</Text>
       </TouchableOpacity>
 
