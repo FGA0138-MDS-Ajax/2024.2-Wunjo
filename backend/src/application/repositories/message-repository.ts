@@ -1,3 +1,5 @@
+import { Message } from '@/domain';
+
 export namespace MessageRepository {
   export const Name = 'MessageRepository';
 
