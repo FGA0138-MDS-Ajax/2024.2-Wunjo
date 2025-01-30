@@ -1,54 +1,42 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { Input } from "@/components/ui/input2";
+import { BackHeader } from '@/components/ui/backheader';
+import PirateClosedEyes from '@/assets/images/pirate-closed-eyes';
+import { Button, ButtonText } from '@/components/ui/button';
+import { useRouter } from 'expo-router';
+
 
 export default function AlterarSenha() {
     const [currentPassword, setCurrentPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
-    const navigation = useNavigation();
-
+    const router = useRouter();
     const handleChangePassword = () => {
+        //colocar as condicoes de senha
         if (newPassword !== confirmPassword) {
             alert('As novas senhas não coincidem');
             return;
         }
         // Lógica para alterar a senha
         console.log('Senha alterada');
-        // Navegar de volta para a tela de perfil ou outra tela
-        navigation.goBack();
+        //arrumar a rota q ta dando ruim
+router.push('/(app)/(profile)/alterarSenha/successfull/index');
     };
 
     return (
         <View style={styles.container}>
+            <BackHeader style={styles.customBackHeader}
+                onPress={() => router.back()} label="" />
             <Text style={styles.title}>Alterar Senha</Text>
-            <TextInput
-                style={styles.input}
-                placeholder="Senha Atual"
-                secureTextEntry
-                value={currentPassword}
-                onChangeText={setCurrentPassword}
-            />
-            <TextInput
-                style={styles.input}
-                placeholder="Nova Senha"
-                secureTextEntry
-                value={newPassword}
-                onChangeText={setNewPassword}
-            />
-            <TextInput
-                style={styles.input}
-                placeholder="Confirmar Nova Senha"
-                secureTextEntry
-                value={confirmPassword}
-                onChangeText={setConfirmPassword}
-            />
-            <TouchableOpacity style={styles.button} onPress={handleChangePassword}>
-                <Text style={styles.buttonText}>Alterar Senha</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.cancelButton} onPress={() => navigation.goBack()}>
-                <Text style={styles.cancelButtonText}>Cancelar</Text>
-            </TouchableOpacity>
+            <Input style={styles.input} label="Senha Atual" placeholder="Digite aqui..." />
+            <Input style={styles.input} label="Nova Senha" placeholder="Digite aqui..." />
+            <Input style={styles.input} label="Confirmar Nova Senha" placeholder="Digite aqui..." />
+            <Button variant='solid' style={{ width: 288, height: 50 }} onPress={handleChangePassword}>
+                <ButtonText>Alterar</ButtonText>
+            </Button>
+
+            <PirateClosedEyes style={styles.piratePosition} />
         </View>
     );
 }
@@ -56,40 +44,29 @@ export default function AlterarSenha() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
+        paddingHorizontal: 20,
+        paddingTop: 145,
         alignItems: 'center',
-        padding: 20,
     },
     title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        marginBottom: 20,
+        fontSize: 30,
+        marginBottom: 42,
+        textAlign: 'center',
+        fontFamily: 'Itim_400Regular',
+        color: '#703111'
     },
     input: {
-        width: '100%',
-        padding: 15,
-        borderWidth: 1,
-        borderColor: '#ccc',
-        borderRadius: 5,
-        marginBottom: 10,
+        marginBottom: 24,
     },
-    button: {
-        backgroundColor: '#3b82f6',
-        padding: 15,
-        borderRadius: 5,
-        marginBottom: 10,
+    customBackHeader: {
+        position: 'absolute',
+        top: 60,
+        left: 20,
+        zIndex: 1,
     },
-    buttonText: {
-        color: '#fff',
-        fontSize: 16,
-    },
-    cancelButton: {
-        backgroundColor: '#cccccc',
-        padding: 15,
-        borderRadius: 5,
-    },
-    cancelButtonText: {
-        color: '#000',
-        fontSize: 16,
-    },
+    piratePosition: {
+        position: 'absolute',
+        bottom: -22,
+        right: -25,
+    }
 });
