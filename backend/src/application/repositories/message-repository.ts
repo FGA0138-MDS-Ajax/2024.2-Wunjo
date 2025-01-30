@@ -27,7 +27,7 @@ export namespace MessageRepository {
   }
 }
 
-export interface QuestionRepository {
+export interface MessageRepository {
   create: (params: MessageRepository.Create.Input,) => Promise<MessageRepository.Create.Output>;
   delete: (params: MessageRepository.Delete.Input,) => Promise<MessageRepository.Delete.Output>;
   findAllBy: (params: MessageRepository.FindAllBy.Input,) => Promise<MessageRepository.FindAllBy.Output>;
