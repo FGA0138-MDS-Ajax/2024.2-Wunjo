@@ -28,9 +28,12 @@ export default function ExcluirConta() {
                         size="lg"
                         variant="solid"
                         action="primary"
-                        onPress={() => router.replace("../../../../")} >
+                        onPress={() => {
+                            while (router.canGoBack())
+                                router.back()
+                        }} >
                         {/* colocar a rota para a tela inicial, falhei miseravelmente */}
-                            
+
                         <ButtonText>Continuar</ButtonText>
                     </Button></View>
                 <JollyRoger style={styles.flag} />
