@@ -43,6 +43,12 @@ const PerfilScreen = () => {
     setParticiparRanking(false);
     setModalVisible(false);
   };
+
+  const handleLogout= () => {
+    setModalLogoutVisible(false);
+    while (router.canGoBack()) router.back()
+  }
+
   const [nome, setNome] = useState(usuario.nome);
   const [curso, setCurso] = useState(usuario.curso);
   const [email, setEmail] = useState(usuario.email);
@@ -51,6 +57,7 @@ const PerfilScreen = () => {
   const [isEditingNome, setIsEditingNome] = useState(false); // Estado para controlar a editabilidade do nome
   const [isEditingCurso, setIsEditingCurso] = useState(false); // Estado para controlar a editabilidade do curso
   const [modalVisible, setModalVisible] = useState(false); // Estado para controlar a visibilidade do modal
+  const [modalLogoutVisible, setModalLogoutVisible] = useState(false);
 
   const handleSave = () => {
     setIsEditingNome(false);
