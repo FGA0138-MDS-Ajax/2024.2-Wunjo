@@ -44,6 +44,13 @@ const PerfilScreen = () => {
     while (router.canGoBack()) router.back()
   }
 
+  const handleSave = () => {
+    setIsEditingNome(false);
+    setIsEditingCurso(false);
+
+    //colocar logica para salvar as alteracoes
+  };
+
   const [nome, setNome] = useState(usuario.nome);
   const [curso, setCurso] = useState(usuario.curso);
   const [email, setEmail] = useState(usuario.email);
@@ -53,13 +60,6 @@ const PerfilScreen = () => {
   const [isEditingCurso, setIsEditingCurso] = useState(false); // Estado para controlar a editabilidade do curso
   const [modalVisible, setModalVisible] = useState(false); // Estado para controlar a visibilidade do modal
   const [modalLogoutVisible, setModalLogoutVisible] = useState(false);
-
-  const handleSave = () => {
-    setIsEditingNome(false);
-    setIsEditingCurso(false);
-
-    //colocar logica para salvar as alteracoes
-  };
 
   const router = useRouter();
 
@@ -278,6 +278,17 @@ const styles = StyleSheet.create({
     bottom: 0,
     width: '100%',
     height: '100%',
+  },
+  profilePhotoContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 20,
+  },
+  editIcon: {
+    position: 'absolute',
+    bottom: 0,
+    right: -10,
   },
   backButton: {
     position: 'absolute',
