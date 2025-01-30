@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     },
     headerContainer: {
         ...StyleSheet.absoluteFillObject,
-        transform: [{ scale: 1.35}], // Aplica zoom no SVG
+        transform: [{ scale: 1.35}],
     },
     backButton: {
         position: 'absolute',

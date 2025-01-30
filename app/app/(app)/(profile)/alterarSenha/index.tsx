@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { Input } from "@/components/ui/input2";
 import { BackHeader } from '@/components/ui/backheader';
 import PirateClosedEyes from '@/assets/images/pirate-closed-eyes';
+import PirateWalking from '@/assets/images/pirate-walking';
 import { Button, ButtonText } from '@/components/ui/button';
 import { useRouter } from 'expo-router';
 
@@ -11,6 +12,7 @@ export default function AlterarSenha() {
     const [currentPassword, setCurrentPassword] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [successScreen, setsuccessScreen] = useState('alterar');
     const router = useRouter();
     const handleChangePassword = () => {
         //colocar as condicoes de senha
@@ -20,10 +22,20 @@ export default function AlterarSenha() {
         }
         // Lógica para alterar a senha
         console.log('Senha alterada');
-        //arrumar a rota q ta dando ruim
-router.push('/(app)/(profile)/alterarSenha/successfull/index');
+        setsuccessScreen('confirmacao');
     };
-
+    if (successScreen === 'confirmacao') {
+        return (
+            <View style={[styles.container, { paddingHorizontal: 40 }]}>
+                <Text style={styles.title}>Senha alterada com sucesso!</Text>
+                <Text style={styles.text}>Sua senha foi atualizada. Agora você pode acessar sua conta com segurança usando a nova senha cadastrada.</Text>
+                <Button variant='solid' style={{ width: 288, height: 50 }} onPress={() => router.back()}>
+                    <ButtonText>Continuar</ButtonText>
+                </Button>
+                <PirateWalking style={styles.pirateWalking} />
+            </View>
+        );
+    }
     return (
         <View style={styles.container}>
             <BackHeader style={styles.customBackHeader}
@@ -68,5 +80,15 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: -22,
         right: -25,
+    },
+    text: {
+        fontFamily: 'Raleway_400Regular',
+        fontSize: 18,
+        marginBottom: 40,
+        marginTop: 30,
+    },
+    pirateWalking: {
+        position: 'absolute',
+        bottom: -5,
     }
 });
