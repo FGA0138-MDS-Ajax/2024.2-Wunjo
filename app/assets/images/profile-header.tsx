@@ -1,22 +1,29 @@
-import * as React from "react";
-import { Svg, Path } from "react-native-svg";
+import * as React from "react"
+import Svg, { G, Path, Defs, SvgProps } from "react-native-svg"
+/* SVGR has dropped some elements not supported by react-native-svg: filter */
 
-import { SvgProps } from "react-native-svg";
+function SvgComponent(props: SvgProps) {
+  return (
+    <Svg
+      width={385}
+      height={212}
+      viewBox="0 0 385 212"
+      fill="none"
+      {...props}
+    >
+      <G filter="url(#filter0_d_1764_3806)">
+        <Path
+          d="M380 187.06c-158.967 0-226.41 35.865-375 0V1h375v186.06z"
+          fill="#173CAC"
+        />
+        <Path
+          d="M380 187.06c-158.967 0-226.41 35.865-375 0V1h375v186.06z"
+          stroke="#173CAC"
+        />
+      </G>
+      <Defs></Defs>
+    </Svg>
+  )
+}
 
-interface ProfileHeaderProps extends SvgProps {}
-
-const ProfileHeader = (props: ProfileHeaderProps) => (
-  <Svg
-    viewBox="0 0 1440 320"
-    width="100%"
-    height="100%"
-    {...props}
-  >
-    <Path
-      fill="#173CAC"
-      d="M0,64L48,85.3C96,107,192,149,288,176C384,203,480,213,576,197.3C672,181,768,139,864,138.7C960,139,1056,181,1152,186.7C1248,192,1344,160,1392,144L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
-    />
-  </Svg>
-);
-
-export default ProfileHeader;
+export default SvgComponent

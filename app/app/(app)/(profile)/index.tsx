@@ -5,45 +5,59 @@ import { Button as ButtonModal, ButtonText } from "@/components/ui/button";
 import { Itim_400Regular } from '@expo-google-fonts/itim';
 import { ScrollView } from 'react-native';
 import { View, Text, ScrollView, Switch, StyleSheet, TouchableOpacity, Image, Modal } from 'react-native';
-import { BackHeader } from '@/components/ui/backheader';
 import { useRouter } from 'expo-router';
-import ProfileHeader from '@/assets/images/profile-header';
 import { Button, ButtonText } from '@/components/ui/button';
 import EditableInput from '@/components/ui/profileInput/EditableInput';
 import NonEditableInput from '@/components/ui/profileInput/NonEditableInput';
+import ProfileHeaderComponent from '@/components/ui/ProfileHeader';
+
+// Simulação de um usuário
+const usuario = {
+  id: '1',
+  nome: 'Renan V. Guedes',
+  foto: 'https://picsum.photos/100',
+  email: '21012345@aluno.unb.br',
+  titulo: 'Marujo',
+  curso: 'Engenharia Aeroespacial',
+  matricula: '21012345',
+  ranking: 1,
+  respostas: 42,
+  perguntas: 10,
+};
 
 const PerfilScreen = () => {
 
-    const handleSwitchChange = (value: boolean) => {
-        if (!value) {
-            setModalVisible(true);
-        } else {
-            setParticiparRanking(value);
-        }
-    };
+  const handleSwitchChange = (value: boolean) => {
+    if (!value) {
+      setModalVisible(true);
+    } else {
+      setParticiparRanking(value);
+    }
+  };
 
-    const cancelSwitchChange = () => {
-        setModalVisible(false);
-    };
+  const cancelSwitchChange = () => {
+    setModalVisible(false);
+  };
 
-    const confirmSwitchChange = () => {
-        setParticiparRanking(false);
-        setModalVisible(false);
-    };
-    const [nome, setNome] = useState('Renan V. Guedes');
-    const [curso, setCurso] = useState('Engenharia Aeroespacial');
-    const [email, setEmail] = useState('renanv.guedes@aluno.unb.br');
-    const [matricula, setMatricula] = useState('21012345');
-    const [participarRanking, setParticiparRanking] = useState(true);
-    const [isEditingNome, setIsEditingNome] = useState(false); // Estado para controlar a editabilidade do nome
-    const [isEditingCurso, setIsEditingCurso] = useState(false); // Estado para controlar a editabilidade do curso
-    const [modalVisible, setModalVisible] = useState(false); // Estado para controlar a visibilidade do modal
+  const confirmSwitchChange = () => {
+    setParticiparRanking(false);
+    setModalVisible(false);
+  };
+  const [nome, setNome] = useState(usuario.nome);
+  const [curso, setCurso] = useState(usuario.curso);
+  const [email, setEmail] = useState(usuario.email);
+  const [matricula, setMatricula] = useState(usuario.matricula);
+  const [participarRanking, setParticiparRanking] = useState(true);
+  const [isEditingNome, setIsEditingNome] = useState(false); // Estado para controlar a editabilidade do nome
+  const [isEditingCurso, setIsEditingCurso] = useState(false); // Estado para controlar a editabilidade do curso
+  const [modalVisible, setModalVisible] = useState(false); // Estado para controlar a visibilidade do modal
 
-    const handleSave = () => {
-        setIsEditingNome(false);
-        setIsEditingCurso(false);
-        // Adicione aqui a lógica para salvar as alterações, se necessário
-    };
+  const handleSave = () => {
+    setIsEditingNome(false);
+    setIsEditingCurso(false);
+
+    //colocar logica para salvar as alteracoes
+  };
 
   return (
     <ScrollView>
@@ -65,19 +79,19 @@ const PerfilScreen = () => {
                 <Text style={styles.headerTitle}>Título</Text>
             </View>
 
-            {/* Informações Pessoais */}
-            <View style={styles.section}>
-                <View style={styles.center}>
-                    <Text style={styles.sectionTitle}>Informações Pessoais</Text>
-                </View>
-                <Text style={styles.sectionSubTitle}>Nome</Text>
-                <EditableInput
-                    value={nome}
-                    onChangeText={setNome}
-                    placeholder="Nome"
-                    editable={isEditingNome}
-                    onEditPress={() => setIsEditingNome(!isEditingNome)}
-                />
+      {/* Informações Pessoais */}
+      <View style={styles.section}>
+        <View style={styles.center}>
+          <Text style={styles.sectionTitle}>Informações Pessoais</Text>
+        </View>
+        <Text style={styles.sectionSubTitle}>Nome</Text>
+        <EditableInput
+          value={nome}
+          onChangeText={setNome}
+          placeholder="Nome"
+          editable={isEditingNome}
+          onEditPress={() => setIsEditingNome(!isEditingNome)}
+        />
 
         <Text style={styles.sectionSubTitle}>Curso</Text>
         <TextInput
@@ -122,17 +136,17 @@ const PerfilScreen = () => {
                     placeholder="Matrícula"
                 />
 
-                {(isEditingNome || isEditingCurso) && (
-                    <View style={styles.saveButtonContainer}>
-                        <TouchableOpacity onPress={handleSave}>
-                            <Button size="lg">
-                                <ButtonText>Salvar</ButtonText>
-                            </Button>
-                        </TouchableOpacity>
-                    </View>
-                )}
-            </View>
-            <View style={styles.separator} />
+        {(isEditingNome || isEditingCurso) && (
+          <View style={styles.saveButtonContainer}>
+            <TouchableOpacity onPress={handleSave}>
+              <Button size="lg">
+                <ButtonText>Salvar</ButtonText>
+              </Button>
+            </TouchableOpacity>
+          </View>
+        )}
+      </View>
+      <View style={styles.separator} />
 
       {/* Gamificação */}
       <View style={styles.section}>
@@ -147,50 +161,50 @@ const PerfilScreen = () => {
       </View>
             {/* Gamificação */}
 
-            <View style={styles.section}>
-                <View style={styles.center}>
-                    <Text style={styles.sectionTitle}>Gamificação</Text></View>
-                <View style={styles.switchContainer}>
-                    <Text style={{ fontSize: 18, fontFamily: 'Raleway_400Regular' }}>Desejo participar do ranking</Text>
-                    <Switch
-                        value={participarRanking}
-                        onValueChange={handleSwitchChange}
-                        trackColor={{ false: '#9C9C9C', true: '#4CAF50' }} // Cor do fundo do switch
-                        thumbColor={participarRanking ? '#fff' : '#fff'} // Cor da bolinha do switch
-                        style={{ transform: [{ scaleX: 1.5 }, { scaleY: 1.5 }] }} // Aumenta o tamanho do switch
-                    />
-                </View>
-            </View>
+      <View style={styles.section}>
+        <View style={styles.center}>
+          <Text style={styles.sectionTitle}>Gamificação</Text></View>
+        <View style={styles.switchContainer}>
+          <Text style={{ fontSize: 18, fontFamily: 'Raleway_400Regular' }}>Desejo participar do ranking</Text>
+          <Switch
+            value={participarRanking}
+            onValueChange={handleSwitchChange}
+            trackColor={{ false: '#9C9C9C', true: '#4CAF50' }} // Cor do fundo do switch
+            thumbColor={participarRanking ? '#fff' : '#fff'} // Cor da bolinha do switch
+            style={{ transform: [{ scaleX: 1.5 }, { scaleY: 1.5 }] }} // Aumenta o tamanho do switch
+          />
+        </View>
+      </View>
 
-            {/* Modal de Confirmação */}
-            <Modal
-                transparent={true}
-                visible={modalVisible}
-                onRequestClose={cancelSwitchChange}
-            >
-                <View style={styles.modalOverlay}>
-                    <View style={styles.modalContainer}>
-                        <Text style={styles.modalTitle}>Deseja desativar sua participação no ranking?</Text>
-                        <Text style={styles.modalMessage}>Essa ação fará você perder sua posição atual</Text>
-                        <View style={styles.modalButtons}>
-                            <Button 
-                              size="lg"
-                              variant='outline'
-                              action='primary'
-                              onPress={cancelSwitchChange}>
-                              <ButtonText>Cancelar</ButtonText>
-                              </Button>
-                            <Button 
-                              size="lg"
-                              variant='solid'
-                              action='primary'
-                              onPress={confirmSwitchChange}>
-                              <ButtonText>Continuar</ButtonText>
-                              </Button>
-                        </View>
-                    </View>
-                </View>
-            </Modal>
+      {/* Modal de Confirmação */}
+      <Modal
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={cancelSwitchChange}
+      >
+        <View style={styles.modalOverlay}>
+          <View style={styles.modalContainer}>
+            <Text style={styles.modalTitle}>Deseja desativar sua participação no ranking?</Text>
+            <Text style={styles.modalMessage}>Essa ação fará você perder sua posição atual</Text>
+            <View style={styles.modalButtons}>
+              <Button
+                size="lg"
+                variant='outline'
+                action='primary'
+                onPress={cancelSwitchChange}>
+                <ButtonText>Cancelar</ButtonText>
+              </Button>
+              <Button
+                size="lg"
+                variant='solid'
+                action='primary'
+                onPress={confirmSwitchChange}>
+                <ButtonText>Continuar</ButtonText>
+              </Button>
+            </View>
+          </View>
+        </View>
+      </Modal>
 
       {/* Pontuação */}
       <View style={styles.pontuacaoContainer}>
@@ -285,8 +299,8 @@ const PerfilScreen = () => {
                 <Text style={styles.logoutText}>Sair da conta</Text>
             </TouchableOpacity>
 
-        </ScrollView>
-    );
+    </ScrollView>
+  );
 }
 
 const styles = StyleSheet.create({
