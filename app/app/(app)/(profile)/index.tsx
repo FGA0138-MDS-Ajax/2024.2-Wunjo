@@ -49,6 +49,13 @@ const PerfilScreen = () => {
     while (router.canGoBack()) router.back()
   }
 
+  const handleSave = () => {
+    setIsEditingNome(false);
+    setIsEditingCurso(false);
+
+    //colocar logica para salvar as alteracoes
+  };
+
   const [nome, setNome] = useState(usuario.nome);
   const [curso, setCurso] = useState(usuario.curso);
   const [email, setEmail] = useState(usuario.email);
