@@ -12,11 +12,11 @@ export namespace ChatRoomRepository {
   export namespace GetMessages{
     export type Input = { chatRoomId: string, };
 
-    export type Output = Pick<ChatRoom, 'messages'>;
+    export type Output = Pick<ChatRoom, 'messages'> | null;
   }
 
   export namespace Update{
-    export type Input = { status: 'OPEN' | 'CLOSED', };
+    export type Input = Partial<ChatRoom>;
 
     export type Output = ChatRoom;
   }
@@ -26,5 +26,5 @@ export namespace ChatRoomRepository {
 export interface ChatRoomRepository {
   create: (params: ChatRoomRepository.Create.Input) => Promise<ChatRoomRepository.Create.Output>;
   getMessages: (params: ChatRoomRepository.GetMessages.Input) => Promise<ChatRoomRepository.GetMessages.Output>;
-  update: (params: ChatRoomRepository.Update.Input) => Promise<ChatRoomRepository.Update.Output>;
+  update: (id: string, params: ChatRoomRepository.Update.Input) => Promise<ChatRoomRepository.Update.Output>;
 };
