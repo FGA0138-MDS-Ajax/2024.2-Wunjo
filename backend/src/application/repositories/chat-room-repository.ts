@@ -16,7 +16,7 @@ export namespace ChatRoomRepository {
   }
 
   export namespace Update{
-    export type Input = Partial<ChatRoom>;
+    export type Input = Partial<Omit<ChatRoom, 'id' | 'messages'>>;
 
     export type Output = ChatRoom;
   }
