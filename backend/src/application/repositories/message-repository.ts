@@ -12,10 +12,9 @@ export namespace MessageRepository {
   export namespace Delete {
     export type Input = {
       id: string;
-      message: Message;
     };
 
-    export type Output = Message;
+    export type Output = boolean;
   }
 
 }
