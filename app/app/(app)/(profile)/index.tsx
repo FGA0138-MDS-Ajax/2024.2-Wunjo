@@ -5,12 +5,13 @@ import { Button, ButtonText } from '@/components/ui/button';
 import EditableInput from '@/components/ui/profileInput/EditableInput';
 import NonEditableInput from '@/components/ui/profileInput/NonEditableInput';
 import ProfileHeaderComponent from '@/components/ui/ProfileHeader';
+import Coin from '@/assets/images/coin';
 
 // Simulação de um usuário
 const usuario = {
   id: '1',
   nome: 'Renan V. Guedes',
-  foto: 'https://picsum.photos/100',
+  avatar: require('@/assets/avatars/avatar1.webp'),
   email: '21012345@aluno.unb.br',
   titulo: 'Marujo',
   curso: 'Engenharia Aeroespacial',
@@ -39,7 +40,7 @@ const PerfilScreen = () => {
     setModalVisible(false);
   };
 
-  const handleLogout= () => {
+  const handleLogout = () => {
     setModalLogoutVisible(false);
     while (router.canGoBack()) router.back()
   }
@@ -67,7 +68,7 @@ const PerfilScreen = () => {
     <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
       {/* Header */}
       <ProfileHeaderComponent
-        photoUri={usuario.foto}
+        photoUri={usuario.avatar}
         title={usuario.titulo}
         onBackPress={() => router.back()}
       />
@@ -170,23 +171,23 @@ const PerfilScreen = () => {
       <View style={styles.pontuacaoContainer}>
         {participarRanking && (
           <View style={styles.pontuacaoItem}>
-            <Text style={styles.pontuacaoNumero}>29°</Text>
+            <Text style={styles.pontuacaoNumero}>{usuario.ranking}°</Text>
             <Text>Ranking</Text>
           </View>
         )}
         <View style={styles.pontuacaoItem}>
-          <Text style={styles.pontuacaoNumero}>209</Text>
+          <Text style={styles.pontuacaoNumero}>{usuario.respostas}</Text>
           <Text>Respostas</Text>
         </View>
         <View style={styles.pontuacaoItem}>
-          <Text style={styles.pontuacaoNumero}>10</Text>
+          <Text style={styles.pontuacaoNumero}>{usuario.perguntas}</Text>
           <Text>Perguntas</Text>
         </View>
       </View>
       <View style={styles.pontuacaoContainer}>
         {participarRanking && (
           <View style={styles.pontuacaoItem}>
-            <Text style={styles.pontuacaoNumero}>4,75</Text>
+            <Text style={styles.pontuacaoNumero}>4,75⭐</Text>
             <Text>Média</Text>
           </View>
         )}
@@ -194,7 +195,8 @@ const PerfilScreen = () => {
       <View style={styles.pontuacaoContainer}>
         {participarRanking && (
           <View style={styles.moedasContainer}>
-            <Text style={styles.moedasTexto}>459🪙</Text>
+            <Text style={styles.moedasTexto}>459</Text>
+            <Coin></Coin>
           </View>
         )}
       </View>
@@ -213,24 +215,24 @@ const PerfilScreen = () => {
             <Text style={styles.modalTitle}>Deseja sair da sua conta?</Text>
             <Text style={styles.modalMessage}>Você precisará logar novamente na próxima vez que entrar.</Text>
             <View style={styles.modalButtons}>
-            <View style={{flex: 1}}>
-            <Button
-                size="lg"
-                variant="outline"
-                onPress={() => setModalLogoutVisible(false)}
-                style={{height: 50}}
-              >
-                <ButtonText>Cancelar</ButtonText>
-              </Button>
-              <Button
-                size="lg"
-                variant="solid"
-                onPress={handleLogout}
-                style={{marginTop: 20, height: 55}}
-              >
-                <ButtonText>Sair</ButtonText>
-              </Button>
-            </View>
+              <View style={{ flex: 1 }}>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  onPress={() => setModalLogoutVisible(false)}
+                  style={{ height: 50 }}
+                >
+                  <ButtonText>Cancelar</ButtonText>
+                </Button>
+                <Button
+                  size="lg"
+                  variant="solid"
+                  onPress={handleLogout}
+                  style={{ marginTop: 20, height: 55 }}
+                >
+                  <ButtonText>Sair</ButtonText>
+                </Button>
+              </View>
             </View>
           </View>
         </View>
@@ -250,7 +252,8 @@ const PerfilScreen = () => {
       </TouchableOpacity>
 
       <TouchableOpacity onPress={() => {
-        setModalLogoutVisible(true)}}>
+        setModalLogoutVisible(true)
+      }}>
         <Text style={styles.logoutText}>Sair da conta</Text>
       </TouchableOpacity>
 
@@ -411,6 +414,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
   },
   moedasContainer: {
+    flexDirection: 'row',
     alignItems: 'center',
     marginTop: 15,
   },
