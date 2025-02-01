@@ -1,3 +1,4 @@
+export * from './ChatRoom';
 export * from './Email';
 export * from './EmailTemplate';
 export * from './Message';
