@@ -16,7 +16,7 @@ import { Select } from '@/components/ui/select';
 const usuario = {
   id: '1',
   nome: 'Renan V. Guedes',
-  foto: 'https://picsum.photos/100',
+  avatar: require('@/assets/avatars/avatar1.webp'),
   email: '21012345@aluno.unb.br',
   titulo: 'Marujo',
   curso: 'Engenharia Aeroespacial',
@@ -45,7 +45,7 @@ const PerfilScreen = () => {
     setModalVisible(false);
   };
 
-  const handleLogout= () => {
+  const handleLogout = () => {
     setModalLogoutVisible(false);
     while (router.canGoBack()) router.back()
   }
