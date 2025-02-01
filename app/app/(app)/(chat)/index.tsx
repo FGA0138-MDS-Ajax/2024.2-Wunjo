@@ -3,7 +3,14 @@ import { View, Text, FlatList, StyleSheet, TouchableOpacity, Image } from 'react
 import { useRouter } from 'expo-router';
 import ChatBox from '@/components/ui/chat/chatBox';
 
-const chatData = [
+interface ChatData {
+  id: string;
+  chatId: string;
+  users: { id: string; name: string; image: string }[];
+  lastMessage: string;
+}
+
+const chatData: Array<ChatData> = [
   {
     id: '1',
     chatId: 'chat1',
@@ -47,8 +54,8 @@ const ChatList = () => {
   const router = useRouter();
   const currentUserId = '123'; // ID do usuário atual
 
-  const handleChatPress = (chat) => {
-    const otherUser = chat.users.find(user => user.id !== currentUserId);
+  const handleChatPress = (chat: ChatData) => {
+    const otherUser = chat.users.find(user => user.id !== currentUserId)!;
     router.push({
       pathname: '/view',
       params: {
@@ -60,8 +67,10 @@ const ChatList = () => {
     });
   };
 
-  const renderChatItem = ({ item }) => {
-    const otherUser = item.users.find(user => user.id !== currentUserId);
+  const renderChatItem = ({ item }: { item: ChatData }
+
+  ) => {
+    const otherUser = item.users.find(user => user.id !== currentUserId)!;
     return (
       <TouchableOpacity onPress={() => handleChatPress(item)}>
         <ChatBox username={otherUser.name} message={item.lastMessage} userImage={otherUser.image} onPress={() => handleChatPress(item)} />

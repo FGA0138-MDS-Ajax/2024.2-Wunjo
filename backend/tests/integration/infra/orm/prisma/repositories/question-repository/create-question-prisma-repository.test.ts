@@ -9,7 +9,6 @@ describe('Create QuestionPrismaRepository', () => {
   let repo: QuestionRepository;
   const studentBuilder = StudentBuilder.aStudent();
   const student = studentBuilder.get();
-
   const input = QuestionBuilder.aQuestion()
     .withParams({
       studentId: student.id,
@@ -23,6 +22,7 @@ describe('Create QuestionPrismaRepository', () => {
 
   afterAll(async () => {
     await prisma.$queryRaw`TRUNCATE TABLE "questions" CASCADE;`;
+    await prisma.$queryRaw`TRUNCATE TABLE "students" CASCADE;`;
   });
 
   it('should create a question', async () => {

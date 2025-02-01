@@ -7,7 +7,7 @@ const defaultStyle = StyleSheet.create({
         borderRadius: 22.5,
         maxHeight: 50
     },
-    square: {
+    circle: {
         height: 75,
         width: 75,
         borderRadius: 75,
@@ -25,7 +25,7 @@ export function Button({
     label?: string,
     children?: React.ReactNode,
     onPress: () => void,
-    variant?: "wide" | "square",
+    variant?: "wide" | "circle",
     style?: StyleProp<ViewStyle>
 }) {
     return <Pressable

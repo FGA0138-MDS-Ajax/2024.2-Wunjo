@@ -59,8 +59,8 @@ export class BullMQ {
   public static async setupAndInitWorkersAndQueues(): Promise<void> {
     const bullMQ = await BullMQ.getInstance();
 
-    await bullMQ.intializeWorkers();
-    await bullMQ.intializeQueues();
+    await bullMQ.initializeWorkers();
+    await bullMQ.initializeQueues();
   }
 
   public static async createJob<JobInput>(
@@ -98,7 +98,7 @@ export class BullMQ {
     Object.assign(bullMQ.workers, { [key]: worker });
   }
 
-  private async intializeWorkers(): Promise<void> {
+  private async initializeWorkers(): Promise<void> {
     const bullMQ = await BullMQ.getInstance();
 
     Object.keys(bullMQ.workers).forEach((key) => {
@@ -111,7 +111,7 @@ export class BullMQ {
     });
   }
 
-  private async intializeQueues(): Promise<void> {
+  private async initializeQueues(): Promise<void> {
     const bullMQ = await BullMQ.getInstance();
 
     Object.keys(bullMQ.workers).forEach(async (key) => {

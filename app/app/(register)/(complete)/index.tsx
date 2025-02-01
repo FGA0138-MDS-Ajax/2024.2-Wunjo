@@ -57,7 +57,7 @@ export function Complete({children, onPress}: {children?: React.ReactNode, onPre
                     alignItems: "flex-end",
                 }}>
                     <Button
-                        variant="square"
+                        variant="circle"
                         onPress={onPress}
                         style={{
                             margin: 20,

@@ -2,7 +2,7 @@ import * as React from "react"
 import Svg, { Path, G } from "react-native-svg"
 import { StyleProp, ViewStyle } from "react-native"
 
-function SvgComponent({style}: {style: StyleProp<ViewStyle>}) {
+function SvgComponent({style}: {style?: StyleProp<ViewStyle>}) {
   return (
     <Svg
       width={442}

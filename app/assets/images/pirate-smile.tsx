@@ -1,15 +1,15 @@
 import * as React from "react"
+import { StyleProp, ViewStyle } from "react-native"
 import Svg, { Path } from "react-native-svg"
 
-function SvgComponent({width, height}: {width: number, height: number}) {
+function SvgComponent({width, height, style}: {width: number, height: number, style?: StyleProp<ViewStyle>}) {
   return (
     <Svg
       width={width}
       height={height}
       viewBox="0 0 159 327"
       fill="none"
-      
-
+      style={style}
     >
       <Path
         d="M59.175 271.74c2.96-4.565 6.046-9.624 9.007-15.3 6.169-11.721 9.994-22.826 12.585-32.203a419.452 419.452 0 01-5.8-6.663c-7.484 16.78-14.97 33.602-22.455 50.464l6.663 3.702z"

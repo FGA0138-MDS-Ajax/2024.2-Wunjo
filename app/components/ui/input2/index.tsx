@@ -1,4 +1,33 @@
-import { View, Text, TextInput, KeyboardType } from "react-native";
+import React from "react";
+import {
+    View,
+    Text,
+    TextInput,
+    KeyboardType,
+    StyleSheet,
+    StyleProp,
+    TextStyle,
+    Pressable
+} from "react-native";
+
+const variants = StyleSheet.create({
+    square: {
+        backgroundColor: "#703111",
+        borderRadius: 12,
+        width: 66,
+        aspectRatio: 1,
+        textAlign: "center",
+        color: "#FFA33D",
+        fontSize: 32
+    },
+    wide: {
+        backgroundColor: "white",
+        borderRadius: 8,
+        height: 48,
+        width: "100%",
+        paddingLeft: 15,  
+    },
+})
 
 export function Input({
     label,
@@ -8,7 +37,11 @@ export function Input({
     editable = true,
     value,
     keyboardType = 'default',
-    showSoftInputOnFocus = true
+    showSoftInputOnFocus = true,
+    variant = "wide",
+    style,
+    maxLength,
+    children
 }: {
     label?: string,
     placeholder?: string,
@@ -17,33 +50,63 @@ export function Input({
     editable?: boolean,
     value?: string,
     keyboardType?: KeyboardType,
-    showSoftInputOnFocus?: boolean
+    showSoftInputOnFocus?: boolean,
+    variant?: "square" | "wide",
+    style?: StyleProp<TextStyle>,
+    maxLength?: number,
+    children?: React.ReactNode
 }) {
     return <View style={{
         display: "flex",
         flexDirection: "column",
         rowGap: 2,
-        width: "100%",
+        width: variants[variant].width,
+        position: "relative"
     }}>
-        <Text className="font-itim" style={{
-            color: "black",
-            fontSize: 15,
-        }}>{label}</Text>
-        <TextInput
-            showSoftInputOnFocus={showSoftInputOnFocus}
-            keyboardType={keyboardType}
-            editable={editable}
-            secureTextEntry={secureTextEntry}
-            className={"font-raleway"}
-            placeholder={placeholder}
+        {
+            label && <Text className="font-itim" style={{
+                color: "black",
+                fontSize: 15,
+            }}>
+                {label}
+            </Text>
+        }
+        
+        {
+            variant === "square" && <View
+                style={{
+                    position: "absolute",
+                    backgroundColor: "#55250C",
+                    width: "100%",
+                    height: "100%",
+                    bottom: -4,
+                    borderRadius: variants[variant].borderRadius
+                }}
+            />
+        }
+        <Pressable
             onPress={onPress}
-            value={value}
             style={{
-                backgroundColor: "white",
-                borderRadius: 8,
-                height: 48,
-                width: "100%",
-                paddingLeft: 15,
-        }}/>
+                position: "relative",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center"
+            }}
+        >
+            <TextInput
+                showSoftInputOnFocus={showSoftInputOnFocus}
+                keyboardType={keyboardType}
+                editable={editable}
+                secureTextEntry={secureTextEntry}
+                className={"font-raleway"}
+                placeholder={placeholder}
+                onPress={onPress}
+                value={value}
+                {...maxLength && { maxLength: maxLength }}
+                style={[variants[variant], style]}
+            />
+            {children}
+        </Pressable>
+        
     </View>
 }

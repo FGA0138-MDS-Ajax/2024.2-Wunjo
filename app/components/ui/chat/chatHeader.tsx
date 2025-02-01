@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { useRouter } from 'expo-router';
 import ChatOptions from '@/components/ui/chat/chatOption'; // Certifique-se de que o caminho está correto
-import { BackButton } from '@/components/ui/backheader'; // Certifique-se de que o caminho está correto
+import { BackHeader } from '@/components/ui/backheader'; // Certifique-se de que o caminho está correto
 
 interface ChatHeaderProps {
     username: string;
@@ -25,7 +25,7 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({ username, userImage }) => {
     return (
         <View style={styles.header}>
             <TouchableOpacity onPress={() => router.back()}>
-                <BackButton onPress={() => router.back()} label="" />
+                <BackHeader onPress={() => router.back()} label="" />
             </TouchableOpacity>
             <Image source={{ uri: userImage }} style={styles.userImage} />
             <Text style={styles.title}>{username}</Text>

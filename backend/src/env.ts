@@ -8,6 +8,9 @@ const envSchema = z.object({
   JWT_SECRET_KEY: z.string(),
   JWT_TOKEN_EXPIRATION: z.string(),
   REDIS_URL: z.string(),
+  GMAIL_AUTH_USER: z.string().optional(),
+  GMAIL_AUTH_PASS: z.string().optional(),
+  EMAIL_FROM: z.string().optional(),
 });
 
 const parsedEnv = envSchema.safeParse(process.env);

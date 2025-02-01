@@ -5,10 +5,12 @@ import ImageViewing from 'react-native-image-viewing';
 interface MessageBalloonProps {
     text: string;
     sender: string;
-    image?: string; //prop opcional
+    image?: string | null;
 }
 
-const MessageBalloon: React.FC<MessageBalloonProps> = ({ text, sender, image }) => {
+const MessageBalloon: React.FC<MessageBalloonProps> = (
+    { text, sender, image }
+) => {
     const [isImageViewerVisible, setImageViewerVisible] = useState(false);
 
     return (
@@ -19,12 +21,18 @@ const MessageBalloon: React.FC<MessageBalloonProps> = ({ text, sender, image }) 
                 </TouchableOpacity>
             )}
             {text && <Text style={styles.messageText}>{text}</Text>}
-            <ImageViewing
-                images={[{ uri: image }]}
+            {image && <ImageViewing
+                images={[{uri: image }]}
+                imageIndex={0}
+                visible={isImageViewerVisible}
+                onRequestClose={() => setImageViewerVisible(false)}
+            /> || <ImageViewing
+                images={[]}
                 imageIndex={0}
                 visible={isImageViewerVisible}
                 onRequestClose={() => setImageViewerVisible(false)}
             />
+            }
         </View>
     );
 };
