@@ -10,6 +10,7 @@ import { Button, ButtonText } from '@/components/ui/button';
 import EditableInput from '@/components/ui/profileInput/EditableInput';
 import NonEditableInput from '@/components/ui/profileInput/NonEditableInput';
 import ProfileHeaderComponent from '@/components/ui/ProfileHeader';
+import { Select } from '@/components/ui/select';
 
 // Simulação de um usuário
 const usuario = {
@@ -55,6 +56,12 @@ const PerfilScreen = () => {
 
     //colocar logica para salvar as alteracoes
   };
+
+  const handleCancel = () => {
+    setIsEditingNome(false);
+    setIsEditingCurso(false);
+  };
+  
 
   const [nome, setNome] = useState(usuario.nome);
   const [curso, setCurso] = useState(usuario.curso);
@@ -152,8 +159,13 @@ const PerfilScreen = () => {
 
         {(isEditingNome || isEditingCurso) && (
           <View style={styles.saveButtonContainer}>
+            <TouchableOpacity onPress={handleCancel}>
+              <Button size="lg" variant='outline' style={{width: 150, marginRight: 30}}>
+                <ButtonText>cancelar</ButtonText>
+              </Button>
+            </TouchableOpacity>
             <TouchableOpacity onPress={handleSave}>
-              <Button size="lg">
+              <Button size="lg" style={{width: 150}}>
                 <ButtonText>Salvar</ButtonText>
               </Button>
             </TouchableOpacity>
