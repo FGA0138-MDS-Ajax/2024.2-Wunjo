@@ -120,41 +120,6 @@ export function Template({
                 />
 
                 {/* Colocar Dificuldade */}
-                <View>
-                    <Select
-                        modalVisible={modalVisible}
-                        setModalVisible={setModalVisible}
-                        label={second_input_label}
-                        placeholder="Selecione..."
-                        value={dificuldade}
-                        modalHeight={3}
-                    >
-                        <Option
-                            actual={dificuldade}
-                            set={() => {
-                                setDificuldade("Baixa");
-                                setModalVisible(false);
-                            }}
-                            label="Baixa"
-                        />
-                        <Option
-                            actual={dificuldade}
-                            set={() => {
-                                setDificuldade("Média");
-                                setModalVisible(false);
-                            }}
-                            label="Média"
-                        />
-                        <Option
-                            actual={dificuldade}
-                            set={() => {
-                                setDificuldade("Alta");
-                                setModalVisible(false);
-                            }}
-                            label="Alta"
-                        />
-                    </Select>
-                </View>
                 <View
                     style={{
                         //backgroundColor: "red",

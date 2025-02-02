@@ -5,6 +5,7 @@ import { Button, ButtonText } from '@/components/ui/button';
 import EditableInput from '@/components/ui/profileInput/EditableInput';
 import NonEditableInput from '@/components/ui/profileInput/NonEditableInput';
 import ProfileHeaderComponent from '@/components/ui/ProfileHeader';
+import { Select } from '@/components/ui/select';
 
 // Simulação de um usuário
 const usuario = {
@@ -51,6 +52,12 @@ const PerfilScreen = () => {
     //colocar logica para salvar as alteracoes
   };
 
+  const handleCancel = () => {
+    setIsEditingNome(false);
+    setIsEditingCurso(false);
+  };
+  
+
   const [nome, setNome] = useState(usuario.nome);
   const [curso, setCurso] = useState(usuario.curso);
   const [email, setEmail] = useState(usuario.email);
@@ -60,6 +67,7 @@ const PerfilScreen = () => {
   const [isEditingCurso, setIsEditingCurso] = useState(false); // Estado para controlar a editabilidade do curso
   const [modalVisible, setModalVisible] = useState(false); // Estado para controlar a visibilidade do modal
   const [modalLogoutVisible, setModalLogoutVisible] = useState(false);
+  const [modalCursoVisible, setModalCursoVisible] = useState(false);
 
   const router = useRouter();
 
@@ -86,14 +94,35 @@ const PerfilScreen = () => {
           onEditPress={() => setIsEditingNome(!isEditingNome)}
         />
 
-        <Text style={styles.sectionSubTitle}>Curso</Text>
-        <EditableInput
+        {/* Curso */}
+
+        <Select
+          label="Curso"
+          placeholder="Selecione seu curso"
           value={curso}
-          onChangeText={setCurso}
-          placeholder="Curso"
-          editable={isEditingCurso}
-          onEditPress={() => setIsEditingCurso(!isEditingCurso)}
-        />
+          modalVisible={modalCursoVisible}
+          setModalVisible={setModalCursoVisible}
+        >
+          {/* Lista de opções */}
+          <TouchableOpacity onPress={() => { setCurso('Engenharias'); setModalCursoVisible(false); setIsEditingCurso(true); }}>
+            <Text style={styles.optionText}>Engenharias</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => { setCurso('Engenharia Aeroespacial'); setModalCursoVisible(false); setIsEditingCurso(true); }}>
+            <Text style={styles.optionText}>Engenharia Aeroespacial</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => { setCurso('Ciência da Computação'); setModalCursoVisible(false); setIsEditingCurso(true); }}>
+            <Text style={styles.optionText}>Ciência da Computação</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => { setCurso('Engenharia de Energia'); setModalCursoVisible(false); setIsEditingCurso(true); }}>
+            <Text style={styles.optionText}>Engenharia de Energia</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => { setCurso('Engenharia de Software'); setModalCursoVisible(false); setIsEditingCurso(true); }}>
+            <Text style={styles.optionText}>Engenharia de Software</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => { setCurso('Engenharia Eletrônica'); setModalCursoVisible(false); setIsEditingCurso(true); }}>
+            <Text style={styles.optionText}>Engenharia Eletrônica</Text>
+          </TouchableOpacity>
+        </Select>
 
         <Text style={styles.sectionSubTitle}>Email</Text>
         <NonEditableInput
@@ -109,8 +138,13 @@ const PerfilScreen = () => {
 
         {(isEditingNome || isEditingCurso) && (
           <View style={styles.saveButtonContainer}>
+            <TouchableOpacity onPress={handleCancel}>
+              <Button size="lg" variant='outline' style={{width: 150, marginRight: 30}}>
+                <ButtonText>cancelar</ButtonText>
+              </Button>
+            </TouchableOpacity>
             <TouchableOpacity onPress={handleSave}>
-              <Button size="lg">
+              <Button size="lg" style={{width: 150}}>
                 <ButtonText>Salvar</ButtonText>
               </Button>
             </TouchableOpacity>
@@ -332,6 +366,8 @@ const styles = StyleSheet.create({
   saveButtonContainer: {
     alignItems: 'center',
     margin: 5,
+    flexDirection: 'row',
+    justifyContent: 'center'
   },
   separator: {
     height: 1,
@@ -417,6 +453,12 @@ const styles = StyleSheet.create({
   moedasTexto: {
     fontSize: 24,
     color: '#173CAC',
+  },
+  optionText: {
+    padding: 15,
+    fontSize: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
   },
 });
 

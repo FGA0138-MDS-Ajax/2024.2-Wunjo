@@ -54,9 +54,6 @@ const ProfileHeaderComponent: React.FC<ProfileHeaderComponentProps> = ({ photoUr
       </Modal>
             
     {/* Edição da foto */}
-            <TouchableOpacity style={styles.backButton} onPress={onBackPress}> {/*aqui nao precisa de botao de voltar, tirar*/}
-                <BackHeader onPress={onBackPress} label="" />
-            </TouchableOpacity>
             <Image source={{ uri: photoUri }} style={styles.profilePic} />
             <TouchableOpacity style={styles.editIcon} onPress={handleEditPhoto}>
                 <Ionicons name="pencil" size={24} color="white" />
