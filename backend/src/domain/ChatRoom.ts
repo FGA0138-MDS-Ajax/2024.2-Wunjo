@@ -1,8 +1,8 @@
-import { Message } from './Message';
-
 export type ChatRoom = {
   id: string;
   studentId: string;
+  questionId: string;
   tutorId: string;
-  messages: Message[];
+  updatedAt: Date;
+  createdAt: Date;
 };
