@@ -1,6 +1,6 @@
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
 }
 
@@ -57,6 +57,7 @@ model Student {
   updatedAt          DateTime
   seasons            SeasonStudent[]
   questions          Question[]
+  chatMessages       ChatMessages[]
 
   @@map("students")
 }
@@ -92,6 +93,7 @@ model Question {
   urgency     QuestionUrgency
   tutors      Json[]
   student     Student            @relation(fields: [studentId], references: [id])
+  chatRooms   ChatRooms[]
 
   @@map("questions")
 }
@@ -112,4 +114,31 @@ model EmailTemplates {
   content String
 
   @@map("email_templates")
+}
+
+model ChatMessages {
+  id       String     @id @default(uuid())
+  chatId   String
+  senderId String
+  message  String
+  chatRoom ChatRooms? @relation(fields: [chatId], references: [id])
+  sender   Student    @relation(fields: [senderId], references: [id])
+
+  @@map("chat_messages")
+}
+
+model ChatRooms {
+  id         String @id @default(uuid())
+  studentId  String
+  questionId String
+  tutorId    String
+  status     String
+
+  messages ChatMessages[]
+  question Question       @relation(fields: [questionId], references: [id])
+
+  createdAt DateTime
+  updatedAt DateTime
+
+  @@map("chat_rooms")
 }

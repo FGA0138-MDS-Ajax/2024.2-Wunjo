@@ -4,7 +4,7 @@ import { BackHeader } from "@/components/ui/backheader";
 import { Button } from "@/components/ui/button2";
 import SVGPhotoIcon from "@/assets/images/PhotoIcon";
 import SVGGalleryIcon from "@/assets/images/GalleryIcon";
-import UserIcon from "@/assets/images/UserIcon";
+import SVGUserIcon from "@/assets/images/user-icon";
 
 export default function Screen() {
 
@@ -46,9 +46,8 @@ export default function Screen() {
           alignItems: 'center'
         }}
       >
-        <UserIcon
-          width={58}
-          height={58}
+        <SVGUserIcon
+          size={58}
           style={{
             // backgroundColor: "red",
             margin: 20,
