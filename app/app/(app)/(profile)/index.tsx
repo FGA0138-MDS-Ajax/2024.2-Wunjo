@@ -112,7 +112,7 @@ const PerfilScreen = () => {
             <Text style={styles.optionText}>Engenharia Aeroespacial</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => { setCurso('Ciência da Computação'); setModalCursoVisible(false); setIsEditingCurso(true); }}>
-            <Text style={styles.optionText}>Ciência da Computação</Text>
+            <Text style={styles.optionText}>Engenharia Automotiva</Text>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => { setCurso('Engenharia de Energia'); setModalCursoVisible(false); setIsEditingCurso(true); }}>
             <Text style={styles.optionText}>Engenharia de Energia</Text>
