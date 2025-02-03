@@ -1,4 +1,4 @@
-import { ChatService } from '@/http/services/chat';
+import { ChatService } from '@/services/http/services/chat';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigation } from 'expo-router';
 import { useEffect } from 'react';

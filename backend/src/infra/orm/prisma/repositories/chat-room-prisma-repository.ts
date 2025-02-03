@@ -94,6 +94,7 @@ export class ChatRoomPrismaRepository implements ChatRoomRepository {
       },
       include: {
         messages: true,
+        question: true,
       },
     });
 

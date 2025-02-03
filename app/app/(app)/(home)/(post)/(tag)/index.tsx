@@ -19,7 +19,7 @@ import {
   QuestionUrgencies,
   QuestionUrgencyLabels,
 } from '@/interfaces/application';
-import { getAllSubjects } from '@/http/services/subject';
+import { getAllSubjects } from '@/services/http/services/subject';
 import { Box } from '@/components/ui/box';
 import colors from 'tailwindcss/colors';
 import debounce from 'lodash.debounce';

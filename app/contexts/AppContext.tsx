@@ -1,9 +1,11 @@
 import { IStudent } from '@/interfaces/application/Student';
 import { createContext, useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { AuthService } from '@/http/services/auth';
+import { AuthService } from '@/services/http/services/auth';
+import { connectToSocket } from '@/services/socket/client'
 import { useRouter } from 'expo-router';
 import { IQuestionFormInputs } from '@/app/(app)/(home)/(post)/post';
+import { Socket } from 'socket.io-client';
 
 interface AppContext {
   auth: AuthContext & {
@@ -14,6 +16,7 @@ interface AppContext {
     question: IQuestionFormInputs;
     setQuestion: (forms: IQuestionFormInputs) => void;
   };
+  socket: Socket | null;
 }
 
 interface AuthContext {
@@ -52,11 +55,13 @@ const initialState: AppContext = {
     },
     setQuestion: (_forms: IQuestionFormInputs) => {},
   },
+  socket: null,
 };
 const AppContext = createContext<AppContext>(initialState);
 
 const AppProvider = ({ children }: { children: React.ReactNode }) => {
   const [auth, setAuth] = useState<AuthContext>(initialState.auth);
+  const [socket, setSocket] = useState<Socket | null>(null);
   const [questionForm, setQuestionForm] = useState(initialState.forms.question);
   const route = useRouter();
 
@@ -82,14 +87,41 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
         token,
         student: student.data.student,
       });
+
+      const socketConn = connectToSocket(token);
+
+      socketConn.emit('join', {
+        id: student.data.student.id,
+        registration: student.data.student.registration,
+        name: student.data.student.name,
+      });
+
+      setSocket(socketConn);
     } catch (error) {
       console.error(error);
     }
   };
 
+  const socketConnection = () => {
+    if((auth.isAuthenticated && !socket) || (auth.isAuthenticated && !socket?.connected)) {
+      const socketConn = connectToSocket(auth.token);
+
+      socketConn.emit('join', {
+        id: auth.student.id,
+        registration: auth.student.registration,
+        name: auth.student.name,
+      });
+    }
+  }
+
   const unauthenticate = async () => {
     await AsyncStorage.removeItem('unbordo@token');
     await AsyncStorage.removeItem('unbordo@student');
+
+    if(socket) {
+      socket.emit('disconnect');
+      socket.disconnect();
+    }
 
     setAuth({
       ...auth,
@@ -115,12 +147,27 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
           student: student.data.student,
         });
 
+        const socketConn = connectToSocket(token);
+
+        socketConn.emit('join', {
+          id: student.data.student.id,
+          registration: student.data.student.registration,
+          name: student.data.student.name,
+        });
+  
+        setSocket(socketConn);
+
         route.replace('/(app)/(home)');
       }
     };
 
     if (!auth.isAuthenticated) loadAuth();
   }, []);
+
+
+  useEffect(() => {
+    socketConnection();
+  }, [socket, socket?.connect])
 
   return (
     <AppContext.Provider
@@ -130,6 +177,7 @@ const AppProvider = ({ children }: { children: React.ReactNode }) => {
           question: questionForm,
           setQuestion: setQuestionForm,
         },
+        socket,
       }}
     >
       {children}

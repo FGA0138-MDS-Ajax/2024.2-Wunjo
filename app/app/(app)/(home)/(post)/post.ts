@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
-import { AuthService } from '@/http/services/auth';
+import { AuthService } from '@/services/http/services/auth';
 import { useRouter } from 'expo-router';
 import {
   IQuestionDifficulty,
@@ -11,7 +11,7 @@ import {
   QuestionUrgencies,
 } from '@/interfaces/application';
 import { useUnBordo } from '@/hooks/unbordo';
-import { QuestionService } from '@/http/services/question';
+import { QuestionService } from '@/services/http/services/question';
 
 export type IQuestionFormInputs = {
   subjectId: string;

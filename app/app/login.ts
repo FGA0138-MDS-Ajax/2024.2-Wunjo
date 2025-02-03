@@ -2,10 +2,10 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
-import { AuthService } from '@/http/services/auth';
+import { AuthService } from '@/services/http/services/auth';
 import { useRouter } from 'expo-router';
 import { useUnBordo } from '@/hooks/unbordo';
-import { api } from '@/http/api';
+import { api } from '@/services/http/api';
 
 export type IFormInputs = {
   registration: string;

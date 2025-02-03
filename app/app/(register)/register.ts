@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
-import { AuthService } from '@/http/services/auth';
+import { AuthService } from '@/services/http/services/auth';
 import { useRouter } from 'expo-router';
 import { Courses, ICourse } from '@/interfaces/application';
 

@@ -70,10 +70,12 @@ export default function ChatList() {
           const me = item.studentId === auth.student.id ? 'student' : 'tutor';
           const other = me === 'student' ? 'tutor' : 'student';
 
+          // console.log(JSON.stringify(item, null, 2));
+
           return (
             <ChatBox
               username={item[other].name}
-              // message={'item[other].name'}
+              // message={item.subjectId}
               // userImage={item[other].avatarUrl}
               onPress={() => handleChatPress(item.id)}
             />

@@ -1,4 +1,4 @@
-import { AuthService } from '@/http/services/auth';
+import { AuthService } from '@/services/http/services/auth';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
 import { useLocalSearchParams, useRouter } from 'expo-router';

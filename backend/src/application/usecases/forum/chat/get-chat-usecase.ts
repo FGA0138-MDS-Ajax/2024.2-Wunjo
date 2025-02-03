@@ -18,8 +18,6 @@ export class GetChatUsecase {
       chatRoomId: validatedInput.chatId,
     });
 
-    console.log(chatRoom, validatedInput);
-
     if (!chatRoom || !(chatRoom.studentId === validatedInput.studentId || chatRoom.tutorId === validatedInput.studentId)) {
       throw new NotFoundError('Chat não encontrado', 'CHAT');
     }

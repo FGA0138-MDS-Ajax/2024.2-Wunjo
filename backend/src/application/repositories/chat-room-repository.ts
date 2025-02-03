@@ -10,7 +10,7 @@ export namespace ChatRoomRepository {
   }
 
   export namespace GetAll {
-    export type Input = { studentId: string };
+    export type Input = { studentId: string, };
 
     export type Output = Array<
       ChatRoom & {
@@ -27,36 +27,36 @@ export namespace ChatRoomRepository {
   }
 
   export namespace FindBy {
-    export type Input = { id: string };
+    export type Input = { id: string, };
 
     export type Output =
       | (ChatRoom & {
-          student: Pick<
-            Student,
+        student: Pick<
+          Student,
             'id' | 'avatar' | 'avatarUrl' | 'name' | 'registration' | 'email'
-          >;
-          tutor: Pick<
-            Student,
+        >;
+        tutor: Pick<
+          Student,
             'id' | 'avatar' | 'avatarUrl' | 'name' | 'registration' | 'email'
-          >;
-        })
+        >;
+      })
       | null;
   }
   export namespace GetMessages {
-    export type Input = { chatRoomId: string };
+    export type Input = { chatRoomId: string, };
 
     export type Output =
       | (ChatRoom & {
-          student: Pick<
-            Student,
+        student: Pick<
+          Student,
             'id' | 'avatar' | 'avatarUrl' | 'name' | 'registration' | 'email'
-          >;
-          tutor: Pick<
-            Student,
+        >;
+        tutor: Pick<
+          Student,
             'id' | 'avatar' | 'avatarUrl' | 'name' | 'registration' | 'email'
-          >;
-          messages: Message[];
-        })
+        >;
+        messages: Message[];
+      })
       | null;
   }
 

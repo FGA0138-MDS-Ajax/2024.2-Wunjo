@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   View,
   TextInput,
@@ -25,9 +25,9 @@ import SearchIcon from '@/assets/images/SearchIcon';
 import Balloon from '@/assets/images/Balloon';
 import HelmIcon from '@/assets/images/HelmIcon';
 import WoodButton from '@/assets/images/WoodButton';
-import { useRouter } from 'expo-router';
+import { useNavigation, useRouter } from 'expo-router';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { QuestionService } from '@/http/services/question';
+import { QuestionService } from '@/services/http/services/question';
 import {
   QuestionDificultyLabels,
   QuestionStatuses,
@@ -42,12 +42,20 @@ import { useDisclose } from '@/hooks/use-disclose';
 import { queryClient } from '@/hooks/react-query';
 
 const ForumHome = () => {
+
+  const navigation = useNavigation();
+  
   const query = useQuery({
     queryKey: ['forum', 'posts'],
     queryFn: QuestionService.fetch,
   });
 
   const router = useRouter();
+
+
+  useEffect(() => {
+    query.refetch();
+  }, [navigation.isFocused()])
 
   return (
     <SafeAreaView style={styles.container}>
@@ -355,12 +363,14 @@ const styles = StyleSheet.create({
     padding: 15,
     marginBottom: 15,
     elevation: 2,
+    maxWidth: '100%'
   },
   cardHeader: {
     flexDirection: 'row',
     alignItems: 'center',
     position: 'relative',
     width: '100%',
+    // padding: 4,
     //backgroundColor: "red"
   },
   registration: {
@@ -368,7 +378,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontFamily: 'Itim_400Regular',
   },
-  subject: { fontSize: 14, color: '#666', fontFamily: 'Itim_400Regular' },
+  subject: { fontSize: 14, color: '#666', fontFamily: 'Itim_400Regular', maxWidth: '95%' },
   urgentTag: {
     backgroundColor: '#FF0000',
     borderRadius: 16,

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { View, FlatList, StyleSheet } from 'react-native';
+import { View, FlatList, StyleSheet, Platform } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
 import ChatHeader from '@/components/ui/chat/chatHeader';
 import MessageInput from '@/components/ui/chat/messageInput';
@@ -31,6 +31,7 @@ const mockMessages: Messages = {
 export default function ChatView() {
   const {
     auth: { student },
+    socket,
   } = useUnBordo();
 
     const [messages, setMessages] = useState<Messages[keyof Messages]>([]);
@@ -45,29 +46,13 @@ export default function ChatView() {
 
   const handleSendMessage = (message: string, imageUri: string | null) => {
     if (message.trim() || imageUri) {
-      const newMessage = {
-        id: Date.now().toString(),
+      if (!socket || !socket?.connected) return;
+
+      socket.emit('send-message', {
         chatId,
-        message,
-        senderId: student.id,
-      } as IChatMessage;
-
-      if (!channel.current) return;
-
-      // channel.current.send({
-      //   type: 'broadcast',
-      //   event: 'message',
-      //   payload: newMessage,
-      // });
-
-      channel.current.send({
-        type: 'postgres_changes',
-        event: 'INSERT',
-        schema: 'public',
-        table: 'messages',
-        payload: newMessage,
+        message: message,
       });
-      // setMessages([...messages, newMessage]);
+
       setInputMessage('');
     }
   };
@@ -81,59 +66,12 @@ export default function ChatView() {
   );
 
   useEffect(() => {
-    const supabaseUrl = 'https://ylixvluhizkjgiicfghz.supabase.co';
-    const supabaseKey =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlsaXh2bHVoaXpramdpaWNmZ2h6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzQ0NzY4NDcsImV4cCI6MjA1MDA1Mjg0N30.rGTSslIh2XwYh-LRqq6gTnAEcGVygSliNW_NOTM0_40';
-
-    if (!channel.current) {
-      const client = createClient(supabaseUrl, supabaseKey);
-
-      channel.current = client.channel(`chat:${chatId}`, {
-        config: {
-          broadcast: {
-            self: true,
-          },
-        },
-      });
-
-      // channel.current
-      //   .on('broadcast', { event: 'message' }, (event: {
-      //     event: string;
-      //     type: string;
-      //     payload: IChatMessage;
-      //   }) => {
-      //     console.log('New message:', JSON.stringify(event.payload, null, 2));
-
-      //     setMessages((prev) => [...prev, event.payload]);
-      //   })
-      //   .subscribe();
-
-      channel.current
-        .on(
-          'postgres_changes',
-          { event: 'INSERT', schema: 'public', table: 'messages' },
-          (payload) => {
-            console.log('New message', JSON.stringify(payload, null, 2));
-          },
-          // (event: { event: string; type: string; payload: IChatMessage }) => {
-          //   console.log('New message:', JSON.stringify(event.payload, null, 2));
-
-          //   setMessages((prev) => [...prev, event.payload]);
-          // },
-        )
-        .subscribe();
-
-      // channel.current.subscribe((msg) => {
-      //   console.log('New message:', msg)
-      //   // setMessages((prev) => [...prev, msg])
-      // })
+    if(socket && socket.connected) {
+      socket.on(chatId, (newMsg: IChatMessage) => {
+        setMessages((old) => [...old, newMsg])
+      })
     }
-
-    return () => {
-      channel.current?.unsubscribe();
-      channel.current = null;
-    };
-  }, []);
+  }, [socket]);
 
     const renderMessageItem = ({ item }) => (
         <MessageBalloon text={item.text} sender={item.senderId === currentUserId ? 'me' : 'them'} image={item.image} />
@@ -153,6 +91,8 @@ export default function ChatView() {
       />
       <FlatList
         data={messages}
+        ref={chatView}
+        onContentSizeChange={() => chatView.current?.scrollToEnd()}
         keyExtractor={(item) => item.id}
         renderItem={renderMessageItem}
         contentContainerStyle={styles.messagesContainer}
@@ -170,10 +110,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 100,
+    paddingBottom: Platform.OS === 'ios' ? 100 : 0,
   },
   messagesContainer: {
     flexGrow: 1,
     padding: 16,
-    paddingBottom: 80, // Adiciona paddingBottom para evitar que o conteúdo fique atrás do campo de entrada
+    paddingBottom: 0, // Adiciona paddingBottom para evitar que o conteúdo fique atrás do campo de entrada
+    marginBottom: 100,
   },
 });

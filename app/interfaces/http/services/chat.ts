@@ -1,4 +1,4 @@
-import { IChatRoom } from '@/interfaces/application';
+import { IChatRoom, IQuestion } from '@/interfaces/application';
 
 export namespace IChatService {
   export namespace Fetch {
@@ -51,6 +51,7 @@ export namespace IChatService {
         avatarUrl: string;
         registration: string;
       };
+      question: IQuestion;
     };
   }
 }
