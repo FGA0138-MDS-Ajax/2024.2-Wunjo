@@ -30,4 +30,27 @@ export namespace IChatService {
       >;
     };
   }
+
+  export namespace Get {
+    export type Request = {};
+
+    export type Response = IChatRoom & {
+      student: {
+        id: string;
+        name: string;
+        email: string;
+        avatar: string;
+        avatarUrl: string;
+        registration: string;
+      };
+      tutor: {
+        id: string;
+        name: string;
+        email: string;
+        avatar: string;
+        avatarUrl: string;
+        registration: string;
+      };
+    };
+  }
 }

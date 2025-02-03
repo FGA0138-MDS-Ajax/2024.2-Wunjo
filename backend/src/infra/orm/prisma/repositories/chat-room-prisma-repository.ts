@@ -84,6 +84,7 @@ export class ChatRoomPrismaRepository implements ChatRoomRepository {
       };
     });
   }
+
   async getMessages(
     params: ChatRoomRepository.GetMessages.Input,
   ): Promise<ChatRoomRepository.GetMessages.Output> {
@@ -91,13 +92,52 @@ export class ChatRoomPrismaRepository implements ChatRoomRepository {
       where: {
         id: params.chatRoomId,
       },
+      include: {
+        messages: true,
+      },
     });
 
     if (!chatRoom) {
       return null;
     }
 
-    return chatRoom as ChatRoomRepository.GetMessages.Output;
+    const student = await this.prisma.student.findUnique({
+      where: {
+        id: chatRoom.studentId,
+      },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        avatar: true,
+        avatarUrl: true,
+        registration: true,
+      },
+    });
+
+    const tutor = await this.prisma.student.findUnique({
+      where: {
+        id: chatRoom.tutorId,
+      },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        avatar: true,
+        avatarUrl: true,
+        registration: true,
+      },
+    });
+
+    if (!student || !tutor) {
+      return null;
+    }
+
+    return {
+      ...chatRoom,
+      student,
+      tutor,
+    } as ChatRoomRepository.GetMessages.Output;
   }
 
   async update(
@@ -115,4 +155,14 @@ export class ChatRoomPrismaRepository implements ChatRoomRepository {
 
     return chatRoom as ChatRoomRepository.Update.Output;
   }
+
+  async findBy(params: ChatRoomRepository.FindBy.Input): Promise<ChatRoomRepository.FindBy.Output> {
+    const chatRoom = await this.prisma.chatRooms.findUnique({
+      where: {
+        ...params,
+      },
+    });
+
+    return chatRoom as ChatRoomRepository.FindBy.Output;
+  };
 }

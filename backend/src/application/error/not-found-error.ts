@@ -4,6 +4,7 @@ export const RegisterOptions = {
   STUDENT: 'ESTUDANTE',
   EMAIL_TEMPLATE: 'EMAIL_TEMPLATE',
   QUESTION: 'QUESTION',
+  CHAT: 'CHAT',
 } as const;
 
 export type RegisterOptions = keyof typeof RegisterOptions;

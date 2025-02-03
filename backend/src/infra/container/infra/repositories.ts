@@ -2,6 +2,7 @@ import {
   ChatRoomRepository,
   EmailRepository,
   EmailTemplateRepository,
+  MessageRepository,
   PasswordRecoveryRepository,
   QuestionRepository,
   StudentRepository,
@@ -15,6 +16,7 @@ import { prisma } from '@/infra/orm/prisma/datasource';
 import {
   ChatRoomPrismaRepository,
   EmailTemplatePrismaRepository,
+  MessagePrismaRepository,
   QuestionPrismaRepository,
   StudentPrismaRepository,
 } from '@/infra/orm/prisma/repositories';
@@ -50,6 +52,10 @@ export function configureInfraRepositoryDI() {
     .add(
       ChatRoomRepository.Name,
       ({ pgDataSource }) => new ChatRoomPrismaRepository(pgDataSource),
+    )
+    .add(
+      MessageRepository.Name,
+      ({ pgDataSource }) => new MessagePrismaRepository(pgDataSource),
     );
 }
 

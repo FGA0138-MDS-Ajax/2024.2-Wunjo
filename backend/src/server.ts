@@ -1,4 +1,6 @@
 import http from 'node:http';
+import process from 'node:process';
+import { Server } from 'socket.io';
 import { z } from 'zod';
 import { api } from './api';
 import { env } from './env';
@@ -6,14 +8,13 @@ import { RedisCache } from './infra/cache';
 import logger from './infra/logger/pino';
 import { prisma } from './infra/orm/prisma/datasource';
 import { BullMQ } from './messsaging/bullmq';
+import { Socket } from './messsaging/socket';
 
 export function apiProvider() {
-
-  http.createServer(api).listen(env.PORT, '0.0.0.0', () => {
+  return http.createServer(api).listen(env.PORT, '0.0.0.0', () => {
     logger.info(`Server is running on port ${env.PORT}`);
   });
 }
-
 
 // Global error handlers
 process.on('uncaughtException', (error) => {
@@ -59,13 +60,24 @@ export async function bullMQProvider(): Promise<void> {
   }
 }
 
+export async function socket(server: http.Server) {
+  logger.info('Setting up socket...');
+
+  const ioServer = new Server(server);
+
+  Socket.getInstance(ioServer);
+
+  logger.info('Socket is up!');
+}
+
 export async function server() {
   logger.info('Setting up server...');
 
   databaseProvider();
   await redisProvider();
   await bullMQProvider();
-  apiProvider();
+  const httpServer = apiProvider();
+  await socket(httpServer);
 
   logger.info('Server is up!');
 }

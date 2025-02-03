@@ -10,8 +10,15 @@ const ChatList = () => {
   const currentUserId = '123'; // ID do usuário atual
 
 export default function ChatList() {
+  const router = useRouter();
+
   const handleChatPress = (chatId: string) => {
-    console.log(`Abrir chat ${chatId}`);
+    router.push({
+      pathname: '/(app)/(chat)/view',
+      params: {
+        chatId: chatId,
+      },
+    });
   };
 
   const { query } = useChat();
@@ -62,11 +69,11 @@ export default function ChatList() {
         renderItem={({ item }) => {
           const me = item.studentId === auth.student.id ? 'student' : 'tutor';
           const other = me === 'student' ? 'tutor' : 'student';
-          console.log(item[other].name);
+
           return (
             <ChatBox
               username={item[other].name}
-              message={'item[other].name'}
+              // message={'item[other].name'}
               // userImage={item[other].avatarUrl}
               onPress={() => handleChatPress(item.id)}
             />

@@ -7,6 +7,7 @@ import {
   GetAllChatUsecase,
   GetAllQuestionsUsecase,
   GetAllSubjectsUsecase,
+  GetChatUsecase,
   GetQuestionUsecase,
   LoginUsecase,
   RegisterConfirmUsecase,
@@ -14,6 +15,7 @@ import {
   ReplyQuestionUsecase,
   RequestForgotPasswordCodeUsecase,
   SendEmailUsecase,
+  SendMessageUsecase,
 } from '@/application/usecases';
 import {
   ChangePasswordUsecaseZodValidator,
@@ -22,8 +24,10 @@ import {
   ForumDeleteQuestionUsecaseZodValidator,
   ForumGetAllChatUsecaseZodValidator,
   ForumGetAllQuestionsUsecaseZodValidator,
+  ForumGetChatUsecaseZodValidator,
   ForumGetQuestionUsecaseZodValidator,
   ForumReplyQuestionUsecaseZodValidator,
+  ForumSendMessageUsecaseZodValidator,
   LoginUsecaseZodValidator,
   RegisterUsecaseZodValidator,
   RequestForgotPasswordCodeUsecaseZodValidator,
@@ -160,6 +164,23 @@ export function configureApplicationUsecaseDI(container: InfraDI) {
         new GetAllChatUsecase(
           new ForumGetAllChatUsecaseZodValidator(),
           ChatRoomRepository,
+        ),
+    )
+    .add(
+      GetChatUsecase.Name,
+      ({ ChatRoomRepository }) =>
+        new GetChatUsecase(
+          new ForumGetChatUsecaseZodValidator(),
+          ChatRoomRepository,
+        ),
+    )
+    .add(
+      SendMessageUsecase.Name,
+      ({ ChatRoomRepository, MessageRepository }) =>
+        new SendMessageUsecase(
+          new ForumSendMessageUsecaseZodValidator(),
+          ChatRoomRepository,
+          MessageRepository,
         ),
     );
 }

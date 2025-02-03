@@ -65,6 +65,7 @@ export const useLogin = () => {
           router.replace('/(app)/(home)');
         },
         onError: (error: any) => {
+          console.log(JSON.stringify(error, null, 2));
           console.log(JSON.stringify(error?.response?.data, null, 2));
 
           switch (error?.response?.data?.type) {

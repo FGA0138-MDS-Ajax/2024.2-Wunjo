@@ -1,3 +1,4 @@
+import { randomUUID } from 'node:crypto';
 import { NotAvailableError, NotFoundError } from '@/application/error';
 import {
   ChatRoomRepository,
@@ -6,7 +7,7 @@ import {
 } from '@/application/repositories';
 import { Validator } from '@/application/services';
 import { ChatRoomStatuses, Question, QuestionStatus } from '@/domain';
-import { randomUUID } from 'crypto';
+// import { Socket } from '@/messsaging/socket';
 
 export class ReplyQuestionUsecase {
   public static Name = 'ReplyQuestionUsecase' as const;
@@ -77,6 +78,13 @@ export class ReplyQuestionUsecase {
         },
       ],
     });
+
+    // Socket.notifyStudentOnConversationCreate(
+    //   [question.studentId, question.tutorId],
+    //   {
+    //     chatRoomId: chatRoom.id,
+    //   },
+    // );
 
     return {
       chatRoomId: chatRoom.id,
