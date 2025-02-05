@@ -58,12 +58,12 @@ const ProfileHeaderComponent: React.FC<ProfileHeaderComponentProps> = ({ photoUr
           </View>
         </TouchableOpacity>
       </Modal>
-            
-    {/* Edição da foto */}
-            <Image source={{ uri: photoUri }} style={styles.profilePic} />
-            <TouchableOpacity style={styles.editIcon} onPress={handleEditPhoto}>
-                <Ionicons name="pencil" size={24} color="white" />
-            </TouchableOpacity>
+
+      {/* Edição da foto */}
+      <Image source={photoUri} style={styles.profilePic} />
+      <TouchableOpacity style={styles.editIcon} onPress={() => setAvatarModalVisible(!AvatarModalVisible)}>
+        <Ionicons name="pencil" size={24} color="white" />
+      </TouchableOpacity>
 
       {/* título */}
       <View style={styles.titleContainer}>
@@ -154,4 +154,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ProfileHeaderComponent;
+export default ProfileHeaderComponent; 
