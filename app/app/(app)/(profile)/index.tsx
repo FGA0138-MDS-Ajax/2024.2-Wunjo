@@ -332,24 +332,62 @@ const PerfilScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
-    padding: 20,
+    backgroundColor: '#F5F6FA',
+  },
+  contentContainer: {
+    paddingBottom: 20, // Adiciona um padding no final para garantir que o conteúdo não seja cortado
+  },
+  headerContainer: {// Aumenta a altura do header para dar mais espaço
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'relative',
+    width: '100%',
+    transform: [{ scale: 1.3 }],
   },
   header: {
+    position: 'absolute',
+    bottom: 0,
+    width: '100%',
+    height: '100%',
+  },
+  profilePhotoContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#3b82f6',
-    paddingVertical: 20,
-    borderRadius: 10,
-    marginBottom: 20,
+    marginTop: 20,
+  },
+  editIcon: {
+    position: 'absolute',
+    bottom: 0,
+    right: -10,
+  },
+  backButton: {
+    position: 'absolute',
+    top: 50,
+    left: 20,
+    padding: 10,
+    backgroundColor: 'transparent', // Torna o fundo transparente
+  },
+  profilePic: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    borderWidth: 1,
+    borderColor: "",
+    marginTop: 50, // Ajusta a margem para posicionar a imagem corretamente
   },
   headerTitle: {
+    fontFamily: 'Itim_400Regular',
     color: 'white',
-    fontSize: 20,
+    fontSize: 24,
+    fontWeight: 'bold',
     marginTop: 10,
   },
   section: {
-    marginBottom: 20,
+    marginTop: 20,
+    paddingHorizontal: 20,
   },
+  center: { alignItems: 'center' },
   sectionTitle: {
     fontFamily: 'Itim_400Regular',
     textAlign: 'center',
@@ -361,13 +399,17 @@ const styles = StyleSheet.create({
     fontFamily: 'Itim_400Regular',
     fontSize: 16,
   },
-  input: {
-    backgroundColor: 'white',
-    borderWidth: 1,
-    borderColor: '#ddd',
-    borderRadius: 5,
-    padding: 10,
-    marginBottom: 10,
+  saveButtonContainer: {
+    alignItems: 'center',
+    margin: 5,
+    flexDirection: 'row',
+    justifyContent: 'center'
+  },
+  separator: {
+    height: 1,
+    marginHorizontal: 20,
+    backgroundColor: '#CCCCCC',
+    marginTop: 20,
   },
   switchContainer: {
     flexDirection: 'row',
