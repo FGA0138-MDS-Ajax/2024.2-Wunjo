@@ -13,12 +13,21 @@ export type StudentSeason = {
   seasonId: string;
   studentId: string;
   points: number;
+  createdAt: Date;
+  updatedAt: Date;
 };
 
 export const StudentRegistrationStatus = {
   PENDING: 'PENDING',
   APPROVED: 'APPROVED',
 } as const;
+
+export const PersonTypes = {
+  STUDENT: 'STUDENT',
+  TUTOR: 'TUTOR',
+} as const;
+
+export type PersonType = keyof typeof PersonTypes;
 
 export type StudentRegistrationStatuses =
   keyof typeof StudentRegistrationStatus;

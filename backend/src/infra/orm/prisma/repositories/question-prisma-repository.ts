@@ -21,6 +21,7 @@ export class QuestionPrismaRepository implements QuestionRepository {
         urgency: params.urgency,
         tutorId: params.tutorId,
         studentId: params.studentId,
+        tutors: params.tutors,
       },
     });
 
@@ -52,6 +53,7 @@ export class QuestionPrismaRepository implements QuestionRepository {
         urgency: params.urgency,
         tutorId: params.tutorId,
         studentId: params.studentId,
+        tutors: params.tutors,
       },
     });
 

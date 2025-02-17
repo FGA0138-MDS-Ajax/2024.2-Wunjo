@@ -9,6 +9,9 @@ import logger from './infra/logger/pino';
 import { prisma } from './infra/orm/prisma/datasource';
 import { BullMQ } from './messsaging/bullmq';
 import { Socket } from './messsaging/socket';
+// import { sendFCMv1Notification } from './application/usecases';
+
+export const notification_devices : Set<string> = new Set();
 
 export function apiProvider() {
   return http.createServer(api).listen(env.PORT, '0.0.0.0', () => {
@@ -65,7 +68,7 @@ export async function socket(server: http.Server) {
 
   const ioServer = new Server(server);
 
-  Socket.getInstance(ioServer);
+  await Socket.getInstance(ioServer);
 
   logger.info('Socket is up!');
 }
@@ -78,6 +81,10 @@ export async function server() {
   await bullMQProvider();
   const httpServer = apiProvider();
   await socket(httpServer);
+
+  /*for (const deviceToken of notification_devices) {
+    sendFCMv1Notification(deviceToken);
+  }*/
 
   logger.info('Server is up!');
 }

@@ -8,6 +8,7 @@ import { useRouter } from 'expo-router';
 import ChatBox from '@/components/ui/chat/chatBox';
 
 const ItemSeparator = () => <View style={styles.separator} />;
+
 export default function ChatList() {
   const router = useRouter();
 
@@ -69,13 +70,11 @@ export default function ChatList() {
           const me = item.studentId === auth.student.id ? 'student' : 'tutor';
           const other = me === 'student' ? 'tutor' : 'student';
 
-          // console.log(JSON.stringify(item, null, 2));
-
           return (
             <ChatBox
               username={item[other].name}
-              // message={item.subjectId}
-              // userImage={item[other].avatarUrl}
+              message={`${item.question?.subject?.name}`}
+              chatId={item.id}
               onPress={() => handleChatPress(item.id)}
             />
           );
@@ -86,7 +85,7 @@ export default function ChatList() {
       />
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {

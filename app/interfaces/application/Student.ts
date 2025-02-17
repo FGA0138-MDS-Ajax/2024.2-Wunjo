@@ -15,3 +15,20 @@ export type IStudent = {
   createdAt: Date;
   updatedAt: Date;
 };
+
+export type IStudentSeason = {
+  id: string;
+  seasonId: string;
+  studentId: string;
+  points: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type ISeason = {
+  id: string;
+  name: string;
+  period: string;
+  createdAt: string;
+  updatedAt: string;
+};

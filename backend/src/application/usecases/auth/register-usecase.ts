@@ -3,7 +3,11 @@ import {
   AlreadyExistsError,
   AlreadyExistsErrorType,
 } from '@/application/error';
-import { EmailRepository, StudentRepository } from '@/application/repositories';
+import {
+  EmailRepository,
+  SeasonRepository,
+  StudentRepository,
+} from '@/application/repositories';
 import {
   DispatchEmailService,
   PasswordHash,
@@ -14,6 +18,7 @@ import {
   EmailType,
   StudentRegistrationStatus,
   StudentRegistrationStatuses,
+  StudentSeason,
 } from '@/domain';
 
 export class RegisterUsecase {
@@ -25,6 +30,7 @@ export class RegisterUsecase {
     private readonly passwordHash: PasswordHash,
     private readonly dispatchEmailService: DispatchEmailService,
     private readonly emailRepository: EmailRepository,
+    private readonly seasonRepository: SeasonRepository,
   ) {}
 
   async execute(input: RegisterUsecase.Input): Promise<RegisterUsecase.Output> {
@@ -49,6 +55,21 @@ export class RegisterUsecase {
       validatedInput.password,
     );
 
+    const lastSeason = await this.seasonRepository.getLatest();
+
+    let seasons: Omit<StudentSeason, 'studentId'>[] = [];
+    if (lastSeason) {
+      seasons = [
+        {
+          id: randomUUID(),
+          seasonId: lastSeason.id,
+          points: 0,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+      ];
+    }
+
     const student = await this.studentRepository.create({
       id: randomUUID(),
       name: validatedInput.name,
@@ -61,7 +82,7 @@ export class RegisterUsecase {
       avatar: '',
       avatarUrl: '',
       questions: [],
-      seasons: [], // TODO: Register user in active season
+      seasons,
       updatedAt: new Date(),
       createdAt: new Date(),
     });

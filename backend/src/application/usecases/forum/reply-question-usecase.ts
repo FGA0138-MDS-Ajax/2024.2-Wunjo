@@ -79,13 +79,6 @@ export class ReplyQuestionUsecase {
       ],
     });
 
-    // Socket.notifyStudentOnConversationCreate(
-    //   [question.studentId, question.tutorId],
-    //   {
-    //     chatRoomId: chatRoom.id,
-    //   },
-    // );
-
     return {
       chatRoomId: chatRoom.id,
       question,

@@ -1,3 +1,4 @@
+import { env } from '@/env';
 import { NotFoundError } from '@/application/error';
 import {
   EmailTemplateRepository,
@@ -35,10 +36,10 @@ export class SendEmailUsecase {
     }
 
     await this.providerEmailServiceFacade.send({
-      from: 'UnBordo',
+      from: `UnBordo <${env.EMAIL_FROM}>`,
       to: student?.email,
       html: this.parseTemplate(template.content, input.data || {}),
-      subject: template.subject,
+      subject: `🦜 ${template.subject} para ${student.name}`,
     });
   }
 

@@ -24,6 +24,24 @@ export namespace IChatService {
               avatarUrl: string;
               registration: string;
             };
+            question: {
+              id: string;
+              title: string;
+              description: string;
+              points: number;
+              status: string;
+              difficulty: string;
+              urgency: string;
+              tutorId: string;
+              studentId: string;
+              subjectId: string;
+              subject: {
+                id: string;
+                code: string;
+                name: string;
+                departmentCode: string;
+              };
+            };
           },
           'messages'
         >
@@ -53,5 +71,15 @@ export namespace IChatService {
       };
       question: IQuestion;
     };
+  }
+
+  export namespace Close {
+    export type Request = {
+      id: string;
+      hasBeenAnswered?: boolean;
+      avaliation?: number;
+    };
+
+    export type Response = {};
   }
 }

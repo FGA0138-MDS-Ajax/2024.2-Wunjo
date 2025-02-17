@@ -21,7 +21,8 @@ export class StudentPrismaRepository implements StudentRepository {
         status: params.status,
         createdAt: new Date(),
         updatedAt: new Date(),
-        ...(params.questions && params.questions.length > 0 && {
+        ...(params.questions
+          && params.questions.length > 0 && {
           questions: {
             connectOrCreate: params.questions?.map((question) => ({
               where: { id: question.id },
@@ -46,7 +47,8 @@ export class StudentPrismaRepository implements StudentRepository {
             })),
           },
         }),
-        ...(params.seasons && params.seasons.length > 0 && {
+        ...(params.seasons
+          && params.seasons.length > 0 && {
           seasons: {
             connectOrCreate: params.seasons?.map((season) => ({
               where: { id: season.id },
@@ -88,10 +90,24 @@ export class StudentPrismaRepository implements StudentRepository {
         ...params.where,
       },
       include: {
-        ...params.relations,
+        // ...params.relations,
+        ...(params.relations?.seasons && {
+          seasons: {
+            include: { season: true },
+            orderBy: {
+              season: {
+                createdAt: 'desc',
+              },
+            },
+          },
+        }),
+        ...(params.relations?.questions && {
+          questions: true,
+        }),
       },
     });
 
+    // @ts-expect-error - TODO FIX
     return student;
   }
 }

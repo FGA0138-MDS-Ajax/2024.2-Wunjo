@@ -6,16 +6,15 @@ import {
   StyleSheet,
   Image,
   TouchableOpacity,
-  Modal,
-  Button,
-  TouchableWithoutFeedback,
 } from 'react-native';
+import ChatOptions from '@/components/ui/chat/chatOption'; 
 
 interface ChatBoxProps {
   username: string;
   message?: string;
   userImage?: string;
   onPress: () => void; // Função para abrir o chat
+  chatId: string;
 }
 
 export default function ChatBox({
@@ -23,6 +22,7 @@ export default function ChatBox({
   message,
   userImage,
   onPress,
+  chatId,
 }: ChatBoxProps) {
   const [modalVisible, setModalVisible] = useState(false);
   const [EndChatConfirmation, setEndChatConfirmation] = useState(false);
@@ -44,31 +44,37 @@ export default function ChatBox({
       )}
       <View style={styles.textContainer}>
         <Text style={styles.name}>{username}</Text>
-        {/* <Text style={styles.message} numberOfLines={1}>
+        <Text style={styles.message} numberOfLines={1}>
           {message}
-        </Text> */}
+        </Text>
       </View>
       <TouchableOpacity onPress={() => setModalVisible(true)}>
         <Text style={styles.options}>...</Text>
       </TouchableOpacity>
 
-      <Modal
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => setModalVisible(false)}
-      >
-        <TouchableWithoutFeedback onPress={() => setModalVisible(false)}>
-          <View style={styles.modalOverlay}>
-            <TouchableWithoutFeedback onPress={() => {}}>
-              <View style={styles.modalContent}>
-                <Text style={styles.modalButtonText}>Encerrar bate papo</Text>
-                <Text style={styles.modalButtonText}>Ver perfil</Text>
-                <Text style={styles.modalButtonText}>Denunciar</Text>
-              </View>
-            </TouchableWithoutFeedback>
-          </View>
-        </TouchableWithoutFeedback>
-      </Modal>
+      <ChatOptions
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+        EndChatConfirmation={EndChatConfirmation}
+        setEndChatConfirmation={setEndChatConfirmation}
+        endChatQuestion={endChatQuestion}
+        setEndChatQuestion={setEndChatQuestion}
+        rateChatResponse={rateChatResponse}
+        setRateChatResponse={setRateChatResponse}
+        rateChatNotResponse={rateChatNotResponse}
+        setRateChatNotResponse={setRateChatNotResponse}
+        ChatEndResponse={ChatEndResponse}
+        setChatEndResponse={setChatEndResponse}
+        ChatEndNotResponse={ChatEndNotResponse}
+        setChatEndNotResponse={setChatEndNotResponse}
+        reportModalVisible={reportModalVisible}
+        setReportModalVisible={setReportModalVisible}
+        reportQuestionVisible={reportQuestionVisible}
+        setReportQuestionVisible={setReportQuestionVisible}
+        reportEndVisible={reportEndVisible}
+        setReportEndVisible={setReportEndVisible}
+        chatId={chatId}
+      />
     </TouchableOpacity>
   );
 }

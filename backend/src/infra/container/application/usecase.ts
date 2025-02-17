@@ -1,25 +1,31 @@
 import {
   AuthUsecase,
   ChangePasswordUsecase,
+  CloseChatUsecase,
   ConfirmForgotPasswordCodeUsecase,
   CreateQuestionUsecase,
   DeleteQuestionUsecase,
+  DetailsStudentUsecase,
   GetAllChatUsecase,
   GetAllQuestionsUsecase,
   GetAllSubjectsUsecase,
   GetChatUsecase,
   GetQuestionUsecase,
   LoginUsecase,
+  RankingUsecase,
   RegisterConfirmUsecase,
   RegisterUsecase,
   ReplyQuestionUsecase,
   RequestForgotPasswordCodeUsecase,
   SendEmailUsecase,
   SendMessageUsecase,
+  UpdateStudentUsecase,
 } from '@/application/usecases';
 import {
   ChangePasswordUsecaseZodValidator,
   ConfirmForgotPasswordCodeUsecaseZodValidator,
+  DetailsStudentUsecaseZodValidator,
+  ForumCloseChatUsecaseZodValidator,
   ForumCreateQuestionUsecaseZodValidator,
   ForumDeleteQuestionUsecaseZodValidator,
   ForumGetAllChatUsecaseZodValidator,
@@ -31,6 +37,7 @@ import {
   LoginUsecaseZodValidator,
   RegisterUsecaseZodValidator,
   RequestForgotPasswordCodeUsecaseZodValidator,
+  UpdateStudentUsecaseZodValidator,
 } from '@/infra/services/shared/zod';
 import { InfraDI } from '../infra';
 
@@ -66,6 +73,7 @@ export function configureApplicationUsecaseDI(container: InfraDI) {
         PasswordHash,
         DispatchEmailService,
         EmailRepository,
+        SeasonRepository,
       }) =>
         new RegisterUsecase(
           new RegisterUsecaseZodValidator(),
@@ -73,6 +81,7 @@ export function configureApplicationUsecaseDI(container: InfraDI) {
           PasswordHash,
           DispatchEmailService,
           EmailRepository,
+          SeasonRepository,
         ),
     )
     .add(
@@ -181,6 +190,43 @@ export function configureApplicationUsecaseDI(container: InfraDI) {
           new ForumSendMessageUsecaseZodValidator(),
           ChatRoomRepository,
           MessageRepository,
+        ),
+    )
+    .add(
+      CloseChatUsecase.Name,
+      ({
+        ChatRoomRepository,
+        QuestionRepository,
+        SeasonRepository,
+        StudentSeasonRepository,
+      }) =>
+        new CloseChatUsecase(
+          new ForumCloseChatUsecaseZodValidator(),
+          ChatRoomRepository,
+          QuestionRepository,
+          SeasonRepository,
+          StudentSeasonRepository,
+        ),
+    )
+    .add(
+      RankingUsecase.Name,
+      ({ SeasonRepository, StudentSeasonRepository }) =>
+        new RankingUsecase(SeasonRepository, StudentSeasonRepository),
+    )
+    .add(
+      UpdateStudentUsecase.Name,
+      ({ StudentRepository }) =>
+        new UpdateStudentUsecase(
+          new UpdateStudentUsecaseZodValidator(),
+          StudentRepository,
+        ),
+    )
+    .add(
+      DetailsStudentUsecase.Name,
+      ({ StudentRepository }) =>
+        new DetailsStudentUsecase(
+          new DetailsStudentUsecaseZodValidator(),
+          StudentRepository,
         ),
     );
 }

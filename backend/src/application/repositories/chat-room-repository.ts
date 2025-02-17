@@ -1,4 +1,4 @@
-import { ChatRoom, Message, Student } from '@/domain';
+import { ChatRoom, Message, Question, Student } from '@/domain';
 
 export namespace ChatRoomRepository {
   export const Name = 'ChatRoomRepository';
@@ -10,7 +10,9 @@ export namespace ChatRoomRepository {
   }
 
   export namespace GetAll {
-    export type Input = { studentId: string, };
+    export type Input = {
+      studentId: string;
+    };
 
     export type Output = Array<
       ChatRoom & {
@@ -21,6 +23,19 @@ export namespace ChatRoomRepository {
         tutor: Pick<
           Student,
           'id' | 'avatar' | 'avatarUrl' | 'name' | 'registration' | 'email'
+        >;
+        question: Pick<
+          Question,
+          | 'id'
+          | 'title'
+          | 'description'
+          | 'points'
+          | 'status'
+          | 'difficulty'
+          | 'urgency'
+          | 'tutorId'
+          | 'studentId'
+          | 'subjectId'
         >;
       }
     >;

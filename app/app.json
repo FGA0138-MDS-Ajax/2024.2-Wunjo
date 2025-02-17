@@ -8,6 +8,9 @@
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
+    "notification": {
+      "icon": "./assets/images/adaptive-icon.png"
+    },
     "ios": {
       "supportsTablet": true
     },
@@ -16,7 +19,9 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.wunjo.unbordo"
+      "package": "com.wunjo.unbordo",
+      "googleServicesFile": "./google-services.json",
+      "permissions": []
     },
     "web": {
       "bundler": "metro",
@@ -46,6 +51,7 @@
       "eas": {
         "projectId": "4d7ab5e5-1385-4352-9616-088c0b8ff0c6"
       }
-    }
+    },
+    "owner": "unbordo"
   }
 }

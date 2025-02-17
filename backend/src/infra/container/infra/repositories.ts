@@ -5,7 +5,9 @@ import {
   MessageRepository,
   PasswordRecoveryRepository,
   QuestionRepository,
+  SeasonRepository,
   StudentRepository,
+  StudentSeasonRepository,
 } from '@/application/repositories';
 import { RedisCache } from '@/infra/cache';
 import {
@@ -18,7 +20,9 @@ import {
   EmailTemplatePrismaRepository,
   MessagePrismaRepository,
   QuestionPrismaRepository,
+  SeasonPrismaRepository,
   StudentPrismaRepository,
+  StudentSeasonPrismaRepository,
 } from '@/infra/orm/prisma/repositories';
 import { DIContainer } from 'rsdi';
 
@@ -56,6 +60,14 @@ export function configureInfraRepositoryDI() {
     .add(
       MessageRepository.Name,
       ({ pgDataSource }) => new MessagePrismaRepository(pgDataSource),
+    )
+    .add(
+      SeasonRepository.Name,
+      ({ pgDataSource }) => new SeasonPrismaRepository(pgDataSource),
+    )
+    .add(
+      StudentSeasonRepository.Name,
+      ({ pgDataSource }) => new StudentSeasonPrismaRepository(pgDataSource),
     );
 }
 

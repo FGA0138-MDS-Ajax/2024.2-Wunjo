@@ -30,7 +30,7 @@ const Skeleton = forwardRef<
       speed = 2,
       ...props
     },
-    ref
+    ref,
   ) => {
     const pulseAnim = new Animated.Value(1);
     const customTimingFunction = Easing.bezier(0.4, 0, 0.6, 1);
@@ -62,12 +62,18 @@ const Skeleton = forwardRef<
       Animated.loop(pulse).start();
       return (
         <Animated.View
-          style={{ opacity: pulseAnim }}
+          // style={{ opacity: pulseAnim }}
           className={`${startColor} ${skeletonStyle({
             variant,
             class: className,
           })}`}
           {...props}
+          style={{
+            backgroundColor: pulseAnim.interpolate({
+              inputRange: [0.75, 1],
+              outputRange: ['#f3f4f6', '#e5e7eb'],
+            }),
+          }}
           ref={ref}
         />
       );
@@ -76,7 +82,7 @@ const Skeleton = forwardRef<
 
       return children;
     }
-  }
+  },
 );
 
 const SkeletonText = forwardRef<
@@ -93,7 +99,7 @@ const SkeletonText = forwardRef<
       children,
       ...props
     },
-    ref
+    ref,
   ) => {
     if (!isLoaded) {
       if (_lines) {
@@ -129,7 +135,7 @@ const SkeletonText = forwardRef<
     } else {
       return children;
     }
-  }
+  },
 );
 
 Skeleton.displayName = 'Skeleton';

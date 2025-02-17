@@ -31,7 +31,10 @@ export namespace StudentRepository {
       }>;
     };
 
-    export type Output = Student | null;
+    export type Output = Student & Partial<{
+      questions: Array<Question>;
+      seasons: Array<StudentSeason>;
+    }> | null;
   }
 }
 

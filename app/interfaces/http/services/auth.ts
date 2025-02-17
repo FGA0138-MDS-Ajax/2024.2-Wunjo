@@ -1,5 +1,10 @@
-import { ICourse, IStudentStatus } from '@/interfaces/application';
-import { IStudent } from '@/interfaces/application/Student';
+import {
+  ICourse,
+  ISeason,
+  IStudentSeason,
+  IStudentStatus,
+} from '@/interfaces/application';
+import { IStudent } from '@/interfaces/application';
 
 export namespace IAuthService {
   export namespace Login {
@@ -30,7 +35,19 @@ export namespace IAuthService {
   }
 
   export namespace Me {
-    export type Response = { student: Omit<IStudent, 'password'> };
+    export type Response = {
+      student: Omit<
+        IStudent & {
+          ranking: Omit<
+            IStudentSeason & {
+              season: ISeason;
+            },
+            'studentId'
+          >[];
+        },
+        'password'
+      >;
+    };
   }
 
   export namespace RequestRecoveryPasswordCode {

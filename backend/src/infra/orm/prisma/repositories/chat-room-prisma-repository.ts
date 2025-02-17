@@ -1,5 +1,5 @@
 import { ChatRoomRepository } from '@/application/repositories';
-import { ChatRoom } from '@/domain';
+import { ChatRoom, Question, Student } from '@/domain';
 import { PrismaClient } from '@prisma/client';
 
 export class ChatRoomPrismaRepository implements ChatRoomRepository {
@@ -25,64 +25,94 @@ export class ChatRoomPrismaRepository implements ChatRoomRepository {
   ): Promise<ChatRoomRepository.GetAll.Output> {
     const chatRooms: Array<
       ChatRoom & {
-        studentName: string;
-        studentEmail: string;
-        studentAvatar: string;
-        studentAvatarUrl: string;
-        studentRegistration: string;
-        tutorName: string;
-        tutorEmail: string;
-        tutorAvatar: string;
-        tutorAvatarUrl: string;
-        tutorRegistration: string;
+        student: Pick<
+          Student,
+          'id' | 'avatar' | 'avatarUrl' | 'name' | 'registration' | 'email'
+        >;
+        tutor: Pick<
+          Student,
+          'id' | 'avatar' | 'avatarUrl' | 'name' | 'registration' | 'email'
+        >;
+        question: Pick<
+          Question,
+          | 'id'
+          | 'title'
+          | 'description'
+          | 'points'
+          | 'status'
+          | 'difficulty'
+          | 'urgency'
+          | 'tutorId'
+          | 'studentId'
+          | 'subjectId'
+        >;
       }
     > = await this.prisma.$queryRaw`
       SELECT 
-          cr.*, 
-          s1."name" AS "studentName", 
-          s1."email" AS "studentEmail", 
-          s1."avatar" AS "studentAvatar",
-          s1."avatarUrl" AS "studentAvatarUrl",
-          s1."registration" AS "studentRegistration",
-          s2."name" AS "tutorName",
-          s2."email" AS "tutorEmail",
-          s2."avatar" AS "tutorAvatar",
-          s2."avatarUrl" AS "tutorAvatarUrl",
-          s2."registration" AS "tutorRegistration"
+          cr.*,
+          json_build_object(
+              'name', s1."name",
+              'email', s1."email",
+              'avatar', s1."avatar",
+              'avatarUrl', s1."avatarUrl",
+              'registration', s1."registration"
+          ) AS "student",
+          json_build_object(
+              'name', s2."name",
+              'email', s2."email",
+              'avatar', s2."avatar",
+              'avatarUrl', s2."avatarUrl",
+              'registration', s2."registration"
+          ) AS "tutor",
+          json_build_object(
+            'title', q."title",
+            'description', q."description",
+            'points', q."points",
+            'status', q."status",
+            'difficulty', q."difficulty",
+            'urgency', q."urgency",
+            'tutorId', q."tutorId",
+            'studentId', q."studentId",
+            'subjectId', q."subjectId"
+          ) AS "question"
       FROM "chat_rooms" cr
       LEFT JOIN "students" s1 ON cr."studentId" = s1."id"
       LEFT JOIN "students" s2 ON cr."tutorId" = s2."id"
+      LEFT JOIN "questions" q ON cr."questionId" = q."id"
       WHERE cr."studentId" = ${params.studentId}
         OR cr."tutorId" = ${params.studentId};
     `;
 
-    return chatRooms.map((chatRoom) => {
-      return {
-        id: chatRoom.id,
-        questionId: chatRoom.questionId,
-        status: chatRoom.status as ChatRoom['status'],
-        studentId: chatRoom.studentId,
-        tutorId: chatRoom.tutorId,
-        student: {
-          id: chatRoom.studentId,
-          name: chatRoom.studentName,
-          email: chatRoom.studentEmail,
-          avatar: chatRoom.studentAvatar,
-          avatarUrl: chatRoom.studentAvatarUrl,
-          registration: chatRoom.studentRegistration,
-        },
-        tutor: {
-          id: chatRoom.tutorId,
-          name: chatRoom.tutorName,
-          email: chatRoom.tutorEmail,
-          avatar: chatRoom.tutorAvatar,
-          avatarUrl: chatRoom.tutorAvatarUrl,
-          registration: chatRoom.tutorRegistration,
-        },
-        createdAt: chatRoom.createdAt,
-        updatedAt: chatRoom.updatedAt,
-      };
-    });
+    console.log(chatRooms);
+
+    return chatRooms;
+    // return chatRooms.map((chatRoom) => {
+    //   return {
+    //     id: chatRoom.id,
+    //     questionId: chatRoom.questionId,
+    //     status: chatRoom.status as ChatRoom['status'],
+    //     studentId: chatRoom.studentId,
+    //     tutorId: chatRoom.tutorId,
+    //     student: {
+    //       id: chatRoom.studentId,
+    //       name: chatRoom.studentName,
+    //       email: chatRoom.studentEmail,
+    //       avatar: chatRoom.studentAvatar,
+    //       avatarUrl: chatRoom.studentAvatarUrl,
+    //       registration: chatRoom.studentRegistration,
+    //     },
+    //     tutor: {
+    //       id: chatRoom.tutorId,
+    //       name: chatRoom.tutorName,
+    //       email: chatRoom.tutorEmail,
+    //       avatar: chatRoom.tutorAvatar,
+    //       avatarUrl: chatRoom.tutorAvatarUrl,
+    //       registration: chatRoom.tutorRegistration,
+    //     },
+    //     createdAt: chatRoom.createdAt,
+    //     updatedAt: chatRoom.updatedAt,
+    //   };
+    // });
   }
 
   async getMessages(
@@ -157,7 +187,9 @@ export class ChatRoomPrismaRepository implements ChatRoomRepository {
     return chatRoom as ChatRoomRepository.Update.Output;
   }
 
-  async findBy(params: ChatRoomRepository.FindBy.Input): Promise<ChatRoomRepository.FindBy.Output> {
+  async findBy(
+    params: ChatRoomRepository.FindBy.Input,
+  ): Promise<ChatRoomRepository.FindBy.Output> {
     const chatRoom = await this.prisma.chatRooms.findUnique({
       where: {
         ...params,
@@ -165,5 +197,5 @@ export class ChatRoomPrismaRepository implements ChatRoomRepository {
     });
 
     return chatRoom as ChatRoomRepository.FindBy.Output;
-  };
+  }
 }

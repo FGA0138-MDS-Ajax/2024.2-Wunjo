@@ -1,2 +1,5 @@
 .junk
 node_modules
+unbordo-firebase*.json
+credentials.json
+google-services.json

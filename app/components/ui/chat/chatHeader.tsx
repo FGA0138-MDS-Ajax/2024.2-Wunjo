@@ -8,7 +8,7 @@ import {
   Pressable,
 } from 'react-native';
 import { useRouter } from 'expo-router';
-import ChatOptions from '@/components/ui/chat/chatOption'; // Certifique-se de que o caminho está correto
+import ChatOptions from '@/components/ui/chat/chatOption'; 
 import SVGBackButton from '@/assets/images/back-button';
 
 import { Box } from '../box';
@@ -98,24 +98,31 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 120,
     backgroundColor: '#173CAC',
-    paddingHorizontal: 20,
+    paddingLeft: 20,
+    paddingRight: 40,
     paddingTop: 30, // Adiciona paddingTop para evitar que o conteúdo fique atrás do cabeçalho
   },
   userImage: {
-    width: 48,
-    height: 48,
+    width: 66,
+    height: 66,
     borderRadius: 33,
-    marginRight: 8,
+    marginHorizontal: 5,
     borderWidth: 1,
     borderColor: '#1A1A2D', // Adiciona borda branca à imagem
   },
   title: {
-    fontSize: 24,
+    marginLeft: 10,
+    fontSize: 24, 
     fontWeight: 'bold',
     fontFamily: 'Itim_400Regular',
-    color: '#F5F6FA', // Cor da fonte do título
+    color: '#F5F6FA',
+    flexWrap: 'wrap', 
+    maxWidth: 198, 
+    overflow: 'hidden', 
+    textOverflow: 'ellipsis', 
   },
   options: {
+    marginRight: 10,
     fontSize: 40,
     fontFamily: 'Itim_400Regular',
     color: '#FFF',

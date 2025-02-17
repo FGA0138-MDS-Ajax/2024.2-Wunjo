@@ -3,9 +3,7 @@ import { Validator } from '@/application/services';
 import { SendMessageUsecase } from '@/application/usecases';
 import { z } from 'zod';
 
-export class ForumSendMessageUsecaseZodValidator
-  implements Validator<SendMessageUsecase.Input>
-{
+export class ForumSendMessageUsecaseZodValidator implements Validator<SendMessageUsecase.Input> {
   private readonly schema = z.object({
     senderId: z.string().uuid(),
     chatId: z.string().uuid(),

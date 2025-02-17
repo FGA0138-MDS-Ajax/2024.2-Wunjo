@@ -9,51 +9,20 @@ export class Socket {
   private socketIdToStudent: any = {};
 
   private constructor(server: Server) {
-    // private constructor
     this.io = server;
 
-    // console.log(this.io);
     logger.info('Socket is up!!!');
 
     this.io.on('connection', (socket) => {
       logger.info('a user connected');
 
-      // socket.on('join', (student: any) => {
-      //   console.log(socket.handshake.auth);
-
-      //   this.students[student.id] = {
-      //     socketId: socket.id,
-      //     socket,
-      //     student,
-      //   };
-
-      //   this.socketIdToStudent[socket.id] = student.id;
-
-      //   // this.users[user.id] = {
-      //   //   socketId: socket.id,
-      //   //   socket: socket,
-      //   //   user,
-      //   // };
-
-      //   // this.socketIdUserId[socket.id] = user.id;
-      // });
-
-      Object.keys(receivers).forEach((receiver) => {
-        socket.on(receiver, receivers[receiver](socket));
-      });
-      // socket.on('send-message', (message) => {
-      //   console.log(message);
-
-      //   const studentId = this.socketIdToStudent[socket.id];
-
-      //   if (studentId) {
-      //     const student = this.students[studentId];
-
-      //     if (student) {
-      //       student.socket.emit('message', message);
-      //     }
-      //   }
-      // });
+      if (!socket.recovered) {
+        Object.keys(receivers).forEach((receiver) => {
+          socket.on(receiver, receivers[receiver](socket));
+        });
+      } else {
+        logger.info('recovered');
+      }
 
       socket.on('disconnect', () => {
         const userId = this.socketIdToStudent[socket.id];
@@ -62,7 +31,6 @@ export class Socket {
           delete this.students[userId];
           delete this.socketIdToStudent[socket.id];
         }
-        console.log('user disconnected');
       });
     });
   }
@@ -106,9 +74,6 @@ export class Socket {
     };
 
     this.instance.socketIdToStudent[socket.id] = student.id;
-
-    console.log(this.instance.students);
-    console.log(this.instance.socketIdToStudent);
   }
 
   public static removeStudent(socket: any) {
