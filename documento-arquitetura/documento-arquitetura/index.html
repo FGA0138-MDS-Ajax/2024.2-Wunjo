@@ -1,0 +1,1591 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../documento-requisitos/documento-requisitos/">
+      
+      
+        <link rel="next" href="../../documento-plano-testes/documento-plano-testes/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.4">
+    
+    
+      
+        <title>Documento de Arquitetura - Wunjo - Documentação</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#unbordo-a-aventura-do-conhecimento" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Wunjo - Documentação" class="md-header__button md-logo" aria-label="Wunjo - Documentação" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Wunjo - Documentação
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Documento de Arquitetura
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/FGA0138-MDS-Ajax/2024.2-Wunjo" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Wunjo - Documentação" class="md-nav__button md-logo" aria-label="Wunjo - Documentação" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Wunjo - Documentação
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/FGA0138-MDS-Ajax/2024.2-Wunjo" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Página inicial
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documento-visao/documento-visao/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Documento de Visão
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documento-requisitos/documento-requisitos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Documento de Requisitos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Documento de Arquitetura
+    
+  </span>
+  
+
+      </a>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documento-plano-testes/documento-plano-testes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Documento de Plano de Testes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Atas de Reunião
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Atas de Reunião
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1 - Requisitos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2 - Formulário de player
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3 - Validação de requisitos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4 - Análise de player e tema do PGG
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5 - Planejamento do Front-End
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    6 - Validação de requisitos e análise do tema do PGG
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-7/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    7 - Documento de visão
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    8 - Relatório da análise de player
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-9/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    9 - Desenvolvimento do PGG
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-10/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    10 - Plano Geral de Gamificação
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-11/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    11 - Validação do Plano Geral de Gamificação
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-12/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    12 - Desenvolvimento do Protótipo pt. 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-13/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    13 - Amostra inicial do Protótipo
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-14/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    14 - Desenvolvimento do Protótipo pt. 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-15/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    15 - Elaboração da apresentação
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-16/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    16 - Sprint 1 Entidades
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-17/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    17 - Finalização do protótipo de login
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-18/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    18 - Finalização do protótipo de tela Inicial
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-19/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    19 - Validação do protótipo
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-20/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    20 - Fim da Sprint 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-21/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    21 - Revisão de entrega da Release 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-22/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    22 - Acompanhamento do projeto
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-23/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    23 - Feedback do cliente
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Documentos sobre gamificação
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Documentos sobre gamificação
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentos-gamificacao/relatorio-formulario/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Relatório do formulário
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentos-gamificacao/pgg/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plano geral de gamificação
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="unbordo-a-aventura-do-conhecimento"><strong>UnBordo - A aventura do conhecimento</strong></h1>
+<p><strong>Histórico de Revisões</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Data</th>
+<th style="text-align: left;">Versão</th>
+<th style="text-align: left;">Descrição</th>
+<th style="text-align: left;">Autor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>18/12/2024</strong></td>
+<td style="text-align: left;">0.1</td>
+<td style="text-align: left;">Primeira versão do documento</td>
+<td style="text-align: left;">David, Gabriel, João e Sophia</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>26/01/2025</strong></td>
+<td style="text-align: left;">0.2</td>
+<td style="text-align: left;">Ajustes</td>
+<td style="text-align: left;">Sophia</td>
+</tr>
+</tbody>
+</table>
+<h1 id="introducao"><strong>Introdução</strong></h1>
+<h2 id="finalidade"><strong>Finalidade</strong></h2>
+<p>Este documento descreve a arquitetura do sistema sendo desenvolvido pelo grupo Wunjo, na disciplina de MDS -- Métodos de Desenvolvimento de Software -- edição do segundo semestre de 2024 <UnBordo - A aventura do conhecimento>, a fim de capturar e transmitir decisões arquiteturais tomadas durante o processo de desenvolvimento do sistema, fornecendo uma visão abrangente do sistema para desenvolvedores, testadores e demais interessados.</p>
+<h2 id="escopo"><strong>Escopo</strong></h2>
+<p>O detalhamento do escopo se encontra no documento <Documento de visão e produto de software - UnBordo>. </p>
+<p>Em linhas gerais, o escopo do produto se trata de uma aplicação mobile gamificada, onde um aluno da Faculdade de Ciências e Tecnologia em Engenharia (FCTE) se cadastra utilizando seu nome, matrícula, curso e senha, e recebe um código no seu e-mail institucional para confirmar o cadastro. </p>
+<p>Dentro da aplicação, esse estudante pode acessar o fórum de dúvidas, tanto para fazer uma pergunta, quanto para responder uma dúvida, sendo nesta última ele recebendo pontos, que, caso ele deseje participar, contam para sua posição no ranking da plataforma. O contato entre o estudante que perguntou e o que está respondendo ocorre por um chat privado.</p>
+<h1 id="representacao-arquitetural"><strong>Representação Arquitetural</strong></h1>
+<h2 id="definicoes"><strong>Definições</strong></h2>
+<p>O sistema seguirá, no back-end, o padrão arquitetural Hexagonal, utilizando portas e adaptadores, e, no front-end, a arquitetura Component-Based Architecture (CBA).</p>
+<h2 id="justificacao"><strong>Justificação</strong></h2>
+<p>Um dos objetivos da aplicação é que ela seja escalável, pensando nisso, foi escolhida a hexagonal no back-end, que enfatiza a separação entre o núcleo da aplicação e suas dependências externas. Essa abordagem permite maior flexibilidade, manutenção, testabilidade e escalabilidade da aplicação, pois as camadas são desacopladas e conectadas por meio de portas e adaptadores.</p>
+<p>No front-end, a escolha se deu para aproveitar o comportamento do React, utilizando a CBA para criar componentes reutilizáveis, promovendo a qualidade de código, manutenção e testes de software.</p>
+<h2 id="detalhamento"><strong>Detalhamento</strong></h2>
+<p><img alt="" src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXeQgbiKLeNMK1m7_8K5YYrFgG6rYtFUI7DiD0jh6NKHEdvQk3XGFx7acKwks-AoXkr9GtLqPAsH0dWQ3OmtBVO6zg-6Qr34TjfHWJNqFmEBfvAuVFLAIKBqu1WnU5kgsbjgUX8VkA?key=9XqIJ4VXtzas9zVDhJnweE11" /></p>
+<p>Figura 1: Diagrama Hexagonal</p>
+<p>Elementos de modelo:</p>
+<ol>
+<li>
+<p>Núcleo da Aplicação: Contém as regras de negócio e a lógica central do sistema;</p>
+</li>
+<li>
+<p>Portas: Utilizadas para interações entre as camadas da aplicação e garantem o desacoplamento entre o sistema e ferramentas utilizadas.</p>
+</li>
+<li>
+<p>Adaptadores de Entrada e Saída: Facilitam a interação entre o núcleo da aplicação e ferramentas externas como usuários, interfaces de programação de aplicação (APIs) e bancos de dados);</p>
+</li>
+</ol>
+<h2 id="metas-e-restricoes-arquiteturais"><strong>Metas e restrições arquiteturais</strong></h2>
+<p>O sistema além de lidar com dados como nome, matrícula e curso do usuário, deve implementar um chat 1:1 entre eles, sendo necessário a proteção da privacidade e dos dados pessoais. </p>
+<ol>
+<li>
+<p>Para realizar o cadastro na plataforma, será enviado um código de confirmação para o e-mail institucional do usuário;</p>
+</li>
+<li>
+<p>Os dados serão utilizados apenas para fins de cadastro e identificação na plataforma, armazenando-os de forma segura;</p>
+</li>
+<li>
+<p>Para assegurar a privacidade dos chats será utilizado a criptografia end-to-end;</p>
+</li>
+<li>
+<p>O usuário poderá solicitar a alteração dos seus dados, exceto matrícula, e a exclusão de sua conta.</p>
+</li>
+</ol>
+<p>O sistema deve suportar uma alta quantidade de requisições, possuir uma rápida atualização das mensagens entre os tutores e alunos e funcionar em celulares mais antigos. </p>
+<ol>
+<li>
+<p>Para as requisições de leitura e escrita, será utilizado o banco de dados PostgreSQL, que possui um alto desempenho;</p>
+</li>
+<li>
+<p>Será utilizado tecnologias como Typescript, NodeJs, ExpressJs e React Native, que funcionam com alta performance, melhorando o desempenho da aplicação;</p>
+</li>
+<li>
+<p>Pensando na inter operacionalidade, será utilizado o Docker, que garantirá que a aplicação funcione de maneira esperada em diversos dispositivos.</p>
+</li>
+</ol>
+<h2 id="visao-de-casos-de-uso"><strong>Visão de Casos de uso</strong></h2>
+<ol>
+<li>
+<p>Cadastro de Usuários:</p>
+</li>
+<li>
+<p>Descrição: Permitir que um usuário se registre na plataforma.</p>
+</li>
+<li>
+<p>Ator(es): Alunos.</p>
+</li>
+<li>
+<p>Fluxo Principal:</p>
+</li>
+<li>
+<p>O usuário insere suas informações (nome, matrícula, curso e senha).</p>
+</li>
+<li>
+<p>O sistema valida as informações fornecidas e verifica o usuário através do email institucional.</p>
+</li>
+<li>
+<p>O sistema armazena os dados e retorna uma confirmação.</p>
+</li>
+<li>
+<p>Autenticação de Usuários:</p>
+</li>
+<li>
+<p>Descrição: Permitir que um usuário faça login na plataforma.</p>
+</li>
+<li>
+<p>Ator(es): Alunos.</p>
+</li>
+<li>
+<p>Fluxo Principal:</p>
+</li>
+<li>
+<p>O usuário insere matrícula e senha.</p>
+</li>
+<li>
+<p>O sistema valida as credenciais contra os dados no banco de dados.</p>
+</li>
+<li>
+<p>O sistema retorna um token de sessão ou mensagem de erro.</p>
+</li>
+<li>
+<p>Cobertura Arquitetural: Interage com a camada de serviços e repositório.</p>
+</li>
+<li>
+<p>Consulta de Dúvidas no Fórum:</p>
+</li>
+<li>
+<p>Descrição: Permitir que o usuário visualize dúvidas cadastradas no fórum de dúvidas dos estudantes.</p>
+</li>
+<li>
+<p>Ator(es): Alunos.</p>
+</li>
+<li>
+<p>Fluxo Principal:</p>
+</li>
+<li>
+<p>O usuário solicita dados ao entrar na página de fórum do sistema.</p>
+</li>
+<li>
+<p>O sistema processa a solicitação por meio do serviço apropriado.</p>
+</li>
+<li>
+<p>O sistema retorna os dados para o usuário.</p>
+</li>
+<li>
+<p>Cobertura Arquitetural: Explora a interação entre os adaptadores de entrada e a camada de serviços.</p>
+</li>
+<li>
+<p>Fazer uma pergunta no fórum:</p>
+</li>
+<li>
+<p>Descrição: Permitir que um aluno faça perguntas sobre algum conteúdo.</p>
+</li>
+<li>
+<p>Ator(es): Alunos.</p>
+</li>
+<li>
+<p>Fluxo Principal:</p>
+</li>
+<li>
+<p>O envia dados de suas dúvidas para o sistema.</p>
+</li>
+<li>
+<p>O sistema processa a solicitação por meio do serviço apropriado.</p>
+</li>
+<li>
+<p>O sistema faz o cadastro dos dados para o usuário no fórum de dúvidas.</p>
+</li>
+<li>
+<p>Cobertura Arquitetural: Explora a interação entre as portas de entrada e a camada de serviços.</p>
+</li>
+<li>
+<p>Responder uma pergunta do fórum:</p>
+</li>
+<li>
+<p>Descrição: Permitir que um tutor responda a dúvida de um aluno de forma privada.</p>
+</li>
+<li>
+<p>Ator(es): Alunos, Tutores.</p>
+</li>
+<li>
+<p>Fluxo Principal:</p>
+</li>
+<li>
+<p>O envia dados da mensagem de um tutor para um aluno.</p>
+</li>
+<li>
+<p>O sistema processa a solicitação por meio do serviço apropriado.</p>
+</li>
+<li>
+<p>O sistema criptografa as mensagens enviadas.</p>
+</li>
+<li>
+<p>O sistema faz o envio das mensagens entre um usuário e outro.</p>
+</li>
+<li>
+<p>Cobertura Arquitetural: Explora a interação entre as portas de entrada e a camada de serviços.</p>
+</li>
+<li>
+<p>Visualizar ranking de participantes:</p>
+</li>
+<li>
+<p>Descrição: Permitir que um usuário visualize o ranking dos usuários que mais contribuem na plataforma.</p>
+</li>
+<li>
+<p>Ator(es): Alunos.</p>
+</li>
+<li>
+<p>Fluxo Principal:</p>
+</li>
+<li>
+<p>O envia a requisição para o sistema buscando os dados dos usuários no ranking.</p>
+</li>
+<li>
+<p>O sistema valida se o usuário está logado na plataforma.</p>
+</li>
+<li>
+<p>O sistema processa a solicitação por meio do serviço apropriado.</p>
+</li>
+<li>
+<p>O sistema retorna a resposta com os dados para o usuário.</p>
+</li>
+<li>
+<p>Cobertura Arquitetural: Explora a interação entre as portas de entrada e a camada de serviços.</p>
+</li>
+<li>
+<p>Visualizar perfil:</p>
+</li>
+<li>
+<p>Descrição: Permitir que um usuário visualize o seu perfil na plataforma.</p>
+</li>
+<li>
+<p>Ator(es): Alunos.</p>
+</li>
+<li>
+<p>Fluxo Principal:</p>
+</li>
+<li>
+<p>O envia a requisição para o sistema buscando os dados dos usuários no ranking.</p>
+</li>
+<li>
+<p>O sistema valida se o usuário está logado na plataforma.</p>
+</li>
+<li>
+<p>O sistema processa a solicitação por meio do serviço apropriado.</p>
+</li>
+<li>
+<p>O sistema retorna a resposta com os dados para o usuário.</p>
+</li>
+<li>
+<p>Cobertura Arquitetural: Explora a interação entre as portas de entrada e a camada de serviços.</p>
+</li>
+<li>
+<p>Atualizar perfil:</p>
+</li>
+<li>
+<p>Descrição: Permitir que um usuário atualize informações sobre seu perfil.</p>
+</li>
+<li>
+<p>Ator(es): Alunos.</p>
+</li>
+<li>
+<p>Fluxo Principal:</p>
+</li>
+<li>
+<p>O envia os dados que serão alterados em sua conta.</p>
+</li>
+<li>
+<p>O sistema valida se o usuário está logado na plataforma.</p>
+</li>
+<li>
+<p>O sistema processa a solicitação por meio do serviço apropriado.</p>
+</li>
+<li>
+<p>O sistema retorna a resposta com os dados para o usuário.</p>
+</li>
+<li>
+<p>O sistema faz as alterações solicitadas pelo usuário.</p>
+</li>
+<li>
+<p>Cobertura Arquitetural: Explora a interação entre as portas de entrada e a camada de serviços.\
+    Com base nessas principais funcionalidades, o grupo decidiu por usar a arquitetura Hexagonal, a fim de possuir uma maior estruturação do sistema pensando em sua escalabilidade ao longo do tempo.</p>
+</li>
+</ol>
+<h2 id="visao-logica"><strong>Visão lógica</strong></h2>
+<h3 id="cadastro">Cadastro</h3>
+<ul>
+<li>
+<p>Razão Lógica:\
+    O módulo de cadastro gerencia o registro de novos usuários. Ele valida as informações recebidas e armazena os dados no repositório apropriado, garantindo consistência e segurança.</p>
+</li>
+<li>
+<p>Comunicação:</p>
+</li>
+<li>
+<p>Porta de Entrada: Recebe requisições REST para criar novos usuários.</p>
+</li>
+<li>
+<p>Porta de Saída: Interage com o banco de dados por meio de um adaptador que implementa as operações de persistência.</p>
+</li>
+<li>
+<p>Dependências:</p>
+</li>
+<li>
+<p>Validação de dados (camada de domínio).</p>
+</li>
+<li>
+<p>Persistência (adaptador para banco de dados).</p>
+</li>
+</ul>
+<hr />
+<h3 id="login">Login</h3>
+<ul>
+<li>
+<p>Razão Lógica:\
+    Gerencia a autenticação dos usuários. Inclui validação de credenciais, geração de tokens de segurança e gerenciamento de autenticação dos usuários da plataforma.</p>
+</li>
+<li>
+<p>Comunicação:</p>
+</li>
+<li>
+<p>Porta de Entrada: Interface REST para envio de credenciais de login.</p>
+</li>
+<li>
+<p>Porta de Saída: Serviço interno de autenticação e repositório de usuários.</p>
+</li>
+<li>
+<p>Dependências:</p>
+</li>
+<li>
+<p>Serviço de token para geração e validação de sessões (JSON Web Tokens).</p>
+</li>
+<li>
+<p>Repositório para busca de usuários através do Prisma ORM.</p>
+</li>
+</ul>
+<hr />
+<h3 id="forum-de-perguntas-publicas">Fórum de Perguntas Públicas</h3>
+<ul>
+<li>
+<p>Razão Lógica:\
+    Este módulo permite que os usuários criem e visualizem perguntas públicas no fórum, promovendo interações e troca de conhecimento.</p>
+</li>
+<li>
+<p>Comunicação:</p>
+</li>
+<li>
+<p>Porta de Entrada: APIs REST para postagem, leitura e busca de perguntas.</p>
+</li>
+<li>
+<p>Porta de Saída: Adaptador para interagir com o Prisma ORM para fazer as devidas manipulações da entidade de perguntas no banco de dados e para facilitar as buscas.</p>
+</li>
+<li>
+<p>Dependências:</p>
+</li>
+<li>
+<p>Camada de domínio para validação de perguntas.</p>
+</li>
+</ul>
+<h3 id="modulo-de-chat-11">Módulo de Chat 1:1</h3>
+<h4 id="razao-logica">Razão Lógica:</h4>
+<p>O módulo de chat 1:1 gerencia a troca de mensagens entre dois usuários em tempo real. Ele garante a entrega confiável das mensagens, mantém o histórico entre as partes envolvidas.</p>
+<h4 id="comunicacao">Comunicação:</h4>
+<ol>
+<li>
+<p>Portas de Entrada:</p>
+</li>
+<li>
+<p>WebSocket para envio e recebimento de mensagens em tempo real.</p>
+</li>
+<li>
+<p>API REST para consulta de histórico de mensagens.</p>
+</li>
+<li>
+<p>Portas de Saída:</p>
+</li>
+<li>
+<p>Persistência: O Firebase Firestore ou Supabase pode ser usado para armazenar as mensagens.</p>
+</li>
+</ol>
+<h4 id="proposta-de-tecnologia">Proposta de Tecnologia:</h4>
+<ul>
+<li>
+<p>Firebase:</p>
+</li>
+<li>
+<p>O Firestore armazena mensagens com esquema flexível e escalável.</p>
+</li>
+<li>
+<p>O Firebase Realtime Database fornece sincronização instantânea e eventos para atualização de mensagens em tempo real.</p>
+</li>
+<li>
+<p>Supabase:</p>
+</li>
+<li>
+<p>PostgreSQL com suporte a eventos em tempo real para sincronização de mensagens.</p>
+</li>
+<li>
+<p>Oferece APIs REST e WebSocket nativos para comunicação entre os adaptadores e o banco de dados.</p>
+</li>
+</ul>
+<h4 id="dependencias">Dependências:</h4>
+<ul>
+<li>
+<p>Serviço de WebSocket para comunicação em tempo real.</p>
+</li>
+<li>
+<p>Serviço de persistência para armazenar mensagens (Firebase Firestore, Realtime Database ou Supabase).</p>
+</li>
+</ul>
+<p>Fluxo de Cadastro e Login: </p>
+<p><img alt="" src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXdIxTbSBb_u784FDn7lBimamRa5ElpheXYgPhoFQcNWJFGBdegNlQwXFU8YlVX3FxWIYT054hS8uY4Mt1yXsj8rr43ogUSGOMIg54dxnmwQZC4MgeUcsF9kTYnumi_aOBxTIUlG?key=9XqIJ4VXtzas9zVDhJnweE11" /></p>
+<p>Figura 2: Fluxo de cadastro e login</p>
+<p>Fluxo de cadastro de dúvidas no Fórum: <img alt="" src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXcpgZcJR4f2Y1nghsFolr3n3kzqBPTkEQ2hQSfu2sUuuU1oXTjPKf0eJ14WwwtM7XJNvKsz8i4KeBBGvlxiswqzZkVbzVBBigMcbw6F2qzx_Ue0HDCahhk3wMlUf6M2mcyGF-Ag?key=9XqIJ4VXtzas9zVDhJnweE11" /></p>
+<p>Figura 3: Fluxo de cadastro de dúvidas o fórum</p>
+<p>Fluxo de chat e resposta de dúvidas:</p>
+<p><img alt="" src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXfJsXBRXtwemiLuv2N_n2_ML0RTQqoA6bwW7qA0M3UwwfqVai8jM-8QFCVb7aUeiENAs-VVrBkfjewnQocrTZeyDo4xADB_S3ixtRmTcVMIuc3E0j17Yf8Wujby3mw2nqMAFVUzzA?key=9XqIJ4VXtzas9zVDhJnweE11" /></p>
+<p>Figura 4: Fluxo de chat e resposta de dúvidas</p>
+<h2 id="visao-de-implementacao"><strong>Visão de Implementação</strong></h2>
+<p>Banco de Dados: o Prisma ORM é utilizado para queries e sincronização das entidades com o PostgreSQL.</p>
+<p>Transmissão de Mensagens: dados entre as camadas são transmitidos em formato JSON, que garantem padronização entre todas as aplicações.</p>
+<p>Interrupções: problemas como timeouts nas queries ou falhas em integrações são tratados por meio de mecanismos de retry e logs detalhados para diagnóstico, em que o pŕoprio Prisma ORM faz, e os membros podem revisar..</p>
+<p>Camada de Apresentação</p>
+<ul>
+<li>
+<p>Pacotes: routes, middlewares;</p>
+</li>
+<li>
+<p>Função:</p>
+</li>
+<li>
+<p>receber requisições HTTP.;</p>
+</li>
+<li>
+<p>validar entradas por meio de middlewares;</p>
+</li>
+<li>
+<p>direcionar as requisições aos controladores adequados na camada de negócio.</p>
+</li>
+<li>
+<p>Processos leves: validação de inputs, controle de acesso (via middleware);</p>
+</li>
+<li>
+<p>Comunicação: requisições HTTP encaminhadas para as rotas com resposta JSON.</p>
+</li>
+</ul>
+<p>O protótipo de baixa fidelidade está no <a href="https://github.com/FGA0138-MDS-Ajax/2024.2-Wunjo">repositório</a>, com teste de vitalidade em relação ao servidor, e manipulação de erros reportados pelo banco e clientes primários.</p>
+<p>Camada de Lógica de Negócios</p>
+<ul>
+<li>
+<p>Pacotes: domain, application;</p>
+</li>
+<li>
+<p>Função:</p>
+</li>
+<li>
+<p>centralizar regras e fluxos de negócio;</p>
+</li>
+<li>
+<p>encapsular a complexidade das operações em componentes reutilizáveis.</p>
+</li>
+<li>
+<p>Processos leves: validações internas de entidades, lógica de pontuação e ranking;</p>
+</li>
+<li>
+<p>Processos pesados: cálculos relacionados ao ranking de tutores, atualização de de posições e notificações;</p>
+</li>
+<li>
+<p>Comunicação: integração direta com infraestrutura por meio de serviços e chamadas assíncronas.</p>
+</li>
+</ul>
+<p>Camada de Infraestrutura</p>
+<ul>
+<li>
+<p>Pacotes: infra.logger, infra.orm;</p>
+</li>
+<li>
+<p>Função:</p>
+</li>
+<li>
+<p>gerenciar conexão com banco de dados (PostgreSQL).</p>
+</li>
+<li>
+<p>implementar o Prisma ORM para abstração de dados e migrations.</p>
+</li>
+<li>
+<p>gerenciar logs centralizados.</p>
+</li>
+<li>
+<p>Processos leves: consultas básicas ao banco de dados.</p>
+</li>
+<li>
+<p>Processos pesados: execução de migrations e operações complexas de agregados no banco.</p>
+</li>
+<li>
+<p>Comunicação: uso do Prisma para realizar queries no banco e do logger para registro de eventos.</p>
+</li>
+</ul>
+<p><img alt="" src="https://lh7-rt.googleusercontent.com/docsz/AD_4nXdnlHktFWKw8kKvO45ONmQVT5lZRsTO5pWIILSI7vKa3vrpW59xr07VayFZyG_v9wUlR1RFx1y0zbpOktli8CaQXjrNlN2uuQ9ssxuLbPAsDzL_IMgFZhvmwNyLwiUfL0rKRHIajw?key=9XqIJ4VXtzas9zVDhJnweE11" /></p>
+<p>Figura 5: Camada de Infraestrutura</p>
+<h2 id="visao-de-implantacao"><strong>Visão de Implantação</strong></h2>
+<p>O software será implantado em dispositivos móveis, onde os ambientes operacionais estão organizados em cliente, servidor de aplicativo e banco de dados. O cliente consiste no sistema operacional a ser utilizado no aparelho do usuário, em que pode ser tanto o Android quanto o iOS, pois são os mais utilizados pelas fabricantes de smartphones e tablets. Outrossim, o servidor de aplicação engloba a parte que será utilizada para a execução do código da aplicação e interação com outros componentes de software, como sistemas de mensagens e a conexão com o banco de dados. Sendo assim, para o funcionamento e interação entre esses ambientes, serão utilizadas as seguintes tecnologias:</p>
+<ul>
+<li>
+<p>ExpressJs: framework backend para gerenciar APIs REST e comunicação entre cliente e servidor;</p>
+</li>
+<li>
+<p>React Native: framework que auxilia no desenvolvimento de aplicativos móveis com interfaces nativas em Android e iOS;</p>
+</li>
+<li>
+<p>NodeJs: ambiente de execução do lado do servidor, permitindo escalabilidade e alta performance na manipulação de requisições;</p>
+</li>
+<li>
+<p>Prisma ORM: ferramenta para facilitar a interação com bancos de dados relacionais, gerenciando consultas, migrações e estruturação de dados;</p>
+</li>
+<li>
+<p>Firebase: usado para autenticação, armazenamento em tempo real e notificações push;</p>
+</li>
+<li>
+<p>Supabase: módulo do ORM para utilização de seu serviço de chat em tempo real entre os usuários, fundamental para resolução de dúvidas do fórum.</p>
+</li>
+</ul>
+<p>Assim como o banco de dados PostgreSQL, pois além de ser uma ferramenta open-source, ele consegue fornecer um alto desempenho para as operações de manipulação de dados, recurso de autenticação e autorização robusta aos usuários, e uma boa integração com as outras tecnologias que serão utilizadas no projeto.</p>
+<h2 id="restricoes-adicionais"><strong>Restrições adicionais</strong></h2>
+<p>O Prisma ORM, contendo o banco de dados, PostgreSQL, estará conectado em um sistema próprio e seguro, onde o acesso será restrito aos membros do time, e eles poderão modificar, e analisar como o banco está rodando. O licenciamento será MIT, permitindo que o software possa ser contribuído de diversas fontes diferentes ao redor do mundo, e seu código-fonte será livre para acesso no <a href="https://github.com/FGA0138-MDS-Ajax/2024.2-Wunjo">repositório</a>. As senhas no banco serão armazenadas criptografadas, para que nem membros do time possam vê-las em seu formato original. Tal banco possuirá módulos seguindo a arquitetura Hexagonal, com um dos módulos de Supabase e suas funcionalidades de dados em tempo real para a base direta do chat no aplicativo.</p>
+<p>O software é acessível diretamente pelo aplicativo em celular pŕoprio, mas exige registro e login para que o usuário acesse suas funcionalidades, com vários estudantes logados concomitantemente, sem perda de qualidade de requisições entre o cliente, servidor, e banco de dados. Assim podemos organizar os dados de cada estudante, e utilizar de outras funcionalidades, como identificação por imagem, nome, e outros dados. Mecanismos de acessibilidade foram considerados para serem construídos em versões posteriores do software.</p>
+<p>A usabilidade é vital em muitos aspectos de funcionalidade; Como para gamificação, o ranking é atualizado rapidamente; Postar dúvidas e responder não ser um processo burocrático, lento, e inútil, se não leva ao desuso e desmotivação dos estudantes. E que haja uma boa portabilidade de outros mecanismos que os alunos e tutores já usam entre si, como plataformas de conversa pessoais para se ajudar; Mas agora, incentivando a ideia de manter dados salvos, a competição entre si como motivação de ajudar e compartilhar suas dúvidas com outros estudantes. Metas de temporadas para também servir como controle de uso, para que os estudantes se sintam motivados a entrar no ranking, esforçando em utilizar o aplicativo junto a gamificação.</p>
+<p>Uma característica extremamente importante para uma boa construção de nosso projeto é o de confiabilidade: com os alunos tendo segurança em suas conversas privadas com os tutores, e tendo o poder de reportá-los por mal comportamento; isso é importante, pois os usos estão diretamente ligados com o quanto o aluno e tutor tem confiança na eficaz do aplicativo.</p>
+<h2 id="3-bibliografia"><strong>3 Bibliografia</strong></h2>
+<p>Documento de Visão - UnBordo. 02 dez. 2024. Grupo 6 - Wunjo. Disponível em: <a href="https://fga0138-mds-ajax.github.io/2024.2-Wunjo/documento-visao/documento-visao/">Documento de Visão</a>.</p>
+<p>Documento de Requisitos. 09 dez. 2024. Grupo 6 - Wunjo. Disponível em: <a href="https://fga0138-mds-ajax.github.io/2024.2-Wunjo/documento-requisitos/documento-requisitos/">Documento de Requisitos</a>.</p>
+<p>Documento de Arquitetura de Software. FUNPAR. Disponível em: <a href="https://www.cin.ufpe.br/~gta/rup-vc/core.base_rup/workproducts/rup_software_architecture_document_C367485C.html">Artefato: Documento de Arquitetura de Software</a>.</p>
+<p>MÉTODOS DE DESENVOLVIMENTO DE SOFTWARE. 2024.2-Wunjo [repositório GitHub]. Disponível em: <a href="https://github.com/FGA0138-MDS-Ajax/2024.2-Wunjo">FGA0138-MDS-Ajax: 2024.2-Wunjo</a>. Acesso em: 18 dez. 2024.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f1b6f286.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,3100 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../documento-arquitetura/documento-arquitetura/">
+      
+      
+        <link rel="next" href="../../atas-reuniao/ata-reuniao-1/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.4">
+    
+    
+      
+        <title>Documento de Plano de Testes - Wunjo - Documentação</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#plano-de-teste" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Wunjo - Documentação" class="md-header__button md-logo" aria-label="Wunjo - Documentação" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Wunjo - Documentação
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Documento de Plano de Testes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/FGA0138-MDS-Ajax/2024.2-Wunjo" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Wunjo - Documentação" class="md-nav__button md-logo" aria-label="Wunjo - Documentação" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Wunjo - Documentação
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/FGA0138-MDS-Ajax/2024.2-Wunjo" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Página inicial
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documento-visao/documento-visao/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Documento de Visão
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documento-requisitos/documento-requisitos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Documento de Requisitos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documento-arquitetura/documento-arquitetura/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Documento de Arquitetura
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Documento de Plano de Testes
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Documento de Plano de Testes
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#historico-das-alteracoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Histórico das alterações
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-introducao" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 - Introdução
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-requisitos-a-testar" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 - Requisitos a Testar
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 - Requisitos a Testar">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#casos-de-uso" class="md-nav__link">
+    <span class="md-ellipsis">
+      Casos de uso:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-tipos-de-teste" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 - Tipos de teste
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 - Tipos de teste">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-testes-unitarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 - Testes unitários
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-testes-de-integracao" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 - Testes de integração
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-teste-de-sistema" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 - Teste de sistema
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-criterios-de-finalizacao-dos-testes" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4 - Critérios de Finalização dos Testes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-recursos" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 - Recursos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4 - Recursos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-ambiente-de-teste-software-e-hardware" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 - Ambiente de teste - Software e Hardware
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-ferramenta-de-teste" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 - Ferramenta de teste
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-cronograma" class="md-nav__link">
+    <span class="md-ellipsis">
+      5 - Cronograma
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Atas de Reunião
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Atas de Reunião
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1 - Requisitos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2 - Formulário de player
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3 - Validação de requisitos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4 - Análise de player e tema do PGG
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5 - Planejamento do Front-End
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    6 - Validação de requisitos e análise do tema do PGG
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-7/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    7 - Documento de visão
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    8 - Relatório da análise de player
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-9/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    9 - Desenvolvimento do PGG
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-10/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    10 - Plano Geral de Gamificação
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-11/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    11 - Validação do Plano Geral de Gamificação
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-12/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    12 - Desenvolvimento do Protótipo pt. 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-13/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    13 - Amostra inicial do Protótipo
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-14/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    14 - Desenvolvimento do Protótipo pt. 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-15/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    15 - Elaboração da apresentação
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-16/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    16 - Sprint 1 Entidades
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-17/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    17 - Finalização do protótipo de login
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-18/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    18 - Finalização do protótipo de tela Inicial
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-19/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    19 - Validação do protótipo
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-20/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    20 - Fim da Sprint 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-21/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    21 - Revisão de entrega da Release 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-22/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    22 - Acompanhamento do projeto
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-23/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    23 - Feedback do cliente
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Documentos sobre gamificação
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Documentos sobre gamificação
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentos-gamificacao/relatorio-formulario/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Relatório do formulário
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentos-gamificacao/pgg/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plano geral de gamificação
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#historico-das-alteracoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Histórico das alterações
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-introducao" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 - Introdução
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-requisitos-a-testar" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 - Requisitos a Testar
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 - Requisitos a Testar">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#casos-de-uso" class="md-nav__link">
+    <span class="md-ellipsis">
+      Casos de uso:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-tipos-de-teste" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 - Tipos de teste
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 - Tipos de teste">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-testes-unitarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 - Testes unitários
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-testes-de-integracao" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 - Testes de integração
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-teste-de-sistema" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 - Teste de sistema
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-criterios-de-finalizacao-dos-testes" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4 - Critérios de Finalização dos Testes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-recursos" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 - Recursos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4 - Recursos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-ambiente-de-teste-software-e-hardware" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 - Ambiente de teste - Software e Hardware
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-ferramenta-de-teste" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 - Ferramenta de teste
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-cronograma" class="md-nav__link">
+    <span class="md-ellipsis">
+      5 - Cronograma
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="plano-de-teste">Plano de Teste</h1>
+<p><strong>Wunjo</strong></p>
+<p><em>versão 0.6</em></p>
+<h2 id="historico-das-alteracoes">Histórico das alterações</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Versão</th>
+<th style="text-align: center;">Data</th>
+<th style="text-align: center;">Descrição da Alteração</th>
+<th style="text-align: center;">Nome(s) Integrante(s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">0.5</td>
+<td style="text-align: center;">29/01/2025</td>
+<td style="text-align: center;">Atualizar template</td>
+<td style="text-align: center;">João Farias</td>
+</tr>
+<tr>
+<td style="text-align: center;">0.6</td>
+<td style="text-align: center;">10/02/2025</td>
+<td style="text-align: center;">Atualização das seções 2 e 3</td>
+<td style="text-align: center;">Willian Silva</td>
+</tr>
+<tr>
+<td style="text-align: center;">0.7</td>
+<td style="text-align: center;">16/02/2025</td>
+<td style="text-align: center;">Revisão preliminar</td>
+<td style="text-align: center;">Willian Silva</td>
+</tr>
+</tbody>
+</table>
+<h2 id="1-introducao">1 - Introdução</h2>
+<p>Este documento descreve os requisitos a testar, os  tipos de testes definidos para cada iteração, os recursos de hardware e software a serem empregados e o cronograma dos testes ao longo do projeto UnBordo. As seções referentes aos requisitos, recursos e cronograma servem para permitir ao gerente do projeto acompanhar a evolução dos testes.</p>
+<!-- Com esse documento, você deve:
+- Identificar informações de projeto existentes e os componentes de software que devem ser testados.
+- Listar os Requisitos a testar.
+- Recomendar e descrever as estratégias de teste a serem empregadas.
+- Identificar os recursos necessários e prover uma estimativa dos esforços de teste.
+- Listar os elementos resultantes do projeto de testes.
+
+Também é possível apresentar aqui o programa que será testado. -->
+
+<h2 id="2-requisitos-a-testar">2 - Requisitos a Testar</h2>
+<!-- Esta seção deve conter os casos de uso e requisitos não funcionais identificados como objetos dos testes ao longo do desenvolvimento do projeto.
+Como, em geral, os requisitos a testar são obtidos diretamente dos requisitos do sistema, esta seção é concebida como opcional. Assim sendo, sempre que novos requisitos a testar, que não constem como requisitos do sistema, forem identificados ou, simplesmente, por questões de organização e clareza, esta seção deve ser preenchida.
+Dependendo das informações disponíveis, essa seção pode começar a ser preenchida já nas primeiras iterações do ciclo de vida a partir do documento de requisitos.
+
+Caso seja necessário, liste aqui os requisitos a testar subdivididos em casos de uso e requisitos não-funcionais. -->
+
+<h3 id="casos-de-uso">Casos de uso:</h3>
+<!-- Tem que adicionar os casos de uso. -->
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Nome do Caso de Uso</th>
+            <th>Identificador do Caso de Uso</th>
+            <th>Passos</th>
+            <th>Resultado Esperado</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Fórum de dúvidas</td>
+            <td>RQ01</td>
+            <td>
+                1. Acessar a página inicial<br>
+                2. Navegar até a seção do fórum<br>
+                3. Verificar se as dúvidas estão sendo exibidas
+            </td>
+            <td>O sistema deve exibir as dúvidas públicas no fórum</td>
+        </tr>
+        <tr>
+            <td>Chat privado</td>
+            <td>RQ02</td>
+            <td>
+                1. Acessar o fórum de dúvidas<br>
+                2. Selecionar uma dúvida<br>
+                3. Iniciar um chat privado
+            </td>
+            <td>O sistema deve permitir que um estudante inicie um chat privado para responder uma dúvida</td>
+        </tr>
+        <tr>
+            <td>Cancelamento de chat pelo tutor</td>
+            <td>RQ03</td>
+            <td>
+                1. Acessar a lista de chats ativos<br>
+                2. Selecionar um chat<br>
+                3. Clicar em cancelar
+            </td>
+            <td>O tutor deve conseguir cancelar um chat sem restrições</td>
+        </tr>
+        <tr>
+            <td>Cancelamento de chat pelo aluno</td>
+            <td>RQ04</td>
+            <td>
+                1. Acessar a lista de chats ativos<br>
+                2. Selecionar um chat<br>
+                3. Clicar em cancelar
+            </td>
+            <td>O aluno deve conseguir cancelar um chat até 3 vezes por semana</td>
+        </tr>
+        <tr>
+            <td>Chats privados</td>
+            <td>RQ05</td>
+            <td>
+                1. Acessar o sistema<br>
+                2. Selecionar um tutor ou aluno para conversar<br>
+                3. Iniciar um chat
+            </td>
+            <td>O sistema deve permitir a troca de mensagens privadas entre alunos e tutores</td>
+        </tr>
+        <tr>
+            <td>Filtro de dúvidas por matéria</td>
+            <td>RQ06</td>
+            <td>
+                1. Acessar a página do fórum<br>
+                2. Aplicar o filtro por matéria<br>
+            </td>
+            <td>O sistema deve exibir apenas as dúvidas da matéria selecionada</td>
+        </tr>
+        <tr>
+            <td>Buscar matérias através do SIGAA</td>
+            <td>RQ07</td>
+            <td>
+                1. Acessar a página de cadastro de dúvidas
+            </td>
+            <td>O sistema exibe corretamente as matérias disponíveis.</td>
+        </tr>
+        <tr>
+            <td>Marcar dúvida como resolvida</td>
+            <td>RQ08</td>
+            <td>
+                1. Acessar sua dúvida<br>
+                2. Clicar na opção "Resolvida"
+            </td>
+            <td>A dúvida é fechada e marcada como resolvida.</td>
+        </tr>
+        <tr>
+            <td>Cadastro de dúvidas</td>
+            <td>RQ09</td>
+            <td>
+                1. Acessar a página de criação de dúvidas<br>
+                2. Informar a matéria e a urgência<br>
+                3. Confirmar o cadastro
+            </td>
+            <td>A dúvida é cadastrada com sucesso.</td>
+        </tr>
+        <tr>
+            <td>Indicação da dificuldade da dúvida</td>
+            <td>RQ10</td>
+            <td>
+                1. Acessar a página de criação de dúvidas<br>
+                2. Informar a dificuldade da dúvida<br>
+                3. Confirmar o cadastro
+            </td>
+            <td>A dúvida é cadastrada com a dificuldade selecionada.</td>
+        </tr>
+        <tr>
+            <td>Cadastro de dúvida em texto e/ou foto</td>
+            <td>RQ11</td>
+            <td>
+                1. Acessar a página de criação de dúvidas<br>
+                2. Inserir um texto e/ou uma imagem<br>
+                3. Confirmar o cadastro
+            </td>
+            <td>A dúvida é cadastrada com o conteúdo adequado.</td>
+        </tr>
+        <tr>
+            <td>Filtragem de dúvidas por urgência</td>
+            <td>RQ12</td>
+            <td>
+                1. Acessar o fórum de dúvidas<br>
+                2. Selecionar um filtro de urgência
+            </td>
+            <td>O sistema exibe as dúvidas filtradas corretamente.</td>
+        </tr>
+        <tr>
+            <td>Avaliação do tutor</td>
+            <td>RQ13</td>
+            <td>
+                1. Entender a resposta<br>
+                2. Avaliar o tutor
+            </td>
+            <td>A dúvida é fechada após a avaliação.</td>
+        </tr>
+        <tr>
+            <td>Denúncia de usuários</td>
+            <td>RQ14</td>
+            <td>
+                1. Acessar o perfil de outro usuário<br>
+                2. Selecionar a opção de denúncia<br>
+                3. Preencher o motivo e confirmar
+            </td>
+            <td>A denúncia é registrada no sistema.</td>
+        </tr>
+        <tr>
+            <td>Gamificação do sistema</td>
+            <td>RQ15</td>
+            <td>
+                1. Responder perguntas e recebe feedbacks<br>
+                2. Receber feedbacks
+            </td>
+            <td>O usuário recebe incentivos através da gamificação.</td>
+        </tr>
+        <tr>
+            <td>Ranking dos alunos</td>
+            <td>RQ16</td>
+            <td>
+                1. Gerar um ranking com base na pontuação
+            </td>
+            <td>Os alunos são classificados no ranking.</td>
+        </tr>
+        <tr>
+            <td>Participação opcional no ranking</td>
+            <td>RQ17</td>
+            <td>
+                1. Acessar as configurações<br>
+                2. Optar por participar do ranking
+            </td>
+            <td>O usuário define sua participação no ranking.</td>
+        </tr>
+        <tr>
+            <td>Suspensão temporária de tutores</td>
+            <td>RQ18</td>
+            <td>
+                1. Verificar avaliações negativas<br>
+                2. Suspender o tutor temporariamente
+            </td>
+            <td>O tutor é suspenso por 3 dias.</td>
+        </tr>
+       <tr>
+            <td>Cadastro de usuário</td>
+            <td>RQ19</td>
+            <td>
+                1. Acessar a página de cadastro<br>
+                2. Preencher nome, matrícula e curso<br>
+                3. Confirmar o cadastro
+            </td>
+            <td>O usuário é cadastrado no sistema.</td>
+        </tr>
+        <tr>
+            <td>Aumento de pontos por dificuldade</td>
+            <td>RQ20</td>
+            <td>
+                1. Cadastrar uma dúvida<br>
+                2. Selecionar a dificuldade
+            </td>
+            <td>O sistema atribui à dúvida um valor de pontos de acordo com a dificuldade.</td>
+        </tr>
+        <tr>
+            <td>Recompensa de tutores</td>
+            <td>RQ21</td>
+            <td>
+                1. Responder dúvidas de usuários<br>
+            </td>
+            <td>O tutor recebe recompensas baseadas em seu desempenho através do sistema.</td>
+        </tr>
+        <tr>
+            <td>Redução de média de avaliação</td>
+            <td>RQ22</td>
+            <td>
+                1. Avaliar o tutor após o atendimento
+            </td>
+            <td>O sistema ajusta a média do tutor e é recalculada conforme as avaliações recebidas.</td>
+        </tr>
+        <tr>
+            <td>Notificação de denúncia</td>
+            <td>RQ23</td>
+            <td>
+                1. Denunciar um usuário por comportamento impróprio
+            </td>
+            <td>O usuário denunciado recebe um aviso por e-mail sobre a denúncia.</td>
+        </tr>
+        <tr>
+            <td>Exclusão de conta</td>
+            <td>RQ24</td>
+            <td>
+                1. Acessar as configurações de conta<br>
+                2. Solicitar a exclusão da conta
+            </td>
+            <td>A conta do usuário é desativada no sistema por meio de um soft delete.</td>
+        </tr>
+        <tr>
+            <td>Chat privado com tutores</td>
+            <td>RQ25</td>
+            <td>
+                1. Iniciar uma conversa com um tutor
+            </td>
+            <td>O histórico de chat é salvo pelo sistema e pode ser acessado posteriormente.</td>
+        </tr>
+        <tr>
+            <td>Página de perfil do usuário</td>
+            <td>RQ26</td>
+            <td>
+                1. Acessar a página de perfil<br>
+            </td>
+            <td>O usuário pode visualizar seu progresso e feedbacks.</td>
+        </tr>
+        <tr>
+            <td>Notificação de resposta</td>
+            <td>RQ27</td>
+            <td>
+                1. Responder a dúvida de um aluno
+            </td>
+            <td>O aluno recebe um alerta do sistema sobre a resposta recebida.</td>
+        </tr>
+        <tr>
+            <td>Edição de perfil</td>
+            <td>RQ28</td>
+            <td>
+                1. Acessar as configurações de perfil<br>
+                2. Editar suas informações
+            </td>
+            <td>As informações do usuário são atualizadas no sistema.</td>
+        </tr>
+        <tr>
+            <td>Exibição de ranking de tutores</td>
+            <td>RQ29</td>
+            <td>
+                1. Exibir o ranking dos tutores
+            </td>
+            <td>Os usuários podem visualizar o desempenho dos tutores.</td>
+        </tr>
+        <tr>
+            <td>Validação de matrícula</td>
+            <td>RQ30</td>
+            <td>
+                1. Inserir sua matrícula no cadastro
+            </td>
+            <td> O sistema envia um e-mail institucional para validação</td>
+        </tr>
+        <tr>
+            <td>Temporadas do ranking</td>
+            <td>RQ31</td>
+            <td>
+                1. Iniciar uma nova temporada
+            </td>
+            <td>O ranking dos alunos e tutores é reiniciado a cada nova temporada.</td>
+        </tr>
+        <tr>
+            <td>Recuperação de senha</td>
+            <td>RQ32</td>
+            <td>
+                1. Acessar a opção "Esqueci minha senha"<br>
+                2. Informar seu e-mail cadastrado<br>
+                3. Acessar o link de recuperação<br>
+                4. Definir uma nova senha.
+            </td>
+            <td>O usuário redefine sua senha com sucesso.</td>
+        </tr>
+        <tr>
+            <td>Visualização de perfil</td>
+            <td>RQ33</td>
+            <td>
+                1. Acessar o ranking ou o chat privado.<br>
+                2. Selecionar outro usuário para visualizar o perfil.
+            </td>
+            <td>O usuário consegue visualizar o perfil de outro usuário.</td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- Tem que adicionar os casos de uso. -->
+
+<h2 id="3-tipos-de-teste">3 - Tipos de teste</h2>
+<!-- Esta seção deve conter os tipos de testes escolhidos para cada iteração do projeto.
+Pode-se definir inicialmente apenas os tipos de testes que serão usadas na próxima iteração, mas é possível também já registrar eventuais tipos de teste que se espera utilizar nas demais iterações. 
+Com base no guia de testes, indique os tipos de testes que melhor se adéquam aos requisitos, tipo da aplicação e seus recursos disponíveis e, caso necessário complemente ou forneça mais detalhes da técnica e dos critérios de completude sugeridos no guia para cada tipo de teste indicado. -->
+
+<h3 id="31-testes-unitarios">3.1 - Testes unitários</h3>
+<p>Para testes unitários.
+São responsáveis por verificar a menor unidade testável do sistema, como as funções e interfaces. Dessa forma, é testado se cada componente individual do código funciona isoladamente.</p>
+<p><br/></p>
+<table>
+    <tr>
+        <th>
+            Objetivo
+        </th>
+        <th colspan="4">
+            Verificar a lógica do caso do usuário de cadastro.
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Técnica:
+        </th>
+        <th colspan="2">
+            () manual
+        </th>
+        <th colspan="2">
+            (x) automática
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Abordagem do teste
+        </th>
+        <th colspan="2">
+            Caixa branca (x)
+        </th>
+        <th colspan="2">
+            Caixa preta ( )
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Responsável(is)
+        </th>
+        <th colspan="4">
+            Back-end
+        </th>
+    </tr>
+</table>
+<p><br/></p>
+<p><br/></p>
+<table>
+    <tr>
+        <th>
+            Objetivo
+        </th>
+        <th colspan="4">
+            Verificar a lógica do caso do usuário de login.
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Técnica:
+        </th>
+        <th colspan="2">
+            () manual
+        </th>
+        <th colspan="2">
+            (x) automática
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Abordagem do teste
+        </th>
+        <th colspan="2">
+            Caixa branca (x)
+        </th>
+        <th colspan="2">
+            Caixa preta ( )
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Responsável(is)
+        </th>
+        <th colspan="4">
+            Back-end
+        </th>
+    </tr>
+</table>
+<p><br/></p>
+<p><br/></p>
+<table>
+    <tr>
+        <th>
+            Objetivo
+        </th>
+        <th colspan="4">
+            Verificar a lógica da autenticação do usuário.
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Técnica:
+        </th>
+        <th colspan="2">
+            () manual
+        </th>
+        <th colspan="2">
+            (x) automática
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Abordagem do teste
+        </th>
+        <th colspan="2">
+            Caixa branca (x)
+        </th>
+        <th colspan="2">
+            Caixa preta ( )
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Responsável(is)
+        </th>
+        <th colspan="4">
+            Back-end
+        </th>
+    </tr>
+</table>
+<p><br/></p>
+<p><br/></p>
+<table>
+    <tr>
+        <th>
+            Objetivo
+        </th>
+        <th colspan="4">
+            Verificar a lógica da criação da dúvida do aluno no fórum.
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Técnica:
+        </th>
+        <th colspan="2">
+            () manual
+        </th>
+        <th colspan="2">
+            (x) automática
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Abordagem do teste
+        </th>
+        <th colspan="2">
+            Caixa branca (x)
+        </th>
+        <th colspan="2">
+            Caixa preta ( )
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Responsável(is)
+        </th>
+        <th colspan="4">
+            Back-end
+        </th>
+    </tr>
+</table>
+<p><br/></p>
+<p><br/></p>
+<table>
+    <tr>
+        <th>
+            Objetivo
+        </th>
+        <th colspan="4">
+            Verificar a lógica da remoção da dúvida do aluno no fórum.
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Técnica:
+        </th>
+        <th colspan="2">
+            () manual
+        </th>
+        <th colspan="2">
+            (x) automática
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Abordagem do teste
+        </th>
+        <th colspan="2">
+            Caixa branca (x)
+        </th>
+        <th colspan="2">
+            Caixa preta ( )
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Responsável(is)
+        </th>
+        <th colspan="4">
+            Back-end
+        </th>
+    </tr>
+</table>
+<p><br/></p>
+<p><br/></p>
+<table>
+    <tr>
+        <th>
+            Objetivo
+        </th>
+        <th colspan="4">
+            Verificar a lógica de pesquisar todas as perguntas no fórum.
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Técnica:
+        </th>
+        <th colspan="2">
+            () manual
+        </th>
+        <th colspan="2">
+            (x) automática
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Abordagem do teste
+        </th>
+        <th colspan="2">
+            Caixa branca (x)
+        </th>
+        <th colspan="2">
+            Caixa preta ( )
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Responsável(is)
+        </th>
+        <th colspan="4">
+            Back-end
+        </th>
+    </tr>
+</table>
+<p><br/></p>
+<p><br/></p>
+<table>
+    <tr>
+        <th>
+            Objetivo
+        </th>
+        <th colspan="4">
+           Verificar a lógica de filtrar uma pergunta.
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Técnica:
+        </th>
+        <th colspan="2">
+            () manual
+        </th>
+        <th colspan="2">
+            (x) automática
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Abordagem do teste
+        </th>
+        <th colspan="2">
+            Caixa branca (x)
+        </th>
+        <th colspan="2">
+            Caixa preta ( )
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Responsável(is)
+        </th>
+        <th colspan="4">
+            Back-end
+        </th>
+    </tr>
+</table>
+<p><br/></p>
+<p><br/></p>
+<table>
+    <tr>
+        <th>
+            Objetivo
+        </th>
+        <th colspan="4">
+           Verificar a geração do JWT Web Token.
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Técnica:
+        </th>
+        <th colspan="2">
+            () manual
+        </th>
+        <th colspan="2">
+            (x) automática
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Abordagem do teste
+        </th>
+        <th colspan="2">
+            Caixa branca (x)
+        </th>
+        <th colspan="2">
+            Caixa preta ( )
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Responsável(is)
+        </th>
+        <th colspan="4">
+            Back-end
+        </th>
+    </tr>
+</table>
+<p><br/></p>
+<p><br/></p>
+<table>
+    <tr>
+        <th>
+            Objetivo
+        </th>
+        <th colspan="4">
+           Verificar a validação do caso de usuário do login.
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Técnica:
+        </th>
+        <th colspan="2">
+            () manual
+        </th>
+        <th colspan="2">
+            (x) automática
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Abordagem do teste
+        </th>
+        <th colspan="2">
+            Caixa branca (x)
+        </th>
+        <th colspan="2">
+            Caixa preta ( )
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Responsável(is)
+        </th>
+        <th colspan="4">
+            Back-end
+        </th>
+    </tr>
+</table>
+<p><br/></p>
+<p><br/></p>
+<table>
+    <tr>
+        <th>
+            Objetivo
+        </th>
+        <th colspan="4">
+           Verificar a validação do caso de usuário do registro.
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Técnica:
+        </th>
+        <th colspan="2">
+            () manual
+        </th>
+        <th colspan="2">
+            (x) automática
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Abordagem do teste
+        </th>
+        <th colspan="2">
+            Caixa branca (x)
+        </th>
+        <th colspan="2">
+            Caixa preta ( )
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Responsável(is)
+        </th>
+        <th colspan="4">
+            Back-end
+        </th>
+    </tr>
+</table>
+<p><br/></p>
+<p><br/></p>
+<table>
+    <tr>
+        <th>
+            Objetivo
+        </th>
+        <th colspan="4">
+           Verificar a validação da criação da dúvida.
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Técnica:
+        </th>
+        <th colspan="2">
+            () manual
+        </th>
+        <th colspan="2">
+            (x) automática
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Abordagem do teste
+        </th>
+        <th colspan="2">
+            Caixa branca (x)
+        </th>
+        <th colspan="2">
+            Caixa preta ( )
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Responsável(is)
+        </th>
+        <th colspan="4">
+            Back-end
+        </th>
+    </tr>
+</table>
+<p><br/></p>
+<p><br/></p>
+<table>
+    <tr>
+        <th>
+            Objetivo
+        </th>
+        <th colspan="4">
+           Verificar a validação da remoção da dúvida. 
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Técnica:
+        </th>
+        <th colspan="2">
+            () manual
+        </th>
+        <th colspan="2">
+            (x) automática
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Abordagem do teste
+        </th>
+        <th colspan="2">
+            Caixa branca (x)
+        </th>
+        <th colspan="2">
+            Caixa preta ( )
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Responsável(is)
+        </th>
+        <th colspan="4">
+            Back-end
+        </th>
+    </tr>
+</table>
+<p><br/></p>
+<p><br/></p>
+<table>
+    <tr>
+        <th>
+            Objetivo
+        </th>
+        <th colspan="4">
+           Verificar a validação da busca das dúvidas filtradas.
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Técnica:
+        </th>
+        <th colspan="2">
+            () manual
+        </th>
+        <th colspan="2">
+            (x) automática
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Abordagem do teste
+        </th>
+        <th colspan="2">
+            Caixa branca (x)
+        </th>
+        <th colspan="2">
+            Caixa preta ( )
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Responsável(is)
+        </th>
+        <th colspan="4">
+            Back-end
+        </th>
+    </tr>
+</table>
+<p><br/></p>
+<p><br/></p>
+<table>
+    <tr>
+        <th>
+            Objetivo
+        </th>
+        <th colspan="4">
+           Verificar a validação da busca de uma dúvida.
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Técnica:
+        </th>
+        <th colspan="2">
+            () manual
+        </th>
+        <th colspan="2">
+            (x) automática
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Abordagem do teste
+        </th>
+        <th colspan="2">
+            Caixa branca (x)
+        </th>
+        <th colspan="2">
+            Caixa preta ( )
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Responsável(is)
+        </th>
+        <th colspan="4">
+            Back-end
+        </th>
+    </tr>
+</table>
+<p><br/></p>
+<p><br/></p>
+<table>
+    <tr>
+        <th>
+            Objetivo
+        </th>
+        <th colspan="4">
+           Verificar a busca de matérias através do SIGAA.
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Técnica:
+        </th>
+        <th colspan="2">
+            () manual
+        </th>
+        <th colspan="2">
+            (x) automática
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Abordagem do teste
+        </th>
+        <th colspan="2">
+            Caixa branca (x)
+        </th>
+        <th colspan="2">
+            Caixa preta ( )
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Responsável(is)
+        </th>
+        <th colspan="4">
+            Back-end
+        </th>
+    </tr>
+</table>
+<p><br/></p>
+<p><br/></p>
+<table>
+    <tr>
+        <th>
+            Objetivo
+        </th>
+        <th colspan="4">
+           Verificar a validação da urgência da dúvida.
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Técnica:
+        </th>
+        <th colspan="2">
+            () manual
+        </th>
+        <th colspan="2">
+            (x) automática
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Abordagem do teste
+        </th>
+        <th colspan="2">
+            Caixa branca (x)
+        </th>
+        <th colspan="2">
+            Caixa preta ( )
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Responsável(is)
+        </th>
+        <th colspan="4">
+            Back-end
+        </th>
+    </tr>
+</table>
+<p><br/></p>
+<p><br/></p>
+<table>
+    <tr>
+        <th>
+            Objetivo
+        </th>
+        <th colspan="4">
+           Verificar a função que gera e envia o e-mail.
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Técnica:
+        </th>
+        <th colspan="2">
+            () manual
+        </th>
+        <th colspan="2">
+            (x) automática
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Abordagem do teste
+        </th>
+        <th colspan="2">
+            Caixa branca (x)
+        </th>
+        <th colspan="2">
+            Caixa preta ( )
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Responsável(is)
+        </th>
+        <th colspan="4">
+            Back-end
+        </th>
+    </tr>
+</table>
+<p><br/></p>
+<h3 id="32-testes-de-integracao">3.2 - Testes de integração</h3>
+<p>Para testes de integração.
+Possuem a responsabilidade de verificar se o sistema atende aos requisitos especificados. Esses testes consideram a interação entre diferentes componentes do sistema por intermédio de suas integrações.</p>
+<p><br/></p>
+<table>
+    <tr>
+        <th>
+            Objetivo
+        </th>
+        <th colspan="4">
+           Verificar a rota de login da aplicação.
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Técnica:
+        </th>
+        <th colspan="2">
+            () manual
+        </th>
+        <th colspan="2">
+            (x) automática
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Abordagem do teste
+        </th>
+        <th colspan="2">
+            Caixa branca (x)
+        </th>
+        <th colspan="2">
+            Caixa preta ( )
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Responsável(is)
+        </th>
+        <th colspan="4">
+            Back-end
+        </th>
+    </tr>
+</table>
+<p><br/></p>
+<p><br/></p>
+<table>
+    <tr>
+        <th>
+            Objetivo
+        </th>
+        <th colspan="4">
+           Verificar a rota de cadastro da aplicação.
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Técnica:
+        </th>
+        <th colspan="2">
+            () manual
+        </th>
+        <th colspan="2">
+            (x) automática
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Abordagem do teste
+        </th>
+        <th colspan="2">
+            Caixa branca (x)
+        </th>
+        <th colspan="2">
+            Caixa preta ( )
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Responsável(is)
+        </th>
+        <th colspan="4">
+            Back-end
+        </th>
+    </tr>
+</table>
+<p><br/></p>
+<p><br/></p>
+<table>
+    <tr>
+        <th>
+            Objetivo
+        </th>
+        <th colspan="4">
+           Verificar a criação do repositório de dúvidas no banco de dados.
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Técnica:
+        </th>
+        <th colspan="2">
+            () manual
+        </th>
+        <th colspan="2">
+            (x) automática
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Abordagem do teste
+        </th>
+        <th colspan="2">
+            Caixa branca (x)
+        </th>
+        <th colspan="2">
+            Caixa preta ( )
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Responsável(is)
+        </th>
+        <th colspan="4">
+            Back-end
+        </th>
+    </tr>
+</table>
+<p><br/></p>
+<p><br/></p>
+<table>
+    <tr>
+        <th>
+            Objetivo
+        </th>
+        <th colspan="4">
+           Verificar a remoção do repositório de dúvidas no banco de dados.
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Técnica:
+        </th>
+        <th colspan="2">
+            () manual
+        </th>
+        <th colspan="2">
+            (x) automática
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Abordagem do teste
+        </th>
+        <th colspan="2">
+            Caixa branca (x)
+        </th>
+        <th colspan="2">
+            Caixa preta ( )
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Responsável(is)
+        </th>
+        <th colspan="4">
+            Back-end
+        </th>
+    </tr>
+</table>
+<p><br/></p>
+<p><br/></p>
+<table>
+    <tr>
+        <th>
+            Objetivo
+        </th>
+        <th colspan="4">
+           Verificar a criação do repositório de alunos no banco de dados.
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Técnica:
+        </th>
+        <th colspan="2">
+            () manual
+        </th>
+        <th colspan="2">
+            (x) automática
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Abordagem do teste
+        </th>
+        <th colspan="2">
+            Caixa branca (x)
+        </th>
+        <th colspan="2">
+            Caixa preta ( )
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Responsável(is)
+        </th>
+        <th colspan="4">
+            Back-end
+        </th>
+    </tr>
+</table>
+<p><br/></p>
+<p><br/></p>
+<table>
+    <tr>
+        <th>
+            Objetivo
+        </th>
+        <th colspan="4">
+           Verificar a remoção do repositório de alunos no banco de dados.
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Técnica:
+        </th>
+        <th colspan="2">
+            () manual
+        </th>
+        <th colspan="2">
+            (x) automática
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Abordagem do teste
+        </th>
+        <th colspan="2">
+            Caixa branca (x)
+        </th>
+        <th colspan="2">
+            Caixa preta ( )
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Responsável(is)
+        </th>
+        <th colspan="4">
+            Back-end
+        </th>
+    </tr>
+</table>
+<p><br/></p>
+<p><br/></p>
+<table>
+    <tr>
+        <th>
+            Objetivo
+        </th>
+        <th colspan="4">
+           Verificar se a denúncia é registrada e notifica o denunciado.
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Técnica:
+        </th>
+        <th colspan="2">
+            (x) manual
+        </th>
+        <th colspan="2">
+            (x) automática
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Abordagem do teste
+        </th>
+        <th colspan="2">
+            Caixa branca (x)
+        </th>
+        <th colspan="2">
+            Caixa preta ( )
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Responsável(is)
+        </th>
+        <th colspan="4">
+            Front-end & Back-end 
+        </th>
+    </tr>
+</table>
+<p><br/></p>
+<p><br/></p>
+<table>
+    <tr>
+        <th>
+            Objetivo
+        </th>
+        <th colspan="4">
+           Verificar se os históricos dos chats são corretamente armazenados.
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Técnica:
+        </th>
+        <th colspan="2">
+            (x) manual
+        </th>
+        <th colspan="2">
+            (x) automática
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Abordagem do teste
+        </th>
+        <th colspan="2">
+            Caixa branca (x)
+        </th>
+        <th colspan="2">
+            Caixa preta ( )
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Responsável(is)
+        </th>
+        <th colspan="4">
+            Front-end & Back-end
+        </th>
+    </tr>
+</table>
+<p><br/></p>
+<h3 id="33-teste-de-sistema">3.3 - Teste de sistema</h3>
+<p>Para teste de sistema.
+Tem como objetivo validar o funcionamento completo do software,através da garantia de que todos os componentes interajam corretamente e que os requisitos especificados sejam atendidos.</p>
+<p><br/></p>
+<table>
+    <tr>
+        <th>
+            Objetivo
+        </th>
+        <th colspan="4">
+            Instalação: Verificar se o software pode ser corretamente instalado, configurado e executado no ambiente de destino.
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Técnica:
+        </th>
+        <th colspan="2">
+            ( x ) manual
+        </th>
+        <th colspan="2">
+            ( ) automática
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Abordagem do teste
+        </th>
+        <th colspan="2">
+            Caixa branca ( )
+        </th>
+        <th colspan="2">
+            Caixa preta ( x )
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Responsável(is)
+        </th>
+        <th colspan="4">
+            DevOps
+        </th>
+    </tr>
+</table>
+<p><br/></p>
+<p><br/></p>
+<table>
+    <tr>
+        <th>
+            Objetivo
+        </th>
+        <th colspan="4">
+            Integridade de dados e do banco de dados: Verificar se os dados não se perdem ao desligar o programa.
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Técnica:
+        </th>
+        <th colspan="2">
+            ( x ) manual
+        </th>
+        <th colspan="2">
+            ( ) automática
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Abordagem do teste
+        </th>
+        <th colspan="2">
+            Caixa branca ( )
+        </th>
+        <th colspan="2">
+            Caixa preta ( x )
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Responsável(is)
+        </th>
+        <th colspan="4">
+            DevOps
+        </th>
+    </tr>
+</table>
+<p><br/></p>
+<p><br/></p>
+<table>
+    <tr>
+        <th>
+            Objetivo
+        </th>
+        <th colspan="4">
+            Desempenho: Verificar os níveis de escalabilidade que o sistema suporta.
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Técnica:
+        </th>
+        <th colspan="2">
+            ( x ) manual
+        </th>
+        <th colspan="2">
+            ( ) automática
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Abordagem do teste
+        </th>
+        <th colspan="2">
+            Caixa branca ( )
+        </th>
+        <th colspan="2">
+            Caixa preta ( x )
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Responsável(is)
+        </th>
+        <th colspan="4">
+            DevOps
+        </th>
+    </tr>
+</table>
+<p><br/></p>
+<p><br/></p>
+<table>
+    <tr>
+        <th>
+            Objetivo
+        </th>
+        <th colspan="4">
+            Interface do usuário: Verificar a experiência visual e interativa do usuário. 
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Técnica:
+        </th>
+        <th colspan="2">
+            ( x ) manual
+        </th>
+        <th colspan="2">
+            ( ) automática
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Abordagem do teste
+        </th>
+        <th colspan="2">
+            Caixa branca ( )
+        </th>
+        <th colspan="2">
+            Caixa preta ( x )
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Responsável(is)
+        </th>
+        <th colspan="4">
+            Front-end
+        </th>
+    </tr>
+</table>
+<p><br/></p>
+<p><br/></p>
+<table>
+    <tr>
+        <th>
+            Objetivo
+        </th>
+        <th colspan="4">
+            Compatibilidade: Verificar se o sistema funciona em diferentes dispositivos mobile.
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Técnica:
+        </th>
+        <th colspan="2">
+            ( x ) manual
+        </th>
+        <th colspan="2">
+            ( ) automática
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Abordagem do teste
+        </th>
+        <th colspan="2">
+            Caixa branca ( )
+        </th>
+        <th colspan="2">
+            Caixa preta ( x )
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Responsável(is)
+        </th>
+        <th colspan="4">
+            Front-end
+        </th>
+    </tr>
+</table>
+<p><br/></p>
+<p><br/></p>
+<table>
+    <tr>
+        <th>
+            Objetivo
+        </th>
+        <th colspan="4">
+            Gamificação: Verificar se a pontuação, o ranking e o perfil dos usuários são acessados.
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Técnica:
+        </th>
+        <th colspan="2">
+            ( x ) manual
+        </th>
+        <th colspan="2">
+            ( ) automática
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Abordagem do teste
+        </th>
+        <th colspan="2">
+            Caixa branca ( )
+        </th>
+        <th colspan="2">
+            Caixa preta ( x )
+        </th>
+    </tr>
+    <tr>
+        <th>
+            Responsável(is)
+        </th>
+        <th colspan="4">
+            Front-end & Back-end
+        </th>
+    </tr>
+</table>
+<p><br/></p>
+<h3 id="34-criterios-de-finalizacao-dos-testes">3.4 - Critérios de Finalização dos Testes</h3>
+<p>A respeito dos critérios de finalização dos testes, é importante que sejam cumpridos os seguintes itens:</p>
+<ul>
+    <li>Todos os testes unitários atingirem uma cobertura mínima de 90%.</li>
+    <li>Os testes de integração validarem a comunicação correta entre os módulos.</li>
+    <li>Os testes de sistema garantirem que todas as funcionalidades essenciais operem corretamente.</li>
+    <li>As verificações de segurança não identificarem vulnerabilidades críticas.</li>
+</ul>
+
+<h2 id="4-recursos">4 - Recursos</h2>
+<!-- Esta seção deve descrever os recursos humanos, de ambiente de teste (hardware e software) e de ferramentas de automatização de testes necessários para execução dos testes que devem ser descritos nas subseções que seguem. -->
+
+<h3 id="41-ambiente-de-teste-software-e-hardware">4.1 - Ambiente de teste - Software e Hardware</h3>
+<p>De software, utilizamos Node.js para o back-end e React para o front-end; o próprio React faz testes em questão de renderização de componentes e telas.</p>
+<p>Para o servidor, utilizamos o Render para fazer deploy que por si só faz testes para manter o servidor rodando apesar de falhas, ele também possui um endpoint para checar se o servidor está online.</p>
+<h3 id="42-ferramenta-de-teste">4.2 - Ferramenta de teste</h3>
+<p>De ferramentas, utilizamos Vitest para testes de API e Banco, que é uma ferramenta de teste de software que permite a criação de testes automatizados para serviços HTTPs e APIs.</p>
+<p>Já para o frontend, o aplicativo foi testado manualmente, com a utilização de um emulador de celular (waydroid, Android Emulator) e celulares para verificar a responsividade do aplicativo e a usabilidade.</p>
+<h2 id="5-cronograma">5 - Cronograma</h2>
+<table>
+<thead>
+<tr>
+<th>Tipo de teste</th>
+<th>Duração</th>
+<th>data de início</th>
+<th>data de término</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Planejar testes</td>
+<td>2 meses</td>
+<td>06/11/2024</td>
+<td>30/01/2025</td>
+</tr>
+<tr>
+<td>Implementar testes</td>
+<td>3 meses</td>
+<td>06/11/2024</td>
+<td>10/02/2025</td>
+</tr>
+<tr>
+<td>Executar teste</td>
+<td>3 meses</td>
+<td>06/11/2024</td>
+<td>10/02/2025</td>
+</tr>
+<tr>
+<td>Avaliar teste</td>
+<td>3 meses</td>
+<td>06/11/2024</td>
+<td>10/02/2025</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f1b6f286.min.js"></script>
+      
+    
+  </body>
+</html>

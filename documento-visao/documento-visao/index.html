@@ -1,0 +1,2556 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../..">
+      
+      
+        <link rel="next" href="../../documento-requisitos/documento-requisitos/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.4">
+    
+    
+      
+        <title>Documento de Visão - Wunjo - Documentação</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.8608ea7d.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#visao-geral-do-produto" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Wunjo - Documentação" class="md-header__button md-logo" aria-label="Wunjo - Documentação" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Wunjo - Documentação
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Documento de Visão
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/FGA0138-MDS-Ajax/2024.2-Wunjo" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Wunjo - Documentação" class="md-nav__button md-logo" aria-label="Wunjo - Documentação" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Wunjo - Documentação
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/FGA0138-MDS-Ajax/2024.2-Wunjo" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Página inicial
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Documento de Visão
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Documento de Visão
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#visao-geral-do-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      VISÃO GERAL DO PRODUTO
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="VISÃO GERAL DO PRODUTO">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problema" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problema
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#declaracao-de-posicao-do-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Declaração de Posição do Produto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#objetivos-do-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivos do Produto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tecnologias-utilizadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tecnologias utilizadas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tecnologias utilizadas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tecnologias" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tecnologias
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ferramentas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ferramentas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metodos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Métodos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arquitetura" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arquitetura
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#visao-geral-do-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      VISÃO GERAL DO PROJETO
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="VISÃO GERAL DO PROJETO">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ciclo-de-vida-do-projeto-de-desenvolvimento-de-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ciclo de vida do projeto de desenvolvimento de software
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gamificacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gamificação
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#organizacao-do-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Organização do Projeto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#planejamento-das-fases-eou-iteracoes-do-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Planejamento das Fases e/ou Iterações do Projeto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#matriz-de-comunicacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Matriz de Comunicação
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gerenciamento-de-riscos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gerenciamento de Riscos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#criterios-de-replanejamento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Critérios de Replanejamento
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#processo-de-desenvolvimento-de-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      PROCESSO DE DESENVOLVIMENTO DE SOFTWARE
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#declaracao-de-escopo-do-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      DECLARAÇÃO DE ESCOPO DO PROJETO
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="DECLARAÇÃO DE ESCOPO DO PROJETO">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#backlog-do-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Backlog do produto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#perfis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Perfis
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cenários
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tabela-de-backlog-do-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela de Backlog do produto
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias-bibliograficas" class="md-nav__link">
+    <span class="md-ellipsis">
+      REFERÊNCIAS BIBLIOGRÁFICAS
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documento-requisitos/documento-requisitos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Documento de Requisitos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documento-arquitetura/documento-arquitetura/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Documento de Arquitetura
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documento-plano-testes/documento-plano-testes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Documento de Plano de Testes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Atas de Reunião
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Atas de Reunião
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1 - Requisitos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2 - Formulário de player
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3 - Validação de requisitos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4 - Análise de player e tema do PGG
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5 - Planejamento do Front-End
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    6 - Validação de requisitos e análise do tema do PGG
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-7/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    7 - Documento de visão
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    8 - Relatório da análise de player
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-9/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    9 - Desenvolvimento do PGG
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-10/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    10 - Plano Geral de Gamificação
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-11/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    11 - Validação do Plano Geral de Gamificação
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-12/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    12 - Desenvolvimento do Protótipo pt. 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-13/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    13 - Amostra inicial do Protótipo
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-14/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    14 - Desenvolvimento do Protótipo pt. 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-15/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    15 - Elaboração da apresentação
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-16/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    16 - Sprint 1 Entidades
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-17/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    17 - Finalização do protótipo de login
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-18/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    18 - Finalização do protótipo de tela Inicial
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-19/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    19 - Validação do protótipo
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-20/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    20 - Fim da Sprint 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-21/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    21 - Revisão de entrega da Release 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-22/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    22 - Acompanhamento do projeto
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../atas-reuniao/ata-reuniao-23/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    23 - Feedback do cliente
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Documentos sobre gamificação
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Documentos sobre gamificação
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentos-gamificacao/relatorio-formulario/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Relatório do formulário
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../documentos-gamificacao/pgg/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plano geral de gamificação
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#visao-geral-do-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      VISÃO GERAL DO PRODUTO
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="VISÃO GERAL DO PRODUTO">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problema" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problema
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#declaracao-de-posicao-do-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Declaração de Posição do Produto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#objetivos-do-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objetivos do Produto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tecnologias-utilizadas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tecnologias utilizadas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tecnologias utilizadas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tecnologias" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tecnologias
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ferramentas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ferramentas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metodos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Métodos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#arquitetura" class="md-nav__link">
+    <span class="md-ellipsis">
+      Arquitetura
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#visao-geral-do-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      VISÃO GERAL DO PROJETO
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="VISÃO GERAL DO PROJETO">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ciclo-de-vida-do-projeto-de-desenvolvimento-de-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ciclo de vida do projeto de desenvolvimento de software
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gamificacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gamificação
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#organizacao-do-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Organização do Projeto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#planejamento-das-fases-eou-iteracoes-do-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Planejamento das Fases e/ou Iterações do Projeto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#matriz-de-comunicacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Matriz de Comunicação
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gerenciamento-de-riscos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gerenciamento de Riscos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#criterios-de-replanejamento" class="md-nav__link">
+    <span class="md-ellipsis">
+      Critérios de Replanejamento
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#processo-de-desenvolvimento-de-software" class="md-nav__link">
+    <span class="md-ellipsis">
+      PROCESSO DE DESENVOLVIMENTO DE SOFTWARE
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#declaracao-de-escopo-do-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      DECLARAÇÃO DE ESCOPO DO PROJETO
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="DECLARAÇÃO DE ESCOPO DO PROJETO">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#backlog-do-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Backlog do produto
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#perfis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Perfis
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cenários
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tabela-de-backlog-do-produto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tabela de Backlog do produto
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias-bibliograficas" class="md-nav__link">
+    <span class="md-ellipsis">
+      REFERÊNCIAS BIBLIOGRÁFICAS
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+  <h1>Documento de Visão</h1>
+
+<p><strong>Integrantes do Grupo:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Mat.</th>
+<th style="text-align: left;">Nome</th>
+<th style="text-align: left;">Função (responsabilidade)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">231027032</td>
+<td style="text-align: left;">ARTHUR EVANGELISTA DE OLIVEIRA</td>
+<td style="text-align: left;">Desenvolvedor Front-End</td>
+</tr>
+<tr>
+<td style="text-align: left;">232001649</td>
+<td style="text-align: left;">DAVID WILLIAM LEMOS FERREIRA</td>
+<td style="text-align: left;">DevOps</td>
+</tr>
+<tr>
+<td style="text-align: left;">232013980</td>
+<td style="text-align: left;">GABRIEL ANDRADE MAGIOLI</td>
+<td style="text-align: left;">Desenvolvedor Back-End</td>
+</tr>
+<tr>
+<td style="text-align: left;">231038644</td>
+<td style="text-align: left;">GIOVANA DE SOUZA FONTES</td>
+<td style="text-align: left;">Desenvolvedora Front-End</td>
+</tr>
+<tr>
+<td style="text-align: left;">222008691</td>
+<td style="text-align: left;">GUSTAVO RIBEIRO LINHARES</td>
+<td style="text-align: left;">Desenvolvedor Front-End</td>
+</tr>
+<tr>
+<td style="text-align: left;">221022604</td>
+<td style="text-align: left;">JOÃO VICTOR DA SILVA BATISTA DE FARIAS</td>
+<td style="text-align: left;">DevOps</td>
+</tr>
+<tr>
+<td style="text-align: left;">231035455</td>
+<td style="text-align: left;">LETICIA MARIA DE JESUS LOPES</td>
+<td style="text-align: left;">Desenvolvedora Front-End</td>
+</tr>
+<tr>
+<td style="text-align: left;">231026886</td>
+<td style="text-align: left;">SOPHIA SOUZA DA SILVA</td>
+<td style="text-align: left;">Desenvolvedora Back-End</td>
+</tr>
+<tr>
+<td style="text-align: left;">231011865</td>
+<td style="text-align: left;">WILLIAN WAGNER XAVIER RAMOS DA SILVA</td>
+<td style="text-align: left;">Desenvolvedor Back-End</td>
+</tr>
+<tr>
+<td style="text-align: left;">231038303</td>
+<td style="text-align: left;">YAN MATHEUS SANTA BRIGIDA DE AGUIAR</td>
+<td style="text-align: left;">Desenvolvedor Front-End</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Histórico de Revisões</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Data</th>
+<th style="text-align: left;">Versão</th>
+<th style="text-align: left;">Descrição</th>
+<th style="text-align: left;">Autor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>24/11/2024</strong></td>
+<td style="text-align: left;">0.1</td>
+<td style="text-align: left;">Primeira versão do documento</td>
+<td style="text-align: left;">David, Gabriel, João e Sophia</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>13/12/2024</strong></td>
+<td style="text-align: left;">0.2</td>
+<td style="text-align: left;">Atualização do documento</td>
+<td style="text-align: left;">Sophia</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>26/01/2025</strong></td>
+<td style="text-align: left;">0.3</td>
+<td style="text-align: left;">Atualização das Sprints, backlog e gamificação</td>
+<td style="text-align: left;">Sophia</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>14/02/2025</strong></td>
+<td style="text-align: left;">0.4</td>
+<td style="text-align: left;">Atualização do cronograma e ajustes</td>
+<td style="text-align: left;">Sophia</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>18/02/2025</strong></td>
+<td style="text-align: left;">1.0</td>
+<td style="text-align: left;">Versão final</td>
+<td style="text-align: left;">Sophia</td>
+</tr>
+</tbody>
+</table>
+<h2 id="visao-geral-do-produto"><strong>VISÃO GERAL DO PRODUTO</strong></h2>
+<h3 id="problema"><strong>Problema</strong></h3>
+<p>Em uma comunidade acadêmica, é comum haver monitorias/tutorias das disciplinas oferecidas pela instituição, para que os estudantes possam tirar suas dúvidas sobre determinados assuntos com um tutor. Porém, muitas vezes esse contato não ocorre, seja por conta de incompatibilidade de horário ou outros motivos, e, com um software que possibilite à comunidade que essas dúvidas sejam postadas a qualquer momento e que qualquer membro que possua o conhecimento possa saná-las, podemos mitigar esse problema e promover a colaboração e o desenvolvimento dos alunos.</p>
+<p><img alt="Figura 1" src="../diagrama-1.png" />
+<center>
+Figura 1: Diagrama espinha de peixe
+</center></p>
+<h3 id="declaracao-de-posicao-do-produto"><strong>Declaração de Posição do Produto</strong></h3>
+<p>Nosso software visa solucionar um problema presente na comunidade acadêmica da FCTE, segue abaixo nossa declaração de posição.</p>
+<p><center>Tabela 1: Declaração de posição do produto</center></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Para:</th>
+<th style="text-align: left;">Estudantes da UnB campus Gama - FCTE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">Necessidade:</td>
+<td style="text-align: left;">A comunidade estudantil precisa de tutores para tirar dúvidas sobre determinados assuntos que estão estudando.</td>
+</tr>
+<tr>
+<td style="text-align: right;">O Wunjo - Tutoria Gamificada:</td>
+<td style="text-align: left;">é um aplicativo mobile chamado UnBordo - A aventura do conhecimento.</td>
+</tr>
+<tr>
+<td style="text-align: right;">Que:</td>
+<td style="text-align: left;">Facilita aos estudantes comunicarem suas dúvidas e serem ajudados por qualquer membro da comunidade que possua o conhecimento de forma simples e prática.</td>
+</tr>
+<tr>
+<td style="text-align: right;">Ao contrário:</td>
+<td style="text-align: left;">Muitos alunos não conseguem participar de monitorias/tutorias por conta de horários incompatíveis, vergonha ou outros motivos, e acabam ficando com suas dúvidas não resolvidas.</td>
+</tr>
+<tr>
+<td style="text-align: right;">Nosso produto:</td>
+<td style="text-align: left;">Nosso aplicativo permite que os estudantes possam expressar suas dúvidas a qualquer momento e ajudarem um ao outro, sem exposição, em um ambiente gamificado para incentivá-los e tornar a experiência mais divertida.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="objetivos-do-produto"><strong>Objetivos do Produto</strong></h3>
+<p>O projeto possui por objetivo principal o desenvolvimento de uma plataforma voltada aos alunos da UnB - campus Gama para que seja criado um ambiente colaborativo e motivador, assim, aumentando a interação e desenvolvimento acadêmico entre os alunos. A plataforma irá utilizar, por meio de ferramentas de gamificação, formas para aumentar a navegabilidade, experiência do usuário e interação entre aluno e tutor.</p>
+<h3 id="tecnologias-utilizadas"><strong>Tecnologias utilizadas</strong></h3>
+<h4 id="tecnologias"><strong>Tecnologias</strong></h4>
+<p>As tecnologias foram escolhidas com base em suas grandes bases de documentações e comunidades, sendo assim, mais simples encontrar material de apoio durante o desenvolvimento.</p>
+<ul>
+<li>JavaScript/Typescript</li>
+<li>NodeJs</li>
+<li>ExpressJs</li>
+<li>React Native</li>
+<li>Octalysis</li>
+<li>PostgreSQL</li>
+<li>Prisma ORM</li>
+<li>DBeaver</li>
+<li>Docker</li>
+</ul>
+<p>As tecnologias Typescript, NodeJs, ExpressJs, React Native contam com uma ampla disponibilidade de bibliotecas que facilitam o desenvolvimento de novas funcionalidades e otimizam o tempo durante o desenvolvimento, além disso são tecnologias que funcionam com uma alta performance. Para a elaboração da Gamificação, foi escolhido o framework Octalysis, que tem como objetivo modificar os sentimentos e comportamentos do usuário da gamificação. </p>
+<p>Como banco de dados foi decidido o uso do PostgreSQL devido ao amplo suporte para adicionar novos tipos de dados, funções e possuir um alto desempenho. Para seu manuseio será utilizado o Prisma ORM, assim facilitando as operações entre a API e o Banco de Dados.  </p>
+<p>Foi escolhido utilizar o Docker visto que possui diversas imagens que irão facilitar durante o desenvolvimento, como a do postgreSQL que poderá ser usada junto ao DBeaver ao invés de armazenar um banco localmente durante o desenvolvimento. Além disso, irá garantir que a aplicação vá rodar da maneira esperada em diversas máquinas, sem haver problema de interoperacionalidade.</p>
+<h4 id="ferramentas"><strong>Ferramentas</strong></h4>
+<ul>
+<li>Visual Studio Code</li>
+<li>GitHub</li>
+<li>Git</li>
+<li>Hexad</li>
+</ul>
+<p>As ferramentas Git e Github foram escolhidas para que o código e documentos possam ser versionados e guardados dentro de um repositório, contam com um extenso material na internet, assim, facilitando com que todos os integrantes da equipe consigam aprender facilmente a utilizar. Além disso, o Git possui um histórico de versionamento, o que facilita recuperar trechos do código caso alguma funcionalidade seja implementada de forma indevida. O GitHub possui funcionalidades que contribuem com a organização da equipe, facilitando na atribuição e organização de tarefas. O editor de código utilizado para o desenvolvimento será o VS Code. Para a gamificação, foi decidido a ferramenta Hexad, para definição dos tipos de players que serão levados em consideração na construção da aplicação.</p>
+<h4 id="metodos"><strong>Métodos</strong></h4>
+<p>Os métodos de desenvolvimento escolhidos pela equipe foram o Scrum e o XP.</p>
+<ul>
+<li>Scrum</li>
+</ul>
+<p>O Scrum irá facilitar no andamento do projeto devido a alta adaptabilidade às mudanças ao decorrer do projeto, entregas e validação constante com o cliente referente ao produto de software, e também, o fácil gerenciamento de uma equipe multidisciplinar.</p>
+<ul>
+<li>XP</li>
+</ul>
+<p>O XP será utilizado devido a ferramentas como o <em>pair programming</em>, visto que irá agilizar o desenvolvimento e aprendizado dos membros da equipe, além da constante comunicação e feedbacks que serão utilizados internamente na equipe para possíveis melhoras durante o desenvolvimento do projeto.</p>
+<h4 id="arquitetura"><strong>Arquitetura</strong></h4>
+<p><strong>Backend:</strong>  </p>
+<ul>
+<li><strong>Hexagonal:</strong> No backend foi optado pelo uso do padrão arquiteturas hexagonal, pois assim, haverá uma forte divisão entre as camadas mais internas da aplicação com as mais externas, será aplicada uma forte inversão de dependência, visando uma maior organização e estruturação para o crescimento da plataforma a longo prazo, facilitando sua manutenção. A arquitetura hexagonal é baseada em portas, que são as partes da aplicação que irão receber requisições externas para envio de dados, e adaptadores, que funcionam como uma camada intermediária entre a camada de serviços da aplicação e serviços externos que serão utilizados na API. </li>
+</ul>
+<p><strong>Frontend:</strong></p>
+<ul>
+<li><strong>Component-Based Architecture:</strong> No frontend optamos pelo uso da arquitetura CBA(Component-Based Architecture). A arquitetura CBA visa segregar o código em pequenos componentes independentes que combinados formam a interface, aproveitando o comportamento natural do React utilizaremos a CBA para criar componentes reutilizaveis, promovendo a qualidade de código, manutenibilidade, a organização na equipe e a testabilidade do software.  </li>
+</ul>
+<h2 id="visao-geral-do-projeto"><strong>VISÃO GERAL DO PROJETO</strong></h2>
+<h3 id="ciclo-de-vida-do-projeto-de-desenvolvimento-de-software"><strong>Ciclo de vida do projeto de desenvolvimento de software</strong></h3>
+<p><img alt="Figura 2" src="../diagrama-2.png" />
+<center>
+Figura 2: Ciclo de vida do projeto
+</center></p>
+<p>Durante o desenvolvimento desse projeto utilizaremos a metodologia ágil SCRUM e os métodos de desenvolvimento do Extreme Programming (XP). Nesse contexto, a utilização desses dois frameworks surge na necessidade estratégica de guiar o gerenciamento do trabalho e a execução técnica das atividades. O SCRUM prioriza a organização da equipe por meio de sprints, reuniões, revisões e retrospectivas, enquanto XP adiciona práticas de engenharia como programação em pares, testes e integração contínua, visando garantir a qualidade técnica no desenvolvimento. </p>
+<p>Essas metodologias são fundamentadas por guias consolidados, como o Scrum Guide e XP Programming Guide, que servem como referências para implementar suas abordagens.<br />
+Para apoiar essas práticas, ferramentas como o Github — que é uma plataforma de controle de versão e colaboração — traz um papel fundamental. O Github facilita a organização do código, rastreamento de problemas e a integração contínua, permitindo que a equipe trabalhe de forma eficiente e integrada. Além disso, o uso de tecnologias e técnicas modernas e as pipelines de integração contínua e entrega contínua (CI/CD) asseguram o processo de desenvolvimento ágil, iterativo e de alta qualidade.</p>
+<p>Por fim, é notório que a utilização de todos esses frameworks combinam os valores e princípios da agilidade com ferramentas e práticas que promovem a entrega de valor incremental, permitindo que equipes adaptem-se rapidamente às mudanças e garantam qualidade e alinhamento com os objetivos do projeto.</p>
+<h3 id="gamificacao"><strong>Gamificação</strong></h3>
+<p>A partir da análise feita com o Octalisys e o Hexad, foi decidido o tema "Piratas" para o projeto. Como ferramentas essenciais para a gamificação, temos:
+- Perfil: O usuário poderá visualizar seu título e a quantidade de ouro que ele possui;
+- Ranqueamento: É uma classificação dos usuários, de acordo com sua pontuação, podendo o usuário decidir participar ou não do ranking;
+- Pontuação: A pontuação é representada pela quantidade de ouro que o usuário acumulou, seja pelas ajudas dadas ou desafios cumpridos.</p>
+<p>O Plano Geral de Gamificação pode ser acessado em sua integridade em: <a href="https://fga0138-mds-ajax.github.io/2024.2-Wunjo/documentos-gamificacao/pgg/">Plano Geral de Gamificação</a>.</p>
+<h3 id="organizacao-do-projeto"><strong>Organização do Projeto</strong></h3>
+<p><center>
+Tabela 2: Divisão de responsabilidades
+</center></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Papel</th>
+<th style="text-align: left;">Atribuições</th>
+<th style="text-align: left;">Responsável</th>
+<th style="text-align: left;">Participantes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Desenvolvedor front-end</td>
+<td style="text-align: left;">Idealizar design do produto, codificar a interface, codificar testes unitários, realizar refatoração, gerar análise de usuários, construir Plano Geral da Gamificação, documentar</td>
+<td style="text-align: left;">David William</td>
+<td style="text-align: left;">Arthur, David William, Giovana, Gustavo, João V. Farias, Yan, Letícia,</td>
+</tr>
+<tr>
+<td style="text-align: left;">Desenvolvedor back-end</td>
+<td style="text-align: left;">Modelar e codificar banco de dados, codificar testes unitários, realizar refatoração, documentar</td>
+<td style="text-align: left;">David William</td>
+<td style="text-align: left;">David William, Gabriel, João V. Farias, Sophia</td>
+</tr>
+<tr>
+<td style="text-align: left;">Desenvolvedor devops</td>
+<td style="text-align: left;">Integrar back-end e front-end, codificar testes unitários, realizar refatoração, documentar, distribuir produto, manter infraestrutura através de monitoramento</td>
+<td style="text-align: left;">David William</td>
+<td style="text-align: left;">David William, João V. Farias</td>
+</tr>
+<tr>
+<td style="text-align: left;">Líder do Produto</td>
+<td style="text-align: left;">Junto aos times, atualizar o escopo do produto, organizar o escopo das sprints, validar as entregas</td>
+<td style="text-align: left;">David William</td>
+<td style="text-align: left;">Gabriel, Sophia</td>
+</tr>
+<tr>
+<td style="text-align: left;">Cliente</td>
+<td style="text-align: left;">Definir requisitos, fornecer feedback, priorizar funcionalidades, aprovar entregas, comunicar restrições, participar de reuniões</td>
+<td style="text-align: left;">Wildemberg Sales</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+<h3 id="planejamento-das-fases-eou-iteracoes-do-projeto"><strong>Planejamento das Fases e/ou Iterações do Projeto</strong></h3>
+<p><center>Tabela 3: Planejamento do projeto</center></p>
+<table>
+<thead>
+<tr>
+<th><em>Sprint</em></th>
+<th><em>Produto (Entrega)</em></th>
+<th><em>Data Início</em></th>
+<th><em>Data Fim</em></th>
+<th><em>Entregável(eis)</em></th>
+<th><em>Responsáveis</em></th>
+<th><em>% conclusão</em></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Definição do Produto</td>
+<td>08/11/24</td>
+<td>22/11/24</td>
+<td>Documento de requisitos</td>
+<td>Equipe e Cliente</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Planejamento do Projeto</td>
+<td>23/11/24</td>
+<td>06/12/24</td>
+<td>Documento de visão e Plano Geral da Gamificação</td>
+<td>Equipe</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Prototipação</td>
+<td>03/12/24</td>
+<td>18/12/24</td>
+<td>Protótipo em Figma</td>
+<td>Equipe Front-End</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Arquitetura</td>
+<td>03/12/24</td>
+<td>18/12/24</td>
+<td>Documento de Arquitetura</td>
+<td>Equipe Back-End e DevOps</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Cadastro e login de usuários</td>
+<td>09/12/24</td>
+<td>09/01/2025</td>
+<td>API de cadastro e login no aplicativo</td>
+<td>Equipe Back-End e Front-End</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Dúvidas e fórum</td>
+<td>09/01/25</td>
+<td>20/01/25</td>
+<td>Fórum e dúvidas</td>
+<td>Equipe Back-End e Front-End</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Chat entre perfis</td>
+<td>20/01/25</td>
+<td>02/02/25</td>
+<td>Chat 1:1</td>
+<td>Equipe Front-End e Back-End</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Sistema de avaliação e gamificação</td>
+<td>02/02/2025</td>
+<td>16/02/25</td>
+<td>Implementação das avaliações, ranqueamento e temporada</td>
+<td>Equipe Back-end e Front-End</td>
+<td>100%</td>
+</tr>
+</tbody>
+</table>
+<h3 id="matriz-de-comunicacao"><strong>Matriz de Comunicação</strong></h3>
+<p><center>Tabela 4: Matriz de comunicação</center></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Descrição</th>
+<th style="text-align: left;">Área/Envolvidos</th>
+<th style="text-align: left;">Periodicidade</th>
+<th style="text-align: left;">Produtos Gerados</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Validação de requisitos</td>
+<td style="text-align: left;">Cliente e Equipe</td>
+<td style="text-align: left;">Sempre que necessário</td>
+<td style="text-align: left;">Documento de requisitos e gamificação.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Acompanhamento das atividades; Acompanhamento dos compromissos e ações pendentes.</td>
+<td style="text-align: left;">Equipe</td>
+<td style="text-align: left;">Semanal</td>
+<td style="text-align: left;">Ata de reunião; Relatórios; Atividades a serem realizadas; Documento de visão e arquitetura.</td>
+</tr>
+<tr>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">Equipe</td>
+<td style="text-align: left;">Quinzenal</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr>
+<td style="text-align: left;">Entrega de funcionalidade.</td>
+<td style="text-align: left;">Cliente e Equipe</td>
+<td style="text-align: left;">A cada sprint</td>
+<td style="text-align: left;">Ata de reunião.</td>
+</tr>
+<tr>
+<td style="text-align: left;">Comunicar situação do projeto</td>
+<td style="text-align: left;">Equipe e Monitor</td>
+<td style="text-align: left;">Sempre que necessário</td>
+<td style="text-align: left;">Ata de reunião.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gerenciamento-de-riscos"><strong>Gerenciamento de Riscos</strong></h3>
+<p><center>Tabela 5: Gerenciamento de riscos</center></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Risco</th>
+<th style="text-align: left;">Mitigação</th>
+<th style="text-align: left;">Contingência</th>
+<th style="text-align: left;">Grau</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Erros nas queries do Prisma ORM, resultando em problemas de performance no banco de dados.</td>
+<td style="text-align: left;">Realizar code reviews dedicados às queries e implementar monitoramento de desempenho do banco.</td>
+<td style="text-align: left;">Revisar e refatorar as queries mais críticas em produção com suporte das métricas de monitoramento.</td>
+<td style="text-align: left;">Alto</td>
+</tr>
+<tr>
+<td style="text-align: left;">Falhas na segurança do chat, expondo dados dos usuários a terceiros mal-intencionados.</td>
+<td style="text-align: left;">Adotar criptografia end-to-end no chat e realizar testes de segurança periódicos.</td>
+<td style="text-align: left;">Bloquear temporariamente o acesso ao chat enquanto as vulnerabilidades são corrigidas.</td>
+<td style="text-align: left;">Alto</td>
+</tr>
+<tr>
+<td style="text-align: left;">Excesso de dependência dos DevOps, atrasando a entrega do projeto em caso de indisponibilidade dessas pessoas.</td>
+<td style="text-align: left;">Documentar claramente o setup de infraestrutura e automação de deploys.</td>
+<td style="text-align: left;">Treinar outros integrantes do back-end para dar suporte básico às tarefas de DevOps.</td>
+<td style="text-align: left;">Alto</td>
+</tr>
+<tr>
+<td style="text-align: left;">Falha na sincronização de dados entre o servidor e o aplicativo, resultando em inconsistências no ranking ou pontuação.</td>
+<td style="text-align: left;">Implementar testes de integração automáticos para validar as sincronizações periodicamente.</td>
+<td style="text-align: left;">Configurar notificações para alertar quando houver falhas na sincronização, e alocar temporariamente um desenvolvedor para corrigir manualmente os dados afetados.</td>
+<td style="text-align: left;">Alto</td>
+</tr>
+<tr>
+<td style="text-align: left;">Falhas na gamificação desmotivando os usuários, como mecânicas de pontuação mal calibradas.</td>
+<td style="text-align: left;">Realizar testes com usuários para ajustar o equilíbrio de pontos e níveis antes do lançamento.</td>
+<td style="text-align: left;">Atualizar os parâmetros de pontuação em tempo real e comunicar as mudanças aos usuários.</td>
+<td style="text-align: left;">Médio</td>
+</tr>
+<tr>
+<td style="text-align: left;">Desempenho inadequado do aplicativo em dispositivos mais antigos</td>
+<td style="text-align: left;">Realizar testes de performance com diferentes configurações de hardware.</td>
+<td style="text-align: left;">Desativar funcionalidades mais pesadas nesses dispositivos, priorizando a experiência básica.</td>
+<td style="text-align: left;">Médio</td>
+</tr>
+<tr>
+<td style="text-align: left;">Dificuldade na gestão de backlog no GitHub Projects, resultando em baixa rastreabilidade das tarefas.</td>
+<td style="text-align: left;">Treinar o time para utilizar corretamente as ferramentas e revisar o backlog regularmente.</td>
+<td style="text-align: left;">Dar responsabilidade para um membro supervisionar as tarefas e padronizar templates para as issues.</td>
+<td style="text-align: left;">Médio</td>
+</tr>
+<tr>
+<td style="text-align: left;">Curva de aprendizado do time</td>
+<td style="text-align: left;">Identificar lacunas no aprendizado de todos e realizar pareamentos/aulas, pesquisas, leituras para que essas lacunas possam ser preenchidas</td>
+<td style="text-align: left;">Identificar membros que tem mais conhecimento acumulado para compartilhar com o resto da equipe.</td>
+<td style="text-align: left;">Alto</td>
+</tr>
+</tbody>
+</table>
+<h3 id="criterios-de-replanejamento"><strong>Critérios de Replanejamento</strong></h3>
+<p>Para situações em que os riscos demonstram uma ameaça direta à entrega dos objetivos principais ou quando acumulam-se fatores que podem gerar um débito técnico significativo; nós planejamos caso haja <strong>falhas de sincronização críticas entre o servidor e o aplicativo</strong>, pois inconsistências nos rankings ou pontuações afetam diretamente a experiência central de gamificação. Logo, resolver esse problema será essencial para evitar que o acúmulo de erros no banco de dados gera retrabalho em fases posteriores.</p>
+<p>Uma outra possível situação é <strong>falha (de segurança ou não) do chat entre tutor e aluno</strong>, requer reavaliação imediata do escopo, pois expõe a aplicação a riscos legais e de confiança do usuário. Esses casos demandam alocação de recursos de forma urgente, mesmo que em detrimento de funcionalidades menos prioritárias, como a própria gamificação. Pois o aplicativo ser funcional é de suma importância.</p>
+<p>Desta forma garantimos que as entregas sejam consistentes e escaláveis ao preservar a saúde do projeto ao longo deste tempo.</p>
+<h2 id="processo-de-desenvolvimento-de-software"><strong>PROCESSO DE DESENVOLVIMENTO DE SOFTWARE</strong></h2>
+<p>As metodologias escolhidas para o desenvolvimento de software foram SCRUM e XP devido a agilidade que possibilita no desenvolvimento do produto de software, garantindo qualidade, assertividade, através das validações constantes com o cliente, e o aprendizado e acompanhamento constante do grupo através  da programação por pares. Será utilizada uma abordagem iterativa e incremental, onde será apresentado constantemente o desenvolvimento do software ao cliente e também funcionalidades já consideradas prontas para uso.
+<img alt="Figura 3" src="../diagrama-3.png" /><br />
+<center>
+Figura 3: Fluxo de trabalho
+</center></p>
+<h2 id="declaracao-de-escopo-do-projeto"><strong>DECLARAÇÃO DE ESCOPO DO PROJETO</strong></h2>
+<h3 id="backlog-do-produto"><strong>Backlog do produto</strong></h3>
+<p>A forma na qual foi feita a elicitação de requisitos foi através de uma reunião via Microsoft Teams onde a equipe entendeu através de um brainstorm o problema que o cliente busca resolver, durante a reunião foram feitas diferentes perguntas para entender as funcionalidades do software e também o que a gamificação deveria motivar os usuários do software a fazer.</p>
+<p><strong>OBS.:</strong> A plataforma possui apenas um tipo de usuário que são os alunos da UnB, mas são chamados de tutor quando estão na posição de alguém que tira dúvida, e são chamados de alunos quando na posição de quem pergunta.</p>
+<p><strong>Como aluno eu quero:</strong></p>
+<ul>
+<li>Publicar minhas dúvidas em um fórum de dúvidas público para qualquer pessoa me responder de forma privada.(RQ01 - MUST)</li>
+<li>Cancelar um bate-papo de dúvidas já iniciado com um tutor, com um limite de 3 cancelamentos por semana. (RQ04 - SHOULD)</li>
+<li>Marcar uma dúvida como concluída removendo-a do fórum de dúvidas após ser sanada por um tutor.(RQ09 - MUST)</li>
+<li>Cadastrar minhas dúvidas no fórum indicando a matéria, complexidade e urgência. (RQ10, RQ11 - MUST)</li>
+<li>Postar minhas dúvidas em formato de texto e/ou foto.(RQ12 - MUST)</li>
+<li>Avaliar o atendimento do tutor, dando a ele uma nota, após ter a conversa finalizada.(RQ14 - MUST)</li>
+<li>Ter a possibilidade de deletar minha conta. (RQ27 - MUST)</li>
+<li>Receber uma notificação quando um tutor entrar em contato comigo para tirar uma dúvida. (RQ31 - MUST)</li>
+<li>Editar meu perfil escolhendo se quero ou não participar do ranking e alterar outras informações pessoais. (RQ32 - MUST)</li>
+</ul>
+<p><strong>Como tutor eu quero:</strong></p>
+<ul>
+<li>Selecionar uma dúvida que está no fórum de dúvidas e responder privadamente.(RQ02 - MUST)</li>
+<li>Cancelar um bate-papo de dúvidas sem ser penalizado e sem que haja um limite de cancelamentos.(RQ03 - SHOULD)</li>
+<li>Filtrar dúvidas por dificuldade, por matéria e também por urgência no fórum de dúvidas.(RQ07, RQ13 - MUST)</li>
+<li>Receber recompensas de acordo com meu desempenho na plataforma. (RQ23 - MUST)</li>
+<li>Ter a possibilidade de deletar minha conta. (RQ27 - MUST)</li>
+<li>Ver um mural de conquistas com informações sobre quantas pessoas conseguir ajudar, minhas médias e pontuação total. (RQ29 - MUST)</li>
+</ul>
+<p><strong>Como sistema eu quero:</strong></p>
+<ul>
+<li>Reiniciar a contagem de cancelamentos semanais que um aluno pode fazer de um bate-papo de dúvidas.(RQ05 - SHOULD) </li>
+<li>Possuir um bate-papo privado para que os alunos tirem suas dúvidas entre si.(RQ06 MUST)</li>
+<li>Buscar as matérias ofertadas na UnB/FCTE através de web-scraping.(RQ08 - MUST)</li>
+<li>Permitir os usuários a fazer denúncias em caso de comportamento impróprio de outro usuário na plataforma. (RQ15 - COULD)</li>
+<li>Possuir uma gamificação que incentive a interação e melhore o aprendizado dos alunos. (RQ16 - MUST)</li>
+<li>Possuir um ranking dos alunos que usam a plataforma. (RQ17, RQ33 - MUST)</li>
+<li>Dar a possibilidade de o usuário escolher ou não aparecer no ranking. (RQ18 - MUST)</li>
+<li>Privar um tutor de responder dúvidas por 3 dias em caso de comportamento inadequado ou avaliação muito baixa nos atendimentos. (RQ19 - SHOULD)</li>
+<li>Permitir que usuários se cadastrem na plataforma através de uma matrícula, curso e senha.(RQ20 - MUST)</li>
+<li>Aumentar o valor a ser recebido por responder uma dúvida após períodos de tempo serem passados, a depender da complexidade da pergunta selecionada pelo aluno. (RQ21 - SHOULD)</li>
+<li>Dar um valor maior a perguntas de maior dificuldade(RQ22 - COULD)</li>
+<li>Retirar moedas/ pontos dos tutores com baixa avaliação. (RQ25 - COULD)</li>
+<li>Enviar notificações por email para o usuário que recebeu uma denúncia sobre seu comportamento. (RQ26- SHOULD)</li>
+<li>Manter os chats de dúvidas dos usuários. (RQ28 - COULD)</li>
+<li>Enviar notificações com recomendações de dúvidas com maior pontuação ou urgência que ainda estão em aberto. (RQ30 - COULD)</li>
+<li>Enviar para o email institucional, a partir da matrícula fornecida no cadastro, um link para confirmação de cadastro do usuário. (RQ34 - MUST)</li>
+<li>Possuir uma gamificação dividida em temporadas com duração de 6 meses. (RQ35 - MUST)</li>
+</ul>
+<h3 id="perfis"><strong>Perfis</strong></h3>
+<p><center>
+Tabela 6: Perfis de acesso
+</center></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">#</th>
+<th style="text-align: left;">Nome do perfil</th>
+<th style="text-align: left;">Características do perfil</th>
+<th style="text-align: left;">Permissões de acesso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Aluno</td>
+<td style="text-align: left;">Responsável por fazer as perguntas sobre suas dúvidas. (Abrir dúvidas)</td>
+<td style="text-align: left;">Abrir dúvidas, ler dúvidas, fechar dúvidas, avaliar dúvidas</td>
+</tr>
+<tr>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">Tutor</td>
+<td style="text-align: left;">Responsável por responder às dúvidas do aluno. (Solucionar dúvidas)</td>
+<td style="text-align: left;">Ler dúvidas, responder dúvidas.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="cenarios"><strong>Cenários</strong></h3>
+<p><center>Tabela 7: Cenários funcionais</center></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Sistema: Wunjo – Cenários funcionais</th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">Numeração do cenário</td>
+<td style="text-align: center;">Nome do cenário</td>
+<td style="text-align: center;">Sprints</td>
+</tr>
+<tr>
+<td style="text-align: center;">1º</td>
+<td style="text-align: center;">Perfis funcionais</td>
+<td style="text-align: center;">Sistema e cadastro de perfis</td>
+</tr>
+<tr>
+<td style="text-align: center;">2º</td>
+<td style="text-align: center;">Dúvidas e fórum</td>
+<td style="text-align: center;">Dúvidas e fórum</td>
+</tr>
+<tr>
+<td style="text-align: center;">3º</td>
+<td style="text-align: center;">Sistema de chat</td>
+<td style="text-align: center;">Chat entre perfis</td>
+</tr>
+<tr>
+<td style="text-align: center;">4º</td>
+<td style="text-align: center;">Filtragem e categorização de dúvidas</td>
+<td style="text-align: center;">Dúvidas e fórum</td>
+</tr>
+<tr>
+<td style="text-align: center;">5º</td>
+<td style="text-align: center;">Denúncia e avaliação</td>
+<td style="text-align: center;">Sistema de avaliação e gamificação</td>
+</tr>
+<tr>
+<td style="text-align: center;">6º</td>
+<td style="text-align: center;">Notificações em aparelho</td>
+<td style="text-align: center;">Sistema de avaliação e gamificação</td>
+</tr>
+<tr>
+<td style="text-align: center;">7º</td>
+<td style="text-align: center;">Sistema de ranking</td>
+<td style="text-align: center;">Sistema de avaliação e gamificação</td>
+</tr>
+<tr>
+<td style="text-align: center;">8º</td>
+<td style="text-align: center;">Sistema de moedas</td>
+<td style="text-align: center;">Sistema de avaliação e gamificaçãoo</td>
+</tr>
+<tr>
+<td style="text-align: center;">9º</td>
+<td style="text-align: center;">Sistema de temporadas</td>
+<td style="text-align: center;">Sistema de avaliação e gamificação</td>
+</tr>
+</tbody>
+</table>
+<h3 id="tabela-de-backlog-do-produto"><strong>Tabela de Backlog do produto</strong></h3>
+<p><center>Tabela 8 : Backlog do produto</center></p>
+<!-- TODO: Change system name -->
+<table>
+<thead>
+<tr>
+<th>Sistema: Wunjo – Backlog do produto</th>
+<th style="text-align: left;"></th>
+<th style="text-align: left;"></th>
+<th></th>
+<th style="text-align: left;"></th>
+<th style="text-align: left;"></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Requisito</td>
+<td style="text-align: left;">Sprint</td>
+<td style="text-align: left;">Nome</td>
+<td>Tipo de requisito</td>
+<td style="text-align: left;">Priorização</td>
+<td style="text-align: left;">Descrição sucinta do requisito</td>
+<td><strong>User stories (U.S.) associadas</strong></td>
+</tr>
+<tr>
+<td>1</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">Fórum público</td>
+<td>Funcional</td>
+<td style="text-align: left;">Must</td>
+<td style="text-align: left;">Possuir um fórum de dúvidas público onde os alunos publiquem suas dúvidas</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Responder dúvidas</td>
+<td></td>
+<td style="text-align: left;">Must</td>
+<td style="text-align: left;">Um tutor pode selecionar uma dúvida do fórum para responder em um chat privado entre os dois usuários.</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Chat privado</td>
+<td></td>
+<td style="text-align: left;">Must</td>
+<td style="text-align: left;">Deve haver chats privados entre os alunos e tutores.</td>
+<td></td>
+</tr>
+<tr>
+<td>4</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Filtrar por matéria</td>
+<td></td>
+<td style="text-align: left;">Must</td>
+<td style="text-align: left;">Possuir filtro de dúvidas por matéria.</td>
+<td></td>
+</tr>
+<tr>
+<td>5</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Busca</td>
+<td></td>
+<td style="text-align: left;">Must</td>
+<td style="text-align: left;">O sistema deverá buscar as matérias através do SIGAA.</td>
+<td></td>
+</tr>
+<tr>
+<td>6</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Dúvida resolvida</td>
+<td></td>
+<td style="text-align: left;">Must</td>
+<td style="text-align: left;">Após a dúvida ser sanada, o usuário deve marcar como resolvida para fechar a questão.</td>
+<td></td>
+</tr>
+<tr>
+<td>7</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">Urgência da questão</td>
+<td></td>
+<td style="text-align: left;">Must</td>
+<td style="text-align: left;">Usuário cadastra suas dúvidas indicando qual matéria se trata e a urgência</td>
+<td></td>
+</tr>
+<tr>
+<td>8</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">Nível de dificuldade</td>
+<td></td>
+<td style="text-align: left;">Must</td>
+<td style="text-align: left;">Usuários cadastram a dificuldade da dúvida (Alta, Média, Baixa).</td>
+<td></td>
+</tr>
+<tr>
+<td>9</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">Formatos aceitos</td>
+<td></td>
+<td style="text-align: left;">Must</td>
+<td style="text-align: left;">As dúvidas podem ser colocadas em forma de texto e/ou foto.</td>
+<td></td>
+</tr>
+<tr>
+<td>10</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Filtrar por urgência</td>
+<td></td>
+<td style="text-align: left;">Must</td>
+<td style="text-align: left;">Possuir filtro de dúvidas por urgência.</td>
+<td></td>
+</tr>
+<tr>
+<td>11</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Avaliação do tutor</td>
+<td></td>
+<td style="text-align: left;">Must</td>
+<td style="text-align: left;">Aluno avalia o tutor após o atendimento para que a dúvida seja fechada.</td>
+<td></td>
+</tr>
+<tr>
+<td>12</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Denúncia</td>
+<td></td>
+<td style="text-align: left;">Could</td>
+<td style="text-align: left;">Usuários podem fazer denúncias em caso de comunicação imprópria, agressão e uso indevido da plataforma.</td>
+<td></td>
+</tr>
+<tr>
+<td>13</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Gamificação</td>
+<td></td>
+<td style="text-align: left;">Must</td>
+<td style="text-align: left;">O sistema deve ser gamificado.</td>
+<td></td>
+</tr>
+<tr>
+<td>14</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Ranking</td>
+<td></td>
+<td style="text-align: left;">Must</td>
+<td style="text-align: left;">Deve haver um ranking dos alunos.</td>
+<td></td>
+</tr>
+<tr>
+<td>15</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Participação</td>
+<td></td>
+<td style="text-align: left;">Must</td>
+<td style="text-align: left;">O usuário pode escolher participar ou não do ranking.</td>
+<td></td>
+</tr>
+<tr>
+<td>16</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Restrição</td>
+<td></td>
+<td style="text-align: left;">Should</td>
+<td style="text-align: left;">O Tutor é temporariamente restringido de responder dúvidas caso suas respostas sejam frequentemente reportadas como incorretas ou tenha uma avaliação muito baixa, por um período de 3 dias.</td>
+<td></td>
+</tr>
+<tr>
+<td>17</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Cadastro</td>
+<td></td>
+<td style="text-align: left;">Must</td>
+<td style="text-align: left;">Usuário se cadastra com nome, matrícula e curso (da FCTE).</td>
+<td></td>
+</tr>
+<tr>
+<td>18</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">Pontos por dificuldade</td>
+<td></td>
+<td style="text-align: left;">Could</td>
+<td style="text-align: left;">Aumentar as moedas das dúvidas de acordo com o nível de dificuldade.</td>
+<td></td>
+</tr>
+<tr>
+<td>19</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Recompensas</td>
+<td></td>
+<td style="text-align: left;">Must</td>
+<td style="text-align: left;">Recompensar tutores com moedas de acordo com seu desempenho e participação.</td>
+<td></td>
+</tr>
+<tr>
+<td>20</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Diminuição da avaliação</td>
+<td></td>
+<td style="text-align: left;">Could</td>
+<td style="text-align: left;">Tutores tem diminuição da sua média de avaliação reduzida conforme a avaliação baixa de um aluno sobre seu atendimento</td>
+<td></td>
+</tr>
+<tr>
+<td>21</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Alerta</td>
+<td></td>
+<td style="text-align: left;">Should</td>
+<td style="text-align: left;">Enviar e-mail para o usuário denunciado para alertar sobre denúncias de comportamento impróprio.</td>
+<td></td>
+</tr>
+<tr>
+<td>22</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Deletar conta</td>
+<td></td>
+<td style="text-align: left;">Must</td>
+<td style="text-align: left;">O usuário pode deletar sua conta.</td>
+<td></td>
+</tr>
+<tr>
+<td>23</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Visualizar chats</td>
+<td></td>
+<td style="text-align: left;">Could</td>
+<td style="text-align: left;">O sistema deve manter os chats privados dos usuários.</td>
+<td></td>
+</tr>
+<tr>
+<td>24</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Perfil</td>
+<td></td>
+<td style="text-align: left;">Must</td>
+<td style="text-align: left;">A gamificação deverá possuir uma página de perfil onde o usuário poderá ver todas suas moedas e avaliação dos usuários que ajudou.</td>
+<td></td>
+</tr>
+<tr>
+<td>25</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Notificação de chat</td>
+<td></td>
+<td style="text-align: left;">Must</td>
+<td style="text-align: left;">Notificar o aluno quando um tutor iniciar chat privado respondendo sua dúvida.</td>
+<td></td>
+</tr>
+<tr>
+<td>26</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Editar perfil</td>
+<td></td>
+<td style="text-align: left;">Must</td>
+<td style="text-align: left;">Usuário pode editar nome, curso e status de participação no ranking.</td>
+<td></td>
+</tr>
+<tr>
+<td>27</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Exibir no ranking</td>
+<td></td>
+<td style="text-align: left;">Must</td>
+<td style="text-align: left;">Exibir no ranking dos tutores cada tutor junto de suas médias e quantidade de atendimentos.</td>
+<td></td>
+</tr>
+<tr>
+<td>28</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Validar cadastro</td>
+<td></td>
+<td style="text-align: left;">Must</td>
+<td style="text-align: left;">O sistema recebe a matrícula do aluno e envia para o email institucional uma validação de cadastro.</td>
+<td></td>
+</tr>
+<tr>
+<td>29</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Temporadas</td>
+<td></td>
+<td style="text-align: left;">Must</td>
+<td style="text-align: left;">O sistema possui temporadas com duração de 6 meses onde os rankings são reiniciados após esse tempo.</td>
+<td></td>
+</tr>
+<tr>
+<td>30</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Cancelamento de chat</td>
+<td></td>
+<td style="text-align: left;">Must</td>
+<td style="text-align: left;">Um tutor pode cancelar um chat quantas vezes quiser, um aluno apenas 3 vezes por semana.</td>
+<td></td>
+</tr>
+<tr>
+<td>31</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Recuperar senha</td>
+<td></td>
+<td style="text-align: left;">Should</td>
+<td style="text-align: left;">O sistema possui a opcão de recuperar senha</td>
+<td></td>
+</tr>
+<tr>
+<td>32</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Visualizar perfis</td>
+<td></td>
+<td style="text-align: left;">Should</td>
+<td style="text-align: left;">O sistema deverá permitir que um estudante acesse o perfil de outro através do ranking e também através do chat privado, podendo visualizar o perfil do tutor que está tirando sua dúvida.</td>
+<td></td>
+</tr>
+<tr>
+<td>33</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Público-alvo</td>
+<td>Não funcional</td>
+<td style="text-align: left;">Must</td>
+<td style="text-align: left;">Tem como foco os alunos da UnB.</td>
+<td></td>
+</tr>
+<tr>
+<td>34</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Requisições</td>
+<td></td>
+<td style="text-align: left;">Must</td>
+<td style="text-align: left;">O sistema deve suportar alta quantidade de requisições</td>
+<td></td>
+</tr>
+<tr>
+<td>35</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Usabilidade</td>
+<td></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">O sistema deve ser intuitivo e de fácil navegação.</td>
+<td></td>
+</tr>
+<tr>
+<td>36</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Segurança</td>
+<td></td>
+<td style="text-align: left;">Must</td>
+<td style="text-align: left;">O sistema deve armazenar dados de maneira segura, respeitando a privacidade e a proteção das informações dos alunos.</td>
+<td></td>
+</tr>
+<tr>
+<td>37</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Avatar</td>
+<td></td>
+<td style="text-align: left;">Should</td>
+<td style="text-align: left;">O sistema deve permitir que o usuário selecione um avatar caso queira utilizar.</td>
+<td></td>
+</tr>
+<tr>
+<td>38</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Velocidade</td>
+<td></td>
+<td style="text-align: left;">Must</td>
+<td style="text-align: left;">O sistema deve possuir rápida atualização das mensagens entre os tutores e alunos.</td>
+<td></td>
+</tr>
+<tr>
+<td>39</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Plataforma</td>
+<td></td>
+<td style="text-align: left;">Must</td>
+<td style="text-align: left;">O sistema deve ser feito para plataforma mobile.</td>
+<td></td>
+</tr>
+<tr>
+<td>40</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Termo</td>
+<td></td>
+<td style="text-align: left;">Must</td>
+<td style="text-align: left;">O sistema deve possuir um termo de política e privacidade</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="referencias-bibliograficas"><strong>REFERÊNCIAS BIBLIOGRÁFICAS</strong></h2>
+<p><strong>SCHWABER, Ken; SUTHERLAND, Jeff.</strong> <em>O guia do Scrum.</em> Tradução de Fábio Cruz, Eduardo Rodrigues Sucena e Rodrigo Paulo. Novembro de 2020. Disponível em: <a href="https://scrumguides.org/docs/scrumguide/v2020/2020-Scrum-Guide-PortugueseBR-3.0.pdf">https://scrumguides.org/docs/scrumguide/v2020/2020-Scrum-Guide-PortugueseBR-3.0.pdf</a>.</p>
+<p><strong>GEEKFORGEEKS.</strong> <em>What is Extreme Programming (XP)?.</em> GeekforGeeks. 2024. Disponível em: <a href="https://www.geeksforgeeks.org/software-engineering-extreme-programming-xp">https://www.geeksforgeeks.org/software-engineering-extreme-programming-xp</a>. Acesso em 26 de novembro de 2024.</p>
+<p><strong>ELGABRY, Omar.</strong> <em>Component Based Architecture.</em> Disponível em: <a href="https://medium.com/omarelgabrys-blog/component-based-architecture-3c3c23c7e348">https://medium.com/omarelgabrys-blog/component-based-architecture-3c3c23c7e348</a>. Acesso em: 29 de novembro de 2024.</p>
+<p><strong>MARTINEZ, Pablo.</strong> <em>Hexagonal Architecture, there are always two sides to every story.</em></p>
+<p>Disponível em: <a href="https://medium.com/ssense-tech/hexagonal-architecture-there-are-always-two-sides-to-every-story-bc0780ed7d9c">https://medium.com/ssense-tech/hexagonal-architecture-there-are-always-two-sides-to-every-story-bc0780ed7d9c</a>. Acesso em: 24 de novembro de 2024.</p>
+<p><strong>MARINHO, Augusto</strong>. <em>Ports &amp; Adapters Architecture ou Arquitetura Hexagonal.</em> Disponível em: <a href="https://medium.com/bemobi-tech/ports-adapters-architecture-ou-arquitetura-hexagonal-b4b9904dad1a">https://medium.com/bemobi-tech/ports-adapters-architecture-ou-arquitetura-hexagonal-b4b9904dad1a</a>. Acesso em 24 de novembro de 2024.</p>
+<p><strong>SCRUM.org</strong>. <em>What is a Product Backlog?.</em> Disponível em: <a href="https://www.scrum.org/resources/what-is-a-product-backlog">https://www.scrum.org/resources/what-is-a-product-backlog</a>. Acesso em: 30 de novembro de 2024.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f1b6f286.min.js"></script>
+      
+    
+  </body>
+</html>
