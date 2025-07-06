@@ -10,12 +10,7 @@ describe('Test case register use case validator', () => {
   const input = {
     name: faker.person.fullName(),
     course: faker.helpers.enumValue(Course),
-    password: faker.string.alphanumeric({
-      length: {
-        min: 8,
-        max: 255,
-      },
-    }),
+    password: 'V@alid12424pass',
     registration: `${faker.number.int({
       max: 2,
       min: 1,
@@ -79,5 +74,13 @@ describe('Test case register use case validator', () => {
         path: ['registration'],
       },
     ]);
+  });
+
+  it('should validate input password correctly', async () => {
+    const output = await validator.validate(input);
+
+    expect({ password: output.password }).toEqual({
+      password: input.password,
+    });
   });
 });
